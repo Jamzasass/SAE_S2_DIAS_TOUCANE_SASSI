@@ -65,7 +65,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                universite_paris8.iut.rdias.towerdefense/universite_paris8.iut.rdias.towerdefense.HelloApplication
+                                universite_paris8.iut.rdias.towerdefense/universite_paris8.iut.rdias.towerdefense.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
