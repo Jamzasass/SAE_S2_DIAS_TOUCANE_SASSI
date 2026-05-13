@@ -1,0 +1,9 @@
+module universite_paris8.iut.rdias.towerdefense {
+    requires javafx.controls;
+    requires javafx.fxml;
+
+    requires org.controlsfx.controls;
+
+    opens universite_paris8.iut.rdias.towerdefense to javafx.fxml;
+    exports universite_paris8.iut.rdias.towerdefense;
+}
