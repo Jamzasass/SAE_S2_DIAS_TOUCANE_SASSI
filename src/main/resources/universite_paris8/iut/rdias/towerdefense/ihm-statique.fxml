@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane prefHeight="675.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="675.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.Controller">
    <top>
         <Label text="Vikings vs Knight" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="10.0" top="10.0" />
             </padding>
          <font>
-            <Font name="System Bold" size="29.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
         </Label>
    </top>
    <center>
-      <TilePane fx:id="map" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+      <TilePane fx:id="mapGrid" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
    </center>
    <right>
       <VBox prefHeight="620.0" prefWidth="165.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />

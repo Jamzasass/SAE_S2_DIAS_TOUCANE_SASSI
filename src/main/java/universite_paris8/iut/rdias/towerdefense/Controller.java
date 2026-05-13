@@ -1,7 +1,15 @@
 package universite_paris8.iut.rdias.towerdefense;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.layout.TilePane;
+import universite_paris8.iut.rdias.towerdefense.view.view  ;
 
-public class Controller implements Initializable {
+public class Controller {
+
+    @FXML
+    private TilePane mapGrid;
+
+    public void initialize() {
+        view.drawMap(mapGrid);
+    }
 }
