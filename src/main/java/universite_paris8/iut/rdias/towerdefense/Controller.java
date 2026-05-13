@@ -1,4 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense;
 
-public class Controller {
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+
+public class Controller implements Initializable {
 }
