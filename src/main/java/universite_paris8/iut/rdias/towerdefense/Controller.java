@@ -2,7 +2,7 @@ package universite_paris8.iut.rdias.towerdefense;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.rdias.towerdefense.view.view  ;
+import universite_paris8.iut.rdias.towerdefense.view.View;
 
 public class Controller {
 
@@ -10,6 +10,6 @@ public class Controller {
     private TilePane mapGrid;
 
     public void initialize() {
-        view.drawMap(mapGrid);
+        View.drawMap(mapGrid);
     }
 }

@@ -1,11 +1,10 @@
 package universite_paris8.iut.rdias.towerdefense.view;
 
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
-public class view {
+public class View {
 
     public static void drawMap(TilePane mapGrid) {
         int[][] map = {
@@ -25,10 +24,10 @@ public class view {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2}
         };
-        Image spriteGrass = new Image(view.class.getResourceAsStream("sprite/tile_grass.png"));
-        Image spritePath = new Image(view.class.getResourceAsStream("sprite/tile_path.png"));
-        Image spriteCastle = new Image(view.class.getResourceAsStream("sprite/tile_castle.png"));
-        Image spriteWater = new Image(view.class.getResourceAsStream("sprite/tile_water.png"));
+        Image spriteGrass = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_grass.png"));
+        Image spritePath = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_path.png"));
+        Image spriteCastle = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_castle.png"));
+        Image spriteWater = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_water.png"));
 
         for (int y = 0; y < map.length; y++) {
             for (int x = 0; x < map[y].length; x++) {
