@@ -2,6 +2,7 @@ package universite_paris8.iut.rdias.towerdefense;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import universite_paris8.iut.rdias.towerdefense.view.GroundView;
@@ -13,6 +14,8 @@ public class Controller {
 
     @FXML
     private TilePane mapGrid;
+    @FXML
+    private Pane actorsArea;
     private Timeline gameLoop;
     private int temps;
     private Environnement env;
@@ -20,7 +23,9 @@ public class Controller {
 
         Ground ground = new Ground();
         GroundView groundView = new GroundView(ground, mapGrid);
-        env = new Environnement(ground);
+        actorsArea.prefHeightProperty().bind(mapGrid.heightProperty());
+        actorsArea.prefWidthProperty().bind(mapGrid.widthProperty());
+        env = new Environnement(ground, actorsArea);
         groundView.drawMap();
 
         //définition et démarrage d'un gameloop qui fait env.unTour()

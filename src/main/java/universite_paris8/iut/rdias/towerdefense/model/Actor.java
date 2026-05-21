@@ -56,6 +56,6 @@ public abstract class Actor {
 
     public boolean isLiving(){return this.hp > 0;}
 
-    public void Die(){this.hp = 0;}
+    public void die(){this.hp = 0;}
 
 }
