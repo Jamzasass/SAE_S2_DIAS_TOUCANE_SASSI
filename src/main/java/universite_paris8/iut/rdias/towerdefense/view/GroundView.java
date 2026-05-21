@@ -46,7 +46,7 @@ public class GroundView {
 
         for (int ligne = 0; ligne < ground.heigth(); ligne++) {
             for (int col = 0; col < ground.width(); col++) {
-                int tileType = ground.codeTuile(ligne,col);
+                int tileType = ground.idTuile(ligne,col);
                 ImageView sprite= new ImageView();
 
                 if (tileType == 0) {
