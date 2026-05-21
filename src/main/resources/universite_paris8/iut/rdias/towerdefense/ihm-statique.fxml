@@ -24,7 +24,7 @@
    <center>
        <StackPane>
            <TilePane fx:id="mapGrid" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
-           <Pane fx:id="actorsArea" pickOnBounds="false" mouseTransparent="true" />
+           <Pane fx:id="actorsArea" pickOnBounds="false" mouseTransparent="true"  />
        </StackPane>
       </center>
    <right>

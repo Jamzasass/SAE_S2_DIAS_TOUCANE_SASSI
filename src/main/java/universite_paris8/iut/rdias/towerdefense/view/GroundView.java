@@ -2,13 +2,17 @@ package universite_paris8.iut.rdias.towerdefense.view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
 
 public class GroundView {
 
     private Ground ground;
+    private Pane actorsArea;
     private TilePane mapGrid;
+
+    private static Image imageCastle = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/castle_32x32.png"));
 
     private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/grass/tile_grass1.png"));
     private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/grass/tile_grass2.png"));
@@ -28,9 +32,10 @@ public class GroundView {
 
 
 
-    public GroundView(Ground ground, TilePane mapGrid){
+    public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea){
         this.ground = ground;
         this.mapGrid = mapGrid;
+        this.actorsArea = actorsArea;
     }
 
     public void drawMap() {
@@ -46,7 +51,12 @@ public class GroundView {
         mapGrid.setMinSize(widthGround, heigthGround);
         mapGrid.setMaxSize(widthGround, heigthGround);
         mapGrid.getChildren().clear();
-
+        ImageView imageView = new ImageView(imageCastle);
+        imageView.setFitHeight(64);
+        imageView.setFitWidth(64);
+        imageView.setLayoutX(39*16);
+        imageView.setLayoutY(41*16);
+        actorsArea.getChildren().add(imageView);
 
         for (int ligne = 0; ligne < ground.heigth(); ligne++) {
             for (int col = 0; col < ground.width(); col++) {

@@ -14,14 +14,21 @@ import java.util.Map;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import universite_paris8.iut.rdias.towerdefense.model.Soldier;
 
 public class ObsEnemy implements ListChangeListener<Enemy> {
-    private ArrayList<Image> enemiesSprite;
+    private ArrayList<SoldierView> enemiesSprite;
     private Pane grid;
 
     public ObsEnemy(Pane oGrid) {
         this.grid = oGrid;
         this.enemiesSprite = new ArrayList<>();
+    }
+
+    public void animate() {
+        for (SoldierView s : enemiesSprite) {
+            s.switchImage();
+        }
     }
 
     @Override
@@ -31,14 +38,18 @@ public class ObsEnemy implements ListChangeListener<Enemy> {
             List<Enemy> retirer = (List<Enemy>) change.getRemoved();
 
             for (Enemy e : ajout) {
-
-
-                Circle c = new Circle(16, Color.RED);
-                c.layoutXProperty().bind(e.getXProperty().multiply(16).add(16/2.0));
-                c.layoutYProperty().bind(e.getYProperty().multiply(16).add(16/2.0));
-                grid.getChildren().add(c);
+                SoldierView s = new SoldierView(e, e.getId());
+                grid.getChildren().add(s.getImage());
+                enemiesSprite.add(s);
+            }
+            for (Enemy e : retirer) {
+                grid.getChildren().remove(grid.lookup("#" + e.getId() + ""));
             }
         }
+    }
+
+    public ArrayList<SoldierView> getEnemiesSprite() {
+        return enemiesSprite;
     }
 
 

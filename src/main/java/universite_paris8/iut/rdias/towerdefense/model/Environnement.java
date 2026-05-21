@@ -13,7 +13,7 @@ import java.util.Collections;
 
 public class Environnement {
 
-
+    private static int id = 1;
     private final Ground ground;
     private final ObservableList<Enemy> enemies; // liste observable d'ennemis
     private static int cptSpawn = 0;
@@ -31,13 +31,14 @@ public class Environnement {
     public void unTour() {  // méthode unTour()
         cptSpawn++;
         if (cptSpawn >= delaySpawn) {
-            enemies.add(new Vikings(1, 0, 0));
+            enemies.add(new Vikings(id, 0, 0));
+            id++;
             cptSpawn = 0;
         }
         for (Enemy e : enemies) {
             e.move();
         }
-        enemies.removeIf(e -> e.getX() >= ground.width() - 1);
+        enemies.removeIf(e -> e.getX() >= ground.width() - 1 );
     }
 
     public ObservableList<Enemy> getEnemies() {

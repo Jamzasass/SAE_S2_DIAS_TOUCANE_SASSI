@@ -1,8 +1,10 @@
 package universite_paris8.iut.rdias.towerdefense;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.Pane;
+import universite_paris8.iut.rdias.towerdefense.model.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import universite_paris8.iut.rdias.towerdefense.view.GroundView;
@@ -10,6 +12,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.view.ObsEnemy;
+import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 
 public class Controller {
 
@@ -20,14 +23,20 @@ public class Controller {
     private Timeline gameLoop;
     private int temps;
     private Environnement env;
+    private ObsEnemy obsEnemy;
     public void initialize() {
 
         Ground ground = new Ground();
-        GroundView groundView = new GroundView(ground, mapGrid);
+        GroundView groundView = new GroundView(ground, mapGrid, actorsArea);
         actorsArea.prefHeightProperty().bind(mapGrid.heightProperty());
         actorsArea.prefWidthProperty().bind(mapGrid.widthProperty());
+        double largeur = ground.width() * 16.0;
+        double hauteur = ground.heigth() * 16.0;
+        actorsArea.setMinSize(largeur, hauteur);
+        actorsArea.setMaxSize(largeur, hauteur);
         env = new Environnement(ground);
-        env.getEnemies().addListener(new ObsEnemy(actorsArea));
+        obsEnemy = new ObsEnemy(actorsArea);
+        env.getEnemies().addListener(obsEnemy);
         groundView.drawMap();
 
         //définition et démarrage d'un gameloop qui fait env.unTour()
@@ -45,13 +54,11 @@ public class Controller {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    if(temps==10000){
-                        System.out.println("fini");
-                        gameLoop.stop();
+                    env.unTour();
+                    if (temps%10==0) {
+                        obsEnemy.animate();
                     }
-                    if (temps%5 == 0) {
-                        env.unTour();
-                    }
+
                     temps++;
                 })
         );
