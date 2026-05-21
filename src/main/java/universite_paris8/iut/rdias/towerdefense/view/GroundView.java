@@ -26,6 +26,8 @@ public class GroundView {
     private static Image spritePath3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path3.png"));
     private static Image spritePath4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path4.png"));
 
+
+
     public GroundView(Ground ground, TilePane mapGrid){
         this.ground = ground;
         this.mapGrid = mapGrid;
