@@ -9,6 +9,8 @@ public class GroundView {
 
     private Ground ground;
     private TilePane mapGrid;
+
+
     private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass1.png"));
     private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass2.png"));
     private static Image spriteGrass3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass3.png"));

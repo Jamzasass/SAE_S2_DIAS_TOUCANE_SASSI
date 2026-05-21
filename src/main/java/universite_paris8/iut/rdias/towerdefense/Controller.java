@@ -9,6 +9,7 @@ import universite_paris8.iut.rdias.towerdefense.view.GroundView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import universite_paris8.iut.rdias.towerdefense.view.ObsEnemy;
 
 public class Controller {
 
@@ -25,7 +26,8 @@ public class Controller {
         GroundView groundView = new GroundView(ground, mapGrid);
         actorsArea.prefHeightProperty().bind(mapGrid.heightProperty());
         actorsArea.prefWidthProperty().bind(mapGrid.widthProperty());
-        env = new Environnement(ground, actorsArea);
+        env = new Environnement(ground);
+        env.getEnemies().addListener(new ObsEnemy(actorsArea));
         groundView.drawMap();
 
         //définition et démarrage d'un gameloop qui fait env.unTour()

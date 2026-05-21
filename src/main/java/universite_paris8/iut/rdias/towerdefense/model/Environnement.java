@@ -13,7 +13,6 @@ import java.util.Collections;
 
 public class Environnement {
 
-    private Pane pane;
 
     private final Ground ground;
     private final ObservableList<Enemy> enemies; // liste observable d'ennemis
@@ -21,14 +20,10 @@ public class Environnement {
     private int delaySpawn = 60;
 
 
-    public Environnement(Ground ground, Pane pane) {
+    public Environnement(Ground ground) {
         this.ground = ground;
-        this.pane = pane;
         this.enemies = FXCollections.observableArrayList();
-        ListChangeListener<Enemy> listEn = new ObsEnemy(pane);
-        enemies.addListener(listEn);
         int path = ground.heigth() - 1;
-        enemies.add(new Vikings(1,0,0));
     }
 
     public void add(Enemy e){this.enemies.add(e);}
