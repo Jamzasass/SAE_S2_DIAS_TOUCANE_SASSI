@@ -100,10 +100,10 @@ public class GroundView {
         return spriteGrass4;
     }
     public Image pathSelection(int l, int col) {
-        boolean above = isPath(l + 1, col);
-        boolean below = isPath(col, l + 1);
-        boolean left = isPath(col - 1, l);
-        boolean right = isPath(col + 1, l);
+        boolean above = isPath(l - 1, col);
+        boolean below = isPath(l+1, col);
+        boolean left = isPath(l, col-1);
+        boolean right = isPath(l, col+1);
 
 
         // vertical path
@@ -137,9 +137,6 @@ public class GroundView {
         if (l < 0 || col < 0 || l >= this.ground.heigth() || col >= this.ground.width()) {
             return false;
         }
-        if(this.ground.codeTuile(l,col) == 1){
-            return true;
-        }
-        return false;
+        return this.ground.codeTuile(l, col) == 1;
     }
 }
