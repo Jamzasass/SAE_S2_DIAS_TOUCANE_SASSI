@@ -9,7 +9,9 @@ public abstract class Soldier extends Actor{
     }
 
     public void move(){
-        setX(getX()+ speed);
+        double random = (Math.random());
+        setX(getX()+ speed*(random));
+        setY(getY()+ speed*(1-random));
     }
 
     public double getSpeed(){

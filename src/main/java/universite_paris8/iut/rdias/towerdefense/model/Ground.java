@@ -63,5 +63,8 @@ public class Ground {
         return this.map[ligne][col];
     }
 
+    public boolean isPath(int ligne, int col) {
+        return this.map[ligne][col]==1;
+    }
 
 }

@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import universite_paris8.iut.rdias.towerdefense.model.Soldier;
 
 public class ObsEnemy implements ListChangeListener<Enemy> {
@@ -38,7 +39,7 @@ public class ObsEnemy implements ListChangeListener<Enemy> {
             List<Enemy> retirer = (List<Enemy>) change.getRemoved();
 
             for (Enemy e : ajout) {
-                SoldierView s = new SoldierView(e, e.getId());
+                SoldierView s = new SoldierView(e);
                 grid.getChildren().add(s.getImage());
                 enemiesSprite.add(s);
             }

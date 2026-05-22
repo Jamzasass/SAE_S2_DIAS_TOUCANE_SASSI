@@ -18,6 +18,7 @@ public class Controller {
 
     @FXML
     private TilePane mapGrid;
+    private Ground ground;
     @FXML
     private Pane actorsArea;
     private Timeline gameLoop;
@@ -26,7 +27,7 @@ public class Controller {
     private ObsEnemy obsEnemy;
     public void initialize() {
 
-        Ground ground = new Ground();
+        ground = new Ground();
         GroundView groundView = new GroundView(ground, mapGrid, actorsArea);
         actorsArea.prefHeightProperty().bind(mapGrid.heightProperty());
         actorsArea.prefWidthProperty().bind(mapGrid.widthProperty());
@@ -41,7 +42,9 @@ public class Controller {
 
         //définition et démarrage d'un gameloop qui fait env.unTour()
         initAnimation();
+
         gameLoop.play();
+
     }
 
     public void initAnimation() {
@@ -57,6 +60,10 @@ public class Controller {
                     env.unTour();
                     if (temps%10==0) {
                         obsEnemy.animate();
+                        for (SoldierView s : obsEnemy.getEnemiesSprite()) {
+                            if (ground.isPath((int) s.getTuileLine(), (int) s.getTuileColumn()))
+                                System.out.println("PATHHHH");
+                        }
                     }
 
                     temps++;
