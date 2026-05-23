@@ -23,8 +23,15 @@ public class GroundView {
     private static Image spritePath2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_path2.png"));
     private static Image spritePath3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_path3.png"));
     private static Image spritePath4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_path4.png"));
-    private static Image spriteStraightPathV = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathV.png"));
-    private static Image spriteStraightPathH = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathH.png"));
+    private static Image spriteStraightPathVR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathVR.png"));
+    private static Image spriteStraightPathVL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathVL.png"));
+    private static Image spriteStraightPathHT = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathHT.png"));
+    private static Image spriteStraightPathHB = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathHB.png"));
+
+    private static Image spriteBottomCornerR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_BottomCornerR.png"));
+    private static Image spriteBottomCornerL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_BottomCornerL.png"));
+    private static Image spriteBottomTopR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_TopCornerR.png"));
+    private static Image spriteBottomTopL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_TopCornerL.png"));
 
     public GroundView(Ground ground, TilePane mapGrid){
         this.ground = ground;
@@ -107,29 +114,35 @@ public class GroundView {
 
 
         // vertical path
-        if (above && below && !left && !right)
-            return spriteStraightPathV;
+        if (above && below && left && !right)
+            return spriteStraightPathVR;
+
+        if (above && below && !left && right)
+            return spriteStraightPathVL;
 
         // horizontal path
-        if (left && right && !above && !below)
-            return spriteStraightPathH;
+        if (left && right && !above && below)
+            return spriteStraightPathHT;
 
-//        // bottom corner → right
-//        if (below && right && !above && !left)
-//            return;
-//
-//        // bottom corner → left
-//        if (below && left && !above && !right)
-//            return ;
-//
-//        // top corner → right
-//        if (above && right && !below && !left)
-//            return ;
-//
-//        // top corner → left
-//        if (above && left && !below && !right)
-//            return ;
-//
+        if (left && right && above && !below)
+            return spriteStraightPathHB;
+
+        // bottom corner → right
+        if (above && left && !below && !right)
+            return spriteBottomCornerR;
+
+        // bottom corner → left
+        if (above && right && !below && !left)
+            return spriteBottomCornerL;
+
+        // top corner → right
+        if (below && left && !above && !right)
+            return spriteBottomTopR;
+
+        // top corner → left
+        if (below && right && !above && !left)
+            return spriteBottomTopL;
+
         return spritePath1;
     }
 
