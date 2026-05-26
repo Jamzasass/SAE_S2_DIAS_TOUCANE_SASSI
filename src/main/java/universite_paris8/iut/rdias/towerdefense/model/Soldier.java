@@ -18,8 +18,15 @@ public abstract class Soldier extends Actor{
         double futureX = getX() + speed*(directionX);
         double futureY = getY() + speed*(directionY);
 
-        setX(futureX);
-        setY(futureY);
+        if (futureX>0 && futureY>0 && futureY<env.getGround().heigth() && futureX<env.getGround().width()) {
+            if (env.getGround().isPath((int)futureY, (int)futureX)) {
+                setX(futureX);
+                setY(futureY);
+            }
+        }
+        else
+            this.changeDirection();
+
 
     }
 
@@ -28,14 +35,18 @@ public abstract class Soldier extends Actor{
     }
 
     public void changeDirection() {
-        double random = (Math.random()*2)-1;
-        if (random<0) {
-            directionY = (-1-random);
-        }
+        double randomX = (Math.random()*2)-1;
+        double randomY = (Math.random()*2)-1;
+        if (randomX<0)
+            directionX = (-1-randomX);
         else
-            directionY = (1-random);
+            directionX = (1-randomX);
 
-        directionX = random;
+        if (randomY<0)
+            directionY = (-1-randomY);
+        else
+            directionY = (1-randomY);
+
 
     }
 }
