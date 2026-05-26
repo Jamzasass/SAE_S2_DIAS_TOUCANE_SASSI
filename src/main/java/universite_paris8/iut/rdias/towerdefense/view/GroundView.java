@@ -11,20 +11,29 @@ public class GroundView {
     private Ground ground;
     private TilePane mapGrid;
     private Pane actorsArea;
-    private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass1.png"));
-    private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass2.png"));
-    private static Image spriteGrass3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass3.png"));
-    private static Image spriteGrass4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass4.png"));
 
-    private static Image spriteWater1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water1.png"));
-    private static Image spriteWater2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water2.png"));
-    private static Image spriteWater3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water3.png"));
-    private static Image spriteWater4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water4.png"));
+    private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass1.png"));
+    private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass2.png"));
+    private static Image spriteGrass3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass3.png"));
+    private static Image spriteGrass4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass4.png"));
 
-    private static Image spritePath1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path1.png"));
-    private static Image spritePath2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path2.png"));
-    private static Image spritePath3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path3.png"));
-    private static Image spritePath4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path4.png"));
+    private static Image spriteWater1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water/tile_water1.png"));
+    private static Image spriteWater2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water/tile_water2.png"));
+    private static Image spriteWater3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water/tile_water3.png"));
+    private static Image spriteWater4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water/tile_water4.png"));
+    //Straight paths
+    private static Image spritePath1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_path1.png"));
+    private static Image spriteStraightPathVR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathVR.png"));
+    private static Image spriteStraightPathVL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathVL.png"));
+    private static Image spriteStraightPathHT = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathHT.png"));
+    private static Image spriteStraightPathHB = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathHB.png"));
+    // Corner paths
+    private static Image spriteBottomCornerR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_BottomCornerR.png"));
+    private static Image spriteBottomCornerL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_BottomCornerL.png"));
+    private static Image spriteBottomTopR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_TopCornerR.png"));
+    private static Image spriteBottomTopL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_TopCornerL.png"));
+    private static Image spriteBridge = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_Bridge.png"));
+
 
     public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea){
         this.ground = ground;
@@ -49,14 +58,13 @@ public class GroundView {
 
         for (int ligne = 0; ligne < ground.heigth(); ligne++) {
             for (int col = 0; col < ground.width(); col++) {
-                int tileType = ground.idTuile(ligne,col);
-                ImageView sprite= new ImageView();
+                int tileType = ground.idTuile(ligne, col);
+                ImageView sprite = new ImageView();
 
                 if (tileType == 0) {
-
                     sprite.setImage(grassSelection());
                 } else if (tileType == 1) {
-                    sprite.setImage(pathSelection());
+                    sprite.setImage(pathSelection(ligne, col));
                 } else if (tileType == 2) {
                     sprite.setImage(spriteCastle);
                 } else if (tileType == 3) {
@@ -100,18 +108,74 @@ public class GroundView {
         }
         return spriteGrass4;
     }
-    public Image pathSelection() {
+
+
+    public Image pathSelection(int l, int col) {
+        //For auto path
+        boolean above = isPath(l - 1, col);
+        boolean below = isPath(l+1, col);
+        boolean left = isPath(l, col-1);
+        boolean right = isPath(l, col+1);
+
+
+        //For bridge
+        boolean belowW = isWater(l+1, col);
+        boolean belowWPlus = isWater(l+2, col);
+        boolean leftW = isWater(l, col-1);
+        boolean rightW = isWater(l, col+1);
+        boolean leftWPlus = isWater(l, col-2);
+        boolean rightWPlus = isWater(l, col+2);
+
+        //For normal path
         int random = (int) (Math.random() * 4);
-        switch (random) {
-            case 0:
-                return spritePath1;
-            case 1:
-                return spritePath2;
-            case 2:
-                return spritePath3;
-            case 3:
-                return spritePath4;
+
+        if ((belowWPlus && below && left && right) || (above && belowW && left && right) || (above && below && leftW && right && rightWPlus) || (above && below && rightW && left && leftWPlus))
+            return spriteBridge;
+
+        // vertical path
+        if (above && below && left && !right)
+            return spriteStraightPathVR;
+
+        if (above && below && !left && right)
+            return spriteStraightPathVL;
+
+        // horizontal path
+        if (left && right && !above && below)
+            return spriteStraightPathHT;
+
+        if (left && right && above && !below)
+            return spriteStraightPathHB;
+
+        // bottom corner → right
+        if (above && left && !below && !right)
+            return spriteBottomCornerR;
+
+        // bottom corner → left
+        if (above && right && !below && !left)
+            return spriteBottomCornerL;
+
+        // top corner → right
+        if (below && left && !above && !right)
+            return spriteBottomTopR;
+
+        // top corner → left
+        if (below && right && !above && !left)
+            return spriteBottomTopL;
+
+        return spritePath1;
+    }
+
+    private boolean isPath(int l, int col) {
+        if (l < 0 || col < 0 || l >= this.ground.heigth() || col >= this.ground.width()) {
+            return false;
         }
-        return spriteGrass4;
+        return this.ground.idTuile(l, col) == 1;
+    }
+
+    private boolean isWater(int l, int col) {
+        if (l < 0 || col < 0 || l >= this.ground.heigth() || col >= this.ground.width()) {
+            return false;
+        }
+        return this.ground.idTuile(l, col) == 3;
     }
 }
