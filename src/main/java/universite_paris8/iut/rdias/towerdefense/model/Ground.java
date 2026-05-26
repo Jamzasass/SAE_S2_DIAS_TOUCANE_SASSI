@@ -59,7 +59,7 @@ public class Ground {
 
     public int width() {return this.map[0].length;}
 
-    public int codeTuile(int ligne, int col) {
+    public int idTuile(int ligne, int col) {
         return this.map[ligne][col];
     }
 

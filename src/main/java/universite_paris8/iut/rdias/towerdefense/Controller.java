@@ -22,7 +22,7 @@ public class Controller {
     public void initialize() {
 
         Ground ground = new Ground();
-        GroundView groundView = new GroundView(ground, mapGrid);
+        GroundView groundView = new GroundView(ground, mapGrid, actorsArea);
         actorsArea.prefHeightProperty().bind(mapGrid.heightProperty());
         actorsArea.prefWidthProperty().bind(mapGrid.widthProperty());
         env = new Environnement(ground, actorsArea);

@@ -2,6 +2,7 @@ package universite_paris8.iut.rdias.towerdefense.view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
 
@@ -9,6 +10,8 @@ public class GroundView {
 
     private Ground ground;
     private TilePane mapGrid;
+    private Pane actorsArea;
+
     private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass1.png"));
     private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass2.png"));
     private static Image spriteGrass3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass3.png"));
@@ -32,9 +35,10 @@ public class GroundView {
     private static Image spriteBridge = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_Bridge.png"));
 
 
-    public GroundView(Ground ground, TilePane mapGrid){
+    public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea){
         this.ground = ground;
         this.mapGrid = mapGrid;
+        this.actorsArea = actorsArea;
     }
 
     public void drawMap() {
@@ -54,7 +58,7 @@ public class GroundView {
 
         for (int ligne = 0; ligne < ground.heigth(); ligne++) {
             for (int col = 0; col < ground.width(); col++) {
-                int tileType = ground.codeTuile(ligne, col);
+                int tileType = ground.idTuile(ligne, col);
                 ImageView sprite = new ImageView();
 
                 if (tileType == 0) {
@@ -165,13 +169,13 @@ public class GroundView {
         if (l < 0 || col < 0 || l >= this.ground.heigth() || col >= this.ground.width()) {
             return false;
         }
-        return this.ground.codeTuile(l, col) == 1;
+        return this.ground.idTuile(l, col) == 1;
     }
 
     private boolean isWater(int l, int col) {
         if (l < 0 || col < 0 || l >= this.ground.heigth() || col >= this.ground.width()) {
             return false;
         }
-        return this.ground.codeTuile(l, col) == 3;
+        return this.ground.idTuile(l, col) == 3;
     }
 }
