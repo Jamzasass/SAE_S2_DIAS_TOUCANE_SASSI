@@ -31,17 +31,26 @@ public class Environnement {
     public void unTour() {  // méthode unTour()
         cptSpawn++;
         if (cptSpawn >= delaySpawn) {
-            enemies.add(new Vikings(id, 0, 0));
+            enemies.add(new Vikings(id, 8, 4));
             id++;
             cptSpawn = 0;
         }
         for (Enemy e : enemies) {
-            e.move();
+            e.move(this);
+            int random = (int)(Math.random()*30);
+            if (random == 1) {
+                e.changeDirection();
+                System.out.println("ch");
+            }
         }
-        enemies.removeIf(e -> e.getX() >= ground.width() - 1 );
+        enemies.removeIf(e -> e.getX() >= ground.width() - 1);
     }
 
     public ObservableList<Enemy> getEnemies() {
         return enemies;
+    }
+
+    public Ground getGround() {
+        return ground;
     }
 }
