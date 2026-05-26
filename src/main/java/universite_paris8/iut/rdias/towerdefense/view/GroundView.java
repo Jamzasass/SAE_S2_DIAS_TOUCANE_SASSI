@@ -9,16 +9,12 @@ import universite_paris8.iut.rdias.towerdefense.model.Ground;
 public class GroundView {
 
     private Ground ground;
-    private Pane actorsArea;
     private TilePane mapGrid;
-
-    private static Image imageCastle = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/castle_32x32.png"));
-
-    private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/grass/tile_grass1.png"));
-    private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/grass/tile_grass2.png"));
-    private static Image spriteGrass3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/grass/tile_grass3.png"));
-    private static Image spriteGrass4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/grass/tile_grass4.png"));
-
+    private Pane actorsArea;
+    private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass1.png"));
+    private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass2.png"));
+    private static Image spriteGrass3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass3.png"));
+    private static Image spriteGrass4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass4.png"));
 
     private static Image spriteWater1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water1.png"));
     private static Image spriteWater2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water2.png"));
@@ -29,8 +25,6 @@ public class GroundView {
     private static Image spritePath2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path2.png"));
     private static Image spritePath3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path3.png"));
     private static Image spritePath4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path4.png"));
-
-
 
     public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea){
         this.ground = ground;
@@ -51,12 +45,7 @@ public class GroundView {
         mapGrid.setMinSize(widthGround, heigthGround);
         mapGrid.setMaxSize(widthGround, heigthGround);
         mapGrid.getChildren().clear();
-        ImageView imageView = new ImageView(imageCastle);
-        imageView.setFitHeight(64);
-        imageView.setFitWidth(64);
-        imageView.setLayoutX(39*16);
-        imageView.setLayoutY(41*16);
-        actorsArea.getChildren().add(imageView);
+
 
         for (int ligne = 0; ligne < ground.heigth(); ligne++) {
             for (int col = 0; col < ground.width(); col++) {
