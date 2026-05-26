@@ -10,6 +10,7 @@ import universite_paris8.iut.rdias.towerdefense.view.ObsEnemy;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class Environnement {
 
@@ -18,6 +19,7 @@ public class Environnement {
     private final ObservableList<Enemy> enemies; // liste observable d'ennemis
     private static int cptSpawn = 0;
     private int delaySpawn = 60;
+    private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
 
 
     public Environnement(Ground ground) {
@@ -30,18 +32,21 @@ public class Environnement {
 
     public void unTour() {  // méthode unTour()
         cptSpawn++;
-        if (cptSpawn >= delaySpawn) {
-            enemies.add(new Vikings(id, 8, 4));
+        if (cptSpawn == delaySpawn) {
+            int random = (int)(Math.random() * spanwPoints.length);
+            int[] spawn = spanwPoints[random];
+            int ligne = spawn[0];
+            int col = spawn[1];
+            Vikings v = new Vikings(id, col, ligne);
+            AStar astar =  new AStar(ground, 2);
+            List<int[]> chemin = astar.trouverChemin(ligne, col, 42, 40);
+            v.setChemin(chemin);
+            enemies.add(v);
             id++;
             cptSpawn = 0;
         }
         for (Enemy e : enemies) {
             e.move(this);
-            int random = (int)(Math.random()*30);
-            if (random == 1) {
-                e.changeDirection();
-                System.out.println("ch");
-            }
         }
         enemies.removeIf(e -> e.getX() >= ground.width() - 1);
     }

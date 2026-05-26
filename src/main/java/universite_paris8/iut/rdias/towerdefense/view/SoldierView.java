@@ -19,8 +19,8 @@ public class SoldierView {
         image.setFitWidth(25);
         image.setFitHeight(25);
         this.image.setId(soldier.getId() + "");
-        this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-25/2));
-        this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-25/2));
+        this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
+        this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
     }
 
     public ImageView getImage() {

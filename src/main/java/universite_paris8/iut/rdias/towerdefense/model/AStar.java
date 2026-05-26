@@ -2,33 +2,53 @@ package universite_paris8.iut.rdias.towerdefense.model;
 
 import java.util.*;
 
+/*
+    A* avec coûts aléatoires optionnels. Si facteurAleatoire > 0,
+    chaque appel de trouverChemin génère un bruit différent par tuile,
+    ce qui donne des chemins variés d'un appel à l'autre.
+    facteurAleatoire = 0   → déterministe (toujours le même chemin)
+    facteurAleatoire = 0.5 → variations légères
+    facteurAleatoire = 2.0 → variations importantes
+ */
 public class AStar {
 
     private Ground ground;
+    private double facteurAleatoire;
 
     public AStar(Ground aGround) {
+        this(aGround, 0.0);
+    }
+
+    public AStar(Ground aGround, double aFacteurAleatoire) {
         this.ground = aGround;
+        this.facteurAleatoire = aFacteurAleatoire;
     }
 
     public List<int[]> trouverChemin(int ligneDep, int colDep, int ligneArr, int colArr) {
         int h = ground.heigth();
         int w = ground.width();
 
-        // Sortie rapide si départ ou arrivée hors-zone / non traversable
         if (!dansGrille(ligneDep, colDep) || !dansGrille(ligneArr, colArr)) return null;
         if (!estTraversable(ligneDep, colDep) || !estTraversable(ligneArr, colArr)) return null;
 
+        // Bruit aléatoire par tuile, regénéré à chaque appel pour varier les chemins
+        double[][] bruit = new double[h][w];
+        if (facteurAleatoire > 0) {
+            for (int i = 0; i < h; i++)
+                for (int j = 0; j < w; j++)
+                    bruit[i][j] = Math.random() * facteurAleatoire;
+        }
+
         PriorityQueue<Node> ouvert = new PriorityQueue<>();
         boolean[][] ferme = new boolean[h][w];
-        int[][] meilleurG = new int[h][w];
-        for (int[] row : meilleurG) Arrays.fill(row, Integer.MAX_VALUE);
+        double[][] meilleurG = new double[h][w];
+        for (double[] row : meilleurG) Arrays.fill(row, Double.MAX_VALUE);
 
-        Node depart = new Node(ligneDep, colDep, 0,
+        Node depart = new Node(ligneDep, colDep, 0.0,
                 heuristique(ligneDep, colDep, ligneArr, colArr), null);
         ouvert.add(depart);
         meilleurG[ligneDep][colDep] = 0;
 
-        // Voisins 4-connexes : haut, bas, gauche, droite
         int[] dl = {-1, 1, 0, 0};
         int[] dc = {0, 0, -1, 1};
 
@@ -50,7 +70,7 @@ public class AStar {
                 if (!estTraversable(nl, nc)) continue;
                 if (ferme[nl][nc]) continue;
 
-                int nouveauG = courant.g + 1;
+                double nouveauG = courant.g + 1.0 + bruit[nl][nc];
                 if (nouveauG >= meilleurG[nl][nc]) continue;
                 meilleurG[nl][nc] = nouveauG;
 
@@ -58,18 +78,16 @@ public class AStar {
                 ouvert.add(new Node(nl, nc, nouveauG, hh, courant));
             }
         }
-        return null; // pas de chemin trouvé
+        return null;
     }
 
-    // Distance de Manhattan : adaptée à un déplacement 4-connexe à coût uniforme.
-    // Toujours admissible donc A* retourne le chemin optimal.
     private int heuristique(int l1, int c1, int l2, int c2) {
         return Math.abs(l1 - l2) + Math.abs(c1 - c2);
     }
 
     private boolean estTraversable(int ligne, int col) {
         int id = ground.idTuile(ligne, col);
-        return id == 1 || id == 2; // chemin ou château
+        return id == 1 || id == 2;
     }
 
     private boolean dansGrille(int ligne, int col) {
@@ -85,14 +103,13 @@ public class AStar {
         return chemin;
     }
 
-    // Classe interne : une case explorée par l'algorithme
     private static class Node implements Comparable<Node> {
         int ligne, col;
-        int g;       // coût depuis le départ
-        int h;       // heuristique vers l'arrivée
-        Node parent; // pour reconstruire le chemin
+        double g;
+        int h;
+        Node parent;
 
-        Node(int ligne, int col, int g, int h, Node parent) {
+        Node(int ligne, int col, double g, int h, Node parent) {
             this.ligne = ligne;
             this.col = col;
             this.g = g;
@@ -100,11 +117,11 @@ public class AStar {
             this.parent = parent;
         }
 
-        int f() { return g + h; }
+        double f() { return g + h; }
 
         @Override
         public int compareTo(Node other) {
-            return Integer.compare(this.f(), other.f());
+            return Double.compare(this.f(), other.f());
         }
     }
 }

@@ -60,10 +60,7 @@ public class Controller {
                     env.unTour();
                     if (temps%10==0) {
                         obsEnemy.animate();
-                        for (SoldierView s : obsEnemy.getEnemiesSprite()) {
-                            if (ground.isPath((int) s.getTuileLine(), (int) s.getTuileColumn()))
-                                System.out.println("PATHHHH");
-                        }
+
                     }
 
                     temps++;
