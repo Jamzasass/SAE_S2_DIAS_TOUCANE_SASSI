@@ -7,7 +7,7 @@ public abstract class Soldier extends Actor{
 
     private double directionX;
     private double directionY;
-    private List<int[]> chemin;  // positions {ligne, col} renvoyées par AStar
+    private List<int[]> chemin;
     private int indexCible;
 
     public Soldier (int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed){
@@ -16,11 +16,11 @@ public abstract class Soldier extends Actor{
         this.directionX = 0;
         this.directionY = 0;
         this.chemin = null;
-        this.indexCible = 0;
+        this.indexCible = 1;
     }
     public void setChemin(List<int[]> chemin) {
         this.chemin = chemin;
-        this.indexCible = 0;
+        this.indexCible = 1;
         majDirection();
     }
     public boolean cheminTermine() {
@@ -41,13 +41,15 @@ public abstract class Soldier extends Actor{
         }
 
         int[] cible = chemin.get(indexCible);
-        if (atteint(cible[1], cible[0])) {
+        if (!env.getGround().isPath(cible[0], cible[1]) && !env.getGround().isCastle(cible[0], cible[1])) {
+            wayChangement(env);
+        }
+        else if (atteint(cible[1], cible[0]) ) {
             setX(cible[1]);
             setY(cible[0]);
-
-            indexCible++;
-            majDirection();
+            wayChangement(env);
         }
+
     }
     private boolean atteint(double cibleX, double cibleY) {
         boolean okX = (directionX > 0 && getX() >= cibleX)
@@ -65,8 +67,14 @@ public abstract class Soldier extends Actor{
             return;
         }
         int[] cible = chemin.get(indexCible);
-        directionX = Math.signum(cible[1] - getX()); // col → X
-        directionY = Math.signum(cible[0] - getY()); // ligne → Y
+        directionX = Math.signum(cible[1] - getX());
+        directionY = Math.signum(cible[0] - getY());
+    }
+
+    public void wayChangement(Environnement env) {
+        AStar astar =  new AStar(env.getGround(), 0);
+        List<int[]> chemin = astar.trouverChemin((int)this.getY(), (int)this.getX(), 42, 40);
+        this.setChemin(chemin);
     }
     public double getSpeed(){
         return speed;

@@ -11,4 +11,5 @@ public class Vikings extends Enemy{
         System.out.println("A l'attaque");
     }
 
+
 }

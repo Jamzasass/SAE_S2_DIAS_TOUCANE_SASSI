@@ -2,6 +2,9 @@ package universite_paris8.iut.rdias.towerdefense.view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
@@ -39,6 +42,17 @@ public class GroundView {
         this.ground = ground;
         this.mapGrid = mapGrid;
         this.actorsArea = actorsArea;
+        mapGrid.setOnMouseClicked(e -> {
+            javafx.geometry.Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
+            int col = (int)(local.getX() / 16);
+            int line = (int)(local.getY() / 16);
+            if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
+                System.out.println("hors map");
+            }
+            else {
+                mouseClikedTile(e, line, col);
+            }
+        });
     }
 
     public void drawMap() {
@@ -56,15 +70,15 @@ public class GroundView {
         mapGrid.getChildren().clear();
 
 
-        for (int ligne = 0; ligne < ground.heigth(); ligne++) {
+        for (int line = 0; line < ground.heigth(); line++) {
             for (int col = 0; col < ground.width(); col++) {
-                int tileType = ground.idTuile(ligne, col);
+                int tileType = ground.idTuile(line, col);
                 ImageView sprite = new ImageView();
-
+                sprite.setId(col + "," + line);
                 if (tileType == 0) {
                     sprite.setImage(grassSelection());
                 } else if (tileType == 1) {
-                    sprite.setImage(pathSelection(ligne, col));
+                    sprite.setImage(pathSelection(line, col));
                 } else if (tileType == 2) {
                     sprite.setImage(spriteCastle);
                 } else if (tileType == 3) {
@@ -118,7 +132,6 @@ public class GroundView {
         boolean right = isPath(l, col+1);
 
 
-        //For bridge
         boolean belowW = isWater(l+1, col);
         boolean belowWPlus = isWater(l+2, col);
         boolean leftW = isWater(l, col-1);
@@ -126,39 +139,23 @@ public class GroundView {
         boolean leftWPlus = isWater(l, col-2);
         boolean rightWPlus = isWater(l, col+2);
 
-        //For normal path
-        int random = (int) (Math.random() * 4);
-
         if ((belowWPlus && below && left && right) || (above && belowW && left && right) || (above && below && leftW && right && rightWPlus) || (above && below && rightW && left && leftWPlus))
             return spriteBridge;
-
-        // vertical path
         if (above && below && left && !right)
             return spriteStraightPathVR;
-
         if (above && below && !left && right)
             return spriteStraightPathVL;
-
-        // horizontal path
         if (left && right && !above && below)
             return spriteStraightPathHT;
-
         if (left && right && above && !below)
             return spriteStraightPathHB;
-
-        // bottom corner → right
         if (above && left && !below && !right)
             return spriteBottomCornerR;
-
-        // bottom corner → left
         if (above && right && !below && !left)
             return spriteBottomCornerL;
-
-        // top corner → right
         if (below && left && !above && !right)
             return spriteBottomTopR;
 
-        // top corner → left
         if (below && right && !above && !left)
             return spriteBottomTopL;
 
@@ -177,5 +174,20 @@ public class GroundView {
             return false;
         }
         return this.ground.idTuile(l, col) == 3;
+    }
+
+    public void mouseClikedTile(MouseEvent e, int line, int col) {
+        if (e.getButton().equals(MouseButton.PRIMARY)) {
+            ground.setTile(line, col, 3);
+            drawMap();
+        }
+        else if (e.getButton().equals(MouseButton.MIDDLE)) {
+            ground.setTile(line, col, 1);
+            drawMap();
+        }
+        else {
+            ground.setTile(line, col, 0);
+            drawMap();
+        }
     }
 }

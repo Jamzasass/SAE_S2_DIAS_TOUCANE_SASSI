@@ -47,6 +47,7 @@ public class Environnement {
         }
         for (Enemy e : enemies) {
             e.move(this);
+
         }
         enemies.removeIf(e -> e.getX() >= ground.width() - 1);
     }

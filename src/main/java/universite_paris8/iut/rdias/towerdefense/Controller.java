@@ -19,6 +19,7 @@ public class Controller {
     @FXML
     private TilePane mapGrid;
     private Ground ground;
+    private GroundView groundView;
     @FXML
     private Pane actorsArea;
     private Timeline gameLoop;
@@ -28,7 +29,7 @@ public class Controller {
     public void initialize() {
 
         ground = new Ground();
-        GroundView groundView = new GroundView(ground, mapGrid, actorsArea);
+        groundView = new GroundView(ground, mapGrid, actorsArea);
         actorsArea.prefHeightProperty().bind(mapGrid.heightProperty());
         actorsArea.prefWidthProperty().bind(mapGrid.widthProperty());
         double largeur = ground.width() * 16.0;
@@ -60,7 +61,6 @@ public class Controller {
                     env.unTour();
                     if (temps%10==0) {
                         obsEnemy.animate();
-
                     }
 
                     temps++;

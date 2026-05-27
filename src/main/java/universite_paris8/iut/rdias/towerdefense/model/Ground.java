@@ -70,5 +70,11 @@ public class Ground {
     public boolean isWater(int ligne, int col) {
         return this.map[ligne][col]==3;
     }
+    public boolean isCastle(int ligne, int col) {
+        return this.map[ligne][col]==2;
+    }
 
+    public void setTile(int line, int column, int n) {
+        this.map[line][column] = n;
+    }
 }
