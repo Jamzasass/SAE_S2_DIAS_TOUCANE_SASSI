@@ -6,7 +6,7 @@ public class Vikings extends Enemy{
         super(70, 20, eId, 0.1, eX, eY, 0.05, 15);
     }
 
-    @Override
+
     public void act(){
         System.out.println("A l'attaque");
     }

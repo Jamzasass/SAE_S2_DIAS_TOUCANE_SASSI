@@ -21,7 +21,7 @@ public abstract class Actor {
         this.y = new SimpleDoubleProperty(aY);
     }
 
-    public abstract void act();
+    public abstract void act(Environnement env);
 
     //Getters
     public int getHp() {
@@ -57,5 +57,17 @@ public abstract class Actor {
     public boolean isLiving(){return this.hp > 0;}
 
     public void die(){this.hp = 0;}
+
+    public void takeDamage(int amount) {
+        this.hp = Math.max(0, this.hp - amount);
+    }
+
+    protected void setHp(int hp){
+        this.hp = hp;
+    }
+
+    protected void setDmg(int dmg){
+        this.dmg = dmg;
+    }
 
 }
