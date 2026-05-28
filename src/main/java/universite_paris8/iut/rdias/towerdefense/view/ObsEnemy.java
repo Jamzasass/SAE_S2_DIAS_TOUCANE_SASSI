@@ -41,6 +41,7 @@ public class ObsEnemy implements ListChangeListener<Enemy> {
             for (Enemy e : ajout) {
                 SoldierView s = new SoldierView(e);
                 grid.getChildren().add(s.getImage());
+                grid.getChildren().add(s.getPvBar());
                 enemiesSprite.add(s);
             }
             for (Enemy e : retirer) {

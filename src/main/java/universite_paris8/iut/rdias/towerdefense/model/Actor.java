@@ -2,10 +2,12 @@ package universite_paris8.iut.rdias.towerdefense.model;
 
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Actor {
-    private int hp;
+    private IntegerProperty hp;
     private int dmg;
     private int id;
     private double range;
@@ -13,7 +15,7 @@ public abstract class Actor {
     private DoubleProperty y;
 
     public Actor(int aHp, int aDmg, int aId, double aRange, double aX, double aY) {
-        this.hp = aHp;
+        this.hp = new SimpleIntegerProperty(aHp);
         this.dmg = aDmg;
         this.id = aId;
         this.range = aRange;
@@ -25,6 +27,9 @@ public abstract class Actor {
 
     //Getters
     public int getHp() {
+        return hp.getValue();
+    }
+    public IntegerProperty getHpPorperty() {
         return hp;
     }
     public int getDmg() {
@@ -54,16 +59,16 @@ public abstract class Actor {
     public DoubleProperty getXProperty() {return x;}
     public DoubleProperty getYProperty() {return y;}
 
-    public boolean isLiving(){return this.hp > 0;}
+    public boolean isLiving(){return this.hp.getValue() > 0;}
 
-    public void die(){this.hp = 0;}
+    public void die(){this.hp.setValue(0);}
 
     public void takeDamage(int amount) {
-        this.hp = Math.max(0, this.hp - amount);
+        this.hp.setValue(Math.max(0, this.hp.getValue() - amount));
     }
 
     protected void setHp(int hp){
-        this.hp = hp;
+        this.hp.setValue(hp);
     }
 
     protected void setDmg(int dmg){

@@ -38,6 +38,7 @@ public class ObsKnight implements ListChangeListener<Knight> {
             for (Knight k : ajout) {
                 SoldierView s = new SoldierView(k);
                 grid.getChildren().add(s.getImage());
+                grid.getChildren().add(s.getPvBar());
                 knightSprite.add(s);
             }
             for (Knight k : retirer) {

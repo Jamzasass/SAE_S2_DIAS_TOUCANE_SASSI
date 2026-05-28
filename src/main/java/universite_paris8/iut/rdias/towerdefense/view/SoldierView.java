@@ -3,6 +3,8 @@ package universite_paris8.iut.rdias.towerdefense.view;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.rdias.towerdefense.model.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.Soldier;
@@ -12,6 +14,8 @@ public class SoldierView {
 
     private Soldier soldier;
     private ImageView image;
+    private Rectangle pvBar;
+
     private static Image imageViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_vikingSoldier1.png"));
     private static Image imageViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_vikingSoldier2.png"));
 
@@ -20,28 +24,44 @@ public class SoldierView {
 
 
     public SoldierView(Soldier sSoldier) {
+
         this.soldier = sSoldier;
+        this.pvBar = new Rectangle();
+        pvBar.setHeight(2);
+
         if (soldier instanceof Vikings) {
+            pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
+            pvBar.setFill(Color.RED);
             this.image = new ImageView(imageViking1);
             image.setFitWidth(25);
             image.setFitHeight(25);
             this.image.setId(soldier.getId() + "");
             this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
             this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
+            pvBar.layoutXProperty().bind(image.layoutXProperty().add(25/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
+            pvBar.layoutYProperty().bind(image.layoutYProperty());
         }
         else if (soldier instanceof Knight) {
+            pvBar.setFill(Color.BLUE);
+            pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
             this.image = new ImageView(imageknight1);
             image.setFitWidth(29);
             image.setFitHeight(29);
             this.image.setId(soldier.getId() + "");
             this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
             this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
+            pvBar.layoutXProperty().bind(image.layoutXProperty().add(29/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
+            pvBar.layoutYProperty().bind(image.layoutYProperty());
         }
+
 
     }
 
     public ImageView getImage() {
         return this.image;
+    }
+    public Rectangle getPvBar() {
+        return this.pvBar;
     }
 
     public void switchImage() {
