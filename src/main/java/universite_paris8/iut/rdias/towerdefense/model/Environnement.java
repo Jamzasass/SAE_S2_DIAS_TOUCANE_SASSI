@@ -16,7 +16,8 @@ public class Environnement {
 
     private static int id = 1;
     private final Ground ground;
-    private final ObservableList<Enemy> enemies; // liste observable d'ennemis
+    private final ObservableList<Enemy> enemies;
+    private final ObservableList<Knight> knights;
     private static int cptSpawn = 0;
     private int delaySpawn = 60;
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
@@ -25,22 +26,28 @@ public class Environnement {
     public Environnement(Ground ground) {
         this.ground = ground;
         this.enemies = FXCollections.observableArrayList();
+        this.knights = FXCollections.observableArrayList();
         int path = ground.heigth() - 1;
     }
 
-    public void add(Enemy e){this.enemies.add(e);}
+    public void addEnemy(Enemy e){this.enemies.add(e);}
+    public void addKnight(Knight k){this.knights.add(k);}
 
     public void unTour() {  // méthode unTour()
         cptSpawn++;
         if (cptSpawn == delaySpawn) {
             int random = (int)(Math.random() * spanwPoints.length);
             int[] spawn = spanwPoints[random];
-            int ligne = spawn[0];
+            int line = spawn[0];
             int col = spawn[1];
-            Vikings v = new Vikings(id, col, ligne);
+            Vikings v = new Vikings(id, col, line);
             AStar astar =  new AStar(ground, 2);
-            List<int[]> chemin = astar.trouverChemin(ligne, col, 42, 40);
+            List<int[]> chemin = astar.trouverChemin(line, col, 42, 40);
             v.setChemin(chemin);
+
+            Knight k = new Knight(id, col, line);
+
+            knights.add(k);
             enemies.add(v);
             id++;
             cptSpawn = 0;
@@ -54,6 +61,9 @@ public class Environnement {
 
     public ObservableList<Enemy> getEnemies() {
         return enemies;
+    }
+    public ObservableList<Knight> getKnights() {
+        return knights;
     }
 
     public Ground getGround() {

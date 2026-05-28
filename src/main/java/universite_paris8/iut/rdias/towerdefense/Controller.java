@@ -12,6 +12,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.view.ObsEnemy;
+import universite_paris8.iut.rdias.towerdefense.view.ObsKnight;
 import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 
 public class Controller {
@@ -26,6 +27,7 @@ public class Controller {
     private int temps;
     private Environnement env;
     private ObsEnemy obsEnemy;
+    private ObsKnight obsKnight;
     public void initialize() {
 
         ground = new Ground();
@@ -39,6 +41,8 @@ public class Controller {
         env = new Environnement(ground);
         obsEnemy = new ObsEnemy(actorsArea);
         env.getEnemies().addListener(obsEnemy);
+        obsKnight = new ObsKnight(actorsArea);
+        env.getKnights().addListener(obsKnight);
         groundView.drawMap();
 
         //définition et démarrage d'un gameloop qui fait env.unTour()

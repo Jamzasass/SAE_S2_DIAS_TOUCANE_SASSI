@@ -3,8 +3,8 @@ package universite_paris8.iut.rdias.towerdefense.model;
 import java.util.List;
 
 public abstract class Soldier extends Actor{
-    private double speed;
 
+    private double speed;
     private double directionX;
     private double directionY;
     private List<int[]> chemin;
