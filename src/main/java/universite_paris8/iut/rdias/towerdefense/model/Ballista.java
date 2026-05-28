@@ -19,10 +19,14 @@ public class Ballista extends Tower{
     @Override
     public void act(Environnement env){
         tick();
-        if (!canAttack()) return;
-        ArrayList<Enemy> targets = searchTargets(env);
-        for (Enemy e : targets) {
-            e.takeDamage(getDmg());
+        if (canAttack()) {
+            ArrayList<Enemy> targets = searchTargets(env);
+            if (!targets.isEmpty()){
+                for (Enemy e : targets) {
+                    e.takeDamage(getDmg());
+                }
+                resetCooldown(60);
+            }
         }
     }
 
@@ -62,7 +66,7 @@ public class Ballista extends Tower{
             setHp(hplvl2);
             setDmg(dmglvl2);
             setSpeedAttack(speedAttacklvl2);
-            //lvlUp();
+            lvlUp();
         }
     }
 }
