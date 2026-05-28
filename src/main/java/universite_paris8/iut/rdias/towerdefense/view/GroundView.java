@@ -7,12 +7,12 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.rdias.towerdefense.model.Archer;
-import universite_paris8.iut.rdias.towerdefense.model.Ground;
-import universite_paris8.iut.rdias.towerdefense.model.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.*;
 import universite_paris8.iut.rdias.towerdefense.model.Archer;
 
 public class GroundView {
+    //temporaire
+    private Environnement env;
 
     private Ground ground;
     private TilePane mapGrid;
@@ -41,7 +41,9 @@ public class GroundView {
     private static Image spriteBridge = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_Bridge.png"));
 
 
-    public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea){
+    public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea, Environnement env){
+        this.env = env;
+
         this.ground = ground;
         this.mapGrid = mapGrid;
         this.actorsArea = actorsArea;
@@ -183,10 +185,8 @@ public class GroundView {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
             //ground.setTile(line, col, 3);
             //drawMap();
-            Tower t = new Archer(1, col, line);
-            TowerView tv = new TowerView(t);
-            actorsArea.getChildren().add(tv.getImage());
-
+            Tower t = new Archer(env, 1, col, line);
+            env.addTower(t);
         }
         else if (e.getButton().equals(MouseButton.MIDDLE)) {
             ground.setTile(line, col, 1);

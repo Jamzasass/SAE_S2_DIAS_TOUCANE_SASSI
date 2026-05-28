@@ -33,8 +33,11 @@ public class Environnement {
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
+    public void delEnemy(Enemy e){this.enemies.remove(e);}
     public void addKnight(Knight k){this.knights.add(k);}
+    public void delKnight(Knight k){this.knights.remove(k);}
     public void addTower(Tower t){this.towers.add(t);}
+    public void delTower(Tower t){this.towers.remove(t);}
 
     public void unTour() {  // méthode unTour()
         cptSpawn++;
@@ -43,12 +46,12 @@ public class Environnement {
             int[] spawn = spanwPoints[random];
             int line = spawn[0];
             int col = spawn[1];
-            Vikings v = new Vikings(id, col, line);
+            Vikings v = new Vikings(this, id, col, line);
             AStar astar =  new AStar(ground, 2);
             List<int[]> chemin = astar.trouverChemin(line, col, 42, 40);
             v.setChemin(chemin);
 
-            Knight k = new Knight(id, col, line);
+            Knight k = new Knight(this, id, col, line);
 
             knights.add(k);
             enemies.add(v);
@@ -56,8 +59,10 @@ public class Environnement {
             cptSpawn = 0;
         }
         for (Enemy e : enemies) {
-            e.move(this);
-
+            e.act(this);
+        }
+        for (Tower t : towers) {
+            t.act(this);
         }
         enemies.removeIf(e -> e.getX() >= ground.width() - 1);
     }
@@ -67,6 +72,9 @@ public class Environnement {
     }
     public ObservableList<Knight> getKnights() {
         return knights;
+    }
+    public ObservableList<Tower> getTowers() {
+        return towers;
     }
 
     public Ground getGround() {

@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Actor {
+    private Environnement env;
     private IntegerProperty hp;
     private int dmg;
     private int id;
@@ -14,7 +15,8 @@ public abstract class Actor {
     private DoubleProperty x;
     private DoubleProperty y;
 
-    public Actor(int aHp, int aDmg, int aId, double aRange, double aX, double aY) {
+    public Actor(Environnement env, int aHp, int aDmg, int aId, double aRange, double aX, double aY) {
+        this.env = env;
         this.hp = new SimpleIntegerProperty(aHp);
         this.dmg = aDmg;
         this.id = aId;
@@ -65,6 +67,9 @@ public abstract class Actor {
 
     public void takeDamage(int amount) {
         this.hp.setValue(Math.max(0, this.hp.getValue() - amount));
+        if (hp.getValue() <= 0) {
+            this.die();
+        }
     }
 
     protected void setHp(int hp){

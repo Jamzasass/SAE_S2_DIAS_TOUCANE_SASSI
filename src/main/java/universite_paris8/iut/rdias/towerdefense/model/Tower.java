@@ -8,8 +8,8 @@ public abstract class Tower extends Actor{
     private int cooldown;
 
 
-    public Tower(int tHp, int tDmg, int tId, double tRange, double tX, double tY, double speedAct, int tCost) {
-        super(tHp, tDmg, tId, tRange, tX, tY);
+    public Tower(Environnement env, int tHp, int tDmg, int tId, double tRange, double tX, double tY, double speedAct, int tCost) {
+        super(env, tHp, tDmg, tId, tRange, tX, tY);
         this.speedAct = speedAct;
         this.cost = tCost;
         this.cooldown = 0;
@@ -27,6 +27,9 @@ public abstract class Tower extends Actor{
     public int getLevel() {
         return level;
     }
+    public int getCooldown() {
+        return cooldown;
+    }
 
     public abstract void upgrade();
 
@@ -34,6 +37,8 @@ public abstract class Tower extends Actor{
         if (cooldown > 0) {
             cooldown--;
         }
+        else
+            cooldown = 60;
     }
 
     protected boolean canAct(){

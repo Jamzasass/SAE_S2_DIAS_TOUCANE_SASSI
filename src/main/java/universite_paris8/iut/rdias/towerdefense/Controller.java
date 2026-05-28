@@ -7,13 +7,10 @@ import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
-import universite_paris8.iut.rdias.towerdefense.view.GroundView;
+import universite_paris8.iut.rdias.towerdefense.view.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-import universite_paris8.iut.rdias.towerdefense.view.ObsEnemy;
-import universite_paris8.iut.rdias.towerdefense.view.ObsKnight;
-import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 
 public class Controller {
 
@@ -28,21 +25,25 @@ public class Controller {
     private Environnement env;
     private ObsEnemy obsEnemy;
     private ObsKnight obsKnight;
+    private ObsTower obsTower;
     public void initialize() {
 
         ground = new Ground();
-        groundView = new GroundView(ground, mapGrid, actorsArea);
+        env = new Environnement(ground);
+        groundView = new GroundView(ground, mapGrid, actorsArea, env);
         actorsArea.prefHeightProperty().bind(mapGrid.heightProperty());
         actorsArea.prefWidthProperty().bind(mapGrid.widthProperty());
         double largeur = ground.width() * 16.0;
         double hauteur = ground.heigth() * 16.0;
         actorsArea.setMinSize(largeur, hauteur);
         actorsArea.setMaxSize(largeur, hauteur);
-        env = new Environnement(ground);
+
         obsEnemy = new ObsEnemy(actorsArea);
         env.getEnemies().addListener(obsEnemy);
         obsKnight = new ObsKnight(actorsArea);
         env.getKnights().addListener(obsKnight);
+        obsTower = new ObsTower(actorsArea);
+        env.getTowers().addListener(obsTower);
         groundView.drawMap();
 
         //définition et démarrage d'un gameloop qui fait env.unTour()

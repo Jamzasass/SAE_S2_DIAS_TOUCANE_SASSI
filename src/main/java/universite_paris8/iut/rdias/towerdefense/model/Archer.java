@@ -9,18 +9,21 @@ public class Archer extends Tower {
     private static final double speedAttacklvl1 = 2.0;
     private static final double speedAttacklvl2 = 0.8;
 
-    public Archer(int archerId, double archerX, double archerY) {
-        super(hplvl1, dmglvl1, archerId, 6.0, archerX, archerY, speedAttacklvl1, 100);
+    public Archer(Environnement env, int archerId, double archerX, double archerY) {
+        super(env, hplvl1, dmglvl1, archerId, 4.0, archerX, archerY, speedAttacklvl1, 100);
     }
 
     @Override
     public void act(Environnement env) {
         tick();
-        if (!canAct()){
+        if (canAct()){
             Enemy target = searchTarget(env);
             if (target != null) {
                 target.takeDamage(getDmg());
-                resetCooldown(60);
+                System.out.println(getCooldown());
+                //resetCooldown(60);
+                System.out.println("j'agis");
+                System.out.println("target apres tir " + target);
             }
         }
     }

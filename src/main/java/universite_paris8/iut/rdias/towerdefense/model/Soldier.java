@@ -10,8 +10,8 @@ public abstract class Soldier extends Actor{
     private List<int[]> chemin;
     private int indexCible;
 
-    public Soldier (int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed){
-        super(sHp, sDmg, sId, sRange, sX, sY);
+    public Soldier (Environnement env, int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed){
+        super(env, sHp, sDmg, sId, sRange, sX, sY);
         this.speed = sSpeed;
         this.directionX = 0;
         this.directionY = 0;

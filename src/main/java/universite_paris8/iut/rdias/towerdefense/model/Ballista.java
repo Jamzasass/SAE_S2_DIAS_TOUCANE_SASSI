@@ -12,8 +12,8 @@ public class Ballista extends Tower{
     private static final double speedAttacklvl1 = 3;
     private static final double speedAttacklvl2 = 1.5;
 
-    public Ballista(int ballistaId, double ballistaX, double ballistaY) {
-        super(hplvl1, dmglvl1, ballistaId, 4.0, ballistaX, ballistaY, speedAttacklvl1, 350);
+    public Ballista(Environnement env, int ballistaId, double ballistaX, double ballistaY) {
+        super(env, hplvl1, dmglvl1, ballistaId, 4.0, ballistaX, ballistaY, speedAttacklvl1, 350);
     }
 
     @Override
