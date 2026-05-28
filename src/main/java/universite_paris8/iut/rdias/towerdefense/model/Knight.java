@@ -12,4 +12,8 @@ public class Knight extends Soldier {
     public void act(Environnement env) {
         System.out.println("soldat acting");
     }
+
+    public void searchtarget() {
+
+    }
 }

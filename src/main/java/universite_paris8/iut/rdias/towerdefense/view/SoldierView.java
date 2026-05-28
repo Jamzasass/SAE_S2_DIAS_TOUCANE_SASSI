@@ -31,8 +31,8 @@ public class SoldierView {
         }
         else if (soldier instanceof Knight) {
             this.image = new ImageView(imageknight1);
-            image.setFitWidth(25);
-            image.setFitHeight(25);
+            image.setFitWidth(29);
+            image.setFitHeight(29);
             this.image.setId(soldier.getId() + "");
             this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
             this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
@@ -56,7 +56,7 @@ public class SoldierView {
             if (image.getImage().equals(imageknight1)) {
                 image.setImage(imageKnight2);
             } else {
-                image.setImage(imageViking1);
+                image.setImage(imageknight1);
             }
         }
     }

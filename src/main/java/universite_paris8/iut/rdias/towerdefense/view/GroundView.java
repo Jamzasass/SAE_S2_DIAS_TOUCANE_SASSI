@@ -7,7 +7,10 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import universite_paris8.iut.rdias.towerdefense.model.Archer;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
+import universite_paris8.iut.rdias.towerdefense.model.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.Archer;
 
 public class GroundView {
 
@@ -178,8 +181,12 @@ public class GroundView {
 
     public void mouseClikedTile(MouseEvent e, int line, int col) {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
-            ground.setTile(line, col, 3);
-            drawMap();
+            //ground.setTile(line, col, 3);
+            //drawMap();
+            Tower t = new Archer(1, col, line);
+            TowerView tv = new TowerView(t);
+            actorsArea.getChildren().add(tv.getImage());
+
         }
         else if (e.getButton().equals(MouseButton.MIDDLE)) {
             ground.setTile(line, col, 1);

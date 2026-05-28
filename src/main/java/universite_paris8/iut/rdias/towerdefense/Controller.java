@@ -65,6 +65,7 @@ public class Controller {
                     env.unTour();
                     if (temps%10==0) {
                         obsEnemy.animate();
+                        obsKnight.animate();
                     }
 
                     temps++;

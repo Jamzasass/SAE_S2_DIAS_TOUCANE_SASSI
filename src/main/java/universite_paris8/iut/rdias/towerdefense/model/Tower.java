@@ -40,6 +40,13 @@ public abstract class Tower extends Actor{
         return cooldown <= 0;
     }
 
+    protected void resetCooldown(int fps) {
+        this.cooldown = (int) (fps / getSpeedAttack());
+    }
+
     protected void setSpeedAttack(double speedAttack){this.speedAttack = speedAttack;}
 
+    protected void lvlUp() {
+        this.level++;
+    }
 }

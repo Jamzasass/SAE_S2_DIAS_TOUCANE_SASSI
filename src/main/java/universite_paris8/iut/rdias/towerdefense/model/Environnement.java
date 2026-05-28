@@ -18,6 +18,7 @@ public class Environnement {
     private final Ground ground;
     private final ObservableList<Enemy> enemies;
     private final ObservableList<Knight> knights;
+    private final ObservableList<Tower> towers;
     private static int cptSpawn = 0;
     private int delaySpawn = 60;
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
@@ -27,11 +28,13 @@ public class Environnement {
         this.ground = ground;
         this.enemies = FXCollections.observableArrayList();
         this.knights = FXCollections.observableArrayList();
+        this.towers = FXCollections.observableArrayList();
         int path = ground.heigth() - 1;
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
     public void addKnight(Knight k){this.knights.add(k);}
+    public void addTower(Tower t){this.towers.add(t);}
 
     public void unTour() {  // méthode unTour()
         cptSpawn++;

@@ -16,9 +16,11 @@ public class Archer extends Tower {
     @Override
     public void act(Environnement env) {
         tick();
+        if (!canAttack()) return;
         Enemy target = searchTarget(env);
         if (target != null) {
             target.takeDamage(getDmg());
+            resetCooldown(60);
         }
     }
 
@@ -45,5 +47,9 @@ public class Archer extends Tower {
             setSpeedAttack(speedAttacklvl2);
             //lvlUp();
         }
+    }
+
+    public void resetCooldown(int val) {
+        System.out.println("todo");
     }
 }

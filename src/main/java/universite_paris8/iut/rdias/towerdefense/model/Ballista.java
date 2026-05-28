@@ -19,6 +19,7 @@ public class Ballista extends Tower{
     @Override
     public void act(Environnement env){
         tick();
+        if (!canAttack()) return;
         ArrayList<Enemy> targets = searchTargets(env);
         for (Enemy e : targets) {
             e.takeDamage(getDmg());
