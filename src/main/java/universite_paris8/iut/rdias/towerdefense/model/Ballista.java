@@ -9,8 +9,8 @@ public class Ballista extends Tower{
     private static final int hplvl2 = 375;
     private static final int dmglvl1 = 30;
     private static final int dmglvl2 = 55;
-    private static final double speedAttacklvl1 = 1.0;
-    private static final double speedAttacklvl2 = 1.8;
+    private static final double speedAttacklvl1 = 3;
+    private static final double speedAttacklvl2 = 1.5;
 
     public Ballista(int ballistaId, double ballistaX, double ballistaY) {
         super(hplvl1, dmglvl1, ballistaId, 4.0, ballistaX, ballistaY, speedAttacklvl1, 350);
@@ -19,7 +19,7 @@ public class Ballista extends Tower{
     @Override
     public void act(Environnement env){
         tick();
-        if (canAttack()) {
+        if (canAct()) {
             ArrayList<Enemy> targets = searchTargets(env);
             if (!targets.isEmpty()){
                 for (Enemy e : targets) {
@@ -65,7 +65,7 @@ public class Ballista extends Tower{
         if (getLevel() < 2) {
             setHp(hplvl2);
             setDmg(dmglvl2);
-            setSpeedAttack(speedAttacklvl2);
+            setSpeedAct(speedAttacklvl2);
             lvlUp();
         }
     }
