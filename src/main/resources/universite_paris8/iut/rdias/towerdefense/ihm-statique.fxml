@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane prefHeight="675.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.Controller">
+<BorderPane styleClass="StaticDisplay" stylesheets="view/StaticDisplay.css" prefHeight="675.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.Controller">
    <top>
         <Label text="Vikings vs Knight" BorderPane.alignment="CENTER">
             <padding>
@@ -33,15 +33,15 @@
          <children>
             <HBox prefHeight="15.0" prefWidth="165.0" style="-fx-border-color: white;">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Castle HP" textAlignment="CENTER">
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Castle HP" textAlignment="CENTER" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="10.0" top="5.0" />
+                        <Insets bottom="2.0" left="10.0" top="2.0" />
                      </HBox.margin></Label>
-                  <TextField opacity="0.3" prefHeight="3.0" prefWidth="49.0">
+                  <Label text="Label" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="30.0" />
+                        <Insets bottom="2.0" left="40.0" top="2.0" />
                      </HBox.margin>
-                  </TextField>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" top="10.0" />
@@ -49,18 +49,15 @@
             </HBox>
             <HBox prefHeight="22.0" prefWidth="165.0" style="-fx-border-color: white;">
                <children>
-                  <Label graphicTextGap="5.0" text="Ecu">
+                  <Label graphicTextGap="5.0" text="Ecu" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="10.0" top="5.0" />
+                        <Insets bottom="2.0" left="10.0" top="2.0" />
                      </HBox.margin></Label>
-                  <TextField opacity="0.3" prefHeight="3.0" prefWidth="49.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
+                  <Label text="Label" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="70.0" />
+                        <Insets bottom="2.0" left="80.0" top="2.0" />
                      </HBox.margin>
-                  </TextField>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="297.0" prefWidth="180.0">
@@ -70,7 +67,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="243.0" prefWidth="90.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tower 1" textAlignment="CENTER" />
+                        <Button styleClass="button" alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tower 1" textAlignment="CENTER" />
                         <Button alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tower 2" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets bottom="10.0" top="10.0" />
