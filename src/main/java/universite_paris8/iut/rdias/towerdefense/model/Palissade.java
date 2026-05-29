@@ -1,6 +1,6 @@
 //package universite_paris8.iut.rdias.towerdefense.model;
 //
-//public class Fence extends Tower {
+//public class Palissade extends Tower {
 //
 //    private static final int hplvl1 = 150;
 //    private static final int hplvl2 = 225;
