@@ -50,7 +50,7 @@ public class ObsEnemy implements ListChangeListener<Enemy> {
                 enemiesSprite.add(s);
             }
             for (Enemy e : retirer) {
-                grid.getChildren().remove(grid.lookup("#" + e.getId()));
+                grid.getChildren().remove(grid.lookup("#" + "v" + e.getId()));
             }
         }
     }

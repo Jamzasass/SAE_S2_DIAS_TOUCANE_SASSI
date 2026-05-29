@@ -63,7 +63,15 @@ public abstract class Actor {
 
     public boolean isLiving(){return this.hp.getValue() > 0;}
 
-    public void die(){this.hp.setValue(0);}
+    public void die(){
+        this.hp.setValue(0);
+        try {
+            this.env.delEnemy((Enemy) this);
+        } catch (Exception ex) {
+            System.out.println("  EXCEPTION: " + ex.getMessage());
+        }
+
+    }
 
     public void takeDamage(int amount) {
         this.hp.setValue(Math.max(0, this.hp.getValue() - amount));
