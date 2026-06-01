@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane prefHeight="675.0" prefWidth="930.0" stylesheets="@StaticDisplay.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.Controller">
+<BorderPane prefHeight="675.0" prefWidth="930.0" styleClass="planchenue" stylesheets="@StaticDisplay.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.Controller">
    <top>
-        <Label text="Vikings vs Knight" BorderPane.alignment="CENTER">
+        <Label text="Vikings vs Knight" textFill="WHITE" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="10.0" top="10.0" />
             </padding>
@@ -31,7 +31,7 @@
    <right>
       <VBox prefHeight="620.0" prefWidth="260.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="101.0" prefWidth="260.0" styleClass="rightPaneVbox">
+            <VBox prefHeight="101.0" prefWidth="260.0" styleClass="planchenue">
                <children>
                   <HBox prefHeight="15.0" prefWidth="165.0" style="-fx-border-color: white;" styleClass="encadre">
                      <children>
@@ -81,7 +81,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="245.0" prefWidth="95.0">
                            <children>
-                              <Button alignment="CENTER"  mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" textAlignment="CENTER">
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" textAlignment="CENTER">
                                  <styleClass>
                                     <String fx:value="button1" />
                                     <String fx:value="button" />
