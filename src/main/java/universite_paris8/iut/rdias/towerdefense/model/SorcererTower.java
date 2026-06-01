@@ -11,7 +11,7 @@ public class SorcererTower extends Tower {
     }
 
     @Override
-    public void act(Environnement env) {
+    public void act() {
         System.out.println("attackkckezfkojkergojikpezfjvcghk");
     }
     public void upgrade() {

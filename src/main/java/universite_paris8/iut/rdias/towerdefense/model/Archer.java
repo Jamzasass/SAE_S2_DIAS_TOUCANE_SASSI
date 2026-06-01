@@ -14,10 +14,10 @@ public class Archer extends Tower {
     }
 
     @Override
-    public void act(Environnement env) {
+    public void act() {
         tick();
         if (canAct()){
-            Enemy target = searchTarget(env);
+            Enemy target = searchTarget();
             if (target != null) {
                 target.takeDamage(getDmg());
                 System.out.println(getCooldown());
@@ -28,10 +28,10 @@ public class Archer extends Tower {
         }
     }
 
-    private Enemy searchTarget(Environnement env) {
+    private Enemy searchTarget() {
         Enemy closeTarget = null;
         double minRange = Double.MAX_VALUE;
-        for (Enemy e : env.getEnemies()) {
+        for (Enemy e : getEnvironnement().getEnemies()) {
             if (e.isLiving()) {
                 double range = Math.hypot(e.getX() - getX(), e.getY() - getY()); // calcul distance via pythagore
                 if (range <= getRange() && range < minRange) {

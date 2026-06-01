@@ -27,7 +27,7 @@ public abstract class Soldier extends Actor{
         return chemin == null || indexCible >= chemin.size();
     }
 
-    public void move(Environnement env){
+    public void move(){
         if (cheminTermine()) return;
 
         double newX = getX() + (speed * directionX);
@@ -41,13 +41,17 @@ public abstract class Soldier extends Actor{
         }
 
         int[] cible = chemin.get(indexCible);
-        if (!env.getGround().isPath(cible[0], cible[1]) && !env.getGround().isCastle(cible[0], cible[1])) {
-            wayChangement(env);
+        if (!getEnvironnement().getGround().isPath(cible[0], cible[1]) && !getEnvironnement().getGround().isCastle(cible[0], cible[1])) {
+            wayChangement(42, 40);
+            System.out.println("ni sur un chemin ni sur un chateau");
         }
         else if (atteint(cible[1], cible[0]) ) {
             setX(cible[1]);
             setY(cible[0]);
-            wayChangement(env);
+            indexCible++;
+            majDirection();
+
+            //wayChangement();
         }
 
     }
@@ -71,9 +75,9 @@ public abstract class Soldier extends Actor{
         directionY = Math.signum(cible[0] - getY());
     }
 
-    public void wayChangement(Environnement env) {
-        AStar astar =  new AStar(env.getGround(), 0);
-        List<int[]> chemin = astar.trouverChemin((int)this.getY(), (int)this.getX(), 42, 40);
+    public void wayChangement(int xCible, int yCible) {
+        AStar astar =  new AStar(getEnvironnement().getGround(), 0);
+        List<int[]> chemin = astar.trouverChemin((int)this.getY(), (int)this.getX(), xCible, yCible);
         this.setChemin(chemin);
     }
     public double getSpeed(){

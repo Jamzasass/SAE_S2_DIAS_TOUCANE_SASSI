@@ -7,7 +7,7 @@ public class Bramble extends Tower{
     public Bramble(Environnement env, int tHp, int tDmg, int tId, double tRange, double tX, double tY, double tSpeedAttack, int cost) {
         super(env, tHp, tDmg, tId, tRange, tX, tY, tSpeedAttack, cost);
     }
-    public void act(Environnement env) {
+    public void act() {
         System.out.println("acting ...");
     }
     public void upgrade() {

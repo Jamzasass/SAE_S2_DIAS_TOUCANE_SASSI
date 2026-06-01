@@ -8,7 +8,7 @@ public class Vikings extends Enemy{
 
 
     public void act(){
-        System.out.println("A l'attaque");
+        this.move();
     }
 
 

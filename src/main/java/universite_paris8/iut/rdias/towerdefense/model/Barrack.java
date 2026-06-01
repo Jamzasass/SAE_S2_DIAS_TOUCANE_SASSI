@@ -17,13 +17,13 @@ public class Barrack extends Tower{
     }
 
     @Override
-    public void act(Environnement env){
+    public void act(){
         tick();
-        if (canAct() && hasEnemies(env)){
+        if (canAct() && hasEnemies(getEnvironnement())){
             int hpKnight = getLevel() == 2 ? knightHPlvl2 : knightHPlvl1;
             int dmgKnight = getLevel() == 2 ? knightDmglvl2 : knightDmglvl1;
-            Knight k = new Knight(env, hpKnight, dmgKnight, nextKnightId++, getX(), getY());
-            env.addKnight(k);
+            Knight k = new Knight(getEnvironnement(), hpKnight, dmgKnight, nextKnightId++, getX(), getY());
+            getEnvironnement().addKnight(k);
 //            setCooldown(speedAct*60);
         }
     }

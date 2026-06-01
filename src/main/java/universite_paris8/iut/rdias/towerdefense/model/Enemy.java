@@ -8,10 +8,6 @@ public abstract class Enemy extends Soldier {
         this.deathValue = eDeathValue;
     }
 
-    public void act(Environnement env){
-        this.move(env);
-    }
-
     public int getDeathValue(){
         return deathValue;
     }

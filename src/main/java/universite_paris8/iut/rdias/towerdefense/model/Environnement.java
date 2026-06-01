@@ -59,10 +59,10 @@ public class Environnement {
             cptSpawn = 0;
         }
         for (Enemy e : enemies) {
-            e.act(this);
+            e.act();
         }
         for (Tower t : towers) {
-            t.act(this);
+            t.act();
         }
         enemies.removeIf(e -> e.getX() >= ground.width() - 1);
     }

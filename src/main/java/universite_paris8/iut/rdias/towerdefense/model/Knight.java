@@ -9,7 +9,7 @@ public class Knight extends Soldier {
     public Knight(Environnement env, int kId, double kX, double kY) {
         super(env, 70, 20, kId, 1, kX, kY, 0.05);
     }
-    public void act(Environnement env) {
+    public void act() {
         System.out.println("soldat acting");
     }
 

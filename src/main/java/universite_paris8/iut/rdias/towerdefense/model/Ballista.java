@@ -17,10 +17,10 @@ public class Ballista extends Tower{
     }
 
     @Override
-    public void act(Environnement env){
+    public void act(){
         tick();
         if (canAct()) {
-            ArrayList<Enemy> targets = searchTargets(env);
+            ArrayList<Enemy> targets = searchTargets();
             if (!targets.isEmpty()){
                 for (Enemy e : targets) {
                     e.takeDamage(getDmg());
@@ -30,11 +30,11 @@ public class Ballista extends Tower{
         }
     }
 
-    private ArrayList<Enemy> searchTargets(Environnement env) {
+    private ArrayList<Enemy> searchTargets() {
         Enemy first = null, second = null;
         double firstDist = Double.MAX_VALUE, secondDist = Double.MAX_VALUE;
 
-        for (Enemy e : env.getEnemies()) {
+        for (Enemy e : getEnvironnement().getEnemies()) {
             if (e.isLiving()) {
                 double dist = Math.hypot(e.getX() - getX(), e.getY() - getY()); //calcul distance
                 if (dist <= getRange()) {
