@@ -31,8 +31,8 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-padding: 0 5 5 5;
-    -fx-background-image: url("sprite/HUD/Sprite_TowerArcher.png");
-    -fx-background-size: 120% 120%;
+    -fx-background-image: url("sprite/HUD/sprite_towerarcher.png");
+    -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: rgba(255, 255, 255, 0.5);
@@ -48,7 +48,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-padding: 0 5 5 5;
-    -fx-background-image: url("sprite/HUD/Sprite_TowerArcher.png");
+    -fx-background-image: url("sprite/HUD/sprite_towerarcher.png");
     -fx-background-size: 120% 120%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -145,7 +145,7 @@
 }
 
 .rightPane {
-    -fx-background-image: url("sprite/HUD/backgroundRightPane.png");
+    -fx-background-image: url("sprite/HUD/backgroundrightpane.png");
     -fx-background-size: 120% 120%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -166,6 +166,14 @@
     -fx-background-radius: 10px;
     -fx-border-radius:20px;
     -fx-padding: 0 5 5 5;
+}
+
+.labelHeader{
+
+}
+
+.label{
+
 }
 
 
