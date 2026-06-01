@@ -9,8 +9,8 @@ public class Ballista extends Tower{
     private static final int hplvl2 = 375;
     private static final int dmglvl1 = 30;
     private static final int dmglvl2 = 55;
-    private static final double speedAttacklvl1 = 3;
-    private static final double speedAttacklvl2 = 1.5;
+    private static final int speedAttacklvl1 = 3;
+    private static final int speedAttacklvl2 = 1;
 
     public Ballista(Environnement env, int ballistaId, double ballistaX, double ballistaY) {
         super(env, hplvl1, dmglvl1, ballistaId, 4.0, ballistaX, ballistaY, speedAttacklvl1, 350);
@@ -25,7 +25,7 @@ public class Ballista extends Tower{
                 for (Enemy e : targets) {
                     e.takeDamage(getDmg());
                 }
-                resetCooldown(60);
+                resetCooldown();
             }
         }
     }

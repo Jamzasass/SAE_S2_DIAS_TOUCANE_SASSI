@@ -7,11 +7,7 @@ public class Knight extends Soldier {
     private Enemy target;
 
     public Knight(Environnement env, int kHp, int kDmg, int kId, double kX, double kY) {
-        super(env, kHp, kDmg, kId, 1, kX, kY, 0.05, 42, 40);
-        target = null;
-    }
-    public Knight(Environnement env, int kId, double kX, double kY) {
-        super(env, 70, 20, kId, 1, kX, kY, 0.05, 42, 40);
+        super(env, kHp, kDmg, kId, 1, kX, kY, 0.07, 42, 40);
         target = null;
     }
     public void act() {
@@ -27,13 +23,13 @@ public class Knight extends Soldier {
         for (Enemy e : getEnvironnement().getEnemies()) {
             if (e.isLiving()) {
                 double range = Math.hypot(e.getX() - getX(), e.getY() - getY()); // calcul distance via pythagore
-                if (range <= getRange() && range < minRange) {
+                if (range<= minRange) {//(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = e;
                 }
             }
         }
-        target = closeTarget;
+        this.target = closeTarget;
     }
 
     public void wayChangement() {
@@ -44,5 +40,6 @@ public class Knight extends Soldier {
         }
         List<int[]> chemin = astar.trouverChemin((int)this.getY(), (int)this.getX(), getyCible(), getxCible());
         this.setChemin(chemin);
+        majDirection();
     }
 }

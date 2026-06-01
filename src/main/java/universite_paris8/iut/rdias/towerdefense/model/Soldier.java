@@ -32,6 +32,7 @@ public abstract class Soldier extends Actor{
     }
 
     public void move(){
+        majDirection();
         if (chemin == null) {
             this.wayChangement();
         }
@@ -62,7 +63,7 @@ public abstract class Soldier extends Actor{
         }
 
     }
-    private boolean atteint(double cibleX, double cibleY) {
+    public boolean atteint(double cibleX, double cibleY) {
         boolean okX = (directionX > 0 && getX() >= cibleX)
                 || (directionX < 0 && getX() <= cibleX)
                 ||  directionX == 0;
@@ -71,7 +72,7 @@ public abstract class Soldier extends Actor{
                 ||  directionY == 0;
         return okX && okY;
     }
-    private void majDirection() {
+    public void majDirection() {
         if (cheminTermine()) {
             directionX = 0;
             directionY = 0;

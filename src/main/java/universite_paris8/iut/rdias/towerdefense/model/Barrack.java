@@ -4,8 +4,8 @@ public class Barrack extends Tower{
 
     private static final int hplvl1 = 250;
     private static final int hplvl2 = 325;
-    private static final int speedProductionlvl1 = 6;
-    private static final int speedProductionlvl2 = 3;
+    private static final int speedProductionlvl1 = 1;
+    private static final int speedProductionlvl2 = 2;
     private static final int knightHPlvl1 = 70;
     private static final int knightHPlvl2 = 105;
     private static final int knightDmglvl1 = 20;
@@ -17,7 +17,6 @@ public class Barrack extends Tower{
     public Barrack (Environnement env, int barrackId, double barrackX, double barrackY) {
         super(env, hplvl1, 0, barrackId, 0, barrackX, barrackY, speedProductionlvl1, 200);
         coordClosePath = closestPath();
-        System.out.println("coord : " + coordClosePath[1] + ", " + coordClosePath[0]);
     }
 
     @Override
@@ -26,12 +25,9 @@ public class Barrack extends Tower{
         if (canAct() && hasEnemies(getEnvironnement())){
             int hpKnight = getLevel() == 2 ? knightHPlvl2 : knightHPlvl1;
             int dmgKnight = getLevel() == 2 ? knightDmglvl2 : knightDmglvl1;
-
-
             Knight k = new Knight(getEnvironnement(), hpKnight, dmgKnight, nextKnightId++, coordClosePath[1], coordClosePath[0]);
             getEnvironnement().addKnight(k);
-
-//            setCooldown(speedAct*60);
+            resetCooldown();
         }
     }
 
