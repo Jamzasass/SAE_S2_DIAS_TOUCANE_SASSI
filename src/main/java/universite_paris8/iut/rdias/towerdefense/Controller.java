@@ -22,7 +22,7 @@ public class Controller {
     @FXML
     private Pane actorsArea;
     private Timeline gameLoop;
-    private int temps;
+    public static int temps;
     private Environnement env;
     private ObsEnemy obsEnemy;
     private ObsKnight obsKnight;
@@ -125,4 +125,10 @@ public class Controller {
             groundView.drawMap();
         }
     }
+
+    //full brouillon
+    public int getTemps() {
+        return temps;
+    }
+
 }

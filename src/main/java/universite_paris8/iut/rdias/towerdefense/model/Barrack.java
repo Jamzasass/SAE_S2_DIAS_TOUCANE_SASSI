@@ -4,12 +4,12 @@ public class Barrack extends Tower{
 
     private static final int hplvl1 = 250;
     private static final int hplvl2 = 325;
-    private static final int speedProductionlvl1 = 1;
-    private static final int speedProductionlvl2 = 2;
+    private static final int speedProductionlvl1 = 10;
+    private static final int speedProductionlvl2 = 20;
     private static final int knightHPlvl1 = 70;
     private static final int knightHPlvl2 = 105;
-    private static final int knightDmglvl1 = 20;
-    private static final int knightDmglvl2 = 30;
+    private static final int knightDmglvl1 = 10;
+    private static final int knightDmglvl2 = 20;
     private static int nextKnightId = 0;
     private int[] coordClosePath;
 

@@ -32,7 +32,7 @@ public abstract class Soldier extends Actor{
     }
 
     public void move(){
-        majDirection();
+        //majDirection();
         if (chemin == null) {
             this.wayChangement();
         }

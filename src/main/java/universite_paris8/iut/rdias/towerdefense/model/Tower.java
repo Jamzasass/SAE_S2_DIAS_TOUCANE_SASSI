@@ -3,7 +3,7 @@ package universite_paris8.iut.rdias.towerdefense.model;
 public abstract class Tower extends Actor{
 
     private final int cost;
-    private int speedAct;
+    private int speedAct; //en demi seconde (si 1 = une attaque possible toutes le 1/2 secondes
     private int level;
     private int cooldown;
 
@@ -12,7 +12,7 @@ public abstract class Tower extends Actor{
         super(env, tHp, tDmg, tId, tRange, tX, tY);
         this.cost = tCost;
         this.speedAct = speedAct;
-        this.cooldown = speedAct*120;
+        this.cooldown = speedAct*30;
         this.level = 1;
     }
 
@@ -35,10 +35,13 @@ public abstract class Tower extends Actor{
 
     public void tick(){
         cooldown++;
+        if (cooldown > speedAct*30) {
+            cooldown = speedAct*30;
+        }
     }
 
     public boolean canAct(){
-        return cooldown > speedAct*120;
+        return cooldown >= speedAct*30;
     }
 
     public void resetCooldown() {
