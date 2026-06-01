@@ -81,13 +81,13 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="245.0" prefWidth="95.0">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tower 1" textAlignment="CENTER" />
-                              <Button alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tower 2" textAlignment="CENTER">
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button1" textAlignment="CENTER" />
+                              <Button alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button2" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tower3" textAlignment="CENTER" />
+                              <Button alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button3" textAlignment="CENTER" />
                            </children>
                            <HBox.margin>
                               <Insets left="23.0" top="5.0" />
@@ -95,13 +95,13 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="267.0" prefWidth="90.0">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tower 4" textAlignment="CENTER" />
-                              <Button alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button" textAlignment="CENTER">
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button4" textAlignment="CENTER" />
+                              <Button alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button5" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Button" textAlignment="CENTER" />
+                              <Button alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button6" textAlignment="CENTER" />
                            </children>
                            <HBox.margin>
                               <Insets left="27.0" top="5.0" />
