@@ -47,9 +47,9 @@ public class Environnement {
             int line = spawn[0];
             int col = spawn[1];
             Vikings v = new Vikings(this, id, col, line);
-            AStar astar =  new AStar(ground, 2);
-            List<int[]> chemin = astar.trouverChemin(line, col, 42, 40);
-            v.setChemin(chemin);
+            //AStar astar =  new AStar(ground, 2);
+            //List<int[]> chemin = astar.trouverChemin(line, col, 42, 40);
+            //v.setChemin(chemin);
 
             Knight k = new Knight(this, id, col, line);
 
@@ -63,6 +63,9 @@ public class Environnement {
         }
         for (Tower t : towers) {
             t.act();
+        }
+        for (Knight k : knights) {
+            k.act();
         }
         enemies.removeIf(e -> e.getX() >= ground.width() - 1);
     }
