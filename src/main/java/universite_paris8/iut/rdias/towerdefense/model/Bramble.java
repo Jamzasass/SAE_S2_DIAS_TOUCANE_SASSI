@@ -1,7 +1,5 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
-
-
 public class Bramble extends Tower{
 
     private static final double slowFactor = 0.5;
@@ -15,7 +13,7 @@ public class Bramble extends Tower{
     public void act(Environnement env) {
         for (Enemy e : env.getEnemies()) {
             if (onTile(e)) {
-                e.applySlow(slowFactor, slowDuration);
+                // TODO e.applySlow(slowFactor, slowDuration); dans la classe Vikings
             }
         }
     }
@@ -34,12 +32,10 @@ public class Bramble extends Tower{
     }
 
     @Override
-    public void upgrade() {
-        System.out.println("pas d'upgrade");
+    public void takeDamage(int amount) {
     }
 
     @Override
-    public void takeDamage(int amount){
-        System.out.println("Indestructible");
+    public void upgrade() {
     }
 }
