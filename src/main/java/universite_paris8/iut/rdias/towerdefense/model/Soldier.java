@@ -46,8 +46,6 @@ public abstract class Soldier extends Actor{
         try {
             setX(newX);
             setY(newY);
-            if (this instanceof Knight)
-                System.out.println("ca bouge" + this);
         } catch (Exception ex) {
             System.out.println("  EXCEPTION: " + ex.getMessage());
         }
@@ -61,8 +59,6 @@ public abstract class Soldier extends Actor{
             setY(cible[0]);
             indexCible++;
             majDirection();
-
-            //wayChangement();
         }
 
     }

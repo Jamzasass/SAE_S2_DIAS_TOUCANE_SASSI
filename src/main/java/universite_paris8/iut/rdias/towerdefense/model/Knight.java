@@ -42,7 +42,6 @@ public class Knight extends Soldier {
             this.setxCible((int) target.getX());
             this.setyCible((int) target.getY());
         }
-
         List<int[]> chemin = astar.trouverChemin((int)this.getY(), (int)this.getX(), getyCible(), getxCible());
         this.setChemin(chemin);
     }

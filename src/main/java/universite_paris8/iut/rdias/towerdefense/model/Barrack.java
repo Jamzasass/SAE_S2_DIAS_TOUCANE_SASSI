@@ -11,9 +11,13 @@ public class Barrack extends Tower{
     private static final int knightDmglvl1 = 20;
     private static final int knightDmglvl2 = 30;
     private static int nextKnightId = 0;
+    private int[] coordClosePath;
+
 
     public Barrack (Environnement env, int barrackId, double barrackX, double barrackY) {
         super(env, hplvl1, 0, barrackId, 0, barrackX, barrackY, speedProductionlvl1, 200);
+        coordClosePath = closestPath();
+        System.out.println("coord : " + coordClosePath[1] + ", " + coordClosePath[0]);
     }
 
     @Override
@@ -22,8 +26,11 @@ public class Barrack extends Tower{
         if (canAct() && hasEnemies(getEnvironnement())){
             int hpKnight = getLevel() == 2 ? knightHPlvl2 : knightHPlvl1;
             int dmgKnight = getLevel() == 2 ? knightDmglvl2 : knightDmglvl1;
-            Knight k = new Knight(getEnvironnement(), hpKnight, dmgKnight, nextKnightId++, getX(), getY());
+
+
+            Knight k = new Knight(getEnvironnement(), hpKnight, dmgKnight, nextKnightId++, coordClosePath[1], coordClosePath[0]);
             getEnvironnement().addKnight(k);
+
 //            setCooldown(speedAct*60);
         }
     }
@@ -44,5 +51,38 @@ public class Barrack extends Tower{
             }
         }
         return false;
+    }
+    public int[] closestPath() {
+        int[] closePath = new int[2];
+        for (int i=1; i<6; i++) {
+            if (this.getX()+i<getEnvironnement().getGround().width()-1 &&
+                    getEnvironnement().getGround().isPath((int)this.getY(), (int)this.getX()+i)) {
+                closePath[0] = (int)this.getY();
+                closePath[1] = (int)this.getX()+i;
+                return closePath;
+            }
+            else if (this.getX()-i >= 0 &&
+                    getEnvironnement().getGround().isPath((int)this.getY(), (int)this.getX()-i)) {
+                closePath[0] = (int)this.getY();
+                closePath[1] = (int)this.getX()-i;
+                return closePath;
+            }
+            else if (this.getY()+i < getEnvironnement().getGround().heigth()-1 &&
+                    getEnvironnement().getGround().isPath((int)this.getY()+i, (int)this.getX())) {
+                closePath[0] = (int)this.getY()+i;
+                closePath[1] = (int)this.getX();
+                return closePath;
+            }
+            else if (this.getY()-i <= 0 &&
+                    getEnvironnement().getGround().isPath((int)this.getY()-i, (int)this.getX())) {
+                closePath[0] = (int)this.getY()-i;
+                closePath[1] = (int)this.getX();
+                return closePath;
+            }
+            else {
+                System.out.println("pas trouver : "  + i);
+            }
+        }
+        return closePath;
     }
 }
