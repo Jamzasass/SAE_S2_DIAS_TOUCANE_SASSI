@@ -1,10 +1,13 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
+import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
+
 /*
     La classe Terrain est reponsable du terrain, c'est à dire quelle tuile est où.
  */
 public class Ground {
 
+    private BFS mapBFS;
     private int[][] map = { // 0-herbe 1-chemin 2-emplacement chateau 3-eau
             {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
             {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
@@ -53,6 +56,9 @@ public class Ground {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     };
 
+    public Ground() {
+        this.mapBFS = new BFS(this);
+    }
 
     public int heigth () {
         return this.map.length;
@@ -76,5 +82,9 @@ public class Ground {
 
     public void setTile(int line, int column, int n) {
         this.map[line][column] = n;
+    }
+
+    public BFS getMapBFS() {
+        return mapBFS;
     }
 }

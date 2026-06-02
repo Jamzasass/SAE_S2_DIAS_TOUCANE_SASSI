@@ -12,11 +12,6 @@ public abstract class Enemy extends Soldier {
         this.deathValue = eDeathValue;
     }
 
-    public void wayChangement() {
-        AStar astar =  new AStar(getEnvironnement().getGround(), 0);
-        List<int[]> chemin = astar.trouverChemin((int)this.getY(), (int)this.getX(), getxCible(), getyCible());
-        this.setChemin(chemin);
-    }
 
     public int getDeathValue(){
         return deathValue;

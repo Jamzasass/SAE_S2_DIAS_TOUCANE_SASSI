@@ -8,10 +8,12 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
+import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 import universite_paris8.iut.rdias.towerdefense.view.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import universite_paris8.iut.rdias.towerdefense.view.DistanceView;
 
 public class Controller {
 
@@ -27,6 +29,8 @@ public class Controller {
     private ObsEnemy obsEnemy;
     private ObsKnight obsKnight;
     private ObsTower obsTower;
+
+    private BFS bfs;
 
     private static int towerSelected;
 
@@ -50,6 +54,10 @@ public class Controller {
         env.getTowers().addListener(obsTower);
         groundView.drawMap();
 
+        bfs = new BFS(ground);
+
+        DistanceView n = new DistanceView(ground, bfs.getDistancesMap(), 4, 8);
+        n.show();
         //définition et démarrage d'un gameloop qui fait env.unTour()
         initAnimation();
         keySelectionInit();
@@ -71,6 +79,12 @@ public class Controller {
                     if (temps % 10 == 0) {
                         obsEnemy.animate();
                         obsKnight.animate();
+                    }
+                    if (temps == 500) {
+                        System.out.println("debut test");
+                        BFS b = new BFS(ground);
+                        b.createDistancesMap();
+                        System.out.println("fin");
                     }
 
                     temps++;

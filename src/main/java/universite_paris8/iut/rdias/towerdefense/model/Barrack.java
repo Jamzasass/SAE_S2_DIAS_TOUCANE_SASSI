@@ -51,7 +51,7 @@ public class Barrack extends Tower{
     public int[] closestPath() {
         int[] closePath = new int[2];
         for (int i=1; i<6; i++) {
-            if (this.getX()+i<getEnvironnement().getGround().width()-1 &&
+            if (this.getX()+i<getEnvironnement().getGround().width() &&
                     getEnvironnement().getGround().isPath((int)this.getY(), (int)this.getX()+i)) {
                 closePath[0] = (int)this.getY();
                 closePath[1] = (int)this.getX()+i;
@@ -63,13 +63,13 @@ public class Barrack extends Tower{
                 closePath[1] = (int)this.getX()-i;
                 return closePath;
             }
-            else if (this.getY()+i < getEnvironnement().getGround().heigth()-1 &&
+            else if (this.getY()+i < getEnvironnement().getGround().heigth() &&
                     getEnvironnement().getGround().isPath((int)this.getY()+i, (int)this.getX())) {
                 closePath[0] = (int)this.getY()+i;
                 closePath[1] = (int)this.getX();
                 return closePath;
             }
-            else if (this.getY()-i <= 0 &&
+            else if (this.getY()-i >= 0 &&
                     getEnvironnement().getGround().isPath((int)this.getY()-i, (int)this.getX())) {
                 closePath[0] = (int)this.getY()-i;
                 closePath[1] = (int)this.getX();
