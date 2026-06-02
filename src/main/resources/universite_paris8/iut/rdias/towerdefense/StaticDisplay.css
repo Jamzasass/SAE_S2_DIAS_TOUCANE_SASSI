@@ -154,7 +154,7 @@
 
 .planchenue {
     -fx-background-image: url("sprite/HUD/sprite_planchenue.png");
-    -fx-background-size: 120% 120%;
+    -fx-background-size: 115% 120%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
@@ -167,12 +167,19 @@
     -fx-padding: 0 5 5 5;
 }
 
-.labelHeader{
+/*@font-face {*/
+/*    font-family: 'BlackClover';*/
+/*    src: url('fonts/BlackClover.ttf');*/
 
-}
+/*.root {*/
+/*    -fx-font-family: 'BlackClover';*/
+/*}*/
 
-.label{
-
+.labelHeaderBackground {
+    -fx-background-color: #3E2A21;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-pref-width: 1000000;
 }
 
 
