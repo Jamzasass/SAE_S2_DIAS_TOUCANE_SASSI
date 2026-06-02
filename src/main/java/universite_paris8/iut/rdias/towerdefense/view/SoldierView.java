@@ -16,11 +16,11 @@ public class SoldierView {
     private ImageView image;
     private Rectangle pvBar;
 
-    private static Image imageViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_vikingSoldier1.png"));
-    private static Image imageViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_vikingSoldier2.png"));
+    private static Image imageViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_viking/tile_vikingSoldier1.png"));
+    private static Image imageViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_viking/tile_vikingSoldier2.png"));
 
-    private static Image imageknight1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_knight1.png"));
-    private static Image imageKnight2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_knight2.png"));
+    private static Image imageknight1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/knight/tile_knight1.png"));
+    private static Image imageKnight2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/knight/tile_knight2.png"));
 
 
     public SoldierView(Soldier sSoldier) {
