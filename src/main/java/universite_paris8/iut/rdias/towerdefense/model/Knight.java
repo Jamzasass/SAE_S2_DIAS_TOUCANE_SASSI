@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
-import javax.xml.stream.events.StartDocument;
+import universite_paris8.iut.rdias.towerdefense.model.algorithm.AStar;
+
 import java.util.List;
 
 public class Knight extends Soldier {

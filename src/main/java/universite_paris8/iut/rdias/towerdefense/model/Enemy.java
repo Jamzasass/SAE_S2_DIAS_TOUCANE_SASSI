@@ -1,5 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
+import universite_paris8.iut.rdias.towerdefense.model.algorithm.AStar;
+
 import java.util.List;
 
 public abstract class Enemy extends Soldier {

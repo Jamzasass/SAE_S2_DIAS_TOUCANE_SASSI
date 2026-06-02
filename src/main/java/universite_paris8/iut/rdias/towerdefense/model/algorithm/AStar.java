@@ -1,4 +1,6 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.algorithm;
+
+import universite_paris8.iut.rdias.towerdefense.model.Ground;
 
 import java.util.*;
 
