@@ -7,7 +7,7 @@ import universite_paris8.iut.rdias.towerdefense.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObsActor {
+public class ObsActor implements ListChangeListener<Actor> {
     private ArrayList<SoldierView> soldierSprite;
     private ArrayList<TowerView> towerSprite;
     private Pane grid;
@@ -25,7 +25,6 @@ public class ObsActor {
             } catch (Exception ex) {
                 System.out.println("  EXCEPTION: " + ex.getMessage());
             }
-
         }
     }
 

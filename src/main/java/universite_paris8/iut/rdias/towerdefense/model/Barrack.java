@@ -26,7 +26,7 @@ public class Barrack extends Tower{
             int hpKnight = getLevel() == 2 ? knightHPlvl2 : knightHPlvl1;
             int dmgKnight = getLevel() == 2 ? knightDmglvl2 : knightDmglvl1;
             Knight k = new Knight(getEnvironnement(), hpKnight, dmgKnight, nextKnightId++, coordClosePath[1], coordClosePath[0]);
-            getEnvironnement().addKnight(k);
+            getEnvironnement().addActor(k);
             resetCooldown();
         }
     }
@@ -41,8 +41,8 @@ public class Barrack extends Tower{
     }
 
     private boolean hasEnemies(Environnement env){
-        for (Enemy e : env.getEnemies()){
-            if (e.isLiving()) {
+        for (Actor a : env.getActors()){
+            if (a.isLiving()) {
                 return true;
             }
         }

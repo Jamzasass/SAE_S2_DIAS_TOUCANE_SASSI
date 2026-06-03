@@ -34,7 +34,7 @@ public class Ballista extends Tower{
         Enemy first = null, second = null;
         double firstDist = Double.MAX_VALUE, secondDist = Double.MAX_VALUE;
 
-        for (Enemy e : getEnvironnement().getEnemies()) {
+        for (Actor e : getEnvironnement().getActors()) {
             if (e.isLiving()) {
                 double dist = Math.hypot(e.getX() - getX(), e.getY() - getY()); //calcul distance
                 if (dist <= getRange()) {

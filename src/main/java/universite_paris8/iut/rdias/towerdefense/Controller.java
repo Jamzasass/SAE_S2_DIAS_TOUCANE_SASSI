@@ -31,9 +31,7 @@ public class Controller {
     private Timeline gameLoop;
     public static int temps;
     private Environnement env;
-    private ObsEnemy obsEnemy;
-    private ObsKnight obsKnight;
-    private ObsTower obsTower;
+    private ObsActor obsActor;
 
     private BFS bfs;
 
@@ -51,12 +49,9 @@ public class Controller {
         actorsArea.setMinSize(largeur, hauteur);
         actorsArea.setMaxSize(largeur, hauteur);
 
-        obsEnemy = new ObsEnemy(actorsArea);
-        env.getEnemies().addListener(obsEnemy);
-        obsKnight = new ObsKnight(actorsArea);
-        env.getKnights().addListener(obsKnight);
-        obsTower = new ObsTower(actorsArea);
-        env.getTowers().addListener(obsTower);
+        obsActor = new ObsActor(actorsArea);
+        env.getActors().addListener(obsActor);
+
         groundView.drawMap();
 
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
@@ -85,8 +80,7 @@ public class Controller {
                 (ev -> {
                     env.unTour();
                     if (temps % 10 == 0) {
-                        obsEnemy.animate();
-                        obsKnight.animate();
+                        obsActor.animate();
                     }
                     if (temps == 500) {
                         System.out.println("debut test");
@@ -134,7 +128,7 @@ public class Controller {
                 t = new Barrack(env, 1, col, line);
             }
             if (t != null)
-                env.addTower(t);
+                env.addActor(t);
         }
         else if (e.getButton().equals(MouseButton.MIDDLE)) {
             ground.setTile(line, col, 1);

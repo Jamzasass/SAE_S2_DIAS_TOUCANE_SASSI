@@ -43,11 +43,11 @@ public class SorcererTower extends Tower {
     }
 
     private void applyDamageInZone(Environnement env) {
-        for (Enemy e : env.getEnemies()) {
-            if (e.isLiving()) {
-                double range = Math.hypot(e.getX() - getX(), e.getY() - getY());
+        for (Actor a : env.getActors()) {
+            if (a instanceof Enemy && a.isLiving()) {
+                double range = Math.hypot(a.getX() - getX(), a.getY() - getY());
                 if (range <= getRange()) {
-                    e.takeDamage(dmgPerSec);
+                    a.takeDamage(dmgPerSec);
                 }
             }
         }

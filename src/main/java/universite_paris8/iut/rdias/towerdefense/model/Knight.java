@@ -23,12 +23,12 @@ public class Knight extends Soldier {
     public void searchtarget() {
         Enemy closeTarget = null;
         double minRange = Double.MAX_VALUE;
-        for (Enemy e : getEnvironnement().getEnemies()) {
-            if (e.isLiving()) {
-                int range = calculDistanceFromEnemy(e); // calcul distance via pythagore
+        for (Actor a : getEnvironnement().getActors()) {
+            if (a instanceof Enemy && a.isLiving()) {
+                int range = calculDistanceFromEnemy((Enemy) a); // calcul distance via pythagore
                 if (range<= minRange) {//(range <= getRange() && range < minRange) {
                     minRange = range;
-                    closeTarget = e;
+                    closeTarget = (Enemy) a;
                 }
             }
         }
