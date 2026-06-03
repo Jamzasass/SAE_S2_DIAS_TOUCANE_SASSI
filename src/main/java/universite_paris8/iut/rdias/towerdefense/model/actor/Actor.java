@@ -1,10 +1,11 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.actor;
 
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 
 public abstract class Actor {
     private Environnement env;

@@ -1,4 +1,7 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
+
+import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 public class Palissade extends Tower {
 

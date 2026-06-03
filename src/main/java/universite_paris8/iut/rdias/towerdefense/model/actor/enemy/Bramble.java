@@ -1,6 +1,10 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 
-public class Bramble extends Tower{
+import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+
+public class Bramble extends Tower {
 
     private static final double slowFactor = 0.5;
     private static final int slowDuration =  30;

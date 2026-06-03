@@ -24,10 +24,10 @@ public class View {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2}
         };
-        Image spriteGrass = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_grass.png"));
-        Image spritePath = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_path.png"));
+        Image spriteGrass = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass.png"));
+        Image spritePath = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path.png"));
         Image spriteCastle = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_castle.png"));
-        Image spriteWater = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tile_water.png"));
+        Image spriteWater = new Image(View.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water.png"));
 
         for (int y = 0; y < map.length; y++) {
             for (int x = 0; x < map[y].length; x++) {

@@ -1,21 +1,12 @@
-package universite_paris8.iut.rdias.towerdefense.view;
+package universite_paris8.iut.rdias.towerdefense.controller;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import universite_paris8.iut.rdias.towerdefense.model.Actor;
-import universite_paris8.iut.rdias.towerdefense.model.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import universite_paris8.iut.rdias.towerdefense.model.Ground;
-import universite_paris8.iut.rdias.towerdefense.model.Soldier;
 
 public class ObsEnemy implements ListChangeListener<Enemy> {
     private ArrayList<SoldierView> enemiesSprite;
