@@ -69,6 +69,10 @@ public abstract class Actor {
     public void die(){
         this.hp.setValue(0);
         try {
+            if (this instanceof Enemy) {
+                env.earn(((Enemy) this).getDeathValue());
+                System.out.println("hey hey" + ((Enemy) this).getDeathValue() + ", " + getEnvironnement().getBalanceProperty().toString());
+            }
             this.env.delEnemy((Enemy) this);
         } catch (Exception ex) {
             System.out.println("  EXCEPTION: " + ex.getMessage());

@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +20,8 @@ public class Controller {
 
     @FXML
     private TilePane mapGrid;
+    @FXML
+    private Label balanceLabel;
     private Ground ground;
     private GroundView groundView;
     @FXML
@@ -53,6 +56,8 @@ public class Controller {
         obsTower = new ObsTower(actorsArea);
         env.getTowers().addListener(obsTower);
         groundView.drawMap();
+
+        balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
 
         bfs = new BFS(ground);
 

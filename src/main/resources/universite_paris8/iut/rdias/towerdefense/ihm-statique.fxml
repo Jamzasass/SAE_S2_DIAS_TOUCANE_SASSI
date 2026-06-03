@@ -30,7 +30,7 @@
                               <Insets bottom="2.0" left="10.0" top="2.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="Label" textFill="WHITE">
+                        <Label text="nb hp c" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="2.0" left="40.0" top="2.0" />
                            </HBox.margin>
@@ -50,7 +50,7 @@
                               <Insets bottom="2.0" left="10.0" top="2.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="Label" textFill="WHITE">
+                        <Label text="nb ecu" textFill="WHITE" fx:id="balanceLabel">
                            <HBox.margin>
                               <Insets bottom="2.0" left="80.0" top="2.0" />
                            </HBox.margin>
