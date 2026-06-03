@@ -79,9 +79,6 @@ public class Barrack extends Tower {
                 closePath[1] = (int)this.getX();
                 return closePath;
             }
-            else {
-                System.out.println("pas trouver : "  + i);
-            }
         }
         return closePath;
     }
