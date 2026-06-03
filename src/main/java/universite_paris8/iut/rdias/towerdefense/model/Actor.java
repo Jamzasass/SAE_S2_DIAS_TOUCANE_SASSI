@@ -25,7 +25,7 @@ public abstract class Actor {
         this.y = new SimpleDoubleProperty(aY);
     }
 
-    public abstract void act(Environnement env);
+    public abstract void act();
 
     //Getters
     public int getHp() {
@@ -57,6 +57,9 @@ public abstract class Actor {
     }
     public double getY() {
         return y.doubleValue();
+    }
+    public Environnement getEnvironnement() {
+        return this.env;
     }
     public DoubleProperty getXProperty() {return x;}
     public DoubleProperty getYProperty() {return y;}
