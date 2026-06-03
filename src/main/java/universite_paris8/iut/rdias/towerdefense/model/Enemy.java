@@ -12,6 +12,13 @@ public abstract class Enemy extends Soldier {
         this.deathValue = eDeathValue;
     }
 
+    public void act(){
+        this.move();
+        if (getEnvironnement().getGround().isCastle((int)getY(), (int)getX())) {
+            getEnvironnement().castleTakeDmg(this.getDmg());
+            this.die();
+        }
+    }
 
     public int getDeathValue(){
         return deathValue;

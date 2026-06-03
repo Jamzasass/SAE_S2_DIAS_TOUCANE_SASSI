@@ -7,9 +7,4 @@ public class Vikings extends Enemy{
     }
 
 
-    public void act(){
-        this.move();
-    }
-
-
 }

@@ -22,6 +22,8 @@ public class Controller {
     private TilePane mapGrid;
     @FXML
     private Label balanceLabel;
+    @FXML
+    private Label hpCastleLabel;
     private Ground ground;
     private GroundView groundView;
     @FXML
@@ -58,6 +60,7 @@ public class Controller {
         groundView.drawMap();
 
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
+        hpCastleLabel.textProperty().bind(env.getHpCastleProperty().asString());
 
         bfs = new BFS(ground);
 
@@ -123,8 +126,6 @@ public class Controller {
     }
     public void mouseClikedTile(MouseEvent e, int line, int col) {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
-            //ground.setTile(line, col, 3);
-            //drawMap();
             Tower t;
             if (towerSelected == 1) {
                  t = new Archer(env, 1, col, line);
@@ -145,7 +146,7 @@ public class Controller {
         }
     }
 
-    //full brouillon
+    //TOCHANGEfull brouillon
     public int getTemps() {
         return temps;
     }

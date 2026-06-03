@@ -25,6 +25,7 @@ public class Environnement {
     private int delaySpawn = 60;
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
     private IntegerProperty balance;
+    public IntegerProperty hpCastle;
 
 
     public Environnement(Ground ground) {
@@ -34,6 +35,7 @@ public class Environnement {
         this.towers = FXCollections.observableArrayList();
         int path = ground.heigth() - 1;
         this.balance = new SimpleIntegerProperty(0);
+        this.hpCastle = new SimpleIntegerProperty(100);
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
@@ -43,10 +45,16 @@ public class Environnement {
     public void addTower(Tower t){this.towers.add(t);}
     public void delTower(Tower t){this.towers.remove(t);}
     public void earn(int gain) {
-        balance.setValue(balance.getValue() + gain);
+        balance.setValue(balance.add(gain).getValue());
+    }
+    public void castleTakeDmg(int dmg) {
+        hpCastle.setValue(hpCastle.subtract(dmg).getValue());
     }
     public IntegerProperty getBalanceProperty() {
         return balance;
+    }
+    public IntegerProperty getHpCastleProperty() {
+        return hpCastle;
     }
 
     public void unTour() {  // méthode unTour()
@@ -62,7 +70,9 @@ public class Environnement {
             cptSpawn = 0;
         }
         for (Enemy e : enemies) {
+
             e.act();
+
         }
         for (Tower t : towers) {
             t.act();
