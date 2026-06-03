@@ -6,7 +6,7 @@ public class Palissade extends Tower {
     private static final int hplvl2 = 300;
 
     public Palissade(Environnement env, int palissadeId, double palissadeX, double palissadeY) {
-        super(env, hplvl1, 0, palissadeId, 0, palissadeX, palissadeY, 1.0, 300);
+        super(env, hplvl1, 0, palissadeId, 0, palissadeX, palissadeY, 1, 300);
     }
 
 //    public void takeBelierDamage(int amount) {
@@ -14,7 +14,7 @@ public class Palissade extends Tower {
 //    }
 
     @Override
-    public void act(Environnement env) {
+    public void act() {
     }
 
     @Override

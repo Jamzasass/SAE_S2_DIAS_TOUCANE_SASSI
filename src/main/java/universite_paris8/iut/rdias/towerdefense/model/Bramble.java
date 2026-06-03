@@ -6,7 +6,7 @@ public class Bramble extends Tower{
     private static final int slowDuration =  30;
 
     public Bramble(Environnement env, int brambleId, double brambleX, double brambleY, double tSpeedAttack, int cost) {
-        super(env, 0, 0, brambleId, 0, brambleX, brambleY, 1.0, 50);
+        super(env, 0, 0, brambleId, 0, brambleX, brambleY, 1, 50);
     }
 
     @Override
