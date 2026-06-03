@@ -1,6 +1,8 @@
-package universite_paris8.iut.rdias.towerdefense.model.actor;
+package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 
 public class Knight extends Soldier {
     private Enemy target;
@@ -11,11 +13,10 @@ public class Knight extends Soldier {
     }
     public void act() {
         searchtarget();
-        if (target != null) {
+        if (target != null && target.isLiving()) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
         }
-
         this.move();
         if (calculDistanceFromEnemy(target) < this.getRange()) {
             target.takeDamage(this.getDmg());

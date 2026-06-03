@@ -24,6 +24,8 @@ public class Controller {
     private TilePane mapGrid;
     @FXML
     private Label balanceLabel;
+    @FXML
+    private Label hpPlayer;
     private Ground ground;
     private GroundView groundView;
     @FXML
@@ -60,11 +62,12 @@ public class Controller {
         groundView.drawMap();
 
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
+        hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
 
         bfs = new BFS(ground);
-
         DistanceView n = new DistanceView(ground, bfs.getDistancesMap(), 4, 8);
         n.show();
+
         //définition et démarrage d'un gameloop qui fait env.unTour()
         initAnimation();
         keySelectionInit();
@@ -86,12 +89,6 @@ public class Controller {
                     if (temps % 10 == 0) {
                         obsEnemy.animate();
                         obsKnight.animate();
-                    }
-                    if (temps == 500) {
-                        System.out.println("debut test");
-                        BFS b = new BFS(ground);
-                        b.createDistancesMap();
-                        System.out.println("fin");
                     }
 
                     temps++;

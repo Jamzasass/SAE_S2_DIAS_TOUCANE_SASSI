@@ -6,18 +6,24 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
-import universite_paris8.iut.rdias.towerdefense.model.actor.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-import universite_paris8.iut.rdias.towerdefense.model.actor.Vikings;
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Vikings;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Environnement {
 
     private static int id = 1;
-    private final Ground ground;
-    private final ObservableList<Enemy> enemies;
-    private final ObservableList<Knight> knights;
-    private final ObservableList<Tower> towers;
+    private Ground ground;
+    private Castle castle;
+    private ObservableList<Enemy> enemies;
+    private ObservableList<Knight> knights;
+    private ObservableList<Tower> towers;
+    private ArrayList<Actor> actorsDying;
     private static int cptSpawn = 0;
     private int delaySpawn = 60;
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
@@ -26,9 +32,11 @@ public class Environnement {
 
     public Environnement(Ground ground) {
         this.ground = ground;
+        this.castle = new Castle();
         this.enemies = FXCollections.observableArrayList();
         this.knights = FXCollections.observableArrayList();
         this.towers = FXCollections.observableArrayList();
+        this.actorsDying = new ArrayList<>();
         int path = ground.heigth() - 1;
         this.balance = new SimpleIntegerProperty(0);
     }
@@ -39,6 +47,12 @@ public class Environnement {
     public void delKnight(Knight k){this.knights.remove(k);}
     public void addTower(Tower t){this.towers.add(t);}
     public void delTower(Tower t){this.towers.remove(t);}
+    public void addDyingActor(Actor a) {
+        this.actorsDying.add(a);
+    }
+    public void takeDmgCastle(int dmg) {
+        castle.takeDamage(dmg);
+    }
     public void earn(int gain) {
         balance.setValue(balance.getValue() + gain);
     }
@@ -67,7 +81,18 @@ public class Environnement {
         for (Knight k : knights) {
             k.act();
         }
-        enemies.removeIf(e -> e.getX() >= ground.width() - 1);
+        for (Actor a : actorsDying) {
+            if (a instanceof Enemy) {
+                delEnemy((Enemy) a);
+            }
+            else if (a instanceof Tower) {
+                delTower((Tower) a);
+            }
+            else if (a instanceof Knight) {
+                delKnight((Knight) a);
+            }
+        }
+        actorsDying.clear();
     }
 
     public ObservableList<Enemy> getEnemies() {
@@ -78,6 +103,9 @@ public class Environnement {
     }
     public ObservableList<Tower> getTowers() {
         return towers;
+    }
+    public Castle getCastle() {
+        return castle;
     }
 
     public Ground getGround() {

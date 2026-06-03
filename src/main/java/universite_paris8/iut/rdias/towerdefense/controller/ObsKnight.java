@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.List;
 
-import universite_paris8.iut.rdias.towerdefense.model.actor.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 
 public class ObsKnight implements ListChangeListener<Knight> {

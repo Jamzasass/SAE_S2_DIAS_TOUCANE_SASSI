@@ -11,6 +11,7 @@ public abstract class Enemy extends Soldier {
     }
 
 
+
     public int getDeathValue(){
         return deathValue;
     }

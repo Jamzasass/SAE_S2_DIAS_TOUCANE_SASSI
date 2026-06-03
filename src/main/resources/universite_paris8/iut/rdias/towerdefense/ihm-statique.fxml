@@ -30,7 +30,7 @@
                               <Insets bottom="2.0" left="10.0" top="2.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="nb hp c" textFill="WHITE">
+                        <Label text="nb hp c" textFill="WHITE" fx:id="hpPlayer">
                            <HBox.margin>
                               <Insets bottom="2.0" left="40.0" top="2.0" />
                            </HBox.margin>

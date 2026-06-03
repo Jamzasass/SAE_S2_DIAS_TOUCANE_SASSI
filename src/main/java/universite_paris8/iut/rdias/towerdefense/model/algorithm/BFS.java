@@ -6,14 +6,12 @@ import java.util.*;
 public class BFS {
     private Ground ground;
     private int[][][][] distancesMap;
-    //private int distance;
 
     public BFS(Ground ground) {
         this.ground = ground;
         this.distancesMap = new int[ground.heigth()][ground.width()][ground.heigth()][ground.width()];
         initialiseDistanceMap();
         createDistancesMap();
-        afficher(4, 8);
     }
 
     private boolean dansGrille(int line, int col) {
@@ -35,23 +33,9 @@ public class BFS {
                 for (int k=0; k<ground.heigth(); k++) {
                     for (int l=0; l<ground.width(); l++) {
                         distancesMap[i][j][k][l] = -1;
-
                     }
                 }
             }
-        }
-    }
-
-    private void afficher(int lOrigin, int cOrigin) {
-        for (int i=0; i<ground.heigth(); i++) {
-            for (int j = 0; j < ground.width(); j++) {
-                if (distancesMap[lOrigin][cOrigin][i][j]>=0 && distancesMap[lOrigin][cOrigin][i][j]<10) {
-                    System.out.print(" " + distancesMap[lOrigin][cOrigin][i][j] + ", ");
-                }
-                else
-                    System.out.print(distancesMap[lOrigin][cOrigin][i][j] + ", ");
-            }
-            System.out.println();
         }
     }
 
