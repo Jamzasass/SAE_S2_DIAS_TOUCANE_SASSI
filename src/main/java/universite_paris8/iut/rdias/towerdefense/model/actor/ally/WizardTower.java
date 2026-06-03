@@ -4,7 +4,7 @@ import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
-public class SorcererTower extends Tower {
+public class WizardTower extends Tower {
     private static final int hplvl1 = 300;
     private static final int hplvl2 = 400;
     private static final int dmgPerSeclvl1 = 10;
@@ -19,7 +19,7 @@ public class SorcererTower extends Tower {
     private int zoneFramesLeft;
     private int dmgCounter;
 
-    public SorcererTower(Environnement env, int sorcererId, double sorcererX, double sorcererY) {
+    public WizardTower(Environnement env, int sorcererId, double sorcererX, double sorcererY) {
         super(env, hplvl1, 0, sorcererId, 3.0, sorcererX, sorcererY, speedAttacklvl1, 500);
         this.dmgPerSec = dmgPerSeclvl1;
         this.zoneDuration = zoneDurationlvl1;

@@ -7,9 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
-import universite_paris8.iut.rdias.towerdefense.model.actor.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-import universite_paris8.iut.rdias.towerdefense.model.actor.Vikings;
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 
 public class Environnement {
 
@@ -53,7 +53,7 @@ public class Environnement {
             int[] spawn = spanwPoints[random];
             int line = spawn[0];
             int col = spawn[1];
-            Vikings v = new Vikings(this, id, col, line);
+            Viking v = new Viking(this, id, col, line);
             enemies.add(v);
             id++;
             cptSpawn = 0;

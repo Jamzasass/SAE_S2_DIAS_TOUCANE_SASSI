@@ -4,9 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import universite_paris8.iut.rdias.towerdefense.model.actor.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
-import universite_paris8.iut.rdias.towerdefense.model.actor.Vikings;
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 
 public class SoldierView {
 
@@ -27,7 +27,7 @@ public class SoldierView {
         this.pvBar = new Rectangle();
         pvBar.setHeight(2);
 
-        if (soldier instanceof Vikings) {
+        if (soldier instanceof Viking) {
             pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
             pvBar.setFill(Color.RED);
             this.image = new ImageView(imageViking1);
@@ -63,7 +63,7 @@ public class SoldierView {
     }
 
     public void switchImage() {
-        if (this.getSoldier() instanceof Vikings) {
+        if (this.getSoldier() instanceof Viking) {
             if (image.getImage().equals(imageViking1)) {
                 image.setImage(imageViking2);
             } else {
