@@ -1,14 +1,16 @@
-package universite_paris8.iut.rdias.towerdefense;
+package universite_paris8.iut.rdias.towerdefense.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Archer;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Barrack;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 import universite_paris8.iut.rdias.towerdefense.view.*;
 import javafx.animation.KeyFrame;

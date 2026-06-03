@@ -2,15 +2,14 @@ package universite_paris8.iut.rdias.towerdefense.view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import universite_paris8.iut.rdias.towerdefense.model.Archer;
-import universite_paris8.iut.rdias.towerdefense.model.Barrack;
-import universite_paris8.iut.rdias.towerdefense.model.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Archer;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 public class TowerView {
     private Tower tower;
     private ImageView image;
-    private static Image spriteArcher = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower_archer/Sprite_TowerArcherNiv1.png"));
-    private static Image spriteBarrack = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower_barrack/sprite_TowerBarrack1.png"));
+    private static Image spriteArcher = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1.png"));
+    private static Image spriteBarrack = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower/sprite_BarrackTower1.png"));
 
     public TowerView(Tower tTower) {
         this.tower = tTower;

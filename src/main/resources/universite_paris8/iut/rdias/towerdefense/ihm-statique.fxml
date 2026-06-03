@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane prefHeight="670.0" prefWidth="929.0" stylesheets="@StaticDisplay.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.Controller">
+<BorderPane prefHeight="670.0" prefWidth="929.0" stylesheets="@StaticDisplay.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.controller.Controller">
    <center>
        <StackPane styleClass="planchenue">
            <TilePane fx:id="mapGrid" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />

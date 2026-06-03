@@ -2,13 +2,9 @@ package universite_paris8.iut.rdias.towerdefense.view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
-import universite_paris8.iut.rdias.towerdefense.model.Archer;
 
 public class GroundView {
     //temporaire

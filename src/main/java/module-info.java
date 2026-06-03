@@ -7,4 +7,6 @@ module universite_paris8.iut.rdias.towerdefense {
 
     opens universite_paris8.iut.rdias.towerdefense to javafx.fxml;
     exports universite_paris8.iut.rdias.towerdefense;
+    exports universite_paris8.iut.rdias.towerdefense.controller;
+    opens universite_paris8.iut.rdias.towerdefense.controller to javafx.fxml;
 }

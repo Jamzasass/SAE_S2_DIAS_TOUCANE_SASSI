@@ -1,14 +1,12 @@
 package universite_paris8.iut.rdias.towerdefense.view;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import universite_paris8.iut.rdias.towerdefense.model.Actor;
-import universite_paris8.iut.rdias.towerdefense.model.Knight;
-import universite_paris8.iut.rdias.towerdefense.model.Soldier;
-import universite_paris8.iut.rdias.towerdefense.model.Vikings;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Vikings;
 
 public class SoldierView {
 

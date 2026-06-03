@@ -1,4 +1,6 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.actor;
+
+import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 
 public abstract class Tower extends Actor{
 

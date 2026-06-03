@@ -1,8 +1,6 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.actor;
 
-import universite_paris8.iut.rdias.towerdefense.model.algorithm.AStar;
-
-import java.util.List;
+import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 
 public abstract class Enemy extends Soldier {
     private int deathValue;

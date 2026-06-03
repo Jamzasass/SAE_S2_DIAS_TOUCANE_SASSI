@@ -1,6 +1,11 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 
-public class Barrack extends Tower{
+import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+
+public class Barrack extends Tower {
 
     private static final int hplvl1 = 250;
     private static final int hplvl2 = 325;

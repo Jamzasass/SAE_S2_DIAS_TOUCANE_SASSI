@@ -4,15 +4,12 @@ package universite_paris8.iut.rdias.towerdefense.model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
-import javafx.scene.layout.Pane;
-import universite_paris8.iut.rdias.towerdefense.view.ObsEnemy;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Vikings;
 
 public class Environnement {
 
