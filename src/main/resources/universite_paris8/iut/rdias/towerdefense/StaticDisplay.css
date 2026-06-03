@@ -118,8 +118,8 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-padding: 0 5 5 5;
-    /*-fx-background-image: url("sprite/tower_archer/Sprite_TowerArcherNiv1.png");*/
-    -fx-background-size: 120% 120%;
+    -fx-background-image: url("sprite/HUD/button/sprite_towerballista.png");
+    -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: rgba(255, 255, 255, 0.5);
@@ -152,13 +152,12 @@
     -fx-pref-height: 10000;
 }
 
-.rightPaneVbox {
+.planchenue {
     -fx-background-image: url("sprite/HUD/sprite_planchenue.png");
-    -fx-background-size: 120% 120%;
+    -fx-background-size: 115% 120%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
-
 
 .encadre {
     -fx-border-color: #e2e2e2;
@@ -168,12 +167,19 @@
     -fx-padding: 0 5 5 5;
 }
 
-.labelHeader{
+/*@font-face {*/
+/*    font-family: 'BlackClover';*/
+/*    src: url('fonts/BlackClover.ttf');*/
 
-}
+/*.root {*/
+/*    -fx-font-family: 'BlackClover';*/
+/*}*/
 
-.label{
-
+.labelHeaderBackground {
+    -fx-background-color: #3E2A21;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+    -fx-pref-width: 1000000;
 }
 
 
