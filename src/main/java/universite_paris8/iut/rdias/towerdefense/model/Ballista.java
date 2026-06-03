@@ -9,32 +9,32 @@ public class Ballista extends Tower{
     private static final int hplvl2 = 375;
     private static final int dmglvl1 = 30;
     private static final int dmglvl2 = 55;
-    private static final double speedAttacklvl1 = 3;
-    private static final double speedAttacklvl2 = 1.5;
+    private static final int speedAttacklvl1 = 3;
+    private static final int speedAttacklvl2 = 1;
 
     public Ballista(Environnement env, int ballistaId, double ballistaX, double ballistaY) {
         super(env, hplvl1, dmglvl1, ballistaId, 4.0, ballistaX, ballistaY, speedAttacklvl1, 350);
     }
 
     @Override
-    public void act(Environnement env){
+    public void act(){
         tick();
         if (canAct()) {
-            ArrayList<Enemy> targets = searchTargets(env);
+            ArrayList<Enemy> targets = searchTargets();
             if (!targets.isEmpty()){
                 for (Enemy e : targets) {
                     e.takeDamage(getDmg());
                 }
-                resetCooldown(60);
+                resetCooldown();
             }
         }
     }
 
-    private ArrayList<Enemy> searchTargets(Environnement env) {
+    private ArrayList<Enemy> searchTargets() {
         Enemy first = null, second = null;
         double firstDist = Double.MAX_VALUE, secondDist = Double.MAX_VALUE;
 
-        for (Enemy e : env.getEnemies()) {
+        for (Enemy e : getEnvironnement().getEnemies()) {
             if (e.isLiving()) {
                 double dist = Math.hypot(e.getX() - getX(), e.getY() - getY()); //calcul distance
                 if (dist <= getRange()) {

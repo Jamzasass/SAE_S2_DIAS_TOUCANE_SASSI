@@ -1,6 +1,8 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -22,6 +24,7 @@ public class Environnement {
     private static int cptSpawn = 0;
     private int delaySpawn = 60;
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
+    private IntegerProperty balance;
 
 
     public Environnement(Ground ground) {
@@ -30,6 +33,7 @@ public class Environnement {
         this.knights = FXCollections.observableArrayList();
         this.towers = FXCollections.observableArrayList();
         int path = ground.heigth() - 1;
+        this.balance = new SimpleIntegerProperty(0);
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
@@ -38,6 +42,12 @@ public class Environnement {
     public void delKnight(Knight k){this.knights.remove(k);}
     public void addTower(Tower t){this.towers.add(t);}
     public void delTower(Tower t){this.towers.remove(t);}
+    public void earn(int gain) {
+        balance.setValue(balance.getValue() + gain);
+    }
+    public IntegerProperty getBalanceProperty() {
+        return balance;
+    }
 
     public void unTour() {  // méthode unTour()
         cptSpawn++;
@@ -47,22 +57,18 @@ public class Environnement {
             int line = spawn[0];
             int col = spawn[1];
             Vikings v = new Vikings(this, id, col, line);
-            AStar astar =  new AStar(ground, 2);
-            List<int[]> chemin = astar.trouverChemin(line, col, 42, 40);
-            v.setChemin(chemin);
-
-            Knight k = new Knight(this, id, col, line);
-
-            knights.add(k);
             enemies.add(v);
             id++;
             cptSpawn = 0;
         }
         for (Enemy e : enemies) {
-            e.act(this);
+            e.act();
         }
         for (Tower t : towers) {
-            t.act(this);
+            t.act();
+        }
+        for (Knight k : knights) {
+            k.act();
         }
         enemies.removeIf(e -> e.getX() >= ground.width() - 1);
     }

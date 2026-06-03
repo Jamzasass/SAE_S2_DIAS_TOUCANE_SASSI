@@ -7,8 +7,8 @@ public class SorcererTower extends Tower {
     private static final int dmgPerSeclvl2 = 15;
     private static final int zoneDurationlvl1 = 3;
     private static final int zoneDurationlvl2 = 4;
-    private static final double speedAttacklvl1 = 0.2;
-    private static final double speedAttacklvl2 = 0.35;
+    private static final int speedAttacklvl1 = 2;
+    private static final int speedAttacklvl2 = 3;
 
     private int dmgPerSec;
     private int zoneDuration;
@@ -24,17 +24,17 @@ public class SorcererTower extends Tower {
     }
 
     @Override
-    public void act(Environnement env) {
+    public void act() {
         tick();
         if (zoneFramesLeft > 0) {
             dmgCounter++;               //Applique les dégats toutes les sec.
             if (dmgCounter >= 60) {
-                applyDamageInZone(env);
+                applyDamageInZone(getEnvironnement());
                 dmgCounter = 0;
             }
             zoneFramesLeft--;
             if (zoneFramesLeft == 0) {
-                resetCooldown(60);  // Une fois que la zone est terminée, il démarre un cooldown
+                resetCooldown();  // Une fois que la zone est terminée, il démarre un cooldown
             }
         } else if (canAct()) {          // Si pas de zone et que le cooldown soit ok, alors il peut recréer une zone.
             zoneFramesLeft = zoneDuration * 60;

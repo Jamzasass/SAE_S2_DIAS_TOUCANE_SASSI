@@ -2,17 +2,24 @@ package universite_paris8.iut.rdias.towerdefense.view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import universite_paris8.iut.rdias.towerdefense.model.Archer;
+import universite_paris8.iut.rdias.towerdefense.model.Barrack;
 import universite_paris8.iut.rdias.towerdefense.model.Tower;
-import universite_paris8.iut.rdias.towerdefense.model.Soldier;
 
 public class TowerView {
     private Tower tower;
     private ImageView image;
-    private static Image spriteArcherTower = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower_archer/Sprite_TowerArcherNiv1.pngit "));
+    private static Image spriteArcher = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower_archer/Sprite_TowerArcherNiv1.png"));
+    private static Image spriteBarrack = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower_barrack/sprite_TowerBarrack1.png"));
 
     public TowerView(Tower tTower) {
         this.tower = tTower;
-        this.image = new ImageView(spriteArcherTower);
+        if (tTower instanceof Archer) {
+            this.image = new ImageView(spriteArcher);
+        }
+        else { //if (tTower instanceof Barrack) {
+            this.image = new ImageView(spriteBarrack);
+        }
         this.image.layoutXProperty().bind(this.tower.getXProperty().multiply(16).add(-16/2));
         this.image.layoutYProperty().bind(this.tower.getYProperty().multiply(16).add(-16/2));
     }

@@ -47,17 +47,7 @@ public class GroundView {
         this.ground = ground;
         this.mapGrid = mapGrid;
         this.actorsArea = actorsArea;
-        mapGrid.setOnMouseClicked(e -> {
-            javafx.geometry.Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
-            int col = (int)(local.getX() / 16);
-            int line = (int)(local.getY() / 16);
-            if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
-                System.out.println("hors map");
-            }
-            else {
-                mouseClikedTile(e, line, col);
-            }
-        });
+
     }
 
     public void drawMap() {
@@ -181,20 +171,5 @@ public class GroundView {
         return this.ground.idTuile(l, col) == 3;
     }
 
-    public void mouseClikedTile(MouseEvent e, int line, int col) {
-        if (e.getButton().equals(MouseButton.PRIMARY)) {
-            //ground.setTile(line, col, 3);
-            //drawMap();
-            Tower t = new Archer(env, 1, col, line);
-            env.addTower(t);
-        }
-        else if (e.getButton().equals(MouseButton.MIDDLE)) {
-            ground.setTile(line, col, 1);
-            drawMap();
-        }
-        else {
-            ground.setTile(line, col, 0);
-            drawMap();
-        }
-    }
+
 }
