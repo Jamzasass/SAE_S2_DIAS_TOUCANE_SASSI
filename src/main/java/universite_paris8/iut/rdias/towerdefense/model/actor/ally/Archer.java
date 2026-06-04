@@ -14,8 +14,8 @@ public class Archer extends Tower {
     private static final int speedAttacklvl1 = 2;
     private static final int speedAttacklvl2 = 1;
 
-    public Archer(Environnement env, int archerId, double archerX, double archerY) {
-        super(env, hplvl1, dmglvl1, archerId, 4.0, archerX, archerY, speedAttacklvl1, 100);
+    public Archer(Environnement aEnv, int aHp, int aDmg, int archerId, double aX, double aY, int aSpeedAttack, int aCost) {
+        super(aEnv, aHp, aDmg, archerId, 4.0, aX, aY, aSpeedAttack, aCost);
     }
 
     @Override

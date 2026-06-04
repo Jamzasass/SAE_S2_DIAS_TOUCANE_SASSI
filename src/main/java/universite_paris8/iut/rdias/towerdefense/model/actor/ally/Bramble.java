@@ -17,7 +17,7 @@ public class Bramble extends Tower {
     public void act() {
         for (Enemy e : getEnvironnement().getEnemies()) {
             if (onTile(e)) {
-                // TODO e.applySlow(slowFactor, slowDuration); dans la classe Vikings
+                // TODO e.applySlow(slowFactor, slowDuration); dans la classe Viking
             }
         }
     }

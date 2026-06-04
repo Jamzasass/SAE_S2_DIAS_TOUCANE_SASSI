@@ -3,10 +3,10 @@ package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 
-public class Vikings extends Enemy {
+public class Viking extends Enemy {
 
-    public Vikings(Environnement env, int eId, double eX, double eY) {
-        super(env, 70, 20, eId, 0.1, eX, eY, 0.05, 15);
+    public Viking(Environnement env, int vHp, int vDmg, int vId, double vSpeed, double vX, double vY) {
+        super(env, vHp, vDmg, vId, 0.1, vX, vY, vSpeed, 15);
     }
 
 
