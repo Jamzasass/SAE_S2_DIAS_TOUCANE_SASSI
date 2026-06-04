@@ -39,7 +39,7 @@ public class Environnement {
         this.actorsDying = new ArrayList<>();
         this.balance = new SimpleIntegerProperty(0);
         this.waveIndex = 0;
-        this.wave = new Wave(this, waveIndex, 12, 5);
+        this.wave = new Wave(this, waveIndex, 2, 5);
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
@@ -111,8 +111,9 @@ public class Environnement {
         id++;
     }
     public void nextWave() {
-        System.out.println("NOUVELLE VAGUE");
         waveIndex++;
-        wave = new Wave(this, waveIndex, 12, 5);
+        wave = new Wave(this, waveIndex, 2, 5);
+        enemies.clear();
+        knights.clear();
     }
 }

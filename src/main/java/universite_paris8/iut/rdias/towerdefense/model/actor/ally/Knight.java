@@ -18,7 +18,7 @@ public class Knight extends Soldier {
             setyCible((int) target.getY());
         }
         this.move();
-        if (calculDistanceFromEnemy(target) < this.getRange()) {
+        if (target != null && calculDistanceFromEnemy(target) < this.getRange()) {
             target.takeDamage(this.getDmg());
         }
     }

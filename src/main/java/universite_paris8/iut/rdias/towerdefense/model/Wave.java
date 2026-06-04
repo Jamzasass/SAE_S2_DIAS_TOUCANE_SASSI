@@ -18,7 +18,7 @@ public class Wave {
         this.delayBetweenSpawns = delayBetweenSpawns;
         if (waveIndex > 4) {
             int random = (int)(Math.random()*4);
-            this.macronInflationActivated = random==4;
+            this.macronInflationActivated = random==3;
         }
     }
 
@@ -33,7 +33,7 @@ public class Wave {
             env.incrementId();
             nbEnemies--;
         }
-        if (nbEnemies==0) {
+        else if (nbEnemies==0) {
             if (env.getEnemies().isEmpty() && (cptLap*10) % (delayBetweenSpawns*30) == 0) {
                 env.nextWave();
             }
@@ -49,5 +49,8 @@ public class Wave {
         return delayBetweenSpawns;
     }
 
+    public boolean isMacronInflationActivated() {
+        return macronInflationActivated;
+    }
 
 }

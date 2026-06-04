@@ -38,6 +38,7 @@ public class ObsKnight implements ListChangeListener<Knight> {
             }
             for (Knight k : retirer) {
                 grid.getChildren().remove(grid.lookup("#" + "k" + k.getId()));
+                grid.getChildren().remove(grid.lookup("#" + "kP" + k.getId()));
             }
         }
     }

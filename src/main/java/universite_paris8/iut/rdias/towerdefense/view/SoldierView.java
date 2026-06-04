@@ -34,6 +34,7 @@ public class SoldierView {
             image.setFitWidth(25);
             image.setFitHeight(25);
             this.image.setId("v" + soldier.getId());
+            this.pvBar.setId("vP" + soldier.getId());
             this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
             this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
             pvBar.layoutXProperty().bind(image.layoutXProperty().add(25/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
@@ -46,6 +47,7 @@ public class SoldierView {
             image.setFitWidth(29);
             image.setFitHeight(29);
             this.image.setId("k" + soldier.getId());
+            this.pvBar.setId("kP" + soldier.getId());
             this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
             this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
             pvBar.layoutXProperty().bind(image.layoutXProperty().add(29/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
