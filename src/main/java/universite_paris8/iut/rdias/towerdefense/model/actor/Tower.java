@@ -47,7 +47,7 @@ public abstract class Tower extends Actor{
     }
 
     public void resetCooldown() {
-        this.cooldown = 0; //jcapte pas
+        this.cooldown = 0;
     }
 
     public void setSpeedAct(int speedAct){this.speedAct = speedAct;}
