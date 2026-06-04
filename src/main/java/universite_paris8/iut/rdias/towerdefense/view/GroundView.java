@@ -36,6 +36,22 @@ public class GroundView {
     private static Image spriteBottomTopL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_TopCornerL.png"));
     private static Image spriteBridge = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_Bridge.png"));
 
+    //Border castle
+    private static Image spriteCastleBottomCornerR = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_anglebottomright.png"));
+    private static Image spriteCastleBottomCornerL = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_anglebottomleft.png"));
+    private static Image spriteCastleTopCornerR = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_angletopright.png"));
+    private static Image spriteCastleTopCornerL = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_angletopleft.png"));
+    private static Image spriteCastleLeft = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_left.png"));
+    private static Image spriteCastleRight = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_right.png"));
+    private static Image spriteCastleTop= new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_top.png"));
+    private static Image spriteCastleBottom = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_bottom.png"));
+    private static Image spriteCastleCenter = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_center.png"));
+
+    //Stairs castle
+    private static Image spriteStairCastleLeftTop= new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_stairlefttop.png"));
+    private static Image spriteStairCastleRightTop= new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_stairrighttop.png"));
+    private static Image spriteStairCastleTopLeft = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_stairtopleft.png"));
+
 
     public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea, Environnement env){
         this.env = env;
@@ -71,7 +87,7 @@ public class GroundView {
                 } else if (tileType == 1) {
                     sprite.setImage(pathSelection(line, col));
                 } else if (tileType == 2) {
-                    sprite.setImage(spriteCastle);
+                    sprite.setImage(castleSelection(line, col));
                 } else if (tileType == 3) {
                     sprite.setImage(waterSelection());
                 } else {
@@ -165,6 +181,47 @@ public class GroundView {
             return false;
         }
         return this.ground.idTuile(l, col) == 3;
+    }
+
+    public Image castleSelection(int l, int col) {
+        boolean above = isCastle(l - 1, col);
+        boolean below = isCastle(l + 1, col);
+        boolean left  = isCastle(l, col - 1);
+        boolean right = isCastle(l, col + 1);
+
+        boolean pathAbove = isPath(l - 1, col);
+        boolean pathBelow = isPath(l + 1, col);
+        boolean pathLeft  = isPath(l, col - 1);
+        boolean pathRight = isPath(l, col + 1);
+
+        if (!above && pathAbove) {
+            return spriteStairCastleTopLeft ;
+        }
+        if (!left && pathLeft) {
+            return spriteStairCastleLeftTop ;
+        }
+        if (!right && pathRight) {
+            return spriteStairCastleRightTop ;
+        }
+
+        if (!above && !left && below && right)  return spriteCastleTopCornerL;
+        if (!above && !right && below && left)  return spriteCastleTopCornerR;
+        if (!below && !left && above && right)  return spriteCastleBottomCornerL;
+        if (!below && !right && above && left)  return spriteCastleBottomCornerR;
+
+        if (!above && left && right && below)   return spriteCastleTop;
+        if (!below && left && right && above)   return spriteCastleBottom;
+        if (!left && above && below && right)   return spriteCastleLeft;
+        if (!right && above && below && left)   return spriteCastleRight;
+
+        return spriteCastleCenter;
+    }
+
+    private boolean isCastle(int l, int col) {
+        if (l < 0 || col < 0 || l >= this.ground.heigth() || col >= this.ground.width()) {
+            return false;
+        }
+        return this.ground.idTuile(l, col) == 2;
     }
 
 
