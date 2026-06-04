@@ -64,6 +64,11 @@ public class Controller {
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
         hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
 
+        CastleView cv = new CastleView(env.getCastle());
+        actorsArea.getChildren().add(cv.getCastleImage());
+        System.out.println(actorsArea.lookup("#Chateau").getLayoutX() + " " +
+                actorsArea.lookup("#Chateau").getLayoutY());
+
         bfs = new BFS(ground);
         DistanceView n = new DistanceView(ground, bfs.getDistancesMap(), 4, 8);
         n.show();

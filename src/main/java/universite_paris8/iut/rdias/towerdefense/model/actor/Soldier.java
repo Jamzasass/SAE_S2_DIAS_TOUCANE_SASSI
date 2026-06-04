@@ -67,12 +67,14 @@ public abstract class Soldier extends Actor{
     }
 
     public void wayChangement() {
+        int nbE = 0;
         int[][][][] mapBfs = getEnvironnement().getGround().getMapBFS().getDistancesMap();
         int[][] dirs = {{-1,0},{0,1},{1,0},{0,-1}};
         int shortestDist = -1;
         int[] bestNeighbor = new int[2];
         for (int[] d : dirs) {
-            int nL = (int)getY() + d[0], nC = (int)getX() + d[1];
+            int nL = (int)getY() + d[0];
+            int nC = (int)getX() + d[1];
             if (nL < 0 || nL >= getEnvironnement().getGround().heigth()
                     || nC < 0 || nC >= getEnvironnement().getGround().width()) {
                 continue;
@@ -81,10 +83,22 @@ public abstract class Soldier extends Actor{
                 continue;
             }
             int dCible = mapBfs[yCible][xCible][nL][nC];
-            if (shortestDist == -1 || (dCible >= 0 && dCible < shortestDist)) {
-                shortestDist = dCible;
-                bestNeighbor[0] = nL;
-                bestNeighbor[1] = nC;
+            if (shortestDist == -1 || (dCible >= 0 && dCible <= shortestDist)) {
+                if (dCible == shortestDist) {
+                    nbE++;
+                    int r = (int) (Math.random()*2);
+                    if (r == 0) {
+                        shortestDist = dCible;
+                        bestNeighbor[0] = nL;
+                        bestNeighbor[1] = nC;
+                    }
+                }
+                else {
+                    shortestDist = dCible;
+                    bestNeighbor[0] = nL;
+                    bestNeighbor[1] = nC;
+                }
+
             }
         }
         if (bestNeighbor[0] != 0 && bestNeighbor[1] != 0)

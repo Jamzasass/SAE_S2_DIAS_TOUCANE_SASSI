@@ -72,15 +72,17 @@ public class Environnement {
             id++;
             cptSpawn = 0;
         }
-        for (Enemy e : enemies) {
-            e.act();
+        for (Knight k : knights) {
+            k.act();
         }
         for (Tower t : towers) {
             t.act();
         }
-        for (Knight k : knights) {
-            k.act();
+        for (Enemy e : enemies) {
+            e.act();
         }
+
+
         for (Actor a : actorsDying) {
             if (a instanceof Enemy) {
                 delEnemy((Enemy) a);
