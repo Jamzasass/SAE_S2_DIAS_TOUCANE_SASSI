@@ -103,7 +103,6 @@ public class Controller {
                         obsKnight.animate();
                     }
                     if (temps %15 == 0) {
-                        System.out.println("testtttt");
                         castleView.switchImage();
                     }
                     temps++;
