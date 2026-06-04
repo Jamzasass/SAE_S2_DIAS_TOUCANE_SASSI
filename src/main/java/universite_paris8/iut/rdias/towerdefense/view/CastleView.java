@@ -29,19 +29,15 @@ public class CastleView {
 
     public void switchImage() {
         if (getCastleImage().imageProperty().getValue().equals(castleSprite1)) {
-            System.out.println("image1 -> image2");
             getCastleImage().imageProperty().setValue(castleSprite2);
         }
         else if (getCastleImage().imageProperty().getValue().equals(castleSprite2)) {
-            System.out.println("image2 -> image3");
             getCastleImage().imageProperty().setValue(castleSprite3);
         }
         else if (getCastleImage().imageProperty().getValue().equals(castleSprite3)) {
-            System.out.println("image3 -> image4");
             getCastleImage().imageProperty().setValue(castleSprite4);
         }
         else {
-            System.out.println("image4 -> image1");
             getCastleImage().imageProperty().setValue(castleSprite1);
         }
 

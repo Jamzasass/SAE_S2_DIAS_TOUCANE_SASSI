@@ -27,6 +27,7 @@ public class Environnement {
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
     private IntegerProperty balance;
     private int waveIndex;
+    private Wave wave;
 
 
     public Environnement(Ground ground) {
@@ -38,6 +39,7 @@ public class Environnement {
         this.actorsDying = new ArrayList<>();
         this.balance = new SimpleIntegerProperty(0);
         this.waveIndex = 0;
+        this.wave = new Wave(this, waveIndex, 12, 5);
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
@@ -59,14 +61,9 @@ public class Environnement {
         return balance;
     }
 
-    public void unTour() {  // méthode unTour()
+    public void loop() {  // méthode unTour()
         cptSpawn++;
-        int random = (int)(Math.random() * spanwPoints.length);
-        int[] spawn = spanwPoints[random];
-        int line = spawn[0];
-        int col = spawn[1];
-
-
+        wave.waveLoop(cptSpawn);
         for (Knight k : knights) {
             k.act();
         }
@@ -76,7 +73,6 @@ public class Environnement {
         for (Enemy e : enemies) {
             e.act();
         }
-
 
         for (Actor a : actorsDying) {
             if (a instanceof Enemy) {
@@ -90,10 +86,6 @@ public class Environnement {
             }
         }
         actorsDying.clear();
-    }
-
-    public void wave() {
-
     }
 
     public ObservableList<Enemy> getEnemies() {
@@ -111,5 +103,16 @@ public class Environnement {
 
     public Ground getGround() {
         return ground;
+    }
+    public int getId() {
+        return id;
+    }
+    public void incrementId() {
+        id++;
+    }
+    public void nextWave() {
+        System.out.println("NOUVELLE VAGUE");
+        waveIndex++;
+        wave = new Wave(this, waveIndex, 12, 5);
     }
 }

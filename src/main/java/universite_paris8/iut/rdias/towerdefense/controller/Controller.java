@@ -97,7 +97,7 @@ public class Controller {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev -> {
-                    env.unTour();
+                    env.loop();
                     if (temps % 10 == 0) {
                         obsEnemy.animate();
                         obsKnight.animate();
