@@ -25,14 +25,14 @@
                <children>
                   <HBox prefHeight="15.0" prefWidth="165.0" style="-fx-border-color: white;" styleClass="encadre">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Castle HP" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="textLabel" text="Castle HP" textAlignment="CENTER" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="2.0" left="10.0" top="2.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="nb hp c" textFill="WHITE">
+                        <Label styleClass="textLabel" text="nb hp c" textFill="WHITE">
                            <HBox.margin>
-                              <Insets bottom="2.0" left="40.0" top="2.0" />
+                              <Insets bottom="2.0" left="210.0" top="2.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -45,14 +45,14 @@
                   </HBox>
                   <HBox prefHeight="22.0" prefWidth="165.0" style="-fx-border-color: white;" styleClass="encadre">
                      <children>
-                        <Label graphicTextGap="5.0" text="Ecu" textFill="WHITE">
+                        <Label graphicTextGap="5.0" styleClass="textLabel" text="Ecu" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="2.0" left="10.0" top="2.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="nb ecu" textFill="WHITE" fx:id="balanceLabel">
+                        <Label fx:id="balanceLabel" styleClass="textLabel" text="nb ecu" textFill="WHITE">
                            <HBox.margin>
-                              <Insets bottom="2.0" left="80.0" top="2.0" />
+                              <Insets bottom="2.0" left="250.0" top="2.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -108,10 +108,10 @@
          </children></VBox>
    </right>
    <top>
-      <Label alignment="CENTER" prefHeight="75.0" prefWidth="997.0" styleClass="labelHeaderBackground" text="Vikings vs Knight" textFill="RED" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
+      <StackPane prefHeight="126.0" prefWidth="929.0" styleClass="TopPaneBackground" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="161.0" prefWidth="929.0" styleClass="labelHeaderBackground" text="Vikings VS Knights" />
+         </children>
+      </StackPane>
    </top>
 </BorderPane>

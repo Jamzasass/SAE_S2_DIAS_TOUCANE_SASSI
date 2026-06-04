@@ -17,7 +17,9 @@
 /*    -fx-background-color: derive(-fx-focus-color,30%);*/
 /*}*/
 
-
+@font-face {
+    src: url('fonts/BlackClover.ttf');
+}
 
 .button {
     -fx-border-color: #e2e2e2;
@@ -165,21 +167,32 @@
     -fx-background-radius: 10px;
     -fx-border-radius:20px;
     -fx-padding: 0 5 5 5;
+    -fx-font-family: 'cursive';
+
 }
 
-/*@font-face {*/
-/*    font-family: 'BlackClover';*/
-/*    src: url('fonts/BlackClover.ttf');*/
-
-/*.root {*/
-/*    -fx-font-family: 'BlackClover';*/
-/*}*/
-
 .labelHeaderBackground {
-    -fx-background-color: #3E2A21;
-    -fx-padding: 10px;
+    -fx-background-image:   url("sprite/HUD/sprite_MedievalSignage.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size:60% 97%;
     -fx-alignment: center;
-    -fx-pref-width: 1000000;
+    -fx-font-family: 'Black Clover Font' ;
+    -fx-font-size: 60 px;
+    -fx-text-fill: '#efbf04';
+    -fx-text-alignment: center;
+}
+
+.TopPaneBackground {
+    -fx-background-image: url("sprite/HUD/sprite_PlancheNuePetit.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size:150% 100%;
+    -fx-alignment: center;
+}
+
+.textLabel {
+    -fx-font-family: 'Black Clover Font' ;
 }
 
 
