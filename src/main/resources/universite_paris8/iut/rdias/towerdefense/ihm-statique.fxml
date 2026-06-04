@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="670.0" prefWidth="929.0" stylesheets="@StaticDisplay.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.controller.Controller">
+<BorderPane prefHeight="670.0" prefWidth="929.0" stylesheets="@StaticDisplay.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.controller.Controller">
    <center>
-       <StackPane styleClass="planchenue">
-           <TilePane fx:id="mapGrid" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
-           <Pane fx:id="actorsArea" mouseTransparent="true" pickOnBounds="false" />
-       </StackPane>
-      </center>
+      <StackPane styleClass="planchenue">
+         <TilePane fx:id="mapGrid" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+         <Pane fx:id="actorsArea" mouseTransparent="true" pickOnBounds="false" />
+      </StackPane>
+   </center>
    <right>
       <VBox prefHeight="643.0" prefWidth="420.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,7 +25,7 @@
                               <Insets bottom="2.0" left="10.0" top="2.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="nb hp c" textFill="WHITE" fx:id="hpPlayer">
+                        <Label fx:id="hpPlayer" text="nb hp c" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="2.0" left="40.0" top="2.0" />
                            </HBox.margin>
@@ -50,7 +45,7 @@
                               <Insets bottom="2.0" left="10.0" top="2.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="nb ecu" textFill="WHITE" fx:id="balanceLabel">
+                        <Label fx:id="balanceLabel" text="nb ecu" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="2.0" left="80.0" top="2.0" />
                            </HBox.margin>
@@ -64,43 +59,90 @@
             </VBox>
             <VBox prefHeight="530.0" prefWidth="300.0" styleClass="rightPane">
                <children>
-                  <HBox prefHeight="245.0" prefWidth="294.0">
+                  <HBox prefHeight="360.0" prefWidth="294.0">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="245.0" prefWidth="95.0">
+                        <VBox alignment="CENTER" prefHeight="360.0" prefWidth="95.0">
                            <children>
                               <VBox alignment="CENTER" spacing="3">
-                                 <Button styleClass="button1">
-                                    <tooltip>
-                                       <Tooltip text="Archer&#10;Tire sur 1 ennemi à distance&#10;Portée moyenne, tir rapide"
-                                                showDelay="200ms"
-                                                styleClass="tower-tooltip"/>
-                                    </tooltip>
-                                 </Button>
-                                 <Label text="Coût : 100" styleClass="cost-label"/>
+                                 <children>
+                                    <Button fx:id="archerTower" alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="button1" />
+                                          <String fx:value="button" />
+                                       </styleClass>
+                                       <tooltip>
+                                          <Tooltip showDelay="200ms" styleClass="tower-tooltip" text="Archer&#10;Tire sur 1 ennemi à distance" />
+                                       </tooltip>
+                                    </Button>
+                                    <Label styleClass="cost-label" text="Coûts : 100" />
+                                 </children>
                               </VBox>
-                              <Button alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button2" textAlignment="CENTER">
+                              <VBox alignment="CENTER" spacing="3">
+                                 <children>
+                                    <Button fx:id="barrackTower" alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button2" textAlignment="CENTER">
+                                       <tooltip>
+                                          <Tooltip showDelay="200ms" styleClass="tower-tooltip" text="Caserne&#10;Invoque des chevaliers" />
+                                       </tooltip>
+                                    </Button>
+                                    <Label styleClass="cost-label" text="Coûts : 200" />
+                                 </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
-                              </Button>
-                              <Button alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button3" textAlignment="CENTER" />
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="3">
+                                 <children>
+                                    <Button fx:id="brambleTower" alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button3" textAlignment="CENTER">
+                                       <tooltip>
+                                          <Tooltip showDelay="200ms" styleClass="tower-tooltip" text="Ronce&#10;Ralentit les ennemis&#10;Sur chemin uniquement" />
+                                       </tooltip>
+                                    </Button>
+                                    <Label styleClass="cost-label" text="Coûts : 50" />
+                                 </children>
+                              </VBox>
                            </children>
                            <HBox.margin>
                               <Insets left="80.0" top="5.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="267.0" prefWidth="90.0">
+                        <VBox alignment="CENTER" prefHeight="360.0" prefWidth="90.0">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button4" textAlignment="CENTER" />
-                              <Button alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button5" textAlignment="CENTER">
+                              <VBox alignment="CENTER" spacing="3">
+                                 <children>
+                                    <Button fx:id="palissadeTower" alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button4" textAlignment="CENTER">
+                                       <tooltip>
+                                          <Tooltip showDelay="200ms" styleClass="tower-tooltip" text="Palissade&#10;Bloque un chemin&#10;Sur chemin uniquement" />
+                                       </tooltip>
+                                    </Button>
+                                    <Label styleClass="cost-label" text="Coûts : 300" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="3">
+                                 <children>
+                                    <Button fx:id="sorcererTower" alignment="CENTER" layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button5" textAlignment="CENTER">
+                                       <tooltip>
+                                          <Tooltip showDelay="200ms" styleClass="tower-tooltip" text="Tour de sorcier&#10;Dégâts de zone sur la durée" />
+                                       </tooltip>
+                                    </Button>
+                                    <Label styleClass="cost-label" text="Coûts : 500" />
+                                 </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" top="10.0" />
                                  </VBox.margin>
-                              </Button>
-                              <Button alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button6" textAlignment="CENTER" />
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="3">
+                                 <children>+
+                                    <Button fx:id="ballistaTower" alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button6" textAlignment="CENTER">
+                                       <tooltip>
+                                          <Tooltip showDelay="200ms" styleClass="tower-tooltip" text="Baliste&#10;Tire sur 2 ennemis à distance" />
+                                       </tooltip>
+                                    </Button>
+                                    <Label styleClass="cost-label" text="Coûts : 350" />
+                                 </children>
+                              </VBox>
                            </children>
                            <HBox.margin>
                               <Insets left="67.0" top="5.0" />
