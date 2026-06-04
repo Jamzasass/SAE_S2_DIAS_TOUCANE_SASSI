@@ -8,6 +8,9 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 
+
+//Deux methodes non utiliser !!!
+
 public class SoldierView {
 
     private Soldier soldier;

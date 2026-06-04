@@ -18,11 +18,13 @@ public class BatteringRam extends Enemy {
         if (target != null) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
-        }
+            this.move();
 
-        this.move();
-        if (calculDistanceFromEnemy(target) < this.getRange()) {
-            target.takeDamage(this.getDmg());
+            if (calculDistanceFromEnemy(target) < this.getRange()) {
+                target.takeDamage(this.getDmg());
+            }
+        } else {
+            this.move();
         }
     }
 
