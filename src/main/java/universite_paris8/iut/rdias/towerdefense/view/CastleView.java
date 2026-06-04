@@ -7,23 +7,43 @@ import universite_paris8.iut.rdias.towerdefense.model.Castle;
 public class CastleView {
     private Castle player;
     private ImageView image;
-    private static Image castleSprite = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/castle_32x32.png"));
-
+    //private ImageProperty
+    private static Image castleSprite1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle1.png"));
+    private static Image castleSprite2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle2.png"));
+    private static Image castleSprite3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle3.png"));
+    private static Image castleSprite4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle4.png"));
 
     public CastleView(Castle c) {
-        this.image = new ImageView(castleSprite);
-        this.image.setFitWidth(32);
-        this.image.setFitHeight(32);
-        this.image.setLayoutX(12);
-        this.image.setLayoutY(12);
+        this.image = new ImageView(castleSprite1);
+        this.image.setFitWidth(1000);
+        this.image.setFitHeight(1000);
+        this.image.setLayoutX(40*16);
+        this.image.setLayoutY(42*16);
         this.image.setId("Chateau");
-        System.out.println(" " + this.image.getLayoutX() + " " + this.image.getLayoutY());
-        System.out.println("sprite error=" + castleSprite.isError()
-                + " w=" + castleSprite.getWidth() + " h=" + castleSprite.getHeight());
     }
 
 
     public ImageView getCastleImage() {
         return image;
+    }
+
+    public void switchImage() {
+        if (getCastleImage().imageProperty().getValue().equals(castleSprite1)) {
+            System.out.println("image1 -> image2");
+            getCastleImage().imageProperty().setValue(castleSprite2);
+        }
+        else if (getCastleImage().imageProperty().getValue().equals(castleSprite2)) {
+            System.out.println("image2 -> image3");
+            getCastleImage().imageProperty().setValue(castleSprite3);
+        }
+        else if (getCastleImage().imageProperty().getValue().equals(castleSprite3)) {
+            System.out.println("image3 -> image4");
+            getCastleImage().imageProperty().setValue(castleSprite4);
+        }
+        else {
+            System.out.println("image4 -> image1");
+            getCastleImage().imageProperty().setValue(castleSprite1);
+        }
+
     }
 }

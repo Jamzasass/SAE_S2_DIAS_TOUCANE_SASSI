@@ -2,6 +2,7 @@ package universite_paris8.iut.rdias.towerdefense.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -36,6 +37,7 @@ public class Controller {
     private ObsEnemy obsEnemy;
     private ObsKnight obsKnight;
     private ObsTower obsTower;
+    private CastleView castleView;
 
     private BFS bfs;
 
@@ -64,10 +66,15 @@ public class Controller {
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
         hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
 
-        CastleView cv = new CastleView(env.getCastle());
-        actorsArea.getChildren().add(cv.getCastleImage());
-        System.out.println(actorsArea.lookup("#Chateau").getLayoutX() + " " +
-                actorsArea.lookup("#Chateau").getLayoutY());
+        castleView = new CastleView(env.getCastle());
+        ImageView c = new ImageView();
+        c.setFitHeight(64);
+        c.setFitWidth(64);
+        c.setLayoutX(39*16);
+        c.setLayoutY(41*16);
+        c.imageProperty().bind(castleView.getCastleImage().imageProperty());
+        actorsArea.getChildren().add(c);
+
 
         bfs = new BFS(ground);
         DistanceView n = new DistanceView(ground, bfs.getDistancesMap(), 4, 8);
@@ -95,7 +102,10 @@ public class Controller {
                         obsEnemy.animate();
                         obsKnight.animate();
                     }
-
+                    if (temps %15 == 0) {
+                        System.out.println("testtttt");
+                        castleView.switchImage();
+                    }
                     temps++;
                 })
         );
