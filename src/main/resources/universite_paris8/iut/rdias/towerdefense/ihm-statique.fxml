@@ -134,7 +134,7 @@
                                  </VBox.margin>
                               </VBox>
                               <VBox alignment="CENTER" spacing="3">
-                                 <children>+
+                                 <children>
                                     <Button fx:id="ballistaTower" alignment="CENTER" layoutX="24.0" layoutY="67.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button6" textAlignment="CENTER">
                                        <tooltip>
                                           <Tooltip showDelay="200ms" styleClass="tower-tooltip" text="Baliste&#10;Tire sur 2 ennemis à distance" />
