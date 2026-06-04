@@ -10,9 +10,7 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Vikings;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Environnement {
@@ -28,6 +26,7 @@ public class Environnement {
     private int delaySpawn = 60;
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
     private IntegerProperty balance;
+    private int waveIndex;
 
 
     public Environnement(Ground ground) {
@@ -37,8 +36,8 @@ public class Environnement {
         this.knights = FXCollections.observableArrayList();
         this.towers = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
-        int path = ground.heigth() - 1;
         this.balance = new SimpleIntegerProperty(0);
+        this.waveIndex = 0;
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
@@ -62,16 +61,12 @@ public class Environnement {
 
     public void unTour() {  // méthode unTour()
         cptSpawn++;
-        if (cptSpawn == delaySpawn) {
-            int random = (int)(Math.random() * spanwPoints.length);
-            int[] spawn = spanwPoints[random];
-            int line = spawn[0];
-            int col = spawn[1];
-            Vikings v = new Vikings(this, id, col, line);
-            enemies.add(v);
-            id++;
-            cptSpawn = 0;
-        }
+        int random = (int)(Math.random() * spanwPoints.length);
+        int[] spawn = spanwPoints[random];
+        int line = spawn[0];
+        int col = spawn[1];
+
+
         for (Knight k : knights) {
             k.act();
         }
@@ -95,6 +90,10 @@ public class Environnement {
             }
         }
         actorsDying.clear();
+    }
+
+    public void wave() {
+
     }
 
     public ObservableList<Enemy> getEnemies() {

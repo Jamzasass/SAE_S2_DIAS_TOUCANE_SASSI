@@ -47,7 +47,7 @@ public class GroundView {
     }
 
     public void drawMap() {
-        Image spriteCastle = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle.png"));
+        Image spriteCastle = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_center.png"));
 
         double widthGround = ground.width() * 16;
         double heigthGround = ground.heigth() * 16;
