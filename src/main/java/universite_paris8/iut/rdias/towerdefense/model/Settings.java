@@ -80,9 +80,10 @@ public class Settings {
     public static double shieldwarriorSpeed = 0.03;
     public static int shieldwarriorDeathValue = 70;
 
-    // Classe utilitaire : pas d'instanciation
-    private Settings() {
-    }
+//    // Classe utilitaire : pas d'instanciation
+//    private Settings() {
+//        System.out.println("tkt");
+//    }
 
     public int getArcherDmg() {
         return archerDmg;

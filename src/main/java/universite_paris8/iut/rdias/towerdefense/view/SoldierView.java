@@ -21,8 +21,8 @@ public class SoldierView {
     private static Image imageknight1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/knight/tile_knight1.png"));
     private static Image imageKnight2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/knight/tile_knight2.png"));
 
-    private static Image imageArcherViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_viking/tile_vikingSoldier1.png"));
-    private static Image imageArcherViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_viking/tile_vikingSoldier2.png"));
+    private static Image imageArcherViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_archerer/tile_vikingarcherer1.png"));
+    private static Image imageArcherViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_archerer/tile_vikingarcherer2.png"));
 
 
     public SoldierView(Soldier sSoldier) {
