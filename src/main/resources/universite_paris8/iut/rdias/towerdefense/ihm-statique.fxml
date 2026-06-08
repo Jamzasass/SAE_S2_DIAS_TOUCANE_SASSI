@@ -25,7 +25,7 @@
                               <Insets bottom="2.0" left="10.0" top="2.0" />
                            </HBox.margin>
                         </Label>
-                        <Label styleClass="textLabel" text="nb hp c" textFill="WHITE">
+                        <Label fx:id="hpPlayer" styleClass="textLabel" text="nb hp c" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="2.0" left="210.0" top="2.0" />
                            </HBox.margin>

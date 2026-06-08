@@ -1,5 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
+
 public class Wave {
     private Environnement env;
     private int waveIndex;
@@ -25,7 +27,7 @@ public class Wave {
             int[] spawn = spanwPoints[random];
             int line = spawn[0];
             int col = spawn[1];
-            Vikings v = new Vikings(env, env.getId(), col, line);
+            Viking v = new Viking(env, env.getId(), col, line);
             env.addEnemy(v);
             env.incrementId();
             nbEnemies--;
