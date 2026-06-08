@@ -1,5 +1,8 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.ArcherViking;
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Berserker;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 
 public class Wave {
@@ -23,12 +26,8 @@ public class Wave {
 
     public void waveLoop(int cptLap) {
         if (cptLap % (delayBetweenSpawns*30) == 0 && nbEnemies>0) {
-            int random = (int)(Math.random() * spanwPoints.length);
-            int[] spawn = spanwPoints[random];
-            int line = spawn[0];
-            int col = spawn[1];
-            Viking v = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
-            env.addEnemy(v);
+            Enemy e = createNewEnemy();
+            env.addEnemy(e);
             env.incrementId();
             nbEnemies--;
         }
@@ -50,6 +49,39 @@ public class Wave {
 
     public boolean isMacronInflationActivated() {
         return macronInflationActivated;
+    }
+
+    public Enemy createNewEnemy() {
+        Enemy e = null;
+        int random = (int)(Math.random() * spanwPoints.length);
+        int[] spawn = spanwPoints[random];
+        int line = spawn[0];
+        int col = spawn[1];
+        int radomSelectEnemy = (int) (Math.random() * 100);
+        if (waveIndex < 4){
+            e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+        }
+        else if (waveIndex >= 4) {
+            if (radomSelectEnemy < 120) {//< 30) {
+                e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+            }
+            else {
+                e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+            }
+        }
+        else if (waveIndex >= 8) {
+            if (radomSelectEnemy < 30) {
+                e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+            }
+            else if (radomSelectEnemy < 50) {
+                e = new Berserker(env, env.getSettings().getBerserkerHp(), env.getSettings().getBerserkerDmg(), env.getId(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+
+            }
+            else {
+                e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+            }
+        }
+        return e;
     }
 
 }

@@ -129,9 +129,10 @@ public class Environnement {
     }
     public void nextWave() {
         waveIndex++;
-        wave = new Wave(this, waveIndex, 2, 5);
+        wave = new Wave(this, waveIndex, 1, 3);
         enemies.clear();
         knights.clear();
+        System.out.println("vague " + waveIndex );
     }
 
     public void soldTower(Tower t) {

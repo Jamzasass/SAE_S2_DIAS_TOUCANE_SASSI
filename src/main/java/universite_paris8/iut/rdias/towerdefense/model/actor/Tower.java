@@ -37,9 +37,6 @@ public abstract class Tower extends Actor{
 
     public void tick(){
         cooldown++;
-        if (cooldown > speedAct*30) {
-            cooldown = speedAct*30;
-        }
     }
 
     public boolean canAct(){

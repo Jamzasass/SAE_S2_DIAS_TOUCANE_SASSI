@@ -29,7 +29,7 @@ public class ObsTower implements ListChangeListener<Tower> {
                 towerSprite.add(tv);
             }
             for (Tower t : retirer) {
-                grid.getChildren().remove(grid.lookup("#" + t.getId() + ""));
+                grid.getChildren().remove(grid.lookup("#" + "t" + t.getId()));
             }
         }
     }
