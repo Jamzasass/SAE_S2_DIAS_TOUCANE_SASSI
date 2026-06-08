@@ -133,4 +133,8 @@ public class Environnement {
         enemies.clear();
         knights.clear();
     }
+
+    public void soldTower(Tower t) {
+        t.sold();
+    }
 }
