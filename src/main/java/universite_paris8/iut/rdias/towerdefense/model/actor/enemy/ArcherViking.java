@@ -15,28 +15,17 @@ public class ArcherViking extends Enemy {
     }
     @Override
     public void act(){
-//        searchtarget();
-//        if (target != null) {
-//            setxCible((int) target.getX());
-//            setyCible((int) target.getY());
-//            this.move();
-//
-//            if (calculDistanceFromEnemy(target) < this.getRange()) {
-//                target.takeDamage(this.getDmg());
-//            }
-//        } else {
-//            this.move();
-//        }
+        tick();
         searchtarget();
         if (target != null) {
             int dist = calculDistanceFromEnemy(target);
-
             if (dist > this.getRange()) {
                 setxCible((int) target.getX());
                 setyCible((int) target.getY());
                 this.move();
-            } else {
+            } else if (canAct()){
                 target.takeDamage(this.getDmg());
+                resetCooldown(60);
             }
         } else {
             this.move();
@@ -64,10 +53,7 @@ public class ArcherViking extends Enemy {
                 }
             }
         }
-
-
         this.target = closeTarget;
-
     }
 
     public int calculDistanceFromEnemy(Actor a) {
