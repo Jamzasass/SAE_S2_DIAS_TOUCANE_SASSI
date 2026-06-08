@@ -42,7 +42,7 @@ public abstract class Soldier extends Actor{
             System.out.println("  EXCEPTION: " + ex.getMessage());
         }
         if (!getEnvironnement().getGround().isPath(nextCase[0], nextCase[1])
-                && !getEnvironnement().getGround().isCastle(nextCase[0], nextCase[1])) {
+        ) {
             wayChangement();
         }
         else if (atteint(nextCase[1], nextCase[0]) ) {

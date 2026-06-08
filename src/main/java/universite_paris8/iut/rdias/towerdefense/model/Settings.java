@@ -61,11 +61,12 @@ public class Settings {
     private double berserkerSpeed;
     private int berserkerDeathValue;
 
-    // bowmanviking
-    private int bowmanvikingHp;
-    private int bowmanvikingDmg;
-    private double bowmanvikingSpeed;
-    private int bowmanvikingDeathValue;
+    // archerViking
+    private int archerVikingHp;
+    private int archerVikingDmg;
+    private double archerVikingSpeed;
+    private int archerVikingDeathValue;
+    private int archerVikingRange;
 
     // ramwarrior
     private int ramwarriorHp;
@@ -138,11 +139,12 @@ public class Settings {
         this.berserkerSpeed = 0.06;
         this.berserkerDeathValue = 45;
 
-        // bowmanviking
-        this.bowmanvikingHp = 50;
-        this.bowmanvikingDmg = 20;
-        this.bowmanvikingSpeed = 0.10;
-        this.bowmanvikingDeathValue = 25;
+        // ArcherViking
+        this.archerVikingHp = 50;
+        this.archerVikingDmg = 20;
+        this.archerVikingSpeed = 0.10;
+        this.archerVikingDeathValue = 25;
+        this.archerVikingRange = 4;
 
         // ramwarrior
         this.ramwarriorHp = 250;
@@ -301,20 +303,24 @@ public class Settings {
         return berserkerDeathValue;
     }
 
-    public int getBowmanvikingHp() {
-        return bowmanvikingHp;
+    public int getArcherVikingHp() {
+        return archerVikingHp;
     }
 
-    public int getBowmanvikingDmg() {
-        return bowmanvikingDmg;
+    public int getArcherVikingDmg() {
+        return archerVikingDmg;
     }
 
-    public double getBowmanvikingSpeed() {
-        return bowmanvikingSpeed;
+    public double getArcherVikingSpeed() {
+        return archerVikingSpeed;
     }
 
-    public int getBowmanvikingDeathValue() {
-        return bowmanvikingDeathValue;
+    public int getArcherVikingDeathValue() {
+        return archerVikingDeathValue;
+    }
+
+    public int getArcherVikingRange() {
+        return archerVikingRange;
     }
 
     public int getRamwarriorHp() {

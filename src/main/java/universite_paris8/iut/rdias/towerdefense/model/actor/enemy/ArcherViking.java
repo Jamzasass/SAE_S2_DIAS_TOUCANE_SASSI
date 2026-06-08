@@ -9,8 +9,8 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 public class ArcherViking extends Enemy {
     private Actor target;
 
-    public ArcherViking(Environnement env, int eId, double eX, double eY) {
-        super(env, 50, 20, eId, 3, eX, eY, 0.10, 25);
+    public ArcherViking(Environnement env, int eHp, int eDmg, int eId, int eRange, double eX, double eY, double eSpeed, int eDeathValue) {
+        super(env, eHp, eDmg, eId, eRange, eX, eY, eSpeed, eDeathValue);
         target = null;
     }
     @Override

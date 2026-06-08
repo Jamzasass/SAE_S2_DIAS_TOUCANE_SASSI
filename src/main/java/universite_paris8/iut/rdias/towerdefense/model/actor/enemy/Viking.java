@@ -22,17 +22,23 @@ public class Viking extends Enemy {
                 target.takeDamage(this.getDmg());
             }
         } else {
+            setxCible(42);
+            setyCible(40);
             this.move();
+        }
+        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getY())) {
+            getEnvironnement().getCastle().takeDamage(this.getDmg());
+            this.die();
         }
     }
 
     public void searchtarget() {
         Knight closeTarget = null;
-        double minRange = Double.MAX_VALUE;
+        double minRange = 6.0; //a changer
         for (Knight k : getEnvironnement().getKnights()) {
             if (k.isLiving()) {
                 int range = calculDistanceFromEnemy(k); // calcul distance via pythagore
-                if (range<= minRange) {//(range <= getRange() && range < minRange) {
+                if (range <= minRange) {//(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = k;
                 }

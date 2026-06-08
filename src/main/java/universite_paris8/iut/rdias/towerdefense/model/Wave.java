@@ -1,5 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.ArcherViking;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 
 public class Wave {
@@ -23,12 +25,8 @@ public class Wave {
 
     public void waveLoop(int cptLap) {
         if (cptLap % (delayBetweenSpawns*30) == 0 && nbEnemies>0) {
-            int random = (int)(Math.random() * spanwPoints.length);
-            int[] spawn = spanwPoints[random];
-            int line = spawn[0];
-            int col = spawn[1];
-            Viking v = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
-            env.addEnemy(v);
+            Enemy e = createNewEnemy();
+            env.addEnemy(e);
             env.incrementId();
             nbEnemies--;
         }
@@ -50,6 +48,28 @@ public class Wave {
 
     public boolean isMacronInflationActivated() {
         return macronInflationActivated;
+    }
+
+    public Enemy createNewEnemy() {
+        Enemy e = null;
+        int random = (int)(Math.random() * spanwPoints.length);
+        int[] spawn = spanwPoints[random];
+        int line = spawn[0];
+        int col = spawn[1];
+        if (waveIndex < 4){
+            e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+        }
+        else if (waveIndex >= 4) {
+            int radomSelectEnemy = (int) (Math.random() * 100);
+            if (radomSelectEnemy < 30) {
+                e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+                System.out.println("c'est un viking archer !!");
+            }
+            else {
+                e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+            }
+        }
+        return e;
     }
 
 }
