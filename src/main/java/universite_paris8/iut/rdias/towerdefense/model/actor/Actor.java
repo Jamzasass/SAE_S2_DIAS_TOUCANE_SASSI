@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 
 public abstract class Actor {
-    private Environnement env;
+    protected Environnement env;
     private IntegerProperty hp;
     private int dmg;
     private int id;
