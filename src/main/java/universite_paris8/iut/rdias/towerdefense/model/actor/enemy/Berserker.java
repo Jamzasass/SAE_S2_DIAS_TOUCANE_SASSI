@@ -19,11 +19,12 @@ public class Berserker extends Enemy {
         if (target != null) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
-        }
-
-        this.move();
-        if (calculDistanceFromEnemy(target) < this.getRange()) {
-            target.takeDamage(this.getDmg());
+            this.move();
+            if (calculDistanceFromEnemy(target) < this.getRange()) {
+                target.takeDamage(this.getDmg());
+            }
+        } else {
+            this.move();
         }
     }
 
@@ -33,7 +34,7 @@ public class Berserker extends Enemy {
         for (Tower t : getEnvironnement().getTowers()) {
             if (t.isLiving()) {
                 int range = calculDistanceFromEnemy(t); // calcul distance via pythagore
-                if (range<= minRange) {//(range <= getRange() && range < minRange) {
+                if (range<= minRange) { //(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = t;
                 }

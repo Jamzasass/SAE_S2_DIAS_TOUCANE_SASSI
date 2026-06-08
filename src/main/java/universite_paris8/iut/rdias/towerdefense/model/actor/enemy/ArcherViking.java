@@ -15,7 +15,6 @@ public class ArcherViking extends Enemy {
     }
     @Override
     public void act(){
-        tick();
         searchtarget();
         if (target != null) {
             int dist = calculDistanceFromEnemy(target);
@@ -25,7 +24,6 @@ public class ArcherViking extends Enemy {
                 this.move();
             } else if (canAct()){
                 target.takeDamage(this.getDmg());
-                resetCooldown(60);
             }
         } else {
             this.move();
