@@ -134,4 +134,8 @@ public class Environnement {
         knights.clear();
         System.out.println("vague " + waveIndex );
     }
+
+    public void soldTower(Tower t) {
+        t.sold();
+    }
 }

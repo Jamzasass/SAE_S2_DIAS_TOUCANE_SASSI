@@ -53,5 +53,10 @@ public abstract class Tower extends Actor{
         this.level++;
     }
 
+    public void sold(){
+        int refund = this.cost / 2;
+        getEnvironnement().earn(refund);
+        getEnvironnement().delTower(this);
+    }
 
 }
