@@ -21,7 +21,6 @@ public class Viking extends Enemy {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
             this.move();
-
             if (calculDistanceFromEnemy(target) < this.getRange()) {
                 target.takeDamage(this.getDmg());
             }

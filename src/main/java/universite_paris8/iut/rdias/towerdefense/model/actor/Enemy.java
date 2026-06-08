@@ -15,17 +15,7 @@ public abstract class Enemy extends Soldier {
         return deathValue;
     }
 
-    protected void tick(){
-        if (cooldown > 0) {
-            cooldown--;
-        }
-    }
-
     protected boolean canAct(){
         return cooldown <= 0;
-    }
-
-    protected void resetCooldown(int frames){
-        this.cooldown = frames;
     }
 }

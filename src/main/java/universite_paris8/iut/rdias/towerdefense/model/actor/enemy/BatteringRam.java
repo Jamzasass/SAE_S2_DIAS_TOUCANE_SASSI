@@ -22,8 +22,7 @@ public class BatteringRam extends Enemy {
             this.move();
 
             if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
-                ((Palissade) target).takeBatteringDamage(this.getDmg());
-                resetCooldown(180);
+                target.takeDamage(this.getDmg());
             }
         } else {
             this.move();
@@ -33,12 +32,12 @@ public class BatteringRam extends Enemy {
     public void searchtarget() {
         Tower closeTarget = null;
         double minRange = Double.MAX_VALUE;
-        for (Tower p : getEnvironnement().getTowers()) {
-            if (p.isLiving() && (p instanceof Palissade)) {
-                int range = calculDistanceFromEnemy(p); // calcul distance via pythagore
+        for (Tower t : getEnvironnement().getTowers()) {
+            if (t.isLiving() && (t instanceof Palissade)) {
+                int range = calculDistanceFromEnemy(t); // calcul distance via pythagore
                 if (range<= minRange) { //(range <= getRange() && range < minRange) {
                     minRange = range;
-                    closeTarget = p;
+                    closeTarget = t;
                 }
             }
         }
