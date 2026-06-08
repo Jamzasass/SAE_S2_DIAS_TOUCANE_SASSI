@@ -27,7 +27,7 @@ public class Wave {
             int[] spawn = spanwPoints[random];
             int line = spawn[0];
             int col = spawn[1];
-            Viking v = new Viking(env, env.getId(), col, line);
+            Viking v = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
             env.addEnemy(v);
             env.incrementId();
             nbEnemies--;

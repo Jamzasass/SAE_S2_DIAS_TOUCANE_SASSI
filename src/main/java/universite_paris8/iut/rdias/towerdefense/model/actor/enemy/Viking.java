@@ -6,15 +6,12 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 
 public class Viking extends Enemy {
-
     private Knight target;
-
-    public Viking(Environnement env, int eId, double eX, double eY) {
-        super(env, 70, 20, eId, 0.1, eX, eY, 0.05, 15);
+    public Viking(Environnement env, int vHp, int vDmg, int vId, double vSpeed, double vX, double vY) {
+        super(env, vHp, vDmg, vId, 0.1, vX, vY, vSpeed, 15);
         target = null;
     }
 
-    @Override
     public void act(){
         searchtarget();
         if (target != null) {

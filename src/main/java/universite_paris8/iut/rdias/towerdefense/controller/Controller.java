@@ -71,7 +71,7 @@ public class Controller {
         c.setFitHeight(64);
         c.setFitWidth(64);
         c.setLayoutX(39*16);
-        c.setLayoutY(41*16);
+        c.setLayoutY((40*16)-5);
         c.imageProperty().bind(castleView.getCastleImage().imageProperty());
         actorsArea.getChildren().add(c);
 
@@ -134,19 +134,17 @@ public class Controller {
             }
         });
     }
+
     public void mouseClikedTile(MouseEvent e, int line, int col) {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
             //ground.setTile(line, col, 3);
             //drawMap();
-            Tower t;
             if (towerSelected == 1) {
-                 t = new Archer(env, 1, col, line);
+                env.addArcher(col, line);
             }
             else {
-                t = new Barrack(env, 1, col, line);
+                env.addBarrack(col, line);
             }
-            if (t != null)
-                env.addTower(t);
         }
         else if (e.getButton().equals(MouseButton.MIDDLE)) {
             ground.setTile(line, col, 1);

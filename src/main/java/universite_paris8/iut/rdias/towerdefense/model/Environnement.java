@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Archer;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Barrack;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
@@ -26,6 +28,7 @@ public class Environnement {
     private int delaySpawn = 60;
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
     private IntegerProperty balance;
+    private Settings settings;
     private int waveIndex;
     private Wave wave;
 
@@ -39,6 +42,7 @@ public class Environnement {
         this.actorsDying = new ArrayList<>();
         this.balance = new SimpleIntegerProperty(0);
         this.waveIndex = 0;
+        this.settings = new Settings();
         this.wave = new Wave(this, waveIndex, 2, 5);
     }
 
@@ -53,6 +57,16 @@ public class Environnement {
     }
     public void takeDmgCastle(int dmg) {
         castle.takeDamage(dmg);
+    }
+    public void addArcher(int col, int line) {
+        Tower archer = new Archer(this, settings.getArcherHp(), settings.getArcherDmg(), id, (double) col, (double) line, settings.getArcherSpeedAttack(), settings.getArcherCost());
+        this.addTower(archer);
+        balance.setValue(balance.getValue() - archer.getCost());
+    }
+    public void addBarrack(int col, int line) {
+        Tower barrack = new Barrack(this, settings.getArcherHp(), id, (double) col, (double) line, settings.getBarrackSpeedProduction(), settings.getBarrackCost());
+        this.addTower(barrack);
+        balance.setValue(balance.getValue() - barrack.getCost());
     }
     public void earn(int gain) {
         balance.setValue(balance.getValue() + gain);
@@ -106,6 +120,9 @@ public class Environnement {
     }
     public int getId() {
         return id;
+    }
+    public Settings getSettings() {
+        return settings;
     }
     public void incrementId() {
         id++;

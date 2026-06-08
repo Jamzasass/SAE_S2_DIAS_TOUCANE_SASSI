@@ -18,8 +18,8 @@ public class Barrack extends Tower {
     private int[] coordClosePath;
 
 
-    public Barrack (Environnement env, int barrackId, double barrackX, double barrackY) {
-        super(env, hplvl1, 0, barrackId, 0, barrackX, barrackY, speedProductionlvl1, 200);
+    public Barrack (Environnement env, int bHp, int barrackId, double barrackX, double barrackY, int bSpeedProduction, int bCost) {
+        super(env, bHp, 0, barrackId, 0, barrackX, barrackY, bSpeedProduction, bCost);
         coordClosePath = closestPath();
     }
 

@@ -18,7 +18,7 @@ public class CastleView {
         this.image.setFitWidth(1000);
         this.image.setFitHeight(1000);
         this.image.setLayoutX(40*16);
-        this.image.setLayoutY(42*16);
+        this.image.setLayoutY(41*16);
         this.image.setId("Chateau");
     }
 

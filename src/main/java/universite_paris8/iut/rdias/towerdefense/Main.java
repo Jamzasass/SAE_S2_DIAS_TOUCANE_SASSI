@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("ihm-statique.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Tower Defense - Vikings VS Knight");
+        stage.setTitle("Tower Defense - Viking VS Knight");
         stage.setScene(scene);
         stage.show();
 
