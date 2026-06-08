@@ -9,7 +9,7 @@ public class Bramble extends Tower {
     private static final double slowFactor = 0.5;
     private static final int slowDuration =  30;
 
-    public Bramble(Environnement env, int brambleId, double brambleX, double brambleY, double tSpeedAttack, int cost) {
+    public Bramble(Environnement env, int brambleId, double brambleX, double brambleY) {
         super(env, 0, 0, brambleId, 0, brambleX, brambleY, 1, 50);
     }
 
@@ -17,7 +17,7 @@ public class Bramble extends Tower {
     public void act() {
         for (Enemy e : getEnvironnement().getEnemies()) {
             if (onTile(e)) {
-                // TODO e.applySlow(slowFactor, slowDuration); dans la classe Vikings
+                e.applySlow(slowFactor, slowDuration);
             }
         }
     }
