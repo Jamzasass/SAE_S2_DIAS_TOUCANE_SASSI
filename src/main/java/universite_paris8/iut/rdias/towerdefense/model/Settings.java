@@ -1,5 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
+//Cette classe permet de stocker toutes les variables (les stats) de toutes nos tours et des ennemies.
+
 public class Settings {
 
     // --------- towers (ally -> cost)
