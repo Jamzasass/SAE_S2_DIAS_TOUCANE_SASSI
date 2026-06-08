@@ -205,8 +205,8 @@
     -fx-padding: 5 15 5 15;
     -fx-cursor: hand;
     -fx-font-family: 'Black Clover Font';
-    -fx-font-style: bold;
     -fx-text-fill: rgba(80, 40, 10, 1);
+    -fx-font-size: 26px;
     -fx-min-width: 85px;
     -fx-min-height: 85px;
 }
