@@ -9,9 +9,11 @@ public class ShieldViking extends Enemy {
     private Tower target;
 
     public ShieldViking(Environnement env, int eId, double eX, double eY) {
-        super(env, 250, 20, eId, 0, eX, eY, 0.03, 70);
+        super(env, 250, 20, eId, 0.1, eX, eY, 0.03, 70);
+        target = null;
     }
 
+    @Override
     public void act(){
         searchtarget();
         if (target != null) {

@@ -10,9 +10,10 @@ public class BatteringRam extends Enemy {
     private Tower target;
 
     public BatteringRam(Environnement env, int eId, double eX, double eY) {
-        super(env, 250, 100, eId, 0, eX, eY, 0.03, 80);
+        super(env, 250, 100, eId, 0.1, eX, eY, 0.03, 80);
     }
 
+    @Override
     public void act(){
         searchtarget();
         if (target != null) {

@@ -9,10 +9,11 @@ public class Berserker extends Enemy {
     private Tower target;
 
     public Berserker(Environnement env, int eId, double eX, double eY) {
-        super(env, 125, 20, eId, 0, eX, eY, 0.06, 45);
+        super(env, 125, 20, eId, 0.1, eX, eY, 0.06, 45);
+        target = null;
     }
 
-
+    @Override
     public void act(){
         searchtarget();
         if (target != null) {
