@@ -86,6 +86,8 @@ public class Environnement {
             }
         }
         actorsDying.clear();
+
+
     }
 
     public ObservableList<Enemy> getEnemies() {
