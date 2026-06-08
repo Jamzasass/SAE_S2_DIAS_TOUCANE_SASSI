@@ -83,4 +83,8 @@ public class Environnement {
     public Ground getGround() {
         return ground;
     }
+
+    public void soldTower(Tower t) {
+        t.sold();
+    }
 }
