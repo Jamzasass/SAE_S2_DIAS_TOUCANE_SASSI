@@ -1,11 +1,13 @@
 package universite_paris8.iut.rdias.towerdefense.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
@@ -38,6 +40,9 @@ public class Controller {
     private ObsKnight obsKnight;
     private ObsTower obsTower;
     private CastleView castleView;
+    @FXML private HBox towerActionMenu;
+    @FXML private Button btnSell;
+    @FXML private Button btnUpgrade;
 
     private BFS bfs;
 
@@ -137,8 +142,21 @@ public class Controller {
 
     public void mouseClikedTile(MouseEvent e, int line, int col) {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
-            //ground.setTile(line, col, 3);
-            //drawMap();
+            for (Tower t : env.getTowers()) {
+                if (t.getX() == col && t.getY() == line) {
+                    btnSell.setText("Vendre (" + t.getCost() / 2 + " 💰)");
+                    btnSell.setOnAction(ev -> {
+                        t.sold();
+                        towerActionMenu.setVisible(false);
+                    });
+                    btnUpgrade.setOnAction(ev -> {
+                        t.upgrade();
+                        towerActionMenu.setVisible(false);
+                    });
+                    towerActionMenu.setVisible(true);
+                    return;
+                }
+            }
             if (towerSelected == 1) {
                 env.addArcher(col, line);
             }

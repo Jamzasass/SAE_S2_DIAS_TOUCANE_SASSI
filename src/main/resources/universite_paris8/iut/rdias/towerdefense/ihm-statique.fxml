@@ -4,7 +4,6 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="670.0" prefWidth="929.0" stylesheets="@StaticDisplay.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.rdias.towerdefense.controller.Controller">
    <center>
@@ -59,7 +58,7 @@
             </VBox>
             <VBox prefHeight="530.0" prefWidth="300.0" styleClass="rightPane">
                <children>
-                  <HBox prefHeight="360.0" prefWidth="294.0">
+                  <HBox prefHeight="292.0" prefWidth="420.0">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -71,7 +70,6 @@
                                     <Button fx:id="archerTower" alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" textAlignment="CENTER">
                                        <styleClass>
                                           <String fx:value="button1" />
-                                          <String fx:value="button" />
                                        </styleClass>
                                        <tooltip>
                                           <Tooltip showDelay="200ms" styleClass="tower-tooltip" text="Archer&#10;Tire sur 1 ennemi à distance" />
@@ -149,6 +147,19 @@
                            </HBox.margin>
                         </VBox>
                      </children>
+                  </HBox>
+                  <HBox fx:id="towerActionMenu" prefHeight="60.0" prefWidth="300.0" visible="false" spacing="20" alignment="CENTER">
+                     <children>
+                        <Button fx:id="btnSell" mnemonicParsing="false" text="Vendre"
+                                styleClass="action-button">
+                           <HBox.margin><Insets top="10.0" bottom="10.0"/></HBox.margin>
+                        </Button>
+                        <Button fx:id="btnUpgrade" mnemonicParsing="false" text="Améliorer"
+                                styleClass="action-button">
+                           <HBox.margin><Insets top="10.0" bottom="10.0"/></HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin><Insets top="10.0" left="3.0" right="3.0" bottom="10.0"/></VBox.margin>
                   </HBox>
                </children>
             </VBox>
