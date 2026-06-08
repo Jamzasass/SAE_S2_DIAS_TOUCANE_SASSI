@@ -5,11 +5,11 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 
 public class Bowmanviking extends Enemy {
 
-    public Bowmanviking(Environnement env, int eId, double eX, double eY) {
-        super(env, 50, 20, eId, 4, eX, eY, 0.10, 25);
+    public Bowmanviking(Environnement env, int eHp, int eDmg, int eId, int eRange, double eX, double eY, double eSpeed, int eDeathValue) {
+        super(env, eHp, eDmg, eId, eRange, eX, eY, eSpeed, eDeathValue);
     }
 
     public void act(){
-        System.out.println("A l'attaque");
+        this.move();
     }
 }

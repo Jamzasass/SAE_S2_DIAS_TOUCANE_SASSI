@@ -64,6 +64,7 @@ public class Settings {
     private int bowmanvikingDmg;
     private double bowmanvikingSpeed;
     private int bowmanvikingDeathValue;
+    private int bowmanvikingRange;
 
     // ramwarrior
     private int ramwarriorHp;
@@ -141,6 +142,7 @@ public class Settings {
         this.bowmanvikingDmg = 20;
         this.bowmanvikingSpeed = 0.10;
         this.bowmanvikingDeathValue = 25;
+        this.bowmanvikingRange = 4;
 
         // ramwarrior
         this.ramwarriorHp = 250;
@@ -314,6 +316,11 @@ public class Settings {
     public int getBowmanvikingDeathValue() {
         return bowmanvikingDeathValue;
     }
+
+    public int getBowmanvikingRange() {
+        return bowmanvikingRange;
+    }
+
 
     public int getRamwarriorHp() {
         return ramwarriorHp;

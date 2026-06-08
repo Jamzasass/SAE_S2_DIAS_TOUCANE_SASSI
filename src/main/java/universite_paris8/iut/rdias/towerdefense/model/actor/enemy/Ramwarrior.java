@@ -5,8 +5,8 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 
 public class Ramwarrior extends Enemy {
 
-    public Ramwarrior(Environnement env, int eId, double eX, double eY) {
-        super(env, 250, 100, eId, 0, eX, eY, 0.03, 80);
+    public Ramwarrior(Environnement env, int eHp, int eDmg, int eId, double eX, double eY, double eSpeed, int eDeathValue) {
+        super(env, eHp, eDmg, eId, 0, eX, eY, eSpeed, eDeathValue);
     }
 
     public void act(){

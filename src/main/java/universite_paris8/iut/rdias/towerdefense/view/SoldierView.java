@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Bowmanviking;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 
 public class SoldierView {
@@ -19,6 +20,9 @@ public class SoldierView {
 
     private static Image imageknight1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/knight/tile_knight1.png"));
     private static Image imageKnight2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/knight/tile_knight2.png"));
+
+    private static Image imageBowmanViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/viking_ram/sprite_VikingRam1.png"));
+    private static Image imageBowmanViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/viking_ram/sprite_VikingRam2.png"));
 
 
     public SoldierView(Soldier sSoldier) {
@@ -53,6 +57,19 @@ public class SoldierView {
             pvBar.layoutXProperty().bind(image.layoutXProperty().add(29/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
             pvBar.layoutYProperty().bind(image.layoutYProperty());
         }
+        else if (soldier instanceof Bowmanviking) {
+            pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
+            pvBar.setFill(Color.RED);
+            this.image = new ImageView(imageBowmanViking1);
+            image.setFitWidth(25);
+            image.setFitHeight(25);
+            this.image.setId("v" + soldier.getId());
+            this.pvBar.setId("vP" + soldier.getId());
+            this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
+            this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
+            pvBar.layoutXProperty().bind(image.layoutXProperty().add(25/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
+            pvBar.layoutYProperty().bind(image.layoutYProperty());
+        }
 
 
     }
@@ -72,11 +89,19 @@ public class SoldierView {
                 image.setImage(imageViking1);
             }
         }
-        else {
+        else if (this.getSoldier() instanceof Knight){
             if (image.getImage().equals(imageknight1)) {
                 image.setImage(imageKnight2);
             } else {
                 image.setImage(imageknight1);
+            }
+        }
+        else {
+            if (image.getImage().equals(imageBowmanViking1)) {
+                image.setImage(imageBowmanViking2);
+            }
+            else {
+                image.setImage(imageBowmanViking1);
             }
         }
     }

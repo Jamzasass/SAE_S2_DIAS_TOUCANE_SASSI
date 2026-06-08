@@ -132,5 +132,6 @@ public class Environnement {
         wave = new Wave(this, waveIndex, 2, 5);
         enemies.clear();
         knights.clear();
+        System.out.println("vague " + waveIndex);
     }
 }
