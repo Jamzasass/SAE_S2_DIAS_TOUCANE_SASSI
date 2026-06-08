@@ -10,10 +10,10 @@ public class ArcherViking extends Enemy {
     private Actor target;
 
     public ArcherViking(Environnement env, int eId, double eX, double eY) {
-        super(env, 50, 20, eId, 4, eX, eY, 0.10, 25);
+        super(env, 50, 20, eId, 3, eX, eY, 0.10, 25);
         target = null;
     }
-
+    @Override
     public void act(){
 //        searchtarget();
 //        if (target != null) {

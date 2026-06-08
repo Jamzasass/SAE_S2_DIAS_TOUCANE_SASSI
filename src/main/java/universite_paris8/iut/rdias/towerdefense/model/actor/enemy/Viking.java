@@ -14,7 +14,7 @@ public class Viking extends Enemy {
         target = null;
     }
 
-
+    @Override
     public void act(){
         searchtarget();
         if (target != null) {
