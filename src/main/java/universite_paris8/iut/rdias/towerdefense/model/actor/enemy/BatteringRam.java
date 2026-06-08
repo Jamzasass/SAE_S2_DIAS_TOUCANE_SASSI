@@ -3,14 +3,14 @@ package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
-public class Berserker extends Enemy {
+public class BatteringRam extends Enemy {
 
     private Tower target;
 
-    public Berserker(Environnement env, int eId, double eX, double eY) {
-        super(env, 125, 20, eId, 0.1, eX, eY, 0.06, 45);
-        target = null;
+    public BatteringRam(Environnement env, int eId, double eX, double eY) {
+        super(env, 250, 100, eId, 0.1, eX, eY, 0.03, 80);
     }
 
     @Override
@@ -20,7 +20,8 @@ public class Berserker extends Enemy {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
             this.move();
-            if (calculDistanceFromEnemy(target) < this.getRange()) {
+
+            if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
                 target.takeDamage(this.getDmg());
             }
         } else {
@@ -32,7 +33,7 @@ public class Berserker extends Enemy {
         Tower closeTarget = null;
         double minRange = Double.MAX_VALUE;
         for (Tower t : getEnvironnement().getTowers()) {
-            if (t.isLiving()) {
+            if (t.isLiving() && (t instanceof Palissade)) {
                 int range = calculDistanceFromEnemy(t); // calcul distance via pythagore
                 if (range<= minRange) { //(range <= getRange() && range < minRange) {
                     minRange = range;

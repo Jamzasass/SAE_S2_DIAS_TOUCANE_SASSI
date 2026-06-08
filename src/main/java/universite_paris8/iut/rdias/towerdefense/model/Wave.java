@@ -1,8 +1,5 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
-import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
-import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Vikings;
-
 public class Wave {
     private Environnement env;
     private int waveIndex;

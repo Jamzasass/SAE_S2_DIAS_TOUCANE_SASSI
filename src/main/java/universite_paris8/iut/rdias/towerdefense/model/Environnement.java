@@ -10,7 +10,7 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 import java.util.ArrayList;
 
 public class Environnement {

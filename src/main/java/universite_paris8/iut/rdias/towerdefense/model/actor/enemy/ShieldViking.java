@@ -4,12 +4,12 @@ import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
-public class Berserker extends Enemy {
+public class ShieldViking extends Enemy {
 
     private Tower target;
 
-    public Berserker(Environnement env, int eId, double eX, double eY) {
-        super(env, 125, 20, eId, 0.1, eX, eY, 0.06, 45);
+    public ShieldViking(Environnement env, int eId, double eX, double eY) {
+        super(env, 250, 20, eId, 0.1, eX, eY, 0.03, 70);
         target = null;
     }
 
@@ -23,9 +23,8 @@ public class Berserker extends Enemy {
             if (calculDistanceFromEnemy(target) < this.getRange()) {
                 target.takeDamage(this.getDmg());
             }
-        } else {
-            this.move();
         }
+
     }
 
     public void searchtarget() {

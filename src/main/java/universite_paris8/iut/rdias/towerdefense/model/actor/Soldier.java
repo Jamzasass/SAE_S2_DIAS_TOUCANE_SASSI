@@ -10,6 +10,8 @@ public abstract class Soldier extends Actor{
     private int xCible;
     private int yCible;
     private int[] nextCase;
+    private double slowFactor;
+    private int slowDuration;
 
     public Soldier (Environnement env, int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed, int xCible, int yCible) {
         super(env, sHp, sDmg, sId, sRange, sX, sY);
@@ -21,14 +23,17 @@ public abstract class Soldier extends Actor{
         this.nextCase = new int[2];
         wayChangement();
         majDirection();
+        this.slowFactor = 1.0;
+        this.slowDuration = 0;
     }
     public void setChemin() {
         majDirection();
     }
 
     public void move(){
-        double newX = getX() + (speed * directionX);
-        double newY = getY() + (speed * directionY);
+        double effectiveSpeed = speed * slowFactor;
+        double newX = getX() + (effectiveSpeed * directionX);
+        double newY = getY() + (effectiveSpeed * directionY);
 
         try {
             setX(newX);
@@ -44,6 +49,12 @@ public abstract class Soldier extends Actor{
             setX(nextCase[1]);
             setY(nextCase[0]);
             wayChangement();
+        }
+        if (slowDuration > 0) {
+            slowDuration--;
+            if (slowDuration == 0){
+                slowFactor = 1.0;
+            }
         }
     }
     public boolean atteint(double cibleX, double cibleY) {
@@ -125,5 +136,12 @@ public abstract class Soldier extends Actor{
     public double valAbs(double v) {
         if (v<0) return -v;
         else return v;
+    }
+
+    public void applySlow(double factor, int duration) {
+        if (factor < this.slowFactor || slowDuration == 0) {
+            this.slowFactor = factor;
+        }
+        this.slowDuration = Math.max(this.slowDuration, duration);
     }
 }

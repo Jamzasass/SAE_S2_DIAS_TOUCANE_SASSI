@@ -12,16 +12,13 @@ public class Palissade extends Tower {
         super(env, hplvl1, 0, palissadeId, 0, palissadeX, palissadeY, 1, 300);
     }
 
-//    public void takeBelierDamage(int amount) {
-//        super.takeDamage(amount);
-//    }
-
     @Override
     public void act() {
     }
 
     @Override
     public void takeDamage(int amount) {
+
     }
 
     @Override
