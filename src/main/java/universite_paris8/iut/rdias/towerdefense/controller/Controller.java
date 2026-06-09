@@ -183,7 +183,7 @@ public class Controller {
                     return;
                 }
             }
-            if (towerSelected == 1 || towerSelected == 2 || towerSelected == 3) {
+            if (towerSelected == 1 || towerSelected == 2 || towerSelected == 3 || towerSelected == 4 || towerSelected == 5 || towerSelected == 6) {
                 final int fcol = col;
                 final int fline = line;
                 btnUpgradePut.setText("✔");
