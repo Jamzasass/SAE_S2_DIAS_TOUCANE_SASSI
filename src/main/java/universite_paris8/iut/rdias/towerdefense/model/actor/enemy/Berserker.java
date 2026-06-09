@@ -3,10 +3,11 @@ package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 
 public class Berserker extends Enemy {
 
-    private Enemy target;
+    private Knight target;
 
     public Berserker(Environnement env, int eHp, int eDmg, int eId, double eX, double eY, double eSpeed, int eDeathValue) {
         super(env, eHp, eDmg, eId, 0.1, eX, eY, eSpeed, eDeathValue);
@@ -35,20 +36,21 @@ public class Berserker extends Enemy {
     }
 
     public void searchtarget() {
-        Enemy closeTarget = null;
+        Knight closeTarget = null;
         int minRange = Integer.MAX_VALUE;
-        for (Enemy e : getEnvironnement().getEnemies()) {
-            if (e.isLiving()) {
-                int range = calculDistanceFromEnemy(e); // calcul distance via pythagore
+        for (Knight k : getEnvironnement().getKnights()) {
+            if (k.isLiving()) {
+                int range = calculDistanceFromEnemy(k);
                 if (range<= minRange) { //(range <= getRange() && range < minRange) {
                     minRange = range;
-                    closeTarget = e;
+                    closeTarget = k;
                 }
             }
         }
         this.target = closeTarget;
     }
-    public int calculDistanceFromEnemy(Enemy e) {
-        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][(int)e.getY()][(int)e.getX()];
+
+    public int calculDistanceFromEnemy(Knight k) {
+        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][(int)k.getY()][(int)k.getX()];
     }
 }
