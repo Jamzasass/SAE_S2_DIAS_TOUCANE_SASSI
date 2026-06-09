@@ -5,11 +5,11 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
-public class BatteringRam extends Enemy {
+public class RamWarrior extends Enemy {
 
     private Tower target;
 
-    public BatteringRam(Environnement env, int eId, double eX, double eY) {
+    public RamWarrior(Environnement env, int eId, double eX, double eY) {
         super(env, 250, 100, eId, 0.1, eX, eY, 0.03, 80);
     }
 

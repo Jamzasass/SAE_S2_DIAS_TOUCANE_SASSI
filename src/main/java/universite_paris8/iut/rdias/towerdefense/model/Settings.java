@@ -69,6 +69,7 @@ public class Settings {
     public static int archerVikingRange = 4;
 
     // ramwarrior
+
     public static int ramwarriorHp = 250;
     public static int ramwarriorDmg = 100;
     public static double ramwarriorSpeed = 0.03;
@@ -281,37 +282,44 @@ public class Settings {
         return shieldwarriorDeathValue;
     }
 
-    public static void multiplierStatsTower(double factor) {
-        // archer
-        archerDmg = (int) (archerDmg * factor);
-        archerHp = (int) (archerHp * factor);
-        archerSpeedAttack = (int) (archerSpeedAttack * factor);
+    public static void multiplierStatsEnnemy(double factor) {
 
-        // ballista
-        ballistaDmg = (int) (ballistaDmg * factor);
-        ballistaHp = (int) (ballistaHp * factor);
-        ballistaSpeedAttack = (int) (ballistaSpeedAttack * factor);
+        double halfFactor = 1 + (factor/2);
+        factor = 1 + factor;
+        // archerViking
+        archerVikingDmg = (int) (archerVikingDmg * factor);
+        archerVikingHp = (int) (archerVikingHp * factor);
+        archerVikingSpeed = (int) (archerVikingSpeed * halfFactor);
+        archerVikingDeathValue = (int) (archerVikingDeathValue * halfFactor);
+        // !!!speedAttack
 
-        // barrack
-        barrackHp = (int) (barrackHp * factor);
-        barrackSpeedProduction = (int) (barrackSpeedProduction * factor);
+        // berserker
+        berserkerDmg = (int) (berserkerDmg * factor);
+        berserkerHp = (int) (berserkerHp * factor);
+        berserkerSpeed = (int) (berserkerSpeed * halfFactor);
+        berserkerDeathValue = (int) (berserkerDeathValue * halfFactor);
 
-        // palissade
-        palissadeHp = (int) (palissadeHp * factor);
+        // shieldWarrior
+        shieldwarriorHp = (int) (barrackHp * factor);
+        shieldwarriorDmg = (int) (barrackSpeedProduction * factor);
+        shieldwarriorSpeed = (int) (shieldwarriorSpeed * halfFactor);
+        shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * halfFactor);
 
-        //bramble
-        brambleSlowFactor = (int) (brambleSlowFactor * factor);
-        brambleSlowDuration = (int) (brambleSlowDuration * factor);
+        // ramWarrior
+        ramwarriorHp = (int) (ramwarriorHp * factor);
+        ramwarriorDmg = (int) (ramwarriorDmg * factor);
+        ramwarriorSpeed = (int) (ramwarriorSpeed * halfFactor);
+        ramwarriorDeathValue = (int) (ramwarriorDeathValue * halfFactor);
 
-        // sorcererTower
-        sorcererTowerDmg = (int) (sorcererTowerDmg * factor);
-        sorcererTowerHp = (int) (sorcererTowerHp * factor);
-        sorcererTowerSpeedAttack = (int) (sorcererTowerSpeedAttack * factor);
-        sorcererTowerZoneDuration = (int) (sorcererTowerZoneDuration * factor);
+        // viking
+        vikingHp = (int) (vikingHp * factor);
+        vikingDmg = (int) (vikingDmg * factor);
+        vikingSpeed = (int) (vikingSpeed * halfFactor);
+        vikingDeathValue = (int) (vikingDeathValue * halfFactor);
 
-        // knight (soldat produit par la barrack)
-        knightDmg = (int) (knightDmg * factor);
-        knightHp = (int) (knightHp * factor);
     }
+
+
+
 }
 

@@ -41,6 +41,7 @@ public class Barrack extends Tower {
             setHp(hplvl2);
             setSpeedAct(speedProductionlvl2);
             lvlUp();
+            System.out.println("caca2");
         }
     }
 
