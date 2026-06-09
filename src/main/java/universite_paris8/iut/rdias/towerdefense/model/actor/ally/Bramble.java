@@ -10,8 +10,8 @@ public class Bramble extends Tower {
     private static final double slowFactor = 0.5;
     private static final int slowDuration =  30;
 
-    public Bramble(Environnement env, int brambleId, double brambleX, double brambleY) {
-        super(env, 0, 0, brambleId, 0, brambleX, brambleY, 1, 50);
+    public Bramble(Environnement env, int brambleId, double brambleX, double brambleY, int brambleCost) {
+        super(env, 1, 0, brambleId, 0, brambleX, brambleY, 1, brambleCost);
     }
 
     @Override

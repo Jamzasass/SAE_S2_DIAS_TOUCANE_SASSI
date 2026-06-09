@@ -136,6 +136,15 @@ public class Controller {
             else if (e.getCode() == KeyCode.Z) {
                 towerSelected = 2;
             }
+            else if (e.getCode() == KeyCode.E){
+                towerSelected = 3;
+            }
+            else if (e.getCode() == KeyCode.R){
+                towerSelected = 4;
+            }
+            else if (e.getCode() == KeyCode.T){
+                towerSelected = 5;
+            }
         });
     }
 
@@ -146,8 +155,17 @@ public class Controller {
             if (towerSelected == 1) {
                 env.addArcher(col, line);
             }
-            else {
+            else if (towerSelected == 2) {
                 env.addBarrack(col, line);
+            }
+            else if (towerSelected == 3) {
+                env.addBallista(col, line);
+            }
+            else if (towerSelected == 4){
+                env.addBramble(col, line);
+            }
+            else {
+                env.addPalissade(col, line);
             }
         }
         else if (e.getButton().equals(MouseButton.MIDDLE)) {
