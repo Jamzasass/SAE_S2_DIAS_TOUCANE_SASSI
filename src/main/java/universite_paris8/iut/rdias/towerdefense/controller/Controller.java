@@ -81,9 +81,9 @@ public class Controller {
         actorsArea.getChildren().add(c);
 
 
-        bfs = new BFS(ground);
-        DistanceView n = new DistanceView(ground, bfs.getDistancesMap(), 4, 8);
-        n.show();
+//        bfs = new BFS(ground);
+//        DistanceView n = new DistanceView(ground, bfs.getDistancesMap(), 4, 8);
+//        n.show();
 
         //définition et démarrage d'un gameloop qui fait env.unTour()
         initAnimation();
