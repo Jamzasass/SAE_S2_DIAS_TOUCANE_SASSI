@@ -44,6 +44,10 @@ public class ArcherViking extends Enemy {
             setyCible(42);
             this.move();
         }
+        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getY())) {
+            getEnvironnement().getCastle().takeDamage(this.getDmg());
+            this.die();
+        }
     }
 
     public void searchtarget() {
