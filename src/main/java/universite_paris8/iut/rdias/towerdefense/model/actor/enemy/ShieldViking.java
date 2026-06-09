@@ -9,8 +9,8 @@ public class ShieldViking extends Enemy {
 
     private Knight target;
 
-    public ShieldViking(Environnement env, int eId, double eX, double eY) {
-        super(env, 250, 20, eId, 0.1, eX, eY, 0.03, 70);
+    public ShieldViking(Environnement env, int eHp, int eDmg, int eId, double eX, double eY, double eSpeed, int eDeathValue) {
+        super(env, eHp, eDmg, eId, 0.1, eX, eY, eSpeed, eDeathValue);
         target = null;
     }
 
