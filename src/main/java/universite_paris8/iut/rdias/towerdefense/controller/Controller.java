@@ -18,6 +18,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.view.DistanceView;
+import javafx.scene.control.ProgressBar;
 
 public class Controller {
 
@@ -65,7 +66,11 @@ public class Controller {
 
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
         hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
-
+        //.
+        hpBar.progressProperty().bind(
+                env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
+        );
+        //.
         castleView = new CastleView(env.getCastle());
         ImageView c = new ImageView();
         c.setFitHeight(64);
@@ -155,6 +160,9 @@ public class Controller {
             groundView.drawMap();
         }
     }
+
+    @FXML
+    private ProgressBar hpBar;
 
     //full brouillon
     public int getTemps() {
