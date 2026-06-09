@@ -19,6 +19,8 @@ public class TowerView {
         else { //if (tTower instanceof Barrack) {
             this.image = new ImageView(spriteBarrack);
         }
+        this.image.setFitHeight(32);
+        this.image.setFitWidth(32);
         this.image.setId("t" + tTower.getId());
         this.image.layoutXProperty().bind(this.tower.getXProperty().multiply(16).add(-16/2));
         this.image.layoutYProperty().bind(this.tower.getYProperty().multiply(16).add(-16/2));

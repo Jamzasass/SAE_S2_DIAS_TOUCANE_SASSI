@@ -143,7 +143,7 @@ public class Controller {
     public void mouseClikedTile(MouseEvent e, int line, int col) {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
             for (Tower t : env.getTowers()) {
-                if (t.getX() == col && t.getY() == line) {
+                if ((int)t.getX() == col && (int)t.getY() == line) {
                     btnSell.setText("Vendre (" + t.getCost() / 2 + " 💰)");
                     btnSell.setOnAction(ev -> {
                         t.sold();

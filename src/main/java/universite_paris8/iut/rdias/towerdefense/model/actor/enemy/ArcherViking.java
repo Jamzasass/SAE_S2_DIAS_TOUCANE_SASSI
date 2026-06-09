@@ -30,6 +30,7 @@ public class ArcherViking extends Enemy {
             else if (target instanceof Tower){
                 int[] dest = closestPath((Tower) target);
                 double dist = calculDistanceFromEnemyByPyth(target);
+                System.out.println(dist);
                 if (dist > this.getRange()) {
                     setxCible(dest[1]);
                     setyCible(dest[0]);
