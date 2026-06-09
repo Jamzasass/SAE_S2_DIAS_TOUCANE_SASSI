@@ -36,7 +36,7 @@ public class SoldierView {
 
         if (soldier instanceof Viking) {
             pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
-            pvBar.setFill(Color.GREEN);
+            pvBar.setFill(Color.RED);
             this.image = new ImageView(imageViking1);
             image.setFitWidth(25);
             image.setFitHeight(25);
