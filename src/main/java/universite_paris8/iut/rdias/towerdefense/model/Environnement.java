@@ -40,7 +40,7 @@ public class Environnement {
         this.knights = FXCollections.observableArrayList();
         this.towers = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
-        this.balance = new SimpleIntegerProperty(0);
+        this.balance = new SimpleIntegerProperty(500);
         this.waveIndex = 0;
         this.settings = new Settings();
         this.wave = new Wave(this, waveIndex, 2, 5);
@@ -50,7 +50,27 @@ public class Environnement {
     public void delEnemy(Enemy e){this.enemies.remove(e);}
     public void addKnight(Knight k){this.knights.add(k);}
     public void delKnight(Knight k){this.knights.remove(k);}
-    public void addTower(Tower t){this.towers.add(t);}
+//    public void addTower(Tower t){this.towers.add(t);}
+    public boolean addTower(Tower t) {
+        int line = (int) t.getY();
+        int col = (int) t.getX();
+        if (balance.get() < t.getCost()) {
+            return false;
+        }
+        if (!t.canBePlaced(line, col)) {
+            return false;
+        }
+        if (countSameType(t) >= t.maxAllowed()) {
+            return false;
+        }
+        this.towers.add(t);
+        return true;
+    }
+
+    private long countSameType(Tower t) { //Permet de compter le nombre de tours pour gérer le maximum de Bramble et Palissade
+        return towers.stream().filter(other -> other.getClass() == t.getClass()).count();
+    }
+
     public void delTower(Tower t){this.towers.remove(t);}
     public void addDyingActor(Actor a) {
         this.actorsDying.add(a);
@@ -58,16 +78,20 @@ public class Environnement {
     public void takeDmgCastle(int dmg) {
         castle.takeDamage(dmg);
     }
+
     public void addArcher(int col, int line) {
         Tower archer = new Archer(this, settings.getArcherHp(), settings.getArcherDmg(), id, (double) col, (double) line, settings.getArcherSpeedAttack(), settings.getArcherCost());
-        this.addTower(archer);
-        balance.setValue(balance.getValue() - archer.getCost());
+        if (this.addTower(archer)) {
+            balance.setValue(balance.getValue() - archer.getCost());
+        }
     }
     public void addBarrack(int col, int line) {
         Tower barrack = new Barrack(this, settings.getArcherHp(), id, (double) col, (double) line, settings.getBarrackSpeedProduction(), settings.getBarrackCost());
-        this.addTower(barrack);
-        balance.setValue(balance.getValue() - barrack.getCost());
+        if (this.addTower(barrack)){
+            balance.setValue(balance.getValue() - barrack.getCost());
+        }
     }
+
     public void earn(int gain) {
         balance.setValue(balance.getValue() + gain);
     }

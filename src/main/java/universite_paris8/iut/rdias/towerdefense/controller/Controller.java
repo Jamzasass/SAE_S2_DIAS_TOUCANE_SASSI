@@ -66,11 +66,10 @@ public class Controller {
 
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
         hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
-        //.
         hpBar.progressProperty().bind(
                 env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
         );
-        //.
+
         castleView = new CastleView(env.getCastle());
         ImageView c = new ImageView();
         c.setFitHeight(64);

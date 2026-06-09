@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 public class Palissade extends Tower {
@@ -18,7 +19,6 @@ public class Palissade extends Tower {
 
     @Override
     public void takeDamage(int amount) {
-
     }
 
     @Override
@@ -27,5 +27,19 @@ public class Palissade extends Tower {
             setHp(hplvl2);
             lvlUp();
         }
+    }
+
+    @Override
+    public boolean canBePlaced(int line, int col) {
+        Ground ground = getEnvironnement().getGround();
+        if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
+            return false;
+        }
+        return ground.isPath(line, col);
+    }
+
+    @Override
+    public int maxAllowed() {
+        return 6;
     }
 }

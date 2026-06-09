@@ -3,6 +3,7 @@ package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.Ground;
 
 public class Bramble extends Tower {
 
@@ -41,5 +42,19 @@ public class Bramble extends Tower {
 
     @Override
     public void upgrade() {
+    }
+
+    @Override
+    public boolean canBePlaced(int line, int col) {
+        Ground ground = getEnvironnement().getGround();
+        if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
+            return false;
+        }
+        return ground.isPath(line, col);
+    }
+
+    @Override
+    public int maxAllowed() {
+        return 10;
     }
 }
