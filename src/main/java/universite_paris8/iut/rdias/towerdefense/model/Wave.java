@@ -56,10 +56,10 @@ public class Wave {
         int line = spawn[0];
         int col = spawn[1];
         int radomSelectEnemy = (int) (Math.random() * 100);
-        if (waveIndex <= 4){
+        if (waveIndex <= 2){
             e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
         }
-        else if (waveIndex <= 6) {
+        else if (waveIndex <= 4) {
             if (radomSelectEnemy < 120) {//< 30) {
                 e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
             }
@@ -67,7 +67,7 @@ public class Wave {
                 e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
             }
         }
-        else if (waveIndex <= 8) {
+        else if (waveIndex <= 6) {
             if (radomSelectEnemy < 30) {
                 e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
             }
@@ -78,7 +78,7 @@ public class Wave {
                 e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
             }
         }
-        else if (waveIndex <= 12) {
+        else if (waveIndex <= 8) {
             if (radomSelectEnemy < 10) {
                 e = new ShieldViking(env, env.getSettings().getShieldwarriorHp(), env.getSettings().getShieldwarriorDmg(), env.getId(), col, line, env.getSettings().getShieldwarriorSpeed(), env.getSettings().getShieldwarriorDeathValue());
             }
@@ -92,7 +92,7 @@ public class Wave {
                 e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
             }
         }
-        else if (waveIndex <= 16) {
+        else if (waveIndex <= 10) {
             if (radomSelectEnemy < 10) {
                 e = new RamWarrior(env, env.getSettings().getShieldwarriorHp(), env.getSettings().getShieldwarriorDmg(), env.getId(), col, line, env.getSettings().getShieldwarriorSpeed(), env.getSettings().getShieldwarriorDeathValue());
             }
