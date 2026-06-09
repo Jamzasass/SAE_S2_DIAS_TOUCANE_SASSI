@@ -28,6 +28,12 @@ public class SoldierView {
     private static Image imageBerserker1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_berserker/tile_vikingberserker1.png"));
     private static Image imageBerserker2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_berserker/tile_vikingberserker2.png"));
 
+    private static Image imageShiedlViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_bouclier/tile_bouclierSoldier1.png"));
+    private static Image imageShiedlViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_bouclier/tile_bouclierSoldier2.png"));
+
+    private static Image imageBatteringRam1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/battering_ram/sprite_BatteringRam1.png"));
+    private static Image imageBatteringRam2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/battering_ram/sprite_BatteringRam2.png"));
+
     public SoldierView(Soldier sSoldier) {
 
         this.soldier = sSoldier;
