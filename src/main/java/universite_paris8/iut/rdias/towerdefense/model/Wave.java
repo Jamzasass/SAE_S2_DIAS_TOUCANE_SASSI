@@ -11,11 +11,11 @@ public class Wave {
     private int delayBetweenSpawns;
     private boolean macronInflationActivated;
 
-    public Wave(Environnement env, int waveIndex, int nbEnemies, int delayBetweenSpawns) {
+    public Wave(Environnement env, int waveIndex) {
         this.env = env;
         this.waveIndex = waveIndex;
-        this.nbEnemies = nbEnemies;
-        this.delayBetweenSpawns = delayBetweenSpawns;
+        this.nbEnemies = (int)(10 + 20 * Math.log(waveIndex + 1));
+        this.delayBetweenSpawns = 3;
         if (waveIndex > 4) {
             int random = (int)(Math.random()*4);
             this.macronInflationActivated = random==3;
@@ -25,6 +25,7 @@ public class Wave {
     public void waveLoop(int cptLap) {
         if (cptLap % (delayBetweenSpawns*30) == 0 && nbEnemies>0) {
             Enemy e = createNewEnemy();
+            System.out.println("n vague " + waveIndex + " " + e.getClass());
             env.addEnemy(e);
             env.incrementId();
             nbEnemies--;
@@ -56,18 +57,18 @@ public class Wave {
         int line = spawn[0];
         int col = spawn[1];
         int radomSelectEnemy = (int) (Math.random() * 100);
-        if (waveIndex <= 2){
+        if (waveIndex == 1){
             e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
         }
-        else if (waveIndex <= 4) {
-            if (radomSelectEnemy < 120) {//< 30) {
+        else if (waveIndex <= 2) {
+            if (radomSelectEnemy < 30) {
                 e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
             }
             else {
                 e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
             }
         }
-        else if (waveIndex <= 6) {
+        else if (waveIndex <= 3) {
             if (radomSelectEnemy < 30) {
                 e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
             }
@@ -78,7 +79,7 @@ public class Wave {
                 e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
             }
         }
-        else if (waveIndex <= 8) {
+        else if (waveIndex <= 4) {
             if (radomSelectEnemy < 10) {
                 e = new ShieldViking(env, env.getSettings().getShieldwarriorHp(), env.getSettings().getShieldwarriorDmg(), env.getId(), col, line, env.getSettings().getShieldwarriorSpeed(), env.getSettings().getShieldwarriorDeathValue());
             }

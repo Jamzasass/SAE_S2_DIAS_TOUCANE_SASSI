@@ -34,7 +34,7 @@ public class Archer extends Tower {
         Enemy closeTarget = null;
         double minRange = Double.MAX_VALUE;
         for (Enemy e : getEnvironnement().getEnemies()) {
-            if (e.isLiving()) {
+            if (e!= null && e.isLiving()) {
                 double range = Math.hypot(e.getX() - getX(), e.getY() - getY()); // calcul distance via pythagore
                 if (range <= getRange() && range < minRange) {
                     minRange = range;

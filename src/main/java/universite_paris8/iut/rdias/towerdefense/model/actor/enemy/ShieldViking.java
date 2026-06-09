@@ -30,7 +30,7 @@ public class ShieldViking extends Enemy {
             setyCible(40);
             this.move();
         }
-        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getY())) {
+        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getX())) {
             getEnvironnement().getCastle().takeDamage(this.getDmg());
             this.die();
         }

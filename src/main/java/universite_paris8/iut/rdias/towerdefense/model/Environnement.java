@@ -41,9 +41,9 @@ public class Environnement {
         this.towers = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
         this.balance = new SimpleIntegerProperty(0);
-        this.waveIndex = 1;
+        this.waveIndex = 2;
         this.settings = new Settings();
-        this.wave = new Wave(this, waveIndex, 2, 5);
+        this.wave = new Wave(this, waveIndex);
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
@@ -129,7 +129,7 @@ public class Environnement {
     }
     public void nextWave() {
         waveIndex++;
-        wave = new Wave(this, waveIndex, (int)(10 + 20 * Math.log(waveIndex + 1)), 3);
+        wave = new Wave(this, waveIndex);
         enemies.clear();
         knights.clear();
         System.out.println("vague " + waveIndex  + " n enemies : " + (int)(10 + 20 * Math.log(waveIndex + 1)));

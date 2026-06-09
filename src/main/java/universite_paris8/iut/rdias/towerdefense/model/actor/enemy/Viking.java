@@ -1,5 +1,6 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 
+import universite_paris8.iut.rdias.towerdefense.controller.Controller;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
@@ -29,6 +30,10 @@ public class Viking extends Enemy {
         if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getX())) {
             getEnvironnement().getCastle().takeDamage(this.getDmg());
             this.die();
+        }
+        if (getDirectionX() !=0 && getDirectionY() !=0) {
+            System.out.println("ca bug");
+            System.out.println("x : " + getX() + " y : " + getY() + " idtuile : " + getEnvironnement().getGround().idTuile((int) getY(), (int) getX()));
         }
     }
 
