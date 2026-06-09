@@ -11,8 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
-import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Archer;
-import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Barrack;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 import universite_paris8.iut.rdias.towerdefense.view.*;
@@ -41,8 +39,14 @@ public class Controller {
     private ObsTower obsTower;
     private CastleView castleView;
     @FXML private HBox towerActionMenu;
-    @FXML private Button btnSell;
-    @FXML private Button btnUpgrade;
+    @FXML private Button btnSellCancel;
+    @FXML private Button btnUpgradePut;
+    @FXML private Button archerTower;
+    @FXML private Button barrackTower;
+    @FXML private Button brambleTower;
+    @FXML private Button palissadeTower;
+    @FXML private Button sorcererTower;
+    @FXML private Button ballistaTower;
 
     private BFS bfs;
 
@@ -90,6 +94,10 @@ public class Controller {
         keySelectionInit();
         gameLoop.play();
 
+        archerTower.setOnAction(e -> towerSelected = 1);
+        barrackTower.setOnAction(e -> towerSelected = 2);
+
+
     }
 
     public void initAnimation() {
@@ -117,7 +125,7 @@ public class Controller {
     }
 
     public void keySelectionInit() {
-        towerSelected = 1;
+        towerSelected = 0;
         mapGrid.setOnMouseClicked(e -> {
             javafx.geometry.Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
             int col = (int)(local.getX() / 16);
@@ -144,12 +152,13 @@ public class Controller {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
             for (Tower t : env.getTowers()) {
                 if ((int)t.getX() == col && (int)t.getY() == line) {
-                    btnSell.setText("Vendre (" + t.getCost() / 2 + " 💰)");
-                    btnSell.setOnAction(ev -> {
+                    btnSellCancel.setText("Vendre (" + t.getCost() / 2 + " 💰)");
+                    btnUpgradePut.setText("Améliorer");
+                    btnSellCancel.setOnAction(ev -> {
                         t.sold();
                         towerActionMenu.setVisible(false);
                     });
-                    btnUpgrade.setOnAction(ev -> {
+                    btnUpgradePut.setOnAction(ev -> {
                         t.upgrade();
                         towerActionMenu.setVisible(false);
                     });
@@ -157,11 +166,43 @@ public class Controller {
                     return;
                 }
             }
-            if (towerSelected == 1) {
-                env.addArcher(col, line);
-            }
-            else {
-                env.addBarrack(col, line);
+            if (towerSelected == 1 || towerSelected == 2) {
+                final int fcol = col;
+                final int fline = line;
+                btnUpgradePut.setText("✔");
+                btnSellCancel.setText("✘");
+                btnUpgradePut.setOnAction(ev -> {
+                if (towerSelected == 1){
+                    env.addArcher(fcol, fline);
+                }
+                else if(towerSelected == 2){
+                    env.addBarrack(fcol, fline);
+                }
+//                else if (towerSelected == 3) {
+//                    env.addBramble(fcol, fline);
+//                }
+//                else if (towerSelected == 4){
+//                    env.addPalissade(fcol, fline);
+//                }
+//                else if (towerSelected == 5){
+//                    env.addSorcererTower(fcol, fline);
+//                }
+//                else if (towerSelected == 6){
+//                    env.addBallista(fcol, fline);
+//                }
+                towerSelected = 0;
+                towerActionMenu.setVisible(false);
+                btnSellCancel.setText("Vendre");
+                btnUpgradePut.setText("Améliorer");
+                });
+                btnSellCancel.setOnAction(ev -> {
+                    towerSelected = 0;
+                    towerActionMenu.setVisible(false);
+                    btnSellCancel.setText("Vendre");
+                    btnUpgradePut.setText("Améliorer");
+                });
+                towerActionMenu.setVisible(true);
+
             }
         }
         else if (e.getButton().equals(MouseButton.MIDDLE)) {
