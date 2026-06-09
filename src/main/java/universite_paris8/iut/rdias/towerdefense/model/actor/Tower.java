@@ -58,5 +58,32 @@ public abstract class Tower extends Actor{
         getEnvironnement().earn(refund);
         getEnvironnement().delTower(this);
     }
+    public boolean canBePlaced(int line, int col) {
+        var ground = getEnvironnement().getGround();
+        if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
+            return false;
+        }
+        if (!ground.isGrass(line, col)) {
+            return false;
+        }
+        return isAdjacentToPath(line, col);
+    }
+
+    private boolean isAdjacentToPath(int line, int col) {
+        var ground = getEnvironnement().getGround();
+        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        for (int[] d : dirs) {
+            int nL = line + d[0];
+            int nC = col + d[1];
+            if (nL >= 0 && nL < ground.heigth() && nC >= 0 && nC < ground.width()) {
+                if (ground.isPath(nL, nC)) return true;
+            }
+        }
+        return false;
+    }
+
+    public int maxAllowed() {
+        return Integer.MAX_VALUE;
+    }
 
 }

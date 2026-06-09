@@ -3,11 +3,10 @@ package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.Settings;
 
 public class SorcererTower extends Tower {
-    private static final int hplvl1 = 300;
     private static final int hplvl2 = 400;
-    private static final int dmgPerSeclvl1 = 10;
     private static final int dmgPerSeclvl2 = 15;
     private static final int zoneDurationlvl1 = 3;
     private static final int zoneDurationlvl2 = 4;
@@ -19,10 +18,10 @@ public class SorcererTower extends Tower {
     private int zoneFramesLeft;
     private int dmgCounter;
 
-    public SorcererTower(Environnement env, int sorcererId, double sorcererX, double sorcererY) {
-        super(env, hplvl1, 0, sorcererId, 3.0, sorcererX, sorcererY, speedAttacklvl1, 500);
-        this.dmgPerSec = dmgPerSeclvl1;
-        this.zoneDuration = zoneDurationlvl1;
+    public SorcererTower(Environnement env, int sorcererHp, int sorcererDmg, int sorcererId, double sorcererX, double sorcererY, int sorcererSpeedAttack, int sorcererCost) {
+        super(env, sorcererHp, sorcererDmg, sorcererId, 3.0, sorcererX, sorcererY, sorcererSpeedAttack, sorcererCost);
+        this.dmgPerSec = sorcererDmg;
+        this.zoneDuration =
         this.zoneFramesLeft = 0;
         this.dmgCounter = 0;
     }

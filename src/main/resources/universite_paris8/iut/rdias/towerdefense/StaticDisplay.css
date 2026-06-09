@@ -192,7 +192,20 @@
 }
 
 .textLabel {
-    -fx-font-family: 'Black Clover Font' ;
+    -fx-font-family: 'Black Clover Font';
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.9), 3, 0.3, 1, 1);
+}
+/*
+*/
+.castle-hp-bar {
+    -fx-background-color: #2a1a0f;
+    -fx-background-radius: 4;
+    -fx-padding: 1;
+    -fx-border-color: rgba(180, 130, 60, 0.9);
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
 }
 
 .action-button {
@@ -211,4 +224,23 @@
     -fx-min-height: 85px;
 }
 
+.castle-hp-bar > .bar {
+    -fx-background-color: linear-gradient(to bottom, #c0392b, #8b0000);
+    -fx-background-radius: 4;
+    -fx-padding: 4;
+    -fx-background-insets: 0;
+}
 
+.castle-hp-bar > .track {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4;
+}
+
+.hp-text-overlay {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.9), 2, 0, 1, 1);
+}
+/*
+ */

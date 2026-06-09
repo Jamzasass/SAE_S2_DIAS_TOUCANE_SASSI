@@ -18,6 +18,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.view.DistanceView;
+import javafx.scene.control.ProgressBar;
 
 public class Controller {
 
@@ -74,6 +75,9 @@ public class Controller {
 
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
         hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
+        hpBar.progressProperty().bind(
+                env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
+        );
 
         castleView = new CastleView(env.getCastle());
         ImageView c = new ImageView();
@@ -145,6 +149,15 @@ public class Controller {
             else if (e.getCode() == KeyCode.Z) {
                 towerSelected = 2;
             }
+            else if (e.getCode() == KeyCode.E){
+                towerSelected = 3;
+            }
+            else if (e.getCode() == KeyCode.R){
+                towerSelected = 4;
+            }
+            else if (e.getCode() == KeyCode.T){
+                towerSelected = 5;
+            }
         });
     }
 
@@ -178,18 +191,15 @@ public class Controller {
                 else if(towerSelected == 2){
                     env.addBarrack(fcol, fline);
                 }
-//                else if (towerSelected == 3) {
-//                    env.addBramble(fcol, fline);
-//                }
-//                else if (towerSelected == 4){
-//                    env.addPalissade(fcol, fline);
-//                }
-//                else if (towerSelected == 5){
-//                    env.addSorcererTower(fcol, fline);
-//                }
-//                else if (towerSelected == 6){
-//                    env.addBallista(fcol, fline);
-//                }
+                else if (towerSelected == 3) {
+                    env.addBallista(fcol, fline);
+                }
+                else if (towerSelected == 4){
+                    env.addBramble(fcol, fline);
+                }
+                else {
+                    env.addPalissade(fcol, fline);
+                }
                 towerSelected = 0;
                 towerActionMenu.setVisible(false);
                 btnSellCancel.setText("Vendre");
@@ -214,6 +224,9 @@ public class Controller {
             groundView.drawMap();
         }
     }
+
+    @FXML
+    private ProgressBar hpBar;
 
     //full brouillon
     public int getTemps() {
