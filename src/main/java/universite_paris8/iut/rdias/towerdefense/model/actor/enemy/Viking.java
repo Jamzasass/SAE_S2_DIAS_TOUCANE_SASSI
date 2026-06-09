@@ -14,13 +14,15 @@ public class Viking extends Enemy {
     }
 
     public void act(){
+        tick();
         searchtarget();
         if (target != null) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
             this.move();
-            if (calculDistanceFromEnemy(target) < this.getRange()) {
+            if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
                 target.takeDamage(this.getDmg());
+                resetCooldown();
             }
         } else {
             setxCible(42);
@@ -30,10 +32,6 @@ public class Viking extends Enemy {
         if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getX())) {
             getEnvironnement().getCastle().takeDamage(this.getDmg());
             this.die();
-        }
-        if (getDirectionX() !=0 && getDirectionY() !=0) {
-            System.out.println("ca bug");
-            System.out.println("x : " + getX() + " y : " + getY() + " idtuile : " + getEnvironnement().getGround().idTuile((int) getY(), (int) getX()));
         }
     }
 

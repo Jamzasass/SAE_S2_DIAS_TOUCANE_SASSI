@@ -17,12 +17,14 @@ public class Berserker extends Enemy {
     @Override
     public void act(){
         searchtarget();
+        tick();
         if (target != null) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
             this.move();
-            if (calculDistanceFromEnemy(target) < this.getRange()) {
+            if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
                 target.takeDamage(this.getDmg());
+                resetCooldown();
             }
         } else {
             setxCible(42);

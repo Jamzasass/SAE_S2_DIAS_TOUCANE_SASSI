@@ -16,13 +16,15 @@ public class ShieldViking extends Enemy {
 
     @Override
     public void act(){
+        tick();
         searchtarget();
         if (target != null) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
             this.move();
-            if (calculDistanceFromEnemy(target) < this.getRange()) {
+            if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
                 target.takeDamage(this.getDmg());
+                resetCooldown();
             }
         }
         else {

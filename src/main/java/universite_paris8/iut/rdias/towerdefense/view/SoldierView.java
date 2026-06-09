@@ -114,7 +114,7 @@ public class SoldierView {
                 image.setImage(imageBerserker2);
             }
             else {
-                image.setImage(imageknight1);
+                image.setImage(imageBerserker1);
             }
         }
         else if (soldier instanceof RamWarrior) {

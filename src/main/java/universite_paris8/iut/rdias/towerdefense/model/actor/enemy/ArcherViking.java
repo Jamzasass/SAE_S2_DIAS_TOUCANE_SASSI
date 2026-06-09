@@ -59,7 +59,7 @@ public class ArcherViking extends Enemy {
         for (Tower t : getEnvironnement().getTowers()) {
             if (t.isLiving()) {
                 double range = calculDistanceFromEnemyByPyth(t); // calcul distance via pythagore
-                if (range<= minRange) {//(range <= getRange() && range < minRange) {
+                if (range <= minRange) {//(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = t;
                 }

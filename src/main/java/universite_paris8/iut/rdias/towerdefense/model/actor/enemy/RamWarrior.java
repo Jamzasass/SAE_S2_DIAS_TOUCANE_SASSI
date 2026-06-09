@@ -15,6 +15,7 @@ public class RamWarrior extends Enemy {
 
     @Override
     public void act(){
+        tick();
         searchtarget();
         if (target != null) {
             setxCible((int) target.getX());
@@ -23,6 +24,7 @@ public class RamWarrior extends Enemy {
 
             if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
                 target.takeDamage(this.getDmg());
+                resetCooldown();
             }
         } else {
             this.move();
