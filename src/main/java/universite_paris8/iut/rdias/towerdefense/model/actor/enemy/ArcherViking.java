@@ -9,6 +9,8 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 public class ArcherViking extends Enemy {
     private Actor target;
 
+//TODO speedAttack or speedAttack for ArcherViking
+
     public ArcherViking(Environnement env, int eHp, int eDmg, int eId, int eRange, double eX, double eY, double eSpeed, int eDeathValue) {
         super(env, eHp, eDmg, eId, eRange, eX, eY, eSpeed, eDeathValue);
         target = null;

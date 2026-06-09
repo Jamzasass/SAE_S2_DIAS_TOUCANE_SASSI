@@ -150,11 +150,11 @@
                   </HBox>
                   <HBox fx:id="towerActionMenu" prefHeight="60.0" prefWidth="300.0" visible="false" spacing="20" alignment="CENTER">
                      <children>
-                        <Button fx:id="btnSell" mnemonicParsing="false" text="Vendre"
+                        <Button fx:id="btnSell" mnemonicParsing="false" text="Sold"
                                 styleClass="action-button">
                            <HBox.margin><Insets top="10.0" bottom="10.0"/></HBox.margin>
                         </Button>
-                        <Button fx:id="btnUpgrade" mnemonicParsing="false" text="Améliorer"
+                        <Button fx:id="btnUpgrade" mnemonicParsing="false" text="Upgrade"
                                 styleClass="action-button">
                            <HBox.margin><Insets top="10.0" bottom="10.0"/></HBox.margin>
                         </Button>

@@ -52,6 +52,7 @@ public class Archer extends Tower {
             setDmg(dmglvl2);
             setSpeedAct(speedAttacklvl2);
             lvlUp();
+            System.out.println("cacacacacacacacacaca");
         }
     }
 }
