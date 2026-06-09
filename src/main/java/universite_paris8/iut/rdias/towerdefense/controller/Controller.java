@@ -100,6 +100,10 @@ public class Controller {
 
         archerTower.setOnAction(e -> towerSelected = 1);
         barrackTower.setOnAction(e -> towerSelected = 2);
+        brambleTower.setOnAction(e -> towerSelected = 3);
+        palissadeTower.setOnAction(e -> towerSelected = 4);
+//        sorcererTower.setOnAction(e -> towerSelected = 5);
+        ballistaTower.setOnAction(e -> towerSelected = 6);
 
 
     }
@@ -179,7 +183,7 @@ public class Controller {
                     return;
                 }
             }
-            if (towerSelected == 1 || towerSelected == 2) {
+            if (towerSelected == 1 || towerSelected == 2 || towerSelected == 3) {
                 final int fcol = col;
                 final int fline = line;
                 btnUpgradePut.setText("✔");
@@ -192,13 +196,13 @@ public class Controller {
                     env.addBarrack(fcol, fline);
                 }
                 else if (towerSelected == 3) {
-                    env.addBallista(fcol, fline);
-                }
-                else if (towerSelected == 4){
                     env.addBramble(fcol, fline);
                 }
-                else {
+                else if(towerSelected == 4){
                     env.addPalissade(fcol, fline);
+                }
+                else if(towerSelected == 6){
+                    env.addBallista(fcol, fline);
                 }
                 towerSelected = 0;
                 towerActionMenu.setVisible(false);
