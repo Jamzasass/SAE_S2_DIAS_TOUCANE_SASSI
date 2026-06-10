@@ -35,11 +35,14 @@ public class ArcherViking extends Enemy {
                 double dist = calculDistanceFromEnemyByPyth(target);
                 setxCible(dest[1]);
                 setyCible(dest[0]);
-                this.move();
-                if (dist < Math.pow((this.getRange()), 2) && canAct()){
-                    target.takeDamage(this.getDmg());
+                if (dist < Math.pow((this.getRange()), 2)){
+                    if (canAct()) {
+                        target.takeDamage(this.getDmg());
+                        resetCooldown();
+                    }
+                }
+                else {
                     this.move();
-                    resetCooldown();
                 }
             }
         } else {
