@@ -102,10 +102,8 @@ public class Controller {
         barrackTower.setOnAction(e -> towerSelected = 2);
         brambleTower.setOnAction(e -> towerSelected = 3);
         palissadeTower.setOnAction(e -> towerSelected = 4);
-//        sorcererTower.setOnAction(e -> towerSelected = 5);
+        sorcererTower.setOnAction(e -> towerSelected = 5);
         ballistaTower.setOnAction(e -> towerSelected = 6);
-
-
     }
 
     public void initAnimation() {
@@ -162,6 +160,9 @@ public class Controller {
             else if (e.getCode() == KeyCode.T){
                 towerSelected = 5;
             }
+            else if (e.getCode() == KeyCode.Y){
+                towerSelected = 6;
+            }
         });
     }
 
@@ -190,6 +191,7 @@ public class Controller {
                     case 2 -> env.addBarrack(col, line);
                     case 3 -> env.addBramble(col, line);
                     case 4 -> env.addPalissade(col, line);
+                    case 5 -> env.addSorcerer(col, line);
                     case 6 -> env.addBallista(col, line);
                 }
                 towerActionMenu.setVisible(false);

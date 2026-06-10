@@ -19,6 +19,7 @@ public class TowerView {
     private static Image spriteBallista = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista/sprite_BallistaTower1.png"));
     private static Image spriteBramble = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/bramble_tower/sprite_BrambleTower4.png"));
     private static Image spritePalissade = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/palissade_tower/sprite_PalissadeTower1.png"));
+    private static Image spriteSorcerer = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower/sprite_towersorcerer1.png"));
 
     public TowerView(Tower tTower) {
         this.tower = tTower;
@@ -36,6 +37,9 @@ public class TowerView {
         }
         else if (tTower instanceof Palissade){
             this.image = new ImageView(spritePalissade);
+        }
+        else if (tTower instanceof SorcererTower) {
+            this.image = new ImageView(spriteSorcerer);
         }
         this.image.setId("t" + tTower.getId());
         this.image.layoutXProperty().bind(this.tower.getXProperty().multiply(16).add(-16/2));

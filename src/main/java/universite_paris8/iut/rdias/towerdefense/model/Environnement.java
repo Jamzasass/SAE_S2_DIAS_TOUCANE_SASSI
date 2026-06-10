@@ -110,9 +110,12 @@ public class Environnement {
         }
     }
 
-//    public void addSorcererTower(int col, int line){
-//        Tower sorcerer = new SorcererTower(this, settings.getSorcererTowerHp(), )
-//    }
+    public void addSorcerer(int col, int line){
+        Tower sorcerer = new SorcererTower(this, settings.getSorcererTowerHp(), settings.getSorcererTowerDmg(), getId(),col, line, settings.getSorcererTowerSpeedAttack(), settings.getSorcererTowerCost());
+        if (this.addTower(sorcerer)){
+            balance.setValue(balance.getValue() - sorcerer.getCost());
+        }
+    }
 
     public void earn(int gain) {
         balance.setValue(balance.getValue() + gain);
@@ -165,6 +168,7 @@ public class Environnement {
         return ground;
     }
     public int getId() {
+        incrementId();
         return id;
     }
     public Settings getSettings() {

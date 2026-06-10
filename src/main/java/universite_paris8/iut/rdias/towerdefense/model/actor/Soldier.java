@@ -61,7 +61,7 @@ public abstract class Soldier extends Actor{
         }
     }
     public boolean atteint(double cibleX, double cibleY) {
-        return  valAbs(getX() - cibleX) < 0.05 && valAbs(getY() - cibleY) < 0.05;
+        return  valAbs(getX() - cibleX) < this.speed && valAbs(getY() - cibleY) < this.speed;
     }
     public void majDirection() {
         double dx = nextCase[1] - getX();

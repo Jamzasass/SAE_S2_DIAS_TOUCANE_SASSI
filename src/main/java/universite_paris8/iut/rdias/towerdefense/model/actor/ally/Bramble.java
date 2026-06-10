@@ -8,7 +8,7 @@ import universite_paris8.iut.rdias.towerdefense.model.Ground;
 public class Bramble extends Tower {
 
     private static final double slowFactor = 0.5;
-    private static final int slowDuration =  30;
+    private static final int slowDuration =  20; //ralentis pendant 10sec
 
     public Bramble(Environnement env, int brambleId, double brambleX, double brambleY, int brambleCost) {
         super(env, 1, 0, brambleId, 0, brambleX, brambleY, 1, brambleCost);
@@ -18,7 +18,7 @@ public class Bramble extends Tower {
     public void act() {
         for (Enemy e : getEnvironnement().getEnemies()) {
             if (onTile(e)) {
-                e.applySlow(slowFactor, slowDuration);
+                e.applySlow(slowFactor, slowDuration*30);
             }
         }
     }

@@ -40,6 +40,6 @@ public class Palissade extends Tower {
 
     @Override
     public int maxAllowed() {
-        return 6;
+        return 4;
     }
 }
