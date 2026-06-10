@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.controller;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -251,7 +252,7 @@ public class Controller {
         actorsArea.getChildren().addAll(rangeCircle, ghostImage);
 
         mapGrid.setOnMouseMoved(e -> {
-            javafx.geometry.Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
+            Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
             int col = (int)(local.getX() / 16);
             int line = (int)(local.getY() / 16);
             double cx = col * 16 + 8;
