@@ -65,6 +65,7 @@ public class Controller {
     private static final Image spriteBallista = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista/sprite_BallistaTower1.png"));
     private static final Image spriteBramble = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/bramble_tower/sprite_BrambleTower4.png"));
     private static final Image spritePalissade = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/palissade_tower/sprite_PalissadeTower1.png"));
+    private static final Image spriteSorcerer = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower/sprite_SorcererTower1.png"));
 
     public void initialize() {
 
@@ -115,7 +116,7 @@ public class Controller {
         barrackTower.setOnAction(e -> startDrag(spriteBarrack, 2));
         brambleTower.setOnAction(e -> startDrag(spriteBramble, 3));
         palissadeTower.setOnAction(e -> startDrag(spritePalissade, 4));
-        //ToDO sorcerer tower
+        sorcererTower.setOnAction((e -> startDrag(spriteSorcerer, 5)));
         ballistaTower.setOnAction(e -> startDrag(spriteBallista, 6));
 
     }
@@ -211,6 +212,9 @@ public class Controller {
             else if (towerSelected == 4){
                 env.addPalissade(col, line);
             }
+            else if (towerSelected == 5 ){
+                env.addSorcerer(col, line);
+            }
             else if (towerSelected == 6){
                 env.addBallista(col, line);
             }
@@ -241,6 +245,9 @@ public class Controller {
         if (type == 1){
             range = env.getSettings().getArcherRange() * 16;
         }
+//        else if(type == 5 ){
+//           range = env.getSettings().getSorcererRange() * 16;
+//        }
         else if (type == 6){
             range = env.getSettings().getBallistaRange() * 16;
         }
