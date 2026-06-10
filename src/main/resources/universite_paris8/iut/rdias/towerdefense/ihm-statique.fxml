@@ -160,12 +160,10 @@
                   </HBox>
                   <HBox fx:id="towerActionMenu" prefHeight="60.0" prefWidth="300.0" visible="false" spacing="20" alignment="CENTER">
                      <children>
-                        <Button fx:id="btnSellCancel" mnemonicParsing="false" text="Sold"
-                                styleClass="action-button">
+                        <Button fx:id="btnSell" mnemonicParsing="false" styleClass="action-button">
                            <HBox.margin><Insets top="10.0" bottom="10.0"/></HBox.margin>
                         </Button>
-                        <Button fx:id="btnUpgradePut" mnemonicParsing="false" text="Upgrade"
-                                styleClass="action-button">
+                        <Button fx:id="btnUpgrade" mnemonicParsing="false" styleClass="action-button">
                            <HBox.margin><Insets top="10.0" bottom="10.0"/></HBox.margin>
                         </Button>
                      </children>
