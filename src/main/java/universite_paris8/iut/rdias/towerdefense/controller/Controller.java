@@ -184,7 +184,7 @@ public class Controller {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
             for (Tower t : env.getTowers()) {
                 if ((int)t.getX() == col && (int)t.getY() == line) {
-                    btnSell.setText("Sold (" + t.getCost() / 2 + " 💰)");
+                    btnSell.setText("Sell (" + t.getCost() / 2 + " 💰)");
                     btnUpgrade.setText("Upgrade (" + (t.getLevel() + 1 + ")"));
                     btnSell.setOnAction(ev -> {
                         t.sold();
