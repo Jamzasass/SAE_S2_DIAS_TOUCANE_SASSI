@@ -8,15 +8,8 @@ import java.util.ArrayList;
 
 public class Ballista extends Tower {
 
-    private static final int hplvl1 = 300;
-    private static final int hplvl2 = 375;
-    private static final int dmglvl1 = 30;
-    private static final int dmglvl2 = 55;
-    private static final int speedAttacklvl1 = 3;
-    private static final int speedAttacklvl2 = 1;
-
-    public Ballista(Environnement env, int ballistaId, double ballistaX, double ballistaY) {
-        super(env, hplvl1, dmglvl1, ballistaId, 4.0, ballistaX, ballistaY, speedAttacklvl1, 350);
+    public Ballista(Environnement env, int ballistaHP, int ballistaDmg, int ballistaId, int ballistaRange, double ballistaX, double ballistaY, int ballistaSpeedAttack, int ballistaCost) {
+        super(env, ballistaHP , ballistaDmg, ballistaId, ballistaRange, ballistaX, ballistaY, ballistaSpeedAttack, ballistaCost);
     }
 
     @Override
@@ -66,10 +59,10 @@ public class Ballista extends Tower {
     @Override
     public void upgrade() {
         if (getLevel() < 2) {
-            setHp(hplvl2);
-            setDmg(dmglvl2);
-            setSpeedAct(speedAttacklvl2);
-            lvlUp();
+//            setHp(hplvl2);
+//            setDmg(dmglvl2);
+//            setSpeedAct(speedAttacklvl2);
+//            lvlUp();
         }
     }
 }

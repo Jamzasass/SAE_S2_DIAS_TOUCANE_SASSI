@@ -24,7 +24,9 @@ public class Castle {
         hpPlayer.set(Math.max(0, hpPlayer.get() - amount));
     }
 
-
-
-
+    //.
+    public int getMaxHp() {
+        return maxHp;
+    }
+    //.
 }

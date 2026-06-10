@@ -11,8 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
-import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Archer;
-import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Barrack;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 import universite_paris8.iut.rdias.towerdefense.view.*;
@@ -20,6 +18,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.view.DistanceView;
+import javafx.scene.control.ProgressBar;
 
 public class Controller {
 
@@ -41,8 +40,14 @@ public class Controller {
     private ObsTower obsTower;
     private CastleView castleView;
     @FXML private HBox towerActionMenu;
-    @FXML private Button btnSell;
-    @FXML private Button btnUpgrade;
+    @FXML private Button btnSellCancel;
+    @FXML private Button btnUpgradePut;
+    @FXML private Button archerTower;
+    @FXML private Button barrackTower;
+    @FXML private Button brambleTower;
+    @FXML private Button palissadeTower;
+    @FXML private Button sorcererTower;
+    @FXML private Button ballistaTower;
 
     private BFS bfs;
 
@@ -70,6 +75,9 @@ public class Controller {
 
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
         hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
+        hpBar.progressProperty().bind(
+                env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
+        );
 
         castleView = new CastleView(env.getCastle());
         ImageView c = new ImageView();
@@ -89,6 +97,14 @@ public class Controller {
         initAnimation();
         keySelectionInit();
         gameLoop.play();
+
+        archerTower.setOnAction(e -> towerSelected = 1);
+        barrackTower.setOnAction(e -> towerSelected = 2);
+        brambleTower.setOnAction(e -> towerSelected = 3);
+        palissadeTower.setOnAction(e -> towerSelected = 4);
+//        sorcererTower.setOnAction(e -> towerSelected = 5);
+        ballistaTower.setOnAction(e -> towerSelected = 6);
+
 
     }
 
@@ -117,7 +133,7 @@ public class Controller {
     }
 
     public void keySelectionInit() {
-        towerSelected = 1;
+        towerSelected = 0;
         mapGrid.setOnMouseClicked(e -> {
             javafx.geometry.Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
             int col = (int)(local.getX() / 16);
@@ -137,19 +153,29 @@ public class Controller {
             else if (e.getCode() == KeyCode.Z) {
                 towerSelected = 2;
             }
+            else if (e.getCode() == KeyCode.E){
+                towerSelected = 3;
+            }
+            else if (e.getCode() == KeyCode.R){
+                towerSelected = 4;
+            }
+            else if (e.getCode() == KeyCode.T){
+                towerSelected = 5;
+            }
         });
     }
 
     public void mouseClikedTile(MouseEvent e, int line, int col) {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
             for (Tower t : env.getTowers()) {
-                if ((int)t.getX() == col && (int)t.getY() == line) {
-                    btnSell.setText("Vendre (" + t.getCost() / 2 + " 💰)");
-                    btnSell.setOnAction(ev -> {
+                if ((int) t.getX() == col && (int) t.getY() == line) {
+                    btnSellCancel.setText("Vendre (" + t.getCost() / 2 + " 💰)");
+                    btnUpgradePut.setText("Améliorer");
+                    btnSellCancel.setOnAction(ev -> {
                         t.sold();
                         towerActionMenu.setVisible(false);
                     });
-                    btnUpgrade.setOnAction(ev -> {
+                    btnUpgradePut.setOnAction(ev -> {
                         t.upgrade();
                         towerActionMenu.setVisible(false);
                     });
@@ -157,11 +183,16 @@ public class Controller {
                     return;
                 }
             }
-            if (towerSelected == 1) {
-                env.addArcher(col, line);
-            }
-            else {
-                env.addBarrack(col, line);
+
+            if (towerSelected != 0) {
+                switch (towerSelected) {
+                    case 1 -> env.addArcher(col, line);
+                    case 2 -> env.addBarrack(col, line);
+                    case 3 -> env.addBramble(col, line);
+                    case 4 -> env.addPalissade(col, line);
+                    case 6 -> env.addBallista(col, line);
+                }
+                towerActionMenu.setVisible(false);
             }
         }
         else if (e.getButton().equals(MouseButton.MIDDLE)) {
@@ -173,6 +204,9 @@ public class Controller {
             groundView.drawMap();
         }
     }
+
+    @FXML
+    private ProgressBar hpBar;
 
     //full brouillon
     public int getTemps() {

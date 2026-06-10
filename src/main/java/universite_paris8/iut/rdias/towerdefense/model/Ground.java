@@ -79,6 +79,7 @@ public class Ground {
     public boolean isCastle(int ligne, int col) {
         return this.map[ligne][col]==2;
     }
+    public boolean isGrass (int ligne, int col){ return this.map[ligne][col] == 0; }
 
     public void setTile(int line, int column, int n) {
         this.map[line][column] = n;
@@ -87,4 +88,6 @@ public class Ground {
     public BFS getMapBFS() {
         return mapBFS;
     }
+
+
 }

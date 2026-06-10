@@ -69,7 +69,6 @@ public class Settings {
     public static int archerVikingRange = 4;
 
     // ramwarrior
-
     public static int ramwarriorHp = 250;
     public static int ramwarriorDmg = 100;
     public static double ramwarriorSpeed = 0.03;

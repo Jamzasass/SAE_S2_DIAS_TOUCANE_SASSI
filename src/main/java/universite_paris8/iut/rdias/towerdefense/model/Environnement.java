@@ -8,9 +8,7 @@ import javafx.collections.ObservableList;
 
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
-import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Archer;
-import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Barrack;
-import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.*;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 import java.util.ArrayList;
@@ -40,8 +38,8 @@ public class Environnement {
         this.knights = FXCollections.observableArrayList();
         this.towers = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
-        this.balance = new SimpleIntegerProperty(0);
-        this.waveIndex = 2;
+        this.balance = new SimpleIntegerProperty(2000);
+        this.waveIndex = 0;
         this.settings = new Settings();
         this.wave = new Wave(this, waveIndex);
     }
@@ -50,7 +48,27 @@ public class Environnement {
     public void delEnemy(Enemy e){this.enemies.remove(e);}
     public void addKnight(Knight k){this.knights.add(k);}
     public void delKnight(Knight k){this.knights.remove(k);}
-    public void addTower(Tower t){this.towers.add(t);}
+//    public void addTower(Tower t){this.towers.add(t);}
+    public boolean addTower(Tower t) {
+        int line = (int) t.getY();
+        int col = (int) t.getX();
+        if (balance.get() < t.getCost()) {
+            return false;
+        }
+        if (!t.canBePlaced(line, col)) {
+            return false;
+        }
+        if (countSameType(t) >= t.maxAllowed()) {
+            return false;
+        }
+        this.towers.add(t);
+        return true;
+    }
+
+    private long countSameType(Tower t) { //Permet de compter le nombre de tours pour gérer le maximum de Bramble et Palissade
+        return towers.stream().filter(other -> other.getClass() == t.getClass()).count();
+    }
+
     public void delTower(Tower t){this.towers.remove(t);}
     public void addDyingActor(Actor a) {
         this.actorsDying.add(a);
@@ -60,14 +78,42 @@ public class Environnement {
     }
     public void addArcher(int col, int line) {
         Tower archer = new Archer(this, settings.getArcherHp(), settings.getArcherDmg(), id, (double) col, (double) line, settings.getArcherSpeedAttack(), settings.getArcherCost());
-        this.addTower(archer);
-        balance.setValue(balance.getValue() - archer.getCost());
+        if (this.addTower(archer)) {
+            balance.setValue(balance.getValue() - archer.getCost());
+        }
     }
     public void addBarrack(int col, int line) {
-        Tower barrack = new Barrack(this, settings.getArcherHp(), id, (double) col, (double) line, settings.getBarrackSpeedProduction(), settings.getBarrackCost());
-        this.addTower(barrack);
-        balance.setValue(balance.getValue() - barrack.getCost());
+        Tower barrack = new Barrack(this, settings.getBarrackHp(), id, (double) col, (double) line, settings.getBarrackSpeedProduction(), settings.getBarrackCost());
+        if (this.addTower(barrack)){
+            balance.setValue(balance.getValue() - barrack.getCost());
+        }
     }
+
+    public void addBallista(int col, int line){
+        Tower ballista = new Ballista(this, settings.getBallistaHp(), settings.getBallistaDmg(), id, settings.getBallistaRange(), (double) col, (double) line, settings.getBallistaSpeedAttack(), settings.getBallistaCost());
+        if (this.addTower(ballista)){
+            balance.setValue(balance.getValue() - ballista.getCost());
+        }
+    }
+
+    public void addBramble(int col, int line){
+        Tower bramble = new Bramble(this, id, (double) col, (double) line, settings.getBrambleCost());
+        if (this.addTower(bramble)){
+            balance.setValue(balance.getValue() - bramble.getCost());
+        }
+    }
+
+    public void addPalissade(int col, int line){
+        Tower palissade = new Palissade(this, settings.getPalissadeHp(), id, (double) col, (double) line, settings.getPalissadeCost());
+        if (this.addTower(palissade)){
+            balance.setValue(balance.getValue() - palissade.getCost());
+        }
+    }
+
+//    public void addSorcererTower(int col, int line){
+//        Tower sorcerer = new SorcererTower(this, settings.getSorcererTowerHp(), )
+//    }
+
     public void earn(int gain) {
         balance.setValue(balance.getValue() + gain);
     }
@@ -132,7 +178,6 @@ public class Environnement {
         wave = new Wave(this, waveIndex);
         enemies.clear();
         knights.clear();
-        System.out.println("vague " + waveIndex  + " n enemies : " + (int)(10 + 20 * Math.log(waveIndex + 1)));
     }
 
     public void soldTower(Tower t) {
