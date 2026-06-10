@@ -4,7 +4,9 @@ import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Bramble;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 public class ArcherViking extends Enemy {
     private Actor target;
@@ -60,7 +62,7 @@ public class ArcherViking extends Enemy {
         Actor closeTarget = null;
         double minRange = Double.MAX_VALUE;
         for (Tower t : getEnvironnement().getTowers()) {
-            if (t.isLiving()) {
+            if (!(t instanceof Bramble) && !(t instanceof Palissade) && t.isLiving()) {
                 double range = calculDistanceFromEnemyByPyth(t); // calcul distance via pythagore
                 if (range <= minRange) {//(range <= getRange() && range < minRange) {
                     minRange = range;

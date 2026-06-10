@@ -178,7 +178,7 @@ public class Settings {
         return sorcererTowerSpeedAttack;
     }
 
-    public int getSorcererRange() {return sorcererTowerRange;}
+    public int getSorcererRange() {return sorcererTowerRange;}  
 
     public int getSorcererTowerCost() {
         return sorcererTowerCost;
