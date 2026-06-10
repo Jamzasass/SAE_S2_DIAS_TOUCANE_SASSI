@@ -15,6 +15,7 @@ public abstract class Actor {
     private double range;
     private DoubleProperty x;
     private DoubleProperty y;
+    private int maxHp;
 
     public Actor(Environnement env, int aHp, int aDmg, int aId, double aRange, double aX, double aY) {
         this.env = env;
@@ -24,6 +25,7 @@ public abstract class Actor {
         this.range = aRange;
         this.x = new SimpleDoubleProperty(aX);
         this.y = new SimpleDoubleProperty(aY);
+        this.maxHp = aHp;
     }
 
     public abstract void act();
@@ -98,4 +100,11 @@ public abstract class Actor {
         this.dmg = dmg;
     }
 
+    public int getMaxHp(){
+        return maxHp;
+    }
+
+    protected void setMaxHp(int maxHp){
+        this.maxHp = maxHp;
+    }
 }

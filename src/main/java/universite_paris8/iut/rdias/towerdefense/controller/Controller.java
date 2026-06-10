@@ -168,7 +168,7 @@ public class Controller {
     public void mouseClikedTile(MouseEvent e, int line, int col) {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
             for (Tower t : env.getTowers()) {
-                if ((int)t.getX() == col && (int)t.getY() == line) {
+                if ((int) t.getX() == col && (int) t.getY() == line) {
                     btnSellCancel.setText("Vendre (" + t.getCost() / 2 + " 💰)");
                     btnUpgradePut.setText("Améliorer");
                     btnSellCancel.setOnAction(ev -> {
@@ -183,40 +183,16 @@ public class Controller {
                     return;
                 }
             }
-            if (towerSelected == 1 || towerSelected == 2 || towerSelected == 3 || towerSelected == 4 || towerSelected == 5 || towerSelected == 6) {
-                final int fcol = col;
-                final int fline = line;
-                btnUpgradePut.setText("✔");
-                btnSellCancel.setText("✘");
-                btnUpgradePut.setOnAction(ev -> {
-                if (towerSelected == 1){
-                    env.addArcher(fcol, fline);
-                }
-                else if(towerSelected == 2){
-                    env.addBarrack(fcol, fline);
-                }
-                else if (towerSelected == 3) {
-                    env.addBramble(fcol, fline);
-                }
-                else if(towerSelected == 4){
-                    env.addPalissade(fcol, fline);
-                }
-                else if(towerSelected == 6){
-                    env.addBallista(fcol, fline);
-                }
-                towerSelected = 0;
-                towerActionMenu.setVisible(false);
-                btnSellCancel.setText("Vendre");
-                btnUpgradePut.setText("Améliorer");
-                });
-                btnSellCancel.setOnAction(ev -> {
-                    towerSelected = 0;
-                    towerActionMenu.setVisible(false);
-                    btnSellCancel.setText("Vendre");
-                    btnUpgradePut.setText("Améliorer");
-                });
-                towerActionMenu.setVisible(true);
 
+            if (towerSelected != 0) {
+                switch (towerSelected) {
+                    case 1 -> env.addArcher(col, line);
+                    case 2 -> env.addBarrack(col, line);
+                    case 3 -> env.addBramble(col, line);
+                    case 4 -> env.addPalissade(col, line);
+                    case 6 -> env.addBallista(col, line);
+                }
+                towerActionMenu.setVisible(false);
             }
         }
         else if (e.getButton().equals(MouseButton.MIDDLE)) {
