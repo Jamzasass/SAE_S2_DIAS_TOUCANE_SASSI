@@ -40,6 +40,7 @@ public class Settings {
     public static int sorcererTowerZoneDuration = 3;
     public static int sorcererTowerSpeedAttack = 2;
     public static int sorcererTowerCost = 500;
+    public static int sorcererTowerRange = 4;
 
     // Soldiers Ally (ally -> cost)
     // knight
@@ -176,6 +177,8 @@ public class Settings {
     public int getSorcererTowerSpeedAttack() {
         return sorcererTowerSpeedAttack;
     }
+
+    public int getSorcererRange() {return sorcererTowerRange;}
 
     public int getSorcererTowerCost() {
         return sorcererTowerCost;

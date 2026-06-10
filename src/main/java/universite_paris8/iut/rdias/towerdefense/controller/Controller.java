@@ -245,9 +245,9 @@ public class Controller {
         if (type == 1){
             range = env.getSettings().getArcherRange() * 16;
         }
-//        else if(type == 5 ){
-//           range = env.getSettings().getSorcererRange() * 16;
-//        }
+        else if(type == 5 ){
+           range = env.getSettings().getSorcererRange() * 16;
+        }
         else if (type == 6){
             range = env.getSettings().getBallistaRange() * 16;
         }
