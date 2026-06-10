@@ -6,48 +6,49 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.Settings;
 
 public class SorcererTower extends Tower {
-    private int dmgPerSec;
-//    private int zoneDuration;
-    private int zoneFramesLeft;
-    private int dmgCounter;
+    private double radiusBlow = 8.0;
 
     public SorcererTower(Environnement env, int sorcererHp, int sorcererDmg, int sorcererId, double sorcererX, double sorcererY, int sorcererSpeedAttack, int sorcererCost) {
         super(env, sorcererHp, sorcererDmg, sorcererId, 4.0, sorcererX, sorcererY, sorcererSpeedAttack, sorcererCost);
-        this.dmgPerSec = sorcererDmg;
-//        this.zoneDuration =
-        this.zoneFramesLeft = 0;
-        this.dmgCounter = 0;
     }
 
     @Override
-    public void act() {
+    public void act(){
         tick();
-        if (zoneFramesLeft > 0) {
-            dmgCounter++;               //Applique les dégats toutes les sec.
-            if (dmgCounter >= 60) {
-                applyDamageInZone(getEnvironnement());
-                dmgCounter = 0;
+        if (canAct()){
+            Enemy target = searchTarget();
+            if (target != null){
+                damageInZoneAround(target);
+                resetCooldown();
             }
-            zoneFramesLeft--;
-            if (zoneFramesLeft == 0) {
-                resetCooldown();  // Une fois que la zone est terminée, il démarre un cooldown
-            }
-        } else if (canAct()) {          // Si pas de zone et que le cooldown soit ok, alors il peut recréer une zone.
-//            zoneFramesLeft = zoneDuration * 60;
-            dmgCounter = 0;
         }
     }
 
-    private void applyDamageInZone(Environnement env) {
-        for (Enemy e : env.getEnemies()) {
-            if (e.isLiving()) {
-                double range = Math.hypot(e.getX() - getX(), e.getY() - getY());
-                if (range <= getRange()) {
-                    e.takeDamage(dmgPerSec);
-                }
+    private void damageInZoneAround(Enemy target) {
+        for (Enemy e : getEnvironnement().getEnemies()) {
+            if (!e.isLiving()) continue;
+            double dist = Math.hypot(e.getX() - target.getX(), e.getY() - target.getY());
+            if (dist <= radiusBlow) {
+                e.takeDamage(getDmg());
             }
         }
     }
+
+    private Enemy searchTarget() {
+        Enemy closest = null;
+        double minDist = Double.MAX_VALUE;
+        for (Enemy e : getEnvironnement().getEnemies()) {
+            if (!e.isLiving()) continue;
+            double dist = Math.hypot(e.getX() - getX(), e.getY() - getY());
+            if (dist <= getRange() && dist < minDist) {
+                minDist = dist;
+                closest = e;
+            }
+        }
+        return closest;
+    }
+
+
 
     @Override
     public void upgrade() {

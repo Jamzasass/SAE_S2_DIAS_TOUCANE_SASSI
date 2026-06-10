@@ -8,51 +8,53 @@ import java.util.ArrayList;
 
 public class Ballista extends Tower {
 
+    private Enemy[] targets;
+
     public Ballista(Environnement env, int ballistaHP, int ballistaDmg, int ballistaId, int ballistaRange, double ballistaX, double ballistaY, int ballistaSpeedAttack, int ballistaCost) {
         super(env, ballistaHP , ballistaDmg, ballistaId, ballistaRange, ballistaX, ballistaY, ballistaSpeedAttack, ballistaCost);
+        targets = new Enemy[2];
     }
 
     @Override
     public void act(){
         tick();
         if (canAct()) {
-            ArrayList<Enemy> targets = searchTargets();
-            if (!targets.isEmpty()){
-                for (Enemy e : targets) {
-                    e.takeDamage(getDmg());
-                }
+            targets = searchTargets();
+            if (targets[0]!=null){
+                targets[0].takeDamage(this.getDmg());
                 resetCooldown();
+            }
+            if (targets[1]!=null) {
+                targets[1].takeDamage(this.getDmg());
             }
         }
     }
 
-    private ArrayList<Enemy> searchTargets() {
-        Enemy first = null, second = null;
-        double firstDist = Double.MAX_VALUE, secondDist = Double.MAX_VALUE;
+    private Enemy[] searchTargets() {
+        Enemy firstTarget = null;
+        Enemy secondTarget = null;
+        double firstDist = Double.MAX_VALUE;
+        double secondDist = Double.MAX_VALUE;
 
         for (Enemy e : getEnvironnement().getEnemies()) {
             if (e.isLiving()) {
                 double dist = Math.hypot(e.getX() - getX(), e.getY() - getY()); //calcul distance
                 if (dist <= getRange()) {
                     if (dist < firstDist) {
-                        second = first;
+                        secondTarget = firstTarget;
                         secondDist = firstDist;
-                        first = e;
+                        firstTarget = e;
                         firstDist = dist;
                     } else if (dist < secondDist) {
-                        second = e;
+                        secondTarget = e;
                         secondDist = dist;
                     }
                 }
             }
         }
-        ArrayList<Enemy> result = new ArrayList<>();
-        if (first != null) {
-            result.add(first);
-        }
-        if (second != null) {
-            result.add(second);
-        }
+        Enemy[] result = new Enemy[2];
+        result[0] = firstTarget;
+        result[1] = secondTarget;
         return result;
     }
 
