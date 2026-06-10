@@ -25,7 +25,6 @@ public class Wave {
     public void waveLoop(int cptLap) {
         if (cptLap % (delayBetweenSpawns*30) == 0 && nbEnemies>0) {
             Enemy e = createNewEnemy();
-            System.out.println("n vague " + waveIndex + " " + e.getClass());
             env.addEnemy(e);
             env.incrementId();
             nbEnemies--;
