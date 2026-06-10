@@ -44,7 +44,7 @@ public class TowerView {
         this.image.setId("t" + tTower.getId());
         this.image.layoutXProperty().bind(this.tower.getXProperty().multiply(16).add(-16/2));
         this.image.layoutYProperty().bind(this.tower.getYProperty().multiply(16).add(-16/2));
-        if (tower.getMaxHp() > 0) {
+        if (!(tTower instanceof Bramble) && tower.getMaxHp() > 0) {
             createHpBar();
         }
     }
@@ -65,23 +65,19 @@ public class TowerView {
     }
 
     private void createHpBar() {
-        hpBarFirst = new Rectangle(16, 2);
-        hpBarFirst.setFill(Color.rgb(40, 25, 20, 0.9));
-        hpBarFirst.layoutXProperty().bind(image.layoutXProperty().add((32-16) / 2));
-        hpBarFirst.layoutYProperty().bind(image.layoutYProperty().subtract(3));
-        hpBarFirst.setId("tFB" + tower.getId());
+        double max = Math.max(1, tower.getMaxHp());
+        hpBarFirst  = makeBar(16, Color.rgb(40, 25, 20, 0.9), "tFB" + tower.getId());
+        hpBarSecond = makeBar(0,  Color.CYAN,                  "tSB" + tower.getId());
 
-        hpBarSecond = new Rectangle(16, 2);
-        hpBarSecond.setFill(Color.CYAN);
-        hpBarSecond.widthProperty().bind(
-                Bindings.createDoubleBinding(
-                        () -> 16.0 * tower.getHp() / Math.max(1, tower.getMaxHp()),
-                        tower.getHpPorperty()
-                )
-        );
-        hpBarSecond.layoutXProperty().bind(image.layoutXProperty().add((32-16) / 2));
-        hpBarSecond.layoutYProperty().bind(image.layoutYProperty().subtract(3));
-        hpBarSecond.setId("tSB" + tower.getId());
+        hpBarSecond.widthProperty().bind(tower.getHpProperty().multiply(16.0 / max));
+    }
+
+    private Rectangle makeBar(double width, Color fill, String id) {
+        Rectangle bar = new Rectangle(width, 2, fill);
+        bar.layoutXProperty().bind(image.layoutXProperty().add(8));
+        bar.layoutYProperty().bind(image.layoutYProperty().subtract(3));
+        bar.setId(id);
+        return bar;
     }
 
     public Rectangle getHpBarFirst() { return hpBarFirst; }

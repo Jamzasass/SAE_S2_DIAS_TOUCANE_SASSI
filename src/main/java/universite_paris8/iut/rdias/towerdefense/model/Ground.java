@@ -59,7 +59,9 @@ public class Ground {
     public Ground() {
         this.mapBFS = new BFS(this);
     }
-
+    public void refreshBFS() {
+        this.mapBFS = new BFS(this);
+    }
     public int heigth () {
         return this.map.length;
     }
@@ -80,6 +82,7 @@ public class Ground {
         return this.map[ligne][col]==2;
     }
     public boolean isGrass (int ligne, int col){ return this.map[ligne][col] == 0; }
+    public boolean isPalissade (int ligne, int col){ return this.map[ligne][col] == 4; }
 
     public void setTile(int line, int column, int n) {
         this.map[line][column] = n;

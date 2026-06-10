@@ -34,7 +34,7 @@ public abstract class Actor {
     public int getHp() {
         return hp.getValue();
     }
-    public IntegerProperty getHpPorperty() {
+    public IntegerProperty getHpProperty() {
         return hp;
     }
     public int getDmg() {

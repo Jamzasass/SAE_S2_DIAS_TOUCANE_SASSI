@@ -70,12 +70,12 @@ public class SoldierView {
             this.image.setId("v" + soldier.getId());
             this.pvBar.setId("vP" + soldier.getId());
         }
-        pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
+        pvBar.widthProperty().bind(sSoldier.getHpProperty().multiply(0.4));
         image.setFitWidth(imageSize);
         image.setFitHeight(imageSize);
         this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
         this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
-        pvBar.layoutXProperty().bind(image.layoutXProperty().add(imageSize/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
+        pvBar.layoutXProperty().bind(image.layoutXProperty().add(imageSize/2).add(sSoldier.getHpProperty().multiply(0.4).multiply(-0.5)));
         pvBar.layoutYProperty().bind(image.layoutYProperty());
 
     }
