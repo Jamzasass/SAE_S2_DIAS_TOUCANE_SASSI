@@ -18,27 +18,31 @@ public class ArcherViking extends Enemy {
     @Override
     public void act(){
         searchtarget();
+        tick();
         if (target != null) {
             if (target instanceof Knight) {
                 int dist = calculDistanceFromEnemyByBFS(target);
-                if (dist > this.getRange()) {
-                    setxCible((int) target.getX());
-                    setyCible((int) target.getY());
-                    this.move();
-                } else if (canAct()){
+                setxCible((int) target.getX());
+                setyCible((int) target.getY());
+                this.move();
+                if (dist < this.getRange() && canAct()){
                     target.takeDamage(this.getDmg());
+                    resetCooldown();
                 }
             }
             else if (target instanceof Tower){
                 int[] dest = closestPath((Tower) target);
                 double dist = calculDistanceFromEnemyByPyth(target);
-                System.out.println((int)dist/16);
-                if (dist > this.getRange()) {
-                    setxCible(dest[1]);
-                    setyCible(dest[0]);
+                setxCible(dest[1]);
+                setyCible(dest[0]);
+                if (dist < Math.pow((this.getRange()), 2)){
+                    if (canAct()) {
+                        target.takeDamage(this.getDmg());
+                        resetCooldown();
+                    }
+                }
+                else {
                     this.move();
-                } else if (canAct()){
-                    target.takeDamage(this.getDmg());
                 }
             }
         } else {
@@ -46,7 +50,7 @@ public class ArcherViking extends Enemy {
             setyCible(42);
             this.move();
         }
-        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getY())) {
+        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getX())) {
             getEnvironnement().getCastle().takeDamage(this.getDmg());
             this.die();
         }
@@ -58,7 +62,7 @@ public class ArcherViking extends Enemy {
         for (Tower t : getEnvironnement().getTowers()) {
             if (t.isLiving()) {
                 double range = calculDistanceFromEnemyByPyth(t); // calcul distance via pythagore
-                if (range<= minRange) {//(range <= getRange() && range < minRange) {
+                if (range <= minRange) {//(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = t;
                 }

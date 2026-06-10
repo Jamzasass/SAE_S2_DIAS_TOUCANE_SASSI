@@ -9,12 +9,13 @@ public class RamWarrior extends Enemy {
 
     private Tower target;
 
-    public RamWarrior(Environnement env, int eId, double eX, double eY) {
-        super(env, 250, 100, eId, 0.1, eX, eY, 0.03, 80);
+    public RamWarrior(Environnement env, int eHp, int eDmg, int eId, double eX, double eY, double eSpeed, int eDeathValue) {
+        super(env, eHp, eDmg, eId, 0.1, eX, eY, eSpeed, eDeathValue);
     }
 
     @Override
     public void act(){
+        tick();
         searchtarget();
         if (target != null) {
             setxCible((int) target.getX());
@@ -23,6 +24,7 @@ public class RamWarrior extends Enemy {
 
             if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
                 target.takeDamage(this.getDmg());
+                resetCooldown();
             }
         } else {
             this.move();

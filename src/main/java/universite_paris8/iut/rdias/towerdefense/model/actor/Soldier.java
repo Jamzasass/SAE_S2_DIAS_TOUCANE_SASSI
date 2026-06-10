@@ -12,6 +12,8 @@ public abstract class Soldier extends Actor{
     private int[] nextCase;
     private double slowFactor;
     private int slowDuration;
+    private int cooldown;
+    private int speedAct;
 
     public Soldier (Environnement env, int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed, int xCible, int yCible) {
         super(env, sHp, sDmg, sId, sRange, sX, sY);
@@ -25,6 +27,8 @@ public abstract class Soldier extends Actor{
         majDirection();
         this.slowFactor = 1.0;
         this.slowDuration = 0;
+        this.speedAct = 2; //temp
+        this.cooldown = speedAct*30;
     }
     public void setChemin() {
         majDirection();
@@ -41,8 +45,7 @@ public abstract class Soldier extends Actor{
         } catch (Exception ex) {
             System.out.println("  EXCEPTION: " + ex.getMessage());
         }
-        if (!getEnvironnement().getGround().isPath(nextCase[0], nextCase[1])
-        ) {
+        if (!getEnvironnement().getGround().isPath(nextCase[0], nextCase[1]) && !getEnvironnement().getGround().isCastle(nextCase[0], nextCase[1])) {
             wayChangement();
         }
         else if (atteint(nextCase[1], nextCase[0]) ) {
@@ -58,7 +61,7 @@ public abstract class Soldier extends Actor{
         }
     }
     public boolean atteint(double cibleX, double cibleY) {
-        return  valAbs(getX() - cibleX) < 0.05 && valAbs(getY() - cibleY) < 0.05;
+        return  valAbs(getX() - cibleX) < this.speed && valAbs(getY() - cibleY) < this.speed;
     }
     public void majDirection() {
         double dx = nextCase[1] - getX();
@@ -143,5 +146,23 @@ public abstract class Soldier extends Actor{
             this.slowFactor = factor;
         }
         this.slowDuration = Math.max(this.slowDuration, duration);
+    }
+
+    public double getDirectionY() {
+        return directionY;
+    }
+
+    public double getDirectionX() {
+        return directionX;
+    }
+
+    public boolean canAct(){
+        return cooldown >= speedAct*30;
+    }
+    public void tick(){
+        cooldown++;
+    }
+    public void resetCooldown() {
+        this.cooldown = 0;
     }
 }

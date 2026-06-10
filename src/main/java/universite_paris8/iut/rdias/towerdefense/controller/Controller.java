@@ -174,6 +174,9 @@ public class Controller {
             else if (e.getCode() == KeyCode.T){
                 towerSelected = 5;
             }
+            else if (e.getCode() == KeyCode.Y){
+                towerSelected = 6;
+            }
         });
     }
 

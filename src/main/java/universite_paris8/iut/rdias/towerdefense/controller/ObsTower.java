@@ -26,10 +26,16 @@ public class ObsTower implements ListChangeListener<Tower> {
             for (Tower t : ajout) {
                 TowerView tv = new TowerView(t);
                 grid.getChildren().add(tv.getImage());
+                if (tv.getHpBarFirst() != null) {
+                    grid.getChildren().add(tv.getHpBarFirst());
+                    grid.getChildren().add(tv.getHpBarSecond());
+                }
                 towerSprite.add(tv);
             }
             for (Tower t : retirer) {
                 grid.getChildren().remove(grid.lookup("#" + "t" + t.getId()));
+                grid.getChildren().remove(grid.lookup("#" + "tFB" + t.getId()));
+                grid.getChildren().remove(grid.lookup("#" + "tSB" + t.getId()));
             }
         }
     }
@@ -37,4 +43,5 @@ public class ObsTower implements ListChangeListener<Tower> {
     public ArrayList<TowerView> getTowerSprite() {
         return towerSprite;
     }
+
 }

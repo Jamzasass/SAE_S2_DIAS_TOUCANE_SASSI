@@ -41,7 +41,7 @@ public class Environnement {
         this.balance = new SimpleIntegerProperty(2000);
         this.waveIndex = 0;
         this.settings = new Settings();
-        this.wave = new Wave(this, waveIndex, 2, 5);
+        this.wave = new Wave(this, waveIndex);
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
@@ -76,7 +76,6 @@ public class Environnement {
     public void takeDmgCastle(int dmg) {
         castle.takeDamage(dmg);
     }
-
     public void addArcher(int col, int line) {
         Tower archer = new Archer(this, settings.getArcherHp(), settings.getArcherDmg(), id, (double) col, (double) line, settings.getArcherSpeedAttack(), settings.getArcherCost());
         if (this.addTower(archer)) {
@@ -111,9 +110,12 @@ public class Environnement {
         }
     }
 
-//    public void addSorcererTower(int col, int line){
-//        Tower sorcerer = new SorcererTower(this, settings.getSorcererTowerHp(), )
-//    }
+    public void addSorcerer(int col, int line){
+        Tower sorcerer = new SorcererTower(this, settings.getSorcererTowerHp(), settings.getSorcererTowerDmg(), getId(),col, line, settings.getSorcererTowerSpeedAttack(), settings.getSorcererTowerCost());
+        if (this.addTower(sorcerer)){
+            balance.setValue(balance.getValue() - sorcerer.getCost());
+        }
+    }
 
     public void earn(int gain) {
         balance.setValue(balance.getValue() + gain);
@@ -166,6 +168,7 @@ public class Environnement {
         return ground;
     }
     public int getId() {
+        incrementId();
         return id;
     }
     public Settings getSettings() {
@@ -176,10 +179,9 @@ public class Environnement {
     }
     public void nextWave() {
         waveIndex++;
-        wave = new Wave(this, waveIndex, 1, 3);
+        wave = new Wave(this, waveIndex);
         enemies.clear();
         knights.clear();
-        System.out.println("vague " + waveIndex );
     }
 
     public void soldTower(Tower t) {

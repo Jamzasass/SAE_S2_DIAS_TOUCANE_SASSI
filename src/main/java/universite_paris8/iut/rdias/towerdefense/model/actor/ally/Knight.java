@@ -12,14 +12,16 @@ public class Knight extends Soldier {
         target = null;
     }
     public void act() {
+        tick();
         searchtarget();
         if (target != null && target.isLiving()) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
         }
         this.move();
-        if (target != null && calculDistanceFromEnemy(target) < this.getRange()) {
+        if (target != null && calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
             target.takeDamage(this.getDmg());
+            resetCooldown();
         }
     }
 

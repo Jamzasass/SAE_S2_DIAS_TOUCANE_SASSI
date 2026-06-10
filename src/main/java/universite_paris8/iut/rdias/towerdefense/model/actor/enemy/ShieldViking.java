@@ -9,20 +9,22 @@ public class ShieldViking extends Enemy {
 
     private Knight target;
 
-    public ShieldViking(Environnement env, int eId, double eX, double eY) {
-        super(env, 250, 20, eId, 0.1, eX, eY, 0.03, 70);
+    public ShieldViking(Environnement env, int eHp, int eDmg, int eId, double eX, double eY, double eSpeed, int eDeathValue) {
+        super(env, eHp, eDmg, eId, 0.1, eX, eY, eSpeed, eDeathValue);
         target = null;
     }
 
     @Override
     public void act(){
+        tick();
         searchtarget();
         if (target != null) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
             this.move();
-            if (calculDistanceFromEnemy(target) < this.getRange()) {
+            if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
                 target.takeDamage(this.getDmg());
+                resetCooldown();
             }
         }
         else {
@@ -30,7 +32,7 @@ public class ShieldViking extends Enemy {
             setyCible(40);
             this.move();
         }
-        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getY())) {
+        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getX())) {
             getEnvironnement().getCastle().takeDamage(this.getDmg());
             this.die();
         }

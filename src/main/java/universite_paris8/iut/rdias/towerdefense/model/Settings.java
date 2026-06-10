@@ -43,14 +43,14 @@ public class Settings {
 
     // Soldiers Ally (ally -> cost)
     // knight
-    public static int knightHp = 70;
-    public static int knightDmg = 10;
-    public static double knightSpeed = 0.07;
+    public static int knightHp = 150;
+    public static int knightDmg = 25;
+    public static double knightSpeed = 0.08;
     public static int knightCost = 0;
 
     // soliders Enemy (enemy -> deathValue)
     // viking
-    public static int vikingHp = 70;
+    public static int vikingHp = 60;
     public static int vikingDmg = 20;
     public static double vikingSpeed = 0.05;
     public static int vikingDeathValue = 15;
@@ -58,13 +58,13 @@ public class Settings {
     // berserker
     public static int berserkerHp = 125;
     public static int berserkerDmg = 20;
-    public static double berserkerSpeed = 0.06;
+    public static double berserkerSpeed = 0.07;
     public static int berserkerDeathValue = 45;
 
     // archerViking
     public static int archerVikingHp = 50;
     public static int archerVikingDmg = 20;
-    public static double archerVikingSpeed = 0.10;
+    public static double archerVikingSpeed = 0.06;
     public static int archerVikingDeathValue = 25;
     public static int archerVikingRange = 4;
 

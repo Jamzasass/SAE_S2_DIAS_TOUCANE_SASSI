@@ -1,5 +1,6 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 
+import universite_paris8.iut.rdias.towerdefense.controller.Controller;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
@@ -13,13 +14,15 @@ public class Viking extends Enemy {
     }
 
     public void act(){
+        tick();
         searchtarget();
         if (target != null) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
             this.move();
-            if (calculDistanceFromEnemy(target) < this.getRange()) {
+            if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
                 target.takeDamage(this.getDmg());
+                resetCooldown();
             }
         } else {
             setxCible(42);

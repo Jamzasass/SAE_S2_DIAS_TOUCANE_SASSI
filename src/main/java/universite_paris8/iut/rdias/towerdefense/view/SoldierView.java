@@ -6,9 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
-import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.ArcherViking;
-import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Berserker;
-import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
+import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;
 
 public class SoldierView {
 
@@ -35,64 +33,50 @@ public class SoldierView {
     private static Image imageBatteringRam2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/battering_ram/sprite_BatteringRam2.png"));
 
     public SoldierView(Soldier sSoldier) {
-
         this.soldier = sSoldier;
         this.pvBar = new Rectangle();
         pvBar.setHeight(2);
-
+        pvBar.setFill(Color.RED);
+        int imageSize = 25;
         if (soldier instanceof Viking) {
-            pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
-            pvBar.setFill(Color.RED);
             this.image = new ImageView(imageViking1);
-            image.setFitWidth(25);
-            image.setFitHeight(25);
             this.image.setId("v" + soldier.getId());
             this.pvBar.setId("vP" + soldier.getId());
-            this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
-            this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
-            pvBar.layoutXProperty().bind(image.layoutXProperty().add(25/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
-            pvBar.layoutYProperty().bind(image.layoutYProperty());
         }
         else if (soldier instanceof Knight) {
             pvBar.setFill(Color.BLUE);
-            pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
             this.image = new ImageView(imageknight1);
-            image.setFitWidth(29);
-            image.setFitHeight(29);
+            imageSize = 29;
             this.image.setId("k" + soldier.getId());
-            this.pvBar.setId("kP" + soldier.getId());
-            this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
-            this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
-            pvBar.layoutXProperty().bind(image.layoutXProperty().add(29/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
-            pvBar.layoutYProperty().bind(image.layoutYProperty());
+            this.pvBar.setId("kP" + soldier.getId());;
         }
         else if (soldier instanceof ArcherViking) {
-            pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
-            pvBar.setFill(Color.RED);
             this.image = new ImageView(imageArcherViking1);
-            image.setFitWidth(25);
-            image.setFitHeight(25);
             this.image.setId("v" + soldier.getId());
             this.pvBar.setId("vP" + soldier.getId());
-            this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
-            this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
-            pvBar.layoutXProperty().bind(image.layoutXProperty().add(25/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
-            pvBar.layoutYProperty().bind(image.layoutYProperty());
         }
         else if (soldier instanceof Berserker) {
-            pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
-            pvBar.setFill(Color.RED);
             this.image = new ImageView(imageBerserker1);
-            image.setFitWidth(25);
-            image.setFitHeight(25);
             this.image.setId("v" + soldier.getId());
             this.pvBar.setId("vP" + soldier.getId());
-            this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
-            this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
-            pvBar.layoutXProperty().bind(image.layoutXProperty().add(25/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
-            pvBar.layoutYProperty().bind(image.layoutYProperty());
         }
-
+        else if (soldier instanceof RamWarrior) {
+            this.image = new ImageView(imageBatteringRam1);
+            this.image.setId("v" + soldier.getId());
+            this.pvBar.setId("vP" + soldier.getId());
+        }
+        else if (soldier instanceof ShieldViking) {
+            this.image = new ImageView(imageShiedlViking1);
+            this.image.setId("v" + soldier.getId());
+            this.pvBar.setId("vP" + soldier.getId());
+        }
+        pvBar.widthProperty().bind(sSoldier.getHpPorperty().multiply(0.4));
+        image.setFitWidth(imageSize);
+        image.setFitHeight(imageSize);
+        this.image.layoutXProperty().bind(this.soldier.getXProperty().multiply(16).add(-16/2));
+        this.image.layoutYProperty().bind(this.soldier.getYProperty().multiply(16).add(-16/2));
+        pvBar.layoutXProperty().bind(image.layoutXProperty().add(imageSize/2).add(sSoldier.getHpPorperty().multiply(0.4).multiply(-0.5)));
+        pvBar.layoutYProperty().bind(image.layoutYProperty());
 
     }
 
@@ -130,7 +114,23 @@ public class SoldierView {
                 image.setImage(imageBerserker2);
             }
             else {
-                image.setImage(imageknight1);
+                image.setImage(imageBerserker1);
+            }
+        }
+        else if (soldier instanceof RamWarrior) {
+            if (image.getImage().equals(imageBatteringRam1)) {
+                image.setImage(imageBatteringRam2);
+            }
+            else {
+                image.setImage(imageBatteringRam1);
+            }
+        }
+        else if (soldier instanceof ShieldViking) {
+            if (image.getImage().equals(imageShiedlViking1)) {
+                image.setImage(imageShiedlViking2);
+            }
+            else {
+                image.setImage(imageShiedlViking1);
             }
         }
     }
