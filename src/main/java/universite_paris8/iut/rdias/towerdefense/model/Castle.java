@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Castle {
 
-    private final int maxHp = 500;
+    private final int maxHp = 10;
     private IntegerProperty hpPlayer;
 
     public Castle() {

@@ -252,7 +252,22 @@ public class Controller {
     private ProgressBar hpBar;
 
     private void showGameOver() {
-        VBox gameOverPane = new javafx.scene.layout.VBox(20);
+        int wave = env.getWaveIndexProperty().get();
+
+        String message;
+        if (wave <= 2) {
+            message = "Tu fais honte au roi. Au bûcher !!!";
+        } else if (wave <= 5) {
+            message = "Pff. T'es mauvais ! ";
+        } else if (wave <= 10) {
+            message = "Mmmmh. Va lire l'art de la Guerre pour t'améliorer.";
+        } else if (wave <= 15) {
+            message = "Bien ! Mais tu dois améliorer ta tactique.";
+        } else {
+            message = "Tu as été promu en tant que tacticien de l'armée du Roi. Chapeau l'artiste.";
+        }
+
+        VBox gameOverPane = new VBox(20);
         gameOverPane.setAlignment(javafx.geometry.Pos.CENTER);
         gameOverPane.setStyle("-fx-background-color: rgba(0,0,0,0.7);");
         gameOverPane.prefWidthProperty().bind(actorsArea.widthProperty());
@@ -261,10 +276,13 @@ public class Controller {
         Label gameOverLabel = new Label("GAME OVER");
         gameOverLabel.setStyle("-fx-font-size: 40px; -fx-text-fill: red; -fx-font-family: 'Black Clover Font';");
 
-        Label waveReached = new Label("Wave reached: " + env.getWaveIndexProperty().get());
+        Label waveReached = new Label("Vague atteinte : " + wave);
         waveReached.setStyle("-fx-font-size: 20px; -fx-text-fill: white; -fx-font-family: 'Black Clover Font';");
 
-        gameOverPane.getChildren().addAll(gameOverLabel, waveReached);
+        Label messageLabel = new Label(message);
+        messageLabel.setStyle("-fx-font-size: 25px; -fx-text-fill: #f0c040; -fx-font-family: 'Black Clover Font';");
+
+        gameOverPane.getChildren().addAll(gameOverLabel, waveReached, messageLabel);
         actorsArea.getChildren().add(gameOverPane);
     }
 
