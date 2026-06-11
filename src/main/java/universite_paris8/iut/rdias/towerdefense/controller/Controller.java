@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.rdias.towerdefense.model.*;
@@ -27,16 +28,13 @@ import javafx.scene.control.ProgressBar;
 
 public class Controller {
 
-    @FXML
-    private TilePane mapGrid;
-    @FXML
-    private Label balanceLabel;
-    @FXML
-    private Label hpPlayer;
+    @FXML private TilePane mapGrid;
+    @FXML private Label balanceLabel;
+    @FXML private Label hpPlayer;
+    @FXML private Label waveLabel;
     private Ground ground;
     private GroundView groundView;
-    @FXML
-    private Pane actorsArea;
+    @FXML private Pane actorsArea;
     private Timeline gameLoop;
     public static int temps;
     private Environnement env;
@@ -93,6 +91,8 @@ public class Controller {
                 env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
         );
 
+        waveLabel.textProperty().bind(env.getWaveIndexProperty().asString());
+
         castleView = new CastleView(env.getCastle());
         ImageView c = new ImageView();
         c.setFitHeight(64);
@@ -112,12 +112,23 @@ public class Controller {
         keySelectionInit();
         gameLoop.play();
 
+        //For the drag and drop of towers
         archerTower.setOnAction(e -> startDrag(spriteArcher, 1));
         barrackTower.setOnAction(e -> startDrag(spriteBarrack, 2));
         brambleTower.setOnAction(e -> startDrag(spriteBramble, 3));
         palissadeTower.setOnAction(e -> startDrag(spritePalissade, 4));
         sorcererTower.setOnAction((e -> startDrag(spriteSorcerer, 5)));
         ballistaTower.setOnAction(e -> startDrag(spriteBallista, 6));
+
+        // for the game over display
+        env.getCastle().getHpPlayerProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.intValue() <= 0) {
+                gameLoop.stop();
+                showGameOver();
+            }
+        });
+
+
 
     }
 
@@ -236,6 +247,23 @@ public class Controller {
 
     @FXML
     private ProgressBar hpBar;
+
+    private void showGameOver() {
+        VBox gameOverPane = new javafx.scene.layout.VBox(20);
+        gameOverPane.setAlignment(javafx.geometry.Pos.CENTER);
+        gameOverPane.setStyle("-fx-background-color: rgba(0,0,0,0.7);");
+        gameOverPane.prefWidthProperty().bind(actorsArea.widthProperty());
+        gameOverPane.prefHeightProperty().bind(actorsArea.heightProperty());
+
+        Label gameOverLabel = new Label("GAME OVER");
+        gameOverLabel.setStyle("-fx-font-size: 40px; -fx-text-fill: red; -fx-font-family: 'Black Clover Font';");
+
+        Label waveReached = new Label("Wave reached: " + env.getWaveIndexProperty().get());
+        waveReached.setStyle("-fx-font-size: 20px; -fx-text-fill: white; -fx-font-family: 'Black Clover Font';");
+
+        gameOverPane.getChildren().addAll(gameOverLabel, waveReached);
+        actorsArea.getChildren().add(gameOverPane);
+    }
 
     //full brouillon
     public int getTemps() {
