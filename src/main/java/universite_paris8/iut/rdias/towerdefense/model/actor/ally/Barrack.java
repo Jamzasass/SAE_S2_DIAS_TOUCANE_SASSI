@@ -25,19 +25,12 @@ public class Barrack extends Tower {
     public void act(){
         tick();
         if (canAct() && hasEnemies(getEnvironnement())){
+            double f = (getLevel() == 2) ? getEnvironnement().getSettings().getUpgradeFactor() : 1.0;
+            int knightHp  = (int) (getEnvironnement().getSettings().getKnightHp() * f);
+            int knightDmg = (int) (getEnvironnement().getSettings().getKnightDmg() * f);
             Knight k = new Knight(getEnvironnement(), getEnvironnement().getId(), coordClosePath[1], coordClosePath[0]);
             getEnvironnement().addKnight(k);
             resetCooldown();
-        }
-    }
-
-    @Override
-    public void upgrade(){
-        if (getLevel() < 2){
-//            setHp(hplvl2);
-//            setSpeedAct(speedProductionlvl2);
-//            lvlUp();
-//            System.out.println("caca2");
         }
     }
 

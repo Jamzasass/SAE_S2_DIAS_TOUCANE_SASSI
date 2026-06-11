@@ -30,14 +30,6 @@ public class Palissade extends Tower {
     }
 
     @Override
-    public void upgrade() {
-        if (getLevel() < 2) {
-//            setHp(hplvl2);
-//            lvlUp();
-        }
-    }
-
-    @Override
     public boolean canBePlaced(int line, int col) {
         boolean result = false;
         Ground ground = getEnvironnement().getGround();

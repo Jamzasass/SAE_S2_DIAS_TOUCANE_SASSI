@@ -50,14 +50,4 @@ public class Archer extends Tower {
     public int placementRange(){
         return 3;
     }
-
-    @Override
-    public void upgrade() {
-        if (getLevel() < 2) {
-//            setHp(hplvl2);
-//            setDmg(dmglvl2);
-//            setSpeedAct(speedAttacklvl2);
-//            lvlUp();
-        }
-    }
 }

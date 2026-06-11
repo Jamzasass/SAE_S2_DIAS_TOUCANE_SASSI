@@ -33,7 +33,24 @@ public abstract class Tower extends Actor{
         return cooldown;
     }
 
-    public abstract void upgrade();
+    public void upgrade() {
+        double factor = getEnvironnement().getSettings().getUpgradeFactor();
+        int newMaxHp = (int) (getMaxHp() * factor);
+        int newDmg   = (int) (getDmg() * factor);
+        setMaxHp(newMaxHp);
+        setHp(newMaxHp);
+        setDmg(newDmg);
+        lvlUp();
+    }
+
+    public int getUpgradeCost() {
+        double f = getEnvironnement().getSettings().getUpgradeCostFactor();
+        return (int) (getCost() * f);
+    }
+
+    public boolean canBeUpgraded() {
+        return getLevel() < 2;
+    }
 
     public void tick(){
         cooldown++;

@@ -325,7 +325,12 @@ public class Settings {
 
     }
 
+    public double getUpgradeFactor() {
+        return upgradeFactor;
+    }
 
-
+    public double getUpgradeCostFactor() {
+        return upgradeCostFactor;
+    }
 }
 

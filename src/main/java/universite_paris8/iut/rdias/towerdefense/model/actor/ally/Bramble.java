@@ -51,10 +51,6 @@ public class Bramble extends Tower {
     }
 
     @Override
-    public void upgrade() {
-    }
-
-    @Override
     public boolean canBePlaced(int line, int col) {
         Ground ground = getEnvironnement().getGround();
         if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
@@ -66,5 +62,10 @@ public class Bramble extends Tower {
     @Override
     public int maxAllowed() {
         return 10;
+    }
+
+    @Override
+    public boolean canBeUpgraded() {
+        return false;
     }
 }

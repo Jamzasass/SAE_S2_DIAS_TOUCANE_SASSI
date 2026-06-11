@@ -60,15 +60,4 @@ public class SorcererTower extends Tower {
     public int placementRange(){
         return 4;
     }
-
-    @Override
-    public void upgrade() {
-//        if (getLevel() < 2) {
-//            setHp(hplvl2);
-//            setSpeedAct(speedAttacklvl2);
-//            dmgPerSec = dmgPerSeclvl2;
-//            zoneDuration = zoneDurationlvl2;
-//            lvlUp();
-//        }
-    }
 }

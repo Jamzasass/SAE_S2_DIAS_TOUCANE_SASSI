@@ -186,13 +186,23 @@ public class Controller {
             for (Tower t : env.getTowers()) {
                 if ((int)t.getX() == col && (int)t.getY() == line) {
                     btnSell.setText("Sell (" + t.getCost() / 2 + " 💰)");
-                    btnUpgrade.setText("Upgrade (" + (t.getLevel() + 1 + ")"));
+
+                    if (t.canBeUpgraded()) {
+                        btnUpgrade.setText("Upgrade (" + t.getUpgradeCost() + " 💰)");
+                        btnUpgrade.setDisable(false);
+                    } else {
+                        btnUpgrade.setText("Max");
+                        btnUpgrade.setDisable(true);
+                    }
+
                     btnSell.setOnAction(ev -> {
                         t.sold();
                         towerActionMenu.setVisible(false);
                     });
                     btnUpgrade.setOnAction(ev -> {
-                        t.upgrade();
+                        if (!env.upgradeTower(t)) {
+                            System.out.println("Upgrade impossible");
+                        }
                         towerActionMenu.setVisible(false);
                     });
                     towerActionMenu.setVisible(true);

@@ -187,4 +187,12 @@ public class Environnement {
     public void soldTower(Tower t) {
         t.sold();
     }
+
+    public boolean upgradeTower(Tower t) {
+        if (!t.canBeUpgraded()) return false;
+        if (balance.get() < t.getUpgradeCost()) return false;
+        balance.setValue(balance.getValue() - t.getUpgradeCost());
+        t.upgrade();
+        return true;
+    }
 }
