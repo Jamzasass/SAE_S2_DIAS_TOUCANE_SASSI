@@ -1,18 +1,18 @@
 package universite_paris8.iut.rdias.towerdefense.controller;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.Effect;
 import universite_paris8.iut.rdias.towerdefense.model.Projectile;
-import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
-import universite_paris8.iut.rdias.towerdefense.view.ProjectileView;
-import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
+import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
+import universite_paris8.iut.rdias.towerdefense.view.EffectView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ObsEffect implements ListChangeListener<Effect> {
-    private ArrayList<ProjectileView> effectSprite;
+    private ArrayList<EffectView> effectSprite;
     private Pane grid;
 
     public ObsEffect(Pane oGrid) {
@@ -38,17 +38,27 @@ public class ObsEffect implements ListChangeListener<Effect> {
             List<Effect> retirer = (List<Effect>) change.getRemoved();
 
             for (Effect e : ajout) {
-                ProjectileView s = new ProjectileView((Projectile) e);
+                EffectView s = new EffectView(e);
                 grid.getChildren().add(s.getImage());
                 effectSprite.add(s);
             }
             for (Effect e : retirer) {
-                grid.getChildren().remove(grid.lookup("#" + "e" + e.getId()));
+                if (e instanceof ZoneSpell) {
+                    for (EffectView ef : effectSprite) {
+                        if (ef.getId() == e.getId()) {
+                            ef.blow();
+                        }
+                    }
+                }
+                else {
+                    grid.getChildren().remove(grid.lookup("#" + "e" + e.getId()));
+                }
+
             }
         }
     }
 
-    public ArrayList<ProjectileView> getEnemiesSprite() {
+    public ArrayList<EffectView> getEnemiesSprite() {
         return effectSprite;
     }
 }

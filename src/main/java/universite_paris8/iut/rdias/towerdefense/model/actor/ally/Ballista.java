@@ -30,12 +30,12 @@ public class Ballista extends Tower {
         if (canAct()) {
             targets = searchTargets();
             if (targets[0]!=null){
-                Projectile p = new Projectile(getEnvironnement(), 1, getX(), getY(), this.getDmg(), targets[0]);
+                Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), targets[0]);
                 getEnvironnement().addEffect(p);
                 resetCooldown();
             }
             if (targets[1]!=null) {
-                Projectile p = new Projectile(getEnvironnement(), 1, getX(), getY(), this.getDmg(), targets[1]);
+                Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), targets[1]);
                 getEnvironnement().addEffect(p);
             }
         }

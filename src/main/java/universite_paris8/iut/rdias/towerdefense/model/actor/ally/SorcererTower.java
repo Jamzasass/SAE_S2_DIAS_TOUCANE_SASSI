@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.Settings;
@@ -26,7 +27,8 @@ public class SorcererTower extends Tower {
         if (canAct()){
             Enemy target = searchTarget();
             if (target != null){
-                damageInZoneAround(target);
+                ZoneSpell zp = new ZoneSpell(getEnvironnement(), getX(), getY(), getDmg(), target, radiusBlow);
+                getEnvironnement().addEffect(zp);
                 resetCooldown();
             }
         }

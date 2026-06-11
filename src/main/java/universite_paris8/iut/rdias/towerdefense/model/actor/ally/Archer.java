@@ -26,7 +26,7 @@ public class Archer extends Tower {
         if (canAct()){
             Enemy target = searchTarget();
             if (target != null) {
-                Projectile p = new Projectile(getEnvironnement(), 1, getX(), getY(), this.getDmg(), target);
+                Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
                 getEnvironnement().addEffect(p);
                 resetCooldown();
             }

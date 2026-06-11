@@ -4,21 +4,44 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 
 public class ZoneSpell extends Effect {
-    private int zoneRadius;
+    private double zoneRadius;
 
 
-    public ZoneSpell(Environnement pEnv, int pId, double pX, double pY, int pDmg, Actor pTarget) {
-        super(pEnv, pX, pY, pDmg, pId);
-
-
+    public ZoneSpell(Environnement zEnv, double zX, double zY, int zDmg, Actor zTarget, double zZoneRadius) {
+        super(zEnv, zX, zY, zDmg, zTarget, 0.10);
+        zoneRadius = zZoneRadius;
     }
 
     @Override
     public void act() {
+        if (getTarget() == null || !getTarget().isLiving()) {
+            finished();
+        }
+        double dX = (getTarget().getX()) - getX();
+        double dY = (getTarget().getY()) - getY();
+        double dist = Math.hypot(dX, dY);
 
+        if (dist < getSpeed() && !isFinished()) {
+            damageInZoneAround(getTarget());
+            finished();
+        } else {
+            majDirectionEtAngle(dX, dY, dist);
+            setX(getX() + (getDirectionX() * getSpeed()));
+            setY(getY() + (getDirectionY() * getSpeed()));
+        }
     }
 
-    private void damageInZoneAround(Enemy target) {
+
+    public void majDirectionEtAngle(double dx, double dy, double dist) {
+        if (dist > 0) {
+            directionXProperty().set(dx / dist);
+            directionYProperty().set(dy / dist);
+            double angleDegres = Math.toDegrees(Math.atan2(getDirectionY(), getDirectionX()));
+            setAngle(angleDegres);
+        }
+    }
+
+    private void damageInZoneAround(Actor target) {
         for (Enemy e : getEnvironnement().getEnemies()) {
             if (!e.isLiving()) continue;
             double dist = Math.hypot(e.getX() - target.getX(), e.getY() - target.getY());
@@ -26,5 +49,9 @@ public class ZoneSpell extends Effect {
                 e.takeDamage(getDmg());
             }
         }
+    }
+
+    public double getZoneRadius() {
+        return zoneRadius;
     }
 }
