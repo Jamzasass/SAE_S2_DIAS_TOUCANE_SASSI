@@ -162,7 +162,7 @@
 }
 
 .encadre {
-    -fx-border-color: #e2e2e2;
+    -fx-border-color: '#efbf04';
     -fx-border-width: 2;
     -fx-background-radius: 10px;
     -fx-border-radius:20px;
