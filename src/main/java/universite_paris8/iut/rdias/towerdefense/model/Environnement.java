@@ -77,41 +77,41 @@ public class Environnement {
         castle.takeDamage(dmg);
     }
     public void addArcher(int col, int line) {
-        Tower archer = new Archer(this, settings.getArcherHp(), settings.getArcherDmg(), id, (double) col, (double) line, settings.getArcherSpeedAttack(), settings.getArcherCost());
+        Tower archer = new Archer(this, id, (double) col, (double) line);
         if (this.addTower(archer)) {
             balance.setValue(balance.getValue() - archer.getCost());
         }
     }
     public void addBarrack(int col, int line) {
-        Tower barrack = new Barrack(this, settings.getBarrackHp(), id, (double) col, (double) line, settings.getBarrackSpeedProduction(), settings.getBarrackCost());
+        Tower barrack = new Barrack(this, id, (double) col, (double) line);
         if (this.addTower(barrack)){
             balance.setValue(balance.getValue() - barrack.getCost());
         }
     }
 
     public void addBallista(int col, int line){
-        Tower ballista = new Ballista(this, settings.getBallistaHp(), settings.getBallistaDmg(), id, settings.getBallistaRange(), (double) col, (double) line, settings.getBallistaSpeedAttack(), settings.getBallistaCost());
+        Tower ballista = new Ballista(this, id, (double) col, (double) line);
         if (this.addTower(ballista)){
             balance.setValue(balance.getValue() - ballista.getCost());
         }
     }
 
     public void addBramble(int col, int line){
-        Tower bramble = new Bramble(this, id, (double) col, (double) line, settings.getBrambleCost());
+        Tower bramble = new Bramble(this, id, (double) col, (double) line);
         if (this.addTower(bramble)){
             balance.setValue(balance.getValue() - bramble.getCost());
         }
     }
 
     public void addPalissade(int col, int line){
-        Tower palissade = new Palissade(this, settings.getPalissadeHp(), id, (double) col, (double) line, settings.getPalissadeCost());
+        Tower palissade = new Palissade(this, id, (double) col, (double) line);
         if (this.addTower(palissade)){
             balance.setValue(balance.getValue() - palissade.getCost());
         }
     }
 
     public void addSorcerer(int col, int line){
-        Tower sorcerer = new SorcererTower(this, settings.getSorcererTowerHp(), settings.getSorcererTowerDmg(), getId(),col, line, settings.getSorcererTowerSpeedAttack(), settings.getSorcererTowerCost());
+        Tower sorcerer = new SorcererTower(this, getId(),col, line);
         if (this.addTower(sorcerer)){
             balance.setValue(balance.getValue() - sorcerer.getCost());
         }

@@ -7,8 +7,16 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 public class Archer extends Tower {
 
-    public Archer(Environnement aEnv, int aHp, int aDmg, int archerId, double aX, double aY, int aSpeedAttack, int aCost) {
-        super(aEnv, aHp, aDmg, archerId, 4.0, aX, aY, aSpeedAttack, aCost);
+    public Archer(Environnement aEnv,int archerId, double aX, double aY) {
+        super(aEnv,
+                aEnv.getSettings().getArcherHp(),
+                aEnv.getSettings().getArcherDmg(),
+                archerId,
+                aEnv.getSettings().getArcherRange(),
+                aX,
+                aY,
+                aEnv.getSettings().getArcherSpeedAttack(),
+                aEnv.getSettings().getArcherCost());
     }
 
     @Override

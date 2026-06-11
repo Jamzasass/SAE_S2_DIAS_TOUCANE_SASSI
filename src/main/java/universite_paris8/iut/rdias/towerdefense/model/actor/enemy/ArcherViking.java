@@ -13,8 +13,16 @@ public class ArcherViking extends Enemy {
 
 //TODO speedAttack or speedAttack for ArcherViking
 
-    public ArcherViking(Environnement env, int eHp, int eDmg, int eId, int eRange, double eX, double eY, double eSpeed, int eDeathValue) {
-        super(env, eHp, eDmg, eId, eRange, eX, eY, eSpeed, eDeathValue);
+    public ArcherViking(Environnement aEnv, int eId, double eX, double eY) {
+        super(aEnv,
+                aEnv.getSettings().getArcherVikingHp(),
+                aEnv.getSettings().getArcherVikingDmg(),
+                eId,
+                aEnv.getSettings().getArcherVikingRange(),
+                eX,
+                eY,
+                aEnv.getSettings().getArcherVikingSpeed(),
+                aEnv.getSettings().getArcherVikingDeathValue());
         target = null;
     }
     @Override

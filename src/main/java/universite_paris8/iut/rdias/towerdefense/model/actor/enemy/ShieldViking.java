@@ -9,8 +9,16 @@ public class ShieldViking extends Enemy {
 
     private Knight target;
 
-    public ShieldViking(Environnement env, int eHp, int eDmg, int eId, double eX, double eY, double eSpeed, int eDeathValue) {
-        super(env, eHp, eDmg, eId, 0.1, eX, eY, eSpeed, eDeathValue);
+    public ShieldViking(Environnement sEnv, int eId, double eX, double eY) {
+        super(sEnv,
+                sEnv.getSettings().getShieldwarriorHp(),
+                sEnv.getSettings().getShieldwarriorDmg(),
+                eId,
+                0.1,
+                eX,
+                eY,
+                sEnv.getSettings().getShieldwarriorSpeed(),
+                sEnv.getSettings().getShieldwarriorDeathValue());
         target = null;
     }
 

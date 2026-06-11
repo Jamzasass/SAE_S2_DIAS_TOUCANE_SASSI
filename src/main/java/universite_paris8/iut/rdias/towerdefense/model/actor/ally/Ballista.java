@@ -10,8 +10,16 @@ public class Ballista extends Tower {
 
     private Enemy[] targets;
 
-    public Ballista(Environnement env, int ballistaHP, int ballistaDmg, int ballistaId, int ballistaRange, double ballistaX, double ballistaY, int ballistaSpeedAttack, int ballistaCost) {
-        super(env, ballistaHP , ballistaDmg, ballistaId, ballistaRange, ballistaX, ballistaY, ballistaSpeedAttack, ballistaCost);
+    public Ballista(Environnement bEnv, int ballistaId, double ballistaX, double ballistaY) {
+        super(bEnv,
+                bEnv.getSettings().getBallistaHp(),
+                bEnv.getSettings().getBallistaDmg(),
+                ballistaId,
+                bEnv.getSettings().getBallistaRange(),
+                ballistaX,
+                ballistaY,
+                bEnv.getSettings().getBallistaSpeedAttack(),
+                bEnv.getSettings().getBallistaCost());
         targets = new Enemy[2];
     }
 

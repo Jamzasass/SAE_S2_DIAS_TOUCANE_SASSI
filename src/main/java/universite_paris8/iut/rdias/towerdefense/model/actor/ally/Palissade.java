@@ -9,8 +9,16 @@ public class Palissade extends Tower {
 
     private static final int hplvl2 = 300;
 
-    public Palissade(Environnement env, int palissadeHp, int palissadeId, double palissadeX, double palissadeY, int palissadeCost) {
-        super(env, palissadeHp, 0, palissadeId, 0, palissadeX, palissadeY, 1, palissadeCost);
+    public Palissade(Environnement pEnv, int palissadeId, double palissadeX, double palissadeY) {
+        super(pEnv,
+                pEnv.getSettings().getPalissadeHp(),
+                0,
+                palissadeId,
+                0,
+                palissadeX,
+                palissadeY,
+                1,
+                pEnv.getSettings().getPalissadeCost());
     }
 
     @Override

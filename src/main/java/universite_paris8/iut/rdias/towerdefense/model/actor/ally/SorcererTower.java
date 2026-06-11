@@ -8,8 +8,16 @@ import universite_paris8.iut.rdias.towerdefense.model.Settings;
 public class SorcererTower extends Tower {
     private double radiusBlow = 8.0;
 
-    public SorcererTower(Environnement env, int sorcererHp, int sorcererDmg, int sorcererId, double sorcererX, double sorcererY, int sorcererSpeedAttack, int sorcererCost) {
-        super(env, sorcererHp, sorcererDmg, sorcererId, 4.0, sorcererX, sorcererY, sorcererSpeedAttack, sorcererCost);
+    public SorcererTower(Environnement sEnv, int sorcererId, double sorcererX, double sorcererY) {
+        super(sEnv,
+                sEnv.getSettings().getSorcererTowerHp(),
+                sEnv.getSettings().getSorcererTowerDmg(),
+                sorcererId,
+                sEnv.getSettings().getSorcererRange(),
+                sorcererX,
+                sorcererY,
+                sEnv.getSettings().getSorcererTowerSpeedAttack(),
+                sEnv.getSettings().getSorcererTowerCost());
     }
 
     @Override

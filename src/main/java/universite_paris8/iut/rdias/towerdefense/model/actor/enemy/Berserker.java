@@ -9,8 +9,16 @@ public class Berserker extends Enemy {
 
     private Knight target;
 
-    public Berserker(Environnement env, int eHp, int eDmg, int eId, double eX, double eY, double eSpeed, int eDeathValue) {
-        super(env, eHp, eDmg, eId, 0.1, eX, eY, eSpeed, eDeathValue);
+    public Berserker(Environnement bEnv, int eId, double eX, double eY) {
+        super(bEnv,
+                bEnv.getSettings().getBerserkerHp(),
+                bEnv.getSettings().getBerserkerDmg(),
+                eId,
+                0.1,
+                eX,
+                eY,
+                bEnv.getSettings().getBerserkerSpeed(),
+                bEnv.getSettings().getBerserkerDeathValue());
         target = null;
     }
 

@@ -8,8 +8,16 @@ public class Barrack extends Tower {
     private int[] coordClosePath;
 
 
-    public Barrack (Environnement env, int bHp, int barrackId, double barrackX, double barrackY, int bSpeedProduction, int bCost) {
-        super(env, bHp, 0, barrackId, 0, barrackX, barrackY, bSpeedProduction, bCost);
+    public Barrack (Environnement bEnv, int barrackId, double barrackX, double barrackY) {
+        super(bEnv,
+                bEnv.getSettings().getBarrackHp(),
+                bEnv.getSettings().getBallistaDmg(),
+                barrackId,
+                0,
+                barrackX,
+                barrackY,
+                bEnv.getSettings().getBarrackSpeedProduction(),
+                bEnv.getSettings().getBarrackCost());
         coordClosePath = closestPath();
     }
 
@@ -17,7 +25,7 @@ public class Barrack extends Tower {
     public void act(){
         tick();
         if (canAct() && hasEnemies(getEnvironnement())){
-            Knight k = new Knight(getEnvironnement(), getEnvironnement().getSettings().getKnightHp(), getEnvironnement().getSettings().getKnightDmg(), getEnvironnement().getId(), coordClosePath[1], coordClosePath[0]);
+            Knight k = new Knight(getEnvironnement(), getEnvironnement().getId(), coordClosePath[1], coordClosePath[0]);
             getEnvironnement().addKnight(k);
             resetCooldown();
         }

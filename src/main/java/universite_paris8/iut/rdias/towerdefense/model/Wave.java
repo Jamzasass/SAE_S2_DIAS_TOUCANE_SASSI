@@ -57,56 +57,56 @@ public class Wave {
         int col = spawn[1];
         int radomSelectEnemy = (int) (Math.random() * 100);
         if (waveIndex == 1){
-            e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+            e = new Viking(env, env.getId(), col, line);
         }
         else if (waveIndex <= 2) {
             if (radomSelectEnemy < 30) {
-                e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+                e = new ArcherViking(env, env.getId(), col, line);
             }
             else {
-                e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+                e = new Viking(env, env.getId(), col, line);
             }
         }
         else if (waveIndex <= 3) {
             if (radomSelectEnemy < 30) {
-                e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+                e = new ArcherViking(env, env.getId(), col, line);
             }
             else if (radomSelectEnemy < 50) {
-                e = new Berserker(env, env.getSettings().getBerserkerHp(), env.getSettings().getBerserkerDmg(), env.getId(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+                e = new Berserker(env, env.getId(), col, line);
             }
             else {
-                e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+                e = new Viking(env,env.getId(), col, line);
             }
         }
         else if (waveIndex <= 4) {
             if (radomSelectEnemy < 10) {
-                e = new ShieldViking(env, env.getSettings().getShieldwarriorHp(), env.getSettings().getShieldwarriorDmg(), env.getId(), col, line, env.getSettings().getShieldwarriorSpeed(), env.getSettings().getShieldwarriorDeathValue());
+                e = new ShieldViking(env, env.getId(), col, line);
             }
             else if (radomSelectEnemy < 20) {
-                e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+                e = new ArcherViking(env, env.getId(), col, line);
             }
             else if (radomSelectEnemy < 30) {
-                e = new Berserker(env, env.getSettings().getBerserkerHp(), env.getSettings().getBerserkerDmg(), env.getId(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+                e = new Berserker(env, env.getId(), col, line);
             }
             else {
-                e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+                e = new Viking(env, env.getId(), col, line);
             }
         }
         else if (waveIndex <= 10) {
             if (radomSelectEnemy < 10) {
-                e = new RamWarrior(env, env.getSettings().getShieldwarriorHp(), env.getSettings().getShieldwarriorDmg(), env.getId(), col, line, env.getSettings().getShieldwarriorSpeed(), env.getSettings().getShieldwarriorDeathValue());
+                e = new RamWarrior(env, env.getId(), col, line);
             }
             else if (radomSelectEnemy < 15) {
-                e = new ShieldViking(env, env.getSettings().getShieldwarriorHp(), env.getSettings().getShieldwarriorDmg(), env.getId(), col, line, env.getSettings().getShieldwarriorSpeed(), env.getSettings().getShieldwarriorDeathValue());
+                e = new ShieldViking(env, env.getId(), col, line);
             }
             else if (radomSelectEnemy < 20) {
-                e = new ArcherViking(env, env.getSettings().getArcherVikingHp(), env.getSettings().getArcherVikingDmg(), env.getId(), env.getSettings().getArcherVikingRange(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+                e = new ArcherViking(env, env.getId(), col, line);
             }
             else if (radomSelectEnemy < 25) {
-                e = new Berserker(env, env.getSettings().getBerserkerHp(), env.getSettings().getBerserkerDmg(), env.getId(), col, line, env.getSettings().getArcherVikingSpeed(), env.getSettings().getArcherVikingDeathValue());
+                e = new Berserker(env, env.getId(), col, line);
             }
             else {
-                e = new Viking(env, env.getSettings().getVikingHp(), env.getSettings().getArcherDmg(), env.getId(), env.getSettings().getVikingSpeed(), col, line);
+                e = new Viking(env, env.getId(), col, line);
             }
         }
         return e;

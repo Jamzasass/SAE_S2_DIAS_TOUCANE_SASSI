@@ -9,8 +9,16 @@ public class RamWarrior extends Enemy {
 
     private Tower target;
 
-    public RamWarrior(Environnement env, int eHp, int eDmg, int eId, double eX, double eY, double eSpeed, int eDeathValue) {
-        super(env, eHp, eDmg, eId, 0.1, eX, eY, eSpeed, eDeathValue);
+    public RamWarrior(Environnement rEnv, int eId, double eX, double eY) {
+        super(rEnv,
+                rEnv.getSettings().getRamwarriorHp(),
+                rEnv.getSettings().getRamwarriorDmg(),
+                eId,
+                0.1,
+                eX,
+                eY,
+                rEnv.getSettings().getRamwarriorSpeed(),
+                rEnv.getSettings().getRamwarriorDeathValue());
     }
 
     @Override

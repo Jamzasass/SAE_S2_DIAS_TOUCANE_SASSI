@@ -7,8 +7,17 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 public class Knight extends Soldier {
     private Enemy target;
 
-    public Knight(Environnement env, int kHp, int kDmg, int kId, double kX, double kY) {
-        super(env, kHp, kDmg, kId, 1, kX, kY, 0.07, 42, 40);
+    public Knight(Environnement kEnv, int kId, double kX, double kY) {
+        super(kEnv,
+                kEnv.getSettings().getKnightHp(),
+                kEnv.getSettings().getKnightDmg(),
+                kId,
+                1,
+                kX,
+                kY,
+                kEnv.getSettings().getKnightSpeed(),
+                42,
+                40);
         target = null;
     }
     public void act() {
