@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
@@ -36,7 +37,10 @@ public class ArcherViking extends Enemy {
                 setyCible((int) target.getY());
                 this.move();
                 if (dist < this.getRange() && canAct()){
-                    target.takeDamage(this.getDmg());
+                    System.out.println("d " + dist + " - " + this.getRange());
+//                    target.takeDamage(getDmg());
+                    Projectile p = new Projectile(getEnvironnement(), 1, getX(), getY(), this.getDmg(), target);
+                    getEnvironnement().addEffect(p);
                     resetCooldown();
                 }
             }
@@ -47,7 +51,9 @@ public class ArcherViking extends Enemy {
                 setyCible(dest[0]);
                 if (dist < Math.pow((this.getRange()), 2)){
                     if (canAct()) {
-                        target.takeDamage(this.getDmg());
+//                        target.takeDamage(this.getDmg());
+                        Projectile p = new Projectile(getEnvironnement(), 1, getX(), getY(), this.getDmg(), target);
+                        getEnvironnement().addEffect(p);
                         resetCooldown();
                     }
                 }
@@ -96,7 +102,7 @@ public class ArcherViking extends Enemy {
         return dx * dx + dy * dy;
     }
     public int calculDistanceFromEnemyByBFS(Actor a) {
-        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)getY()][(int)getX()][(int)a.getY()][(int)a.getY()];
+        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)getY()][(int)getX()][(int)a.getY()][(int)a.getX()];
     }
 
 

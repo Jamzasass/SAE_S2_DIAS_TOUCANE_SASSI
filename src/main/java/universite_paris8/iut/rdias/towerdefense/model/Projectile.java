@@ -1,17 +1,23 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import universite_paris8.iut.rdias.towerdefense.model.actor.*;
 
 public class Projectile extends Effect{
-    private Enemy target;
+    private Actor target;
     private double speed;
-    private double directionX;
-    private double directionY;
+    private DoubleProperty directionX;
+    private DoubleProperty directionY;
+    private DoubleProperty angle;
 
-    public Projectile(double x, double y, int damage, Enemy target, double speed) {
-        super(x, y, damage);
-        this.target = target;
-        this.speed = speed;
+    public Projectile(Environnement pEnv, int pId, double pX, double pY, int pDmg, Actor pTarget) {
+        super(pEnv, pX, pY, pDmg, pId);
+        this.target = pTarget;
+        this.speed = 0.35;
+        directionX = new SimpleDoubleProperty(0);
+        directionY = new SimpleDoubleProperty(0);
+        angle = new SimpleDoubleProperty(0);
     }
 
     @Override
@@ -19,26 +25,30 @@ public class Projectile extends Effect{
         if (target == null || !target.isLiving()) {
             finished();
         }
-        double dx = target.getX() - getX();
-        double dy = target.getY() - getY();
-        double dist = Math.hypot(dx, dy);
+        double dX = (target.getX()) - getX();
+        double dY = (target.getY()) - getY();
+        double dist = Math.hypot(dX, dY);
 
-        if (dist < speed) {
+        if (dist < speed && !isFinished()) {
             target.takeDamage(getDmg());
             finished();
         } else {
-
-            setX(getX() + ((dx / dist) * speed));
-            setY(getY() + ((dy / dist) * speed));
+            majDirectionEtAngle(dX, dY, dist);
+            setX(getX() + (directionX.getValue() * speed));
+            setY(getY() + (directionY.getValue() * speed));
         }
     }
 
-    public void majDirection() {
-        if (target != null) {
-            Math.cos(target.getX() + target.getY());
-            directionX = target.getX() - this.getX();
-            directionY = target.getY() - this.getY();
+
+    public void majDirectionEtAngle(double dx, double dy, double dist) {
+        if (dist > 0) {
+            directionX.set(dx / dist);
+            directionY.set(dy / dist);
+            double angleDegres = Math.toDegrees(Math.atan2(directionY.get(), directionX.get()));
+            angle.set(angleDegres);
         }
     }
-
+    public DoubleProperty getAnglePorperty() {
+        return angle;
+    }
 }

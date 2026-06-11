@@ -2,6 +2,7 @@ package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
@@ -25,7 +26,8 @@ public class Archer extends Tower {
         if (canAct()){
             Enemy target = searchTarget();
             if (target != null) {
-                target.takeDamage(getDmg());
+                Projectile p = new Projectile(getEnvironnement(), 1, getX(), getY(), this.getDmg(), target);
+                getEnvironnement().addEffect(p);
                 resetCooldown();
             }
         }

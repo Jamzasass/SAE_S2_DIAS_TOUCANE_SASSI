@@ -4,15 +4,19 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public abstract class Effect {
+    private Environnement environnement;
     private DoubleProperty x;
     private DoubleProperty y;
+    private int id;
     private int dmg;
     private boolean finished = false;
 
-    public Effect(double eX, double eY, int eDmg) {
+    public Effect(Environnement eEnv, double eX, double eY, int eDmg, int eId) {
+        this.environnement = eEnv;
         this.x = new SimpleDoubleProperty(eX);
         this.y = new SimpleDoubleProperty(eY);
         this.dmg = eDmg;
+        this.id = eId;
     }
 
     public abstract void act();
@@ -24,6 +28,7 @@ public abstract class Effect {
     public double getY() { return y.getValue(); }
     public void finished() {
         finished = true;
+        environnement.delEffect(this);
     }
     public int getDmg() {
         return dmg;
@@ -33,5 +38,9 @@ public abstract class Effect {
     }
     public void setY(double nY) {
         y.setValue(nY);
+    }
+
+    public int getId() {
+        return id;
     }
 }

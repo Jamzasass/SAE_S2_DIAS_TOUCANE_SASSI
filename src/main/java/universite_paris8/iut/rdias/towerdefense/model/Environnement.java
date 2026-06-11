@@ -21,7 +21,9 @@ public class Environnement {
     private ObservableList<Enemy> enemies;
     private ObservableList<Knight> knights;
     private ObservableList<Tower> towers;
+    private ObservableList<Effect> effects;
     private ArrayList<Actor> actorsDying;
+    private ArrayList<Effect> effectsDying;
     private static int cptSpawn = 0;
     private int delaySpawn = 60;
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
@@ -37,7 +39,9 @@ public class Environnement {
         this.enemies = FXCollections.observableArrayList();
         this.knights = FXCollections.observableArrayList();
         this.towers = FXCollections.observableArrayList();
+        this.effects = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
+        this.effectsDying = new ArrayList<>();
         this.balance = new SimpleIntegerProperty(10000);
         this.waveIndex = new SimpleIntegerProperty(0);
         this.settings = new Settings();
@@ -116,6 +120,15 @@ public class Environnement {
             balance.setValue(balance.getValue() - sorcerer.getCost());
         }
     }
+    public void addEffect(Effect e) {
+        effects.add(e);
+    }
+    public void delEffect(Effect e) {
+        effectsDying.add(e);
+    }
+    public void killEffect(Effect e) {
+        effects.remove(e);
+    }
 
     public void earn(int gain) {
         balance.setValue(balance.getValue() + gain);
@@ -136,6 +149,9 @@ public class Environnement {
         for (Enemy e : enemies) {
             e.act();
         }
+        for (Effect ef : effects) {
+            ef.act();
+        }
 
         for (Actor a : actorsDying) {
             if (a instanceof Enemy) {
@@ -148,6 +164,10 @@ public class Environnement {
                 delKnight((Knight) a);
             }
         }
+        for (Effect e : effectsDying) {
+            killEffect(e);
+        }
+        effectsDying.clear();
         actorsDying.clear();
     }
 
@@ -159,6 +179,9 @@ public class Environnement {
     }
     public ObservableList<Tower> getTowers() {
         return towers;
+    }
+    public ObservableList<Effect> getEffects() {
+        return effects;
     }
     public Castle getCastle() {
         return castle;
