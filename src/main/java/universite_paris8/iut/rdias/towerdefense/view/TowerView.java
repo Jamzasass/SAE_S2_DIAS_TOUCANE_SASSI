@@ -27,7 +27,7 @@ public class TowerView {
 
     //Sprite lvl2
 
-    private static Image spriteArcherlvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1.png"));
+    private static Image spriteArcherlvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower_lvl2/sprite_ArcherTower2.1.png"));
     private static Image spriteBarracklvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower_lvl2/sprite_BarrackTowerNiv2_1.png"));
     private static Image spriteBallistalvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista_lvl2/sprite_BallistaTower2.1.png"));
     private static Image spriteSorcererlvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower_lvl2/sprite_towersorcerer2.1.png"));
