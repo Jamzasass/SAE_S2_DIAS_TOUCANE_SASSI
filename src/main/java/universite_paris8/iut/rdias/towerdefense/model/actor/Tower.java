@@ -1,13 +1,15 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 
 public abstract class Tower extends Actor{
 
     private final int cost;
     private int speedAct; //en demi seconde (si 1 = une attaque possible toutes le 1/2 secondes
-    private int level;
     private int cooldown;
+    private IntegerProperty level;
 
 
     public Tower(Environnement env, int tHp, int tDmg, int tId, double tRange, double tX, double tY, int speedAct, int tCost) {
@@ -15,7 +17,7 @@ public abstract class Tower extends Actor{
         this.cost = tCost;
         this.speedAct = speedAct;
         this.cooldown = speedAct*30;
-        this.level = 1;
+        this.level = new SimpleIntegerProperty(1);
     }
 
     public int getCost() {
@@ -26,9 +28,8 @@ public abstract class Tower extends Actor{
         return speedAct;
     }
 
-    public int getLevel() {
-        return level;
-    }
+    public int getLevel(){ return level.get();}
+
     public int getCooldown() {
         return cooldown;
     }
@@ -67,7 +68,7 @@ public abstract class Tower extends Actor{
     public void setSpeedAct(int speedAct){this.speedAct = speedAct;}
 
     public void lvlUp() {
-        this.level++;
+        this.level.set(this.level.get() + 1);
     }
 
     public void sold(){
@@ -108,5 +109,9 @@ public abstract class Tower extends Actor{
 
     public int placementRange(){
         return 1;
+    }
+
+    public IntegerProperty getLevelProperty() {
+        return level;
     }
 }
