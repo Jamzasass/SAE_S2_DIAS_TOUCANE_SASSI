@@ -27,7 +27,7 @@ public class Environnement {
     private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
     private IntegerProperty balance;
     private Settings settings;
-    private int waveIndex;
+    private IntegerProperty waveIndex;
     private Wave wave;
 
 
@@ -39,9 +39,9 @@ public class Environnement {
         this.towers = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
         this.balance = new SimpleIntegerProperty(10000);
-        this.waveIndex = 0;
+        this.waveIndex = new SimpleIntegerProperty(0);
         this.settings = new Settings();
-        this.wave = new Wave(this, waveIndex);
+        this.wave = new Wave(this, waveIndex.get());
     }
 
     public void addEnemy(Enemy e){this.enemies.add(e);}
@@ -178,10 +178,14 @@ public class Environnement {
         id++;
     }
     public void nextWave() {
-        waveIndex++;
-        wave = new Wave(this, waveIndex);
+        waveIndex.set(waveIndex.get() + 1);
+        wave = new Wave(this, waveIndex.get());
         enemies.clear();
         knights.clear();
+    }
+
+    public IntegerProperty getWaveIndexProperty() {
+        return waveIndex;
     }
 
     public void soldTower(Tower t) {
