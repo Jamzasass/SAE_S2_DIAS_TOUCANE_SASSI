@@ -253,15 +253,15 @@ public class Controller {
 
         String message;
         if (wave <= 2) {
-            message = "Tu es une merguez carbonisé...";
+            message = "Tu fais honte au roi. Au bûcher !!!";
         } else if (wave <= 5) {
-            message = "Tu es une merguez trop cuite.";
+            message = "Pff. T'es mauvais ! ";
         } else if (wave <= 10) {
-            message = "";
+            message = "Mmmmh. Va lire l'art de la Guerre pour t'améliorer.";
         } else if (wave <= 15) {
-            message = "";
+            message = "Bien ! Mais tu dois améliorer ta tactique.";
         } else {
-            message = "Légendaire. Les Vikings te respectent.";
+            message = "Tu as été promu en tant que tacticien de l'armée du Roi. Chapeau l'artiste.";
         }
 
         VBox gameOverPane = new VBox(20);
