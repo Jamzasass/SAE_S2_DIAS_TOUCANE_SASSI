@@ -48,7 +48,10 @@ public class SorcererTower extends Tower {
         return closest;
     }
 
-
+    @Override
+    public int placementRange(){
+        return 4;
+    }
 
     @Override
     public void upgrade() {

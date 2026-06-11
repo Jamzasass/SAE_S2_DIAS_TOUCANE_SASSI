@@ -69,14 +69,17 @@ public abstract class Tower extends Actor{
         return isAdjacentToPath(line, col);
     }
 
-    private boolean isAdjacentToPath(int line, int col) {
+    public boolean isAdjacentToPath(int line, int col) {
         var ground = getEnvironnement().getGround();
         int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        int range = placementRange();
         for (int[] d : dirs) {
-            int nL = line + d[0];
-            int nC = col + d[1];
-            if (nL >= 0 && nL < ground.heigth() && nC >= 0 && nC < ground.width()) {
-                if (ground.isPath(nL, nC)) return true;
+            for (int step = 1; step <= range; step++) {
+                int nL = line + d[0] * step;
+                int nC = col + d[1] * step;
+                if (nL >= 0 && nL < ground.heigth() && nC >= 0 && nC < ground.width()) {
+                    if (ground.isPath(nL, nC)) return true;
+                }
             }
         }
         return false;
@@ -86,4 +89,7 @@ public abstract class Tower extends Actor{
         return Integer.MAX_VALUE;
     }
 
+    public int placementRange(){
+        return 1;
+    }
 }

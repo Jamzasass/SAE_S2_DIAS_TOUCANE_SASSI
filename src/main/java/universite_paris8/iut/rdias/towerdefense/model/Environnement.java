@@ -38,7 +38,7 @@ public class Environnement {
         this.knights = FXCollections.observableArrayList();
         this.towers = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
-        this.balance = new SimpleIntegerProperty(2000);
+        this.balance = new SimpleIntegerProperty(10000);
         this.waveIndex = 0;
         this.settings = new Settings();
         this.wave = new Wave(this, waveIndex);

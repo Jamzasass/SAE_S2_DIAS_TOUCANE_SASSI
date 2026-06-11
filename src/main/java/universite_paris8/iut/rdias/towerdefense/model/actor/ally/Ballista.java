@@ -59,6 +59,11 @@ public class Ballista extends Tower {
     }
 
     @Override
+    public int placementRange(){
+        return 3;
+    }
+
+    @Override
     public void upgrade() {
         if (getLevel() < 2) {
 //            setHp(hplvl2);
