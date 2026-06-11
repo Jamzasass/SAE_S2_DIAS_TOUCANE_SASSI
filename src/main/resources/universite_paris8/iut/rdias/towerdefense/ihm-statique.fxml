@@ -64,6 +64,23 @@
                         <Insets left="3.0" right="3.0" />
                      </VBox.margin>
                   </HBox>
+                  <HBox prefHeight="22.0" prefWidth="100.0"  styleClass="encadre">
+                     <children>
+                        <Label styleClass="textLabel" text="Vague" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="10.0" top="2.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="waveLabel" styleClass="textLabel" text="0" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="180.0" top="2.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="3.0" right="3.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
             </VBox>
             <VBox prefHeight="530.0" prefWidth="300.0" styleClass="rightPane">
