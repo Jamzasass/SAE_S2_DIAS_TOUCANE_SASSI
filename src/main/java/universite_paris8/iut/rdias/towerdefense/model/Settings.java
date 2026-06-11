@@ -4,6 +4,10 @@ package universite_paris8.iut.rdias.towerdefense.model;
 
 public class Settings {
 
+    //UpgradeSetting
+    public static double upgradeFactor = 2;
+    public static double upgradeCostFactor = 0.5;
+
     // --------- towers (ally -> cost)
     // archer
     public static int archerDmg = 40;
