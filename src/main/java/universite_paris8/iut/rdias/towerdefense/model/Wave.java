@@ -56,8 +56,10 @@ public class Wave {
         int line = spawn[0];
         int col = spawn[1];
         int radomSelectEnemy = (int) (Math.random() * 100);
-        if (waveIndex == 1){
-            e = new Viking(env, env.getId(), col, line);
+
+        if (waveIndex <= 1){
+            //e = new Viking(env, env.getId(), col, line);
+            e = new RamWarrior(env, env.getId(), col, line);
         }
         else if (waveIndex <= 2) {
             if (radomSelectEnemy < 30) {
