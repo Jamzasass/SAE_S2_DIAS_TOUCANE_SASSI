@@ -1,9 +1,15 @@
 package universite_paris8.iut.rdias.towerdefense.view;
 
+import javafx.animation.PauseTransition;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;
@@ -31,6 +37,8 @@ public class SoldierView {
 
     private static Image imageBatteringRam1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/battering_ram/sprite_BatteringRam1.png"));
     private static Image imageBatteringRam2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/battering_ram/sprite_BatteringRam2.png"));
+
+    private static Image imageSlash = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_slash.png"));
 
     public SoldierView(Soldier sSoldier) {
         this.soldier = sSoldier;
@@ -70,6 +78,29 @@ public class SoldierView {
             this.image.setId("v" + soldier.getId());
             this.pvBar.setId("vP" + soldier.getId());
         }
+        this.soldier.getHpProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue.intValue() > newValue.intValue()) {
+                ColorInput rouge = new ColorInput(
+                        0, 0,
+                        this.image.getImage().getWidth(),
+                        this.image.getImage().getHeight(),
+                        Color.RED
+                );
+                Blend flashRouge = new Blend(BlendMode.SRC_ATOP, null, rouge);
+                flashRouge.setOpacity(0.5);
+                this.image.setEffect(flashRouge);
+                ImageView nIV = new ImageView(imageSlash);
+                ((javafx.scene.layout.Pane) this.image.getParent()).getChildren().add(nIV);
+                nIV.layoutXProperty().bind(this.image.layoutXProperty());
+                nIV.layoutYProperty().bind(this.image.layoutYProperty());
+                PauseTransition pause = new PauseTransition(Duration.millis(150));
+                pause.setOnFinished(event -> {
+                    this.image.setEffect(null);
+                    ((javafx.scene.layout.Pane) this.image.getParent()).getChildren().remove(nIV);
+                });
+                pause.play();
+            }
+        });
         pvBar.widthProperty().bind(sSoldier.getHpProperty().multiply(0.4));
         image.setFitWidth(imageSize);
         image.setFitHeight(imageSize);

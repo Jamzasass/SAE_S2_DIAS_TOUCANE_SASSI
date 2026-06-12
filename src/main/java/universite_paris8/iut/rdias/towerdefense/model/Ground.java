@@ -2,6 +2,8 @@ package universite_paris8.iut.rdias.towerdefense.model;
 
 import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 
+import java.util.ArrayList;
+
 /*
     La classe Terrain est reponsable du terrain, c'est à dire quelle tuile est où.
  */
@@ -122,5 +124,40 @@ public class Ground {
         }
         return closePath;
     }
+    public ArrayList<int[]> getAllClosestPaths(int line, int col) {
+        ArrayList<int[]> closestPaths = new ArrayList<>();
 
+        // On boucle sur la distance (de 1 à 5 cases aux alentours comme ton modèle)
+        for (int i = 1; i < 6; i++) {
+
+            // 1. Regarder à DROITE
+            if (col + i < width() && isPath(line, col + i)) {
+                closestPaths.add(new int[]{line, col + i});
+            }
+
+            // 2. Regarder à GAUCHE
+            if (col - i >= 0 && isPath(line, col - i)) {
+                closestPaths.add(new int[]{line, col - i});
+            }
+
+            // 3. Regarder en BAS (Correction de la condition : line+i doit être inférieur à heigth)
+            if (line + i < heigth() && isPath(line + i, col)) {
+                closestPaths.add(new int[]{line + i, col});
+            }
+
+            // 4. Regarder en HAUT
+            if (line - i >= 0 && isPath(line - i, col)) {
+                closestPaths.add(new int[]{line - i, col});
+            }
+
+            // STRATÉGIE : Si on a trouvé au moins un chemin à la distance 'i',
+            // on arrête la recherche pour ne pas prendre des chemins plus lointains.
+            if (!closestPaths.isEmpty()) {
+                return closestPaths;
+            }
+        }
+
+        // Renvoie la liste (vide si aucun chemin n'est à moins de 5 cases)
+        return closestPaths;
+    }
 }
