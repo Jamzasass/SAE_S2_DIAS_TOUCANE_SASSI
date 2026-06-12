@@ -38,7 +38,17 @@ public class TowerView {
         this.image = new ImageView();
         updateSprite();
 
-        tower.getLevelProperty().addListener((obs, oldVal, newVal) -> updateSprite());
+        tower.getLevelProperty().addListener((obs, oldVal, newVal) -> {
+            updateSprite();
+            if (hpBarFirst != null) {
+                double dx = (tower.getLevel() == 2) ? -8 : 0;
+                double dy = (tower.getLevel() == 2) ? 1 : 0;
+                hpBarFirst.setTranslateX(dx);
+                hpBarFirst.setTranslateY(dy);
+                hpBarSecond.setTranslateX(dx);
+                hpBarSecond.setTranslateY(dy);
+            }
+        });
 
         this.image.setId("t" + tTower.getId());
         this.image.layoutXProperty().bind(this.tower.getXProperty().multiply(16).add(-16/2));
@@ -48,7 +58,7 @@ public class TowerView {
         }
     }
 
-    private void updateSprite() {
+    public void updateSprite() {
         int lvl = tower.getLevel();
         Image newImage = null;
         if (tower instanceof Archer) {
@@ -82,14 +92,14 @@ public class TowerView {
         return this.tower.getId();
     }
 
-    private void createHpBar() {
+    public void createHpBar() {
         double max = Math.max(1, tower.getMaxHp());
         hpBarFirst  = makeBar(16, Color.rgb(40, 25, 20, 0.9), "tFB" + tower.getId());
         hpBarSecond = makeBar(0,  Color.CYAN, "tSB" + tower.getId());
         hpBarSecond.widthProperty().bind(tower.getHpProperty().multiply(16.0 / max));
     }
 
-    private Rectangle makeBar(double width, Color fill, String id) {
+    public Rectangle makeBar(double width, Color fill, String id) {
         Rectangle bar = new Rectangle(width, 2, fill);
         bar.layoutXProperty().bind(image.layoutXProperty().add(8));
         bar.layoutYProperty().bind(image.layoutYProperty().subtract(3));
