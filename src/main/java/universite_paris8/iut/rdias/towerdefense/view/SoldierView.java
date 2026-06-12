@@ -3,10 +3,10 @@ package universite_paris8.iut.rdias.towerdefense.view;
 import javafx.animation.PauseTransition;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -17,6 +17,7 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;
 public class SoldierView {
 
     private Soldier soldier;
+    private Pane paneViewContainer;
     private ImageView image;
     private Rectangle pvBar;
 
@@ -42,41 +43,37 @@ public class SoldierView {
 
     public SoldierView(Soldier sSoldier) {
         this.soldier = sSoldier;
+        this.paneViewContainer = new Pane();
         this.pvBar = new Rectangle();
         pvBar.setHeight(2);
         pvBar.setFill(Color.RED);
         int imageSize = 25;
+
         if (soldier instanceof Viking) {
             this.image = new ImageView(imageViking1);
-            this.image.setId("v" + soldier.getId());
-            this.pvBar.setId("vP" + soldier.getId());
+            this.paneViewContainer.setId("v" + soldier.getId());
         }
         else if (soldier instanceof Knight) {
             pvBar.setFill(Color.BLUE);
-            this.image = new ImageView(imageknight1);
             imageSize = 29;
-            this.image.setId("k" + soldier.getId());
-            this.pvBar.setId("kP" + soldier.getId());;
+            this.image = new ImageView(imageknight1);
+            this.paneViewContainer.setId("k" + soldier.getId());
         }
         else if (soldier instanceof ArcherViking) {
             this.image = new ImageView(imageArcherViking1);
-            this.image.setId("v" + soldier.getId());
-            this.pvBar.setId("vP" + soldier.getId());
+            this.paneViewContainer.setId("v" + soldier.getId());
         }
         else if (soldier instanceof Berserker) {
             this.image = new ImageView(imageBerserker1);
-            this.image.setId("v" + soldier.getId());
-            this.pvBar.setId("vP" + soldier.getId());
+            this.paneViewContainer.setId("v" + soldier.getId());
         }
         else if (soldier instanceof RamWarrior) {
             this.image = new ImageView(imageBatteringRam1);
-            this.image.setId("v" + soldier.getId());
-            this.pvBar.setId("vP" + soldier.getId());
+            this.paneViewContainer.setId("v" + soldier.getId());
         }
         else if (soldier instanceof ShieldViking) {
             this.image = new ImageView(imageShiedlViking1);
-            this.image.setId("v" + soldier.getId());
-            this.pvBar.setId("vP" + soldier.getId());
+            this.paneViewContainer.setId("v" + soldier.getId());
         }
         this.soldier.getHpProperty().addListener((observable, oldValue, newValue) -> {
             if (oldValue.intValue() > newValue.intValue()) {
@@ -89,14 +86,16 @@ public class SoldierView {
                 Blend flashRouge = new Blend(BlendMode.SRC_ATOP, null, rouge);
                 flashRouge.setOpacity(0.5);
                 this.image.setEffect(flashRouge);
+
                 ImageView nIV = new ImageView(imageSlash);
-                ((javafx.scene.layout.Pane) this.image.getParent()).getChildren().add(nIV);
+                this.paneViewContainer.getChildren().add(nIV);
                 nIV.layoutXProperty().bind(this.image.layoutXProperty());
                 nIV.layoutYProperty().bind(this.image.layoutYProperty());
+
                 PauseTransition pause = new PauseTransition(Duration.millis(150));
                 pause.setOnFinished(event -> {
                     this.image.setEffect(null);
-                    ((javafx.scene.layout.Pane) this.image.getParent()).getChildren().remove(nIV);
+                    this.paneViewContainer.getChildren().remove(nIV);
                 });
                 pause.play();
             }
@@ -109,6 +108,8 @@ public class SoldierView {
         pvBar.layoutXProperty().bind(image.layoutXProperty().add(imageSize/2).add(sSoldier.getHpProperty().multiply(0.4).multiply(-0.5)));
         pvBar.layoutYProperty().bind(image.layoutYProperty());
 
+        this.paneViewContainer.getChildren().add(this.image);
+        this.paneViewContainer.getChildren().add(this.pvBar);
     }
 
     public ImageView getImage() {
@@ -178,6 +179,9 @@ public class SoldierView {
     }
     public int getId() {
         return this.soldier.getId();
+    }
+    public Pane getPaneViewContainer() {
+        return paneViewContainer;
     }
 
 
