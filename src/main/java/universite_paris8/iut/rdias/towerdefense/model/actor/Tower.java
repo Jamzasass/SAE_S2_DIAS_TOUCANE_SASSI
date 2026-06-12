@@ -3,6 +3,7 @@ package universite_paris8.iut.rdias.towerdefense.model.actor;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 public abstract class Tower extends Actor{
@@ -78,7 +79,7 @@ public abstract class Tower extends Actor{
         getEnvironnement().delTower(this);
     }
     public boolean canBePlaced(int line, int col) {
-        var ground = getEnvironnement().getGround();
+        Ground ground = getEnvironnement().getGround();
         if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
             return false;
         }

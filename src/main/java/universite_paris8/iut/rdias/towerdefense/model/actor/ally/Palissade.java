@@ -5,10 +5,6 @@ import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 public class Palissade extends Tower {
-
-
-    private static final int hplvl2 = 300;
-
     public Palissade(Environnement pEnv, int palissadeId, double palissadeX, double palissadeY) {
         super(pEnv,
                 pEnv.getSettings().getPalissadeHp(),
