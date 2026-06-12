@@ -59,7 +59,7 @@ public class Controller {
     private static int towerSelected;
 
     private ImageView ghostImage;
-    private static final Image spriteArcher = new javafx.scene.image.Image(Controller.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1.png"));
+    private static final Image spriteArcher = new javafx.scene.image.Image(Controller.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1_1.png"));
     private static final Image spriteBarrack = new javafx.scene.image.Image(Controller.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower/sprite_BarrackTower1.png"));
     private static final Image spriteBallista = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista/sprite_BallistaTower1.png"));
     private static final Image spriteBramble = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/bramble_tower/sprite_BrambleTower4.png"));
@@ -149,6 +149,7 @@ public class Controller {
                     if (temps % 10 == 0) {
                         obsEnemy.animate();
                         obsKnight.animate();
+                        obsTower.animate();
                     }
                     if (temps %15 == 0) {
                         castleView.switchImage();

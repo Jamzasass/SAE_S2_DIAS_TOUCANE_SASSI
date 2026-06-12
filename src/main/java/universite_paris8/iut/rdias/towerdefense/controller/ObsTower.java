@@ -3,6 +3,7 @@ package universite_paris8.iut.rdias.towerdefense.controller;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 import universite_paris8.iut.rdias.towerdefense.view.TowerView;
 
 import java.util.ArrayList;
@@ -38,4 +39,14 @@ public class ObsTower implements ListChangeListener<Tower> {
         return towerSprite;
     }
 
+    public void animate() {
+        for (TowerView t : towerSprite) {
+            try {
+                t.switchImage();
+            } catch (Exception ex) {
+                System.out.println("  EXCEPTION: " + ex.getMessage());
+            }
+
+        }
+    }
 }
