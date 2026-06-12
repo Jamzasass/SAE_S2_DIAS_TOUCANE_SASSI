@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
@@ -26,16 +27,24 @@ public class RamWarrior extends Enemy {
         tick();
         searchtarget();
         if (target != null) {
-            setxCible((int) target.getX());
-            setyCible((int) target.getY());
-            this.move();
-
-            if (calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
-                target.takeDamage(this.getDmg());
-                resetCooldown();
+            if (target instanceof Palissade){
+                setxCible((int) target.getX());
+                setyCible((int) target.getY());
+                this.move();
+                if (calculDistanceFromEnemyByPyth(target) < this.getRange() && canAct()) {
+                    target.takeDamage(this.getDmg());
+                    System.out.println("a l'attaque");
+                    resetCooldown();
+                }
             }
         } else {
+            setxCible(42);
+            setyCible(40);
             this.move();
+        }
+        if (getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getX())) {
+            getEnvironnement().getCastle().takeDamage(this.getDmg());
+            this.die();
         }
     }
 
@@ -44,8 +53,8 @@ public class RamWarrior extends Enemy {
         double minRange = Double.MAX_VALUE;
         for (Tower t : getEnvironnement().getTowers()) {
             if (t.isLiving() && (t instanceof Palissade)) {
-                int range = calculDistanceFromEnemy(t); // calcul distance via pythagore
-                if (range<= minRange) { //(range <= getRange() && range < minRange) {
+                double range = calculDistanceFromEnemyByPyth(t); // calcul distance via pythagore
+                if (range <= minRange) { //(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = t;
                 }
@@ -53,7 +62,10 @@ public class RamWarrior extends Enemy {
         }
         this.target = closeTarget;
     }
-    public int calculDistanceFromEnemy(Tower t) {
-        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][(int)t.getY()][(int)t.getX()];
+
+    public double calculDistanceFromEnemyByPyth(Actor a) {
+        double dx = getX() - a.getX();
+        double dy = getY() - a.getY();
+        return dx * dx + dy * dy;
     }
 }

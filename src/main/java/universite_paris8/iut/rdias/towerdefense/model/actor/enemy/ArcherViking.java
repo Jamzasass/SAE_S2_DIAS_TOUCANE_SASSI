@@ -12,8 +12,6 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 public class ArcherViking extends Enemy {
     private Actor target;
 
-//TODO speedAttack or speedAttack for ArcherViking
-
     public ArcherViking(Environnement aEnv, int eId, double eX, double eY) {
         super(aEnv,
                 aEnv.getSettings().getArcherVikingHp(),
