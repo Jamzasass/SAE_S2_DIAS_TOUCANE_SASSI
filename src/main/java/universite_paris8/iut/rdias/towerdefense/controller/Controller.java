@@ -345,7 +345,7 @@ public class Controller {
 
             boolean valid = env.canPlaceTower(col, line, towerSelected);
             if (valid) {
-                rangeCircle.setStroke(Color.GREEN);
+                rangeCircle.setStroke(Color.web("#efbf04"));
                 ghostImage.setOpacity(0.8);
             } else {
                 rangeCircle.setStroke(Color.RED);

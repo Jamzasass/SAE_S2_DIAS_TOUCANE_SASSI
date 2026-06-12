@@ -234,7 +234,7 @@ public class Environnement {
             case 6 -> new Ballista(this, id, (double) col, (double) line);
             default -> null;
         };
-        if (dummy == null || (balance.get() < dummy.getCost()) || (!dummy.canBePlacedCheck(line, col)) || (countSameType(dummy) >= dummy.maxAllowed())){
+        if (dummy == null || (balance.get() < dummy.getCost()) || (!dummy.canBePlaced(line, col)) || (countSameType(dummy) >= dummy.maxAllowed())){
             return false;
         }
         return true;

@@ -36,7 +36,6 @@ public class Palissade extends Tower {
             return false;
         }
         if (!ground.isPath(line, col)) {
-            System.out.println("caca");
             return false;
         }
         ground.setTile(line, col, 4);
@@ -44,15 +43,14 @@ public class Palissade extends Tower {
         return true;
     }
 
-    @Override
-    public boolean canBePlacedCheck(int line, int col) {
-        Ground ground = getEnvironnement().getGround();
-        if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
-            return false;
-
-        }
-        return ground.isPath(line, col);
-    }
+//    @Override
+//    public boolean canBePlacedCheck(int line, int col) {
+//        Ground ground = getEnvironnement().getGround();
+//        if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
+//            return false;
+//        }
+//        return ground.isPath(line, col);
+//    }
 
     @Override
     public int maxAllowed() {
