@@ -45,7 +45,7 @@ public class ArcherViking extends Enemy {
                 }
             }
             else if (target instanceof Tower){
-                int[] dest = closestPath((Tower) target);
+                int[] dest = getEnvironnement().getGround().getClosestPath((int)target.getY(), (int)target.getX());
                 double dist = calculDistanceFromEnemyByPyth(target);
                 setxCible(dest[1]);
                 setyCible(dest[0]);

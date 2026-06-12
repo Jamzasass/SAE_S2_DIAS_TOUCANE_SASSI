@@ -92,5 +92,35 @@ public class Ground {
         return mapBFS;
     }
 
+    public int[] getClosestPath(int line, int col) {
+        int[] closePath = new int[2];
+        for (int i=1; i<6; i++) {
+            if (col+i<width() &&
+                     isPath( line, col+i)) {
+                closePath[0] = line;
+                closePath[1] = col+i;
+                return closePath;
+            }
+            else if (col-i >= 0 &&
+                     isPath( line, col-i)) {
+                closePath[0] = line;
+                closePath[1] = col-i;
+                return closePath;
+            }
+            else if (col+i <  heigth() &&
+                    isPath( line+i, col)) {
+                closePath[0] =  line+i;
+                closePath[1] = col;
+                return closePath;
+            }
+            else if (line-i >= 0 &&
+                    isPath( line-i, col)) {
+                closePath[0] =  line-i;
+                closePath[1] = col;
+                return closePath;
+            }
+        }
+        return closePath;
+    }
 
 }

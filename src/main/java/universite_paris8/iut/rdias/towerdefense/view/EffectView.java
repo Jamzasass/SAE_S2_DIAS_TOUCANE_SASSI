@@ -1,7 +1,11 @@
 package universite_paris8.iut.rdias.towerdefense.view;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.transform.Transform;
+import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.model.Effect;
 import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
@@ -48,6 +52,16 @@ public class EffectView {
             this.image.layoutYProperty().unbind();
             this.image.setLayoutX(x - ((((ZoneSpell)effect).getZoneRadius()*16)/2));
             this.image.setLayoutY(y - ((((ZoneSpell)effect).getZoneRadius()*16)/2));
+
+            FadeTransition fade = new FadeTransition(Duration.seconds(0.5), image);
+            fade.setFromValue(1.0);
+            fade.setToValue(0.0);
+            fade.setOnFinished(event -> {
+                if (image.getParent() != null) {
+                    ((javafx.scene.layout.Pane) image.getParent()).getChildren().remove(image);
+                }
+            });
+            fade.play();
         }
     }
 
