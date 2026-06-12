@@ -39,7 +39,7 @@ public class ObsEffect implements ListChangeListener<Effect> {
 
             for (Effect e : ajout) {
                 EffectView s = new EffectView(e);
-                grid.getChildren().add(s.getImage());
+                grid.getChildren().add(s.getPaneViewContainer());
                 effectSprite.add(s);
             }
             for (Effect e : retirer) {

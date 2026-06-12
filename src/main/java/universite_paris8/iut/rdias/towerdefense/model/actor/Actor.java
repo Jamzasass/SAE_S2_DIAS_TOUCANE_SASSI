@@ -86,9 +86,6 @@ public abstract class Actor {
         this.hp.setValue(Math.max(0, this.hp.getValue() - amount));
         if (hp.getValue() <= 0) {
             this.die();
-            if (this instanceof Tower) {
-                System.out.println("tour qui decede");
-            }
         }
     }
 

@@ -5,6 +5,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.*;
@@ -12,6 +13,7 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 public class TowerView {
     private Tower tower;
+    private Pane paneViewContainer;
     private ImageView image;
     private Rectangle hpBarFirst;
     private Rectangle hpBarSecond;
@@ -35,6 +37,7 @@ public class TowerView {
 
     public TowerView(Tower tTower) {
         this.tower = tTower;
+        this.paneViewContainer = new Pane();
         this.image = new ImageView();
         updateSprite();
 
@@ -53,9 +56,13 @@ public class TowerView {
         this.image.setId("t" + tTower.getId());
         this.image.layoutXProperty().bind(this.tower.getXProperty().multiply(16).add(-16/2));
         this.image.layoutYProperty().bind(this.tower.getYProperty().multiply(16).add(-16/2));
+        this.paneViewContainer.getChildren().add(this.image);
         if (!(tTower instanceof Bramble) && tower.getMaxHp() > 0) {
             createHpBar();
+            this.paneViewContainer.getChildren().add(this.hpBarFirst);
+            this.paneViewContainer.getChildren().add(this.hpBarSecond);
         }
+        this.paneViewContainer.setId("t" + this.tower.getId());
     }
 
     public void updateSprite() {
@@ -94,19 +101,21 @@ public class TowerView {
 
     public void createHpBar() {
         double max = Math.max(1, tower.getMaxHp());
-        hpBarFirst  = makeBar(16, Color.rgb(40, 25, 20, 0.9), "tFB" + tower.getId());
-        hpBarSecond = makeBar(0,  Color.CYAN, "tSB" + tower.getId());
+        hpBarFirst  = makeBar(16, Color.rgb(40, 25, 20, 0.9));
+        hpBarSecond = makeBar(0,  Color.CYAN);
         hpBarSecond.widthProperty().bind(tower.getHpProperty().multiply(16.0 / max));
     }
 
-    public Rectangle makeBar(double width, Color fill, String id) {
+    public Rectangle makeBar(double width, Color fill) {
         Rectangle bar = new Rectangle(width, 2, fill);
         bar.layoutXProperty().bind(image.layoutXProperty().add(8));
         bar.layoutYProperty().bind(image.layoutYProperty().subtract(3));
-        bar.setId(id);
         return bar;
     }
 
     public Rectangle getHpBarFirst() { return hpBarFirst; }
     public Rectangle getHpBarSecond() { return hpBarSecond; }
+    public Pane getPaneViewContainer() {
+        return paneViewContainer;
+    }
 }
