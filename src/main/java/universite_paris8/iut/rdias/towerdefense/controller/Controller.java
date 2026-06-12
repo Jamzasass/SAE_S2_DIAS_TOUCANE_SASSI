@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.rdias.towerdefense.model.*;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 import universite_paris8.iut.rdias.towerdefense.view.*;
@@ -53,7 +54,6 @@ public class Controller {
     @FXML private Button sorcererTower;
     @FXML private Button ballistaTower;
     private Circle rangeCircle;
-
     private BFS bfs;
 
     private static int towerSelected;
@@ -197,8 +197,10 @@ public class Controller {
 
     public void mouseClikedTile(MouseEvent e, int line, int col) {
         if (e.getButton().equals(MouseButton.PRIMARY)) {
+
             for (Tower t : env.getTowers()) {
                 if ((int)t.getX() == col && (int)t.getY() == line) {
+                    stopDrag();
                     btnSell.setText("Sell (" + t.getCost() / 2 + " 💰)");
 
                     if (t.canBeUpgraded()) {
@@ -224,27 +226,33 @@ public class Controller {
                 }
             }
 
-            if (towerSelected == 1){
-                env.addArcher(col, line);
+            if (towerSelected != 0) {
+                if (!env.canPlaceTower(col, line, towerSelected)) {
+                    towerSelected = 0;
+                    stopDrag();
+                    return;
+                }
+                if (towerSelected == 1){
+                    env.addArcher(col, line);
+                }
+                else if (towerSelected == 2){
+                    env.addBarrack(col, line);
+                }
+                else if (towerSelected == 3){
+                    env.addBramble(col, line);
+                }
+                else if (towerSelected == 4){
+                    env.addPalissade(col, line);
+                }
+                else if (towerSelected == 5){
+                    env.addSorcerer(col, line);
+                }
+                else if (towerSelected == 6){
+                    env.addBallista(col, line);
+                }
+                towerSelected = 0;
+                stopDrag();
             }
-            else if (towerSelected == 2){
-                env.addBarrack(col, line);
-            }
-            else if (towerSelected == 3){
-                env.addBramble(col, line);
-            }
-            else if (towerSelected == 4){
-                env.addPalissade(col, line);
-            }
-            else if (towerSelected == 5 ){
-                env.addSorcerer(col, line);
-            }
-            else if (towerSelected == 6){
-                env.addBallista(col, line);
-            }
-            towerSelected = 0;
-            stopDrag();
-
         }
     }
 
@@ -292,8 +300,12 @@ public class Controller {
     }
 
     private void startDrag(Image sprite, int type) {
+
         towerSelected = type;
         stopDrag();
+        towerActionMenu.setVisible(false);
+
+
         ghostImage = new ImageView(sprite);
         ghostImage.setFitWidth(32);
         ghostImage.setFitHeight(32);
@@ -330,6 +342,15 @@ public class Controller {
             ghostImage.setLayoutY(cy - 16);
             rangeCircle.setCenterX(cx);
             rangeCircle.setCenterY(cy);
+
+            boolean valid = env.canPlaceTower(col, line, towerSelected);
+            if (valid) {
+                rangeCircle.setStroke(Color.GREEN);
+                ghostImage.setOpacity(0.8);
+            } else {
+                rangeCircle.setStroke(Color.RED);
+                ghostImage.setOpacity(0.3);
+            }
         });
     }
 

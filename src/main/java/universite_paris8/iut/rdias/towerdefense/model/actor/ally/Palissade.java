@@ -31,15 +31,27 @@ public class Palissade extends Tower {
 
     @Override
     public boolean canBePlaced(int line, int col) {
-        boolean result = false;
         Ground ground = getEnvironnement().getGround();
-
-        if (line >= 0 && line < ground.heigth() && col >= 0 && col < ground.width() && ground.isPath(line, col)) {
-            ground.setTile((int)this.getY(), (int)this.getX(), 4);
-            ground.refreshBFS();
-            result = true;
+        if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
+            return false;
         }
-        return result;
+        if (!ground.isPath(line, col)) {
+            System.out.println("caca");
+            return false;
+        }
+        ground.setTile(line, col, 4);
+        ground.refreshBFS();
+        return true;
+    }
+
+    @Override
+    public boolean canBePlacedCheck(int line, int col) {
+        Ground ground = getEnvironnement().getGround();
+        if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
+            return false;
+
+        }
+        return ground.isPath(line, col);
     }
 
     @Override

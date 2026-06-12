@@ -222,4 +222,21 @@ public class Environnement {
         t.upgrade();
         return true;
     }
+
+
+    public boolean canPlaceTower(int col, int line, int type) {
+        Tower dummy = switch (type) {
+            case 1 -> new Archer(this, id, (double) col, (double) line);
+            case 2 -> new Barrack(this, id, (double) col, (double) line);
+            case 3 -> new Bramble(this, id, (double) col, (double) line);
+            case 4 -> new Palissade(this, id, (double) col, (double) line);
+            case 5 -> new SorcererTower(this, id, col, line);
+            case 6 -> new Ballista(this, id, (double) col, (double) line);
+            default -> null;
+        };
+        if (dummy == null || (balance.get() < dummy.getCost()) || (!dummy.canBePlacedCheck(line, col)) || (countSameType(dummy) >= dummy.maxAllowed())){
+            return false;
+        }
+        return true;
+    }
 }

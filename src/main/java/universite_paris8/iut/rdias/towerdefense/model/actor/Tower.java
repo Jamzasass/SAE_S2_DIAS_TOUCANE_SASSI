@@ -87,6 +87,10 @@ public abstract class Tower extends Actor{
         return isAdjacentToPath(line, col);
     }
 
+    public boolean canBePlacedCheck(int line, int col) {
+        return canBePlaced(line, col);
+    }
+
     public boolean isAdjacentToPath(int line, int col) {
         var ground = getEnvironnement().getGround();
         int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
