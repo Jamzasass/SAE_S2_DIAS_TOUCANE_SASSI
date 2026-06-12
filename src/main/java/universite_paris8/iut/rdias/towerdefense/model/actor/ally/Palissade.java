@@ -25,9 +25,6 @@ public class Palissade extends Tower {
     public void act() {
     }
 
-    @Override
-    public void takeDamage(int amount) {
-    }
 
     @Override
     public boolean canBePlaced(int line, int col) {
