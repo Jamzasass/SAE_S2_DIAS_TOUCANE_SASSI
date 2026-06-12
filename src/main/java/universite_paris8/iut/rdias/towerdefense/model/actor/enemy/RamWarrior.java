@@ -6,6 +6,8 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
+import java.util.ArrayList;
+
 public class RamWarrior extends Enemy {
 
     private Tower target;
@@ -15,7 +17,7 @@ public class RamWarrior extends Enemy {
                 rEnv.getSettings().getRamwarriorHp(),
                 rEnv.getSettings().getRamwarriorDmg(),
                 eId,
-                0.1,
+                0.5,
                 eX,
                 eY,
                 rEnv.getSettings().getRamwarriorSpeed(),
@@ -28,12 +30,21 @@ public class RamWarrior extends Enemy {
         searchtarget();
         if (target != null) {
             if (target instanceof Palissade){
-                setxCible((int) target.getX());
-                setyCible((int) target.getY());
+                ArrayList<int[]> dist = getEnvironnement().getGround().getAllClosestPaths((int)target.getY(), (int)target.getX());
+                int distClosest = getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][dist.get(0)[0]][dist.get(0)[1]];
+                int[] cible = dist.get(0);
+                for (int[] pE : dist) {
+                    if (distClosest >= getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][pE[0]][pE[1]]) {
+                        cible = pE;
+                        distClosest = getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][pE[0]][pE[1]];
+                    }
+                }
+                setxCible(cible[1]);
+                setyCible(cible[0]);
                 this.move();
-                if (calculDistanceFromEnemyByPyth(target) < this.getRange() && canAct()) {
+                if (distClosest < this.getRange() && canAct()) {
                     target.takeDamage(this.getDmg());
-                    System.out.println("a l'attaque");
+                    System.out.println("a l'attaque" + distClosest);
                     resetCooldown();
                 }
             }
