@@ -1,5 +1,6 @@
 package universite_paris8.iut.rdias.towerdefense.view;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
@@ -10,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;
@@ -40,6 +42,11 @@ public class SoldierView {
     private static Image imageBatteringRam2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/battering_ram/sprite_BatteringRam2.png"));
 
     private static Image imageSlash = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_slash.png"));
+
+    private static Image imageBurial1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tombstone/sprite_tombstone1.png"));
+    private static Image imageBurial2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tombstone/sprite_tombstone2.png"));
+    private static Image imageBurial3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tombstone/sprite_tombstone3.png"));
+    private static Image imageBurial4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tombstone/sprite_tombstone4.png"));
 
     public SoldierView(Soldier sSoldier) {
         this.soldier = sSoldier;
@@ -120,53 +127,77 @@ public class SoldierView {
     }
 
     public void switchImage() {
-        if (this.getSoldier() instanceof Viking) {
-            if (image.getImage().equals(imageViking1)) {
-                image.setImage(imageViking2);
-            } else {
-                image.setImage(imageViking1);
+        if (this.soldier.isLiving()) {
+            if (this.getSoldier() instanceof Viking) {
+                if (image.getImage().equals(imageViking1)) {
+                    image.setImage(imageViking2);
+                } else {
+                    image.setImage(imageViking1);
+                }
+            }
+            else if (this.getSoldier() instanceof ArcherViking) {
+                if (image.getImage().equals(imageArcherViking1)) {
+                    image.setImage(imageArcherViking2);
+                } else {
+                    image.setImage(imageArcherViking1);
+                }
+            }
+            else if (soldier instanceof Knight){
+                if (image.getImage().equals(imageknight1)) {
+                    image.setImage(imageKnight2);
+                } else {
+                    image.setImage(imageknight1);
+                }
+            }
+            else if (soldier instanceof Berserker) {
+                if (image.getImage().equals(imageBerserker1)) {
+                    image.setImage(imageBerserker2);
+                }
+                else {
+                    image.setImage(imageBerserker1);
+                }
+            }
+            else if (soldier instanceof RamWarrior) {
+                if (image.getImage().equals(imageBatteringRam1)) {
+                    image.setImage(imageBatteringRam2);
+                }
+                else {
+                    image.setImage(imageBatteringRam1);
+                }
+            }
+            else if (soldier instanceof ShieldViking) {
+                if (image.getImage().equals(imageShiedlViking1)) {
+                    image.setImage(imageShiedlViking2);
+                }
+                else {
+                    image.setImage(imageShiedlViking1);
+                }
             }
         }
-        else if (this.getSoldier() instanceof ArcherViking) {
-            if (image.getImage().equals(imageArcherViking1)) {
-                image.setImage(imageArcherViking2);
-            } else {
-                image.setImage(imageArcherViking1);
+        else {
+            if (this.image.getImage().equals(imageBurial1)) {
+                this.image.setImage(imageBurial2);
+            } else if (this.image.getImage().equals(imageBurial2)) {
+                this.image.setImage(imageBurial3);
             }
-        }
-        else if (soldier instanceof Knight){
-            if (image.getImage().equals(imageknight1)) {
-                image.setImage(imageKnight2);
-            } else {
-                image.setImage(imageknight1);
-            }
-        }
-        else if (soldier instanceof Berserker) {
-            if (image.getImage().equals(imageBerserker1)) {
-                image.setImage(imageBerserker2);
-            }
-            else {
-                image.setImage(imageBerserker1);
-            }
-        }
-        else if (soldier instanceof RamWarrior) {
-            if (image.getImage().equals(imageBatteringRam1)) {
-                image.setImage(imageBatteringRam2);
-            }
-            else {
-                image.setImage(imageBatteringRam1);
-            }
-        }
-        else if (soldier instanceof ShieldViking) {
-            if (image.getImage().equals(imageShiedlViking1)) {
-                image.setImage(imageShiedlViking2);
-            }
-            else {
-                image.setImage(imageShiedlViking1);
+            else if (this.image.getImage().equals(imageBurial3)) {
+                this.image.setImage(imageBurial4);
             }
         }
     }
 
+    public void blow() {
+        this.image.setImage(imageBurial1);
+        FadeTransition fade = new FadeTransition(Duration.seconds(1), image);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
+        fade.setOnFinished(event -> {
+            if (paneViewContainer.getParent() != null) {
+                ((javafx.scene.layout.Pane) paneViewContainer.getParent()).getChildren().remove(paneViewContainer);
+            }
+        });
+        fade.play();
+    }
 
     public Soldier getSoldier() {
         return soldier;
