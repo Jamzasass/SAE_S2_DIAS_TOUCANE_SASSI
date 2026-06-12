@@ -36,7 +36,6 @@ public class ArcherViking extends Enemy {
                 this.move();
                 if (dist < this.getRange() && canAct()){
                     System.out.println("d " + dist + " - " + this.getRange());
-//                    target.takeDamage(getDmg());
                     Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
                     getEnvironnement().addEffect(p);
                     resetCooldown();
@@ -49,7 +48,6 @@ public class ArcherViking extends Enemy {
                 setyCible(dest[0]);
                 if (dist < Math.pow((this.getRange()), 2)){
                     if (canAct()) {
-//                        target.takeDamage(this.getDmg());
                         Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
                         getEnvironnement().addEffect(p);
                         resetCooldown();
