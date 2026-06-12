@@ -14,7 +14,7 @@ public class Wave {
     public Wave(Environnement env, int waveIndex) {
         this.env = env;
         this.waveIndex = waveIndex;
-        this.nbEnemies = (int)(10 + 20 * Math.log(waveIndex + 1));
+        this.nbEnemies = 1;//(int)(10 + 20 * Math.log(waveIndex + 1));
         this.delayBetweenSpawns = 3;
         if (waveIndex > 4) {
             int random = (int)(Math.random()*4);
@@ -58,8 +58,7 @@ public class Wave {
         int radomSelectEnemy = (int) (Math.random() * 100);
 
         if (waveIndex <= 1) {
-//            e = new Viking(env, env.getId(), col, line);
-            e = new ArcherViking(env, env.getId(), col, line);
+            e = new Viking(env, env.getId(), col, line);
         }
         else if (waveIndex <= 2) {
             if (radomSelectEnemy < 30) {

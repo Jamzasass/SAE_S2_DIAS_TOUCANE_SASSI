@@ -42,6 +42,7 @@ public class Controller {
     private ObsKnight obsKnight;
     private ObsTower obsTower;
     private ObsEffect obsEffect;
+    private ObsAnimation obsAnimation;
     private CastleView castleView;
     @FXML private HBox towerActionMenu;
     @FXML private Button btnSell;
@@ -86,6 +87,8 @@ public class Controller {
         env.getTowers().addListener(obsTower);
         obsEffect = new ObsEffect(actorsArea);
         env.getEffects().addListener(obsEffect);
+        obsAnimation = new ObsAnimation(actorsArea);
+        env.getAnimations().addListener(obsAnimation);
         groundView.drawMap();
 
         balanceLabel.textProperty().bind(env.getBalanceProperty().asString());

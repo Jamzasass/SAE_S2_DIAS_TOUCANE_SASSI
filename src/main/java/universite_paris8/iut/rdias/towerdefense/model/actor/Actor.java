@@ -6,6 +6,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 public abstract class Actor {
     private Environnement env;
@@ -74,6 +75,9 @@ public abstract class Actor {
         try {
             if (this instanceof Enemy) {
                 env.earn(((Enemy) this).getDeathValue());
+            }
+            else if (this instanceof Palissade) {
+                ((Palissade) this).deleted();
             }
             this.env.addDyingActor(this);
         } catch (Exception ex) {

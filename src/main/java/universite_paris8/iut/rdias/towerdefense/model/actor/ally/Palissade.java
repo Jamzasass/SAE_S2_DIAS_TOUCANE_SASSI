@@ -39,6 +39,11 @@ public class Palissade extends Tower {
         return result;
     }
 
+    public void deleted() {
+        getEnvironnement().getGround().setTile((int)this.getY(), (int)this.getX(), 1);
+        getEnvironnement().getGround().refreshBFS();
+    }
+
     @Override
     public int maxAllowed() {
         return 4;

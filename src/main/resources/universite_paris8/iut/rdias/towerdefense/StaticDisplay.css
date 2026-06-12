@@ -183,6 +183,13 @@
     -fx-text-alignment: center;
 }
 
+.labelVague {
+    -fx-font-family: 'Black Clover Font' ;
+    -fx-font-size: 60 px;
+    -fx-text-fill: '#efbf04';
+    -fx-text-alignment: center;
+}
+
 .TopPaneBackground {
     -fx-background-image: url("sprite/HUD/sprite_PlancheNuePetit.png");
     -fx-background-position: center;

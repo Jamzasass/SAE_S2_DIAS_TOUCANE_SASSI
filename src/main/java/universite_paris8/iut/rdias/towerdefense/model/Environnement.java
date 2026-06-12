@@ -22,6 +22,7 @@ public class Environnement {
     private ObservableList<Knight> knights;
     private ObservableList<Tower> towers;
     private ObservableList<Effect> effects;
+    private ObservableList<Animation> animations;
     private ArrayList<Actor> actorsDying;
     private ArrayList<Effect> effectsDying;
     private static int cptSpawn = 0;
@@ -40,6 +41,7 @@ public class Environnement {
         this.knights = FXCollections.observableArrayList();
         this.towers = FXCollections.observableArrayList();
         this.effects = FXCollections.observableArrayList();
+        this.animations = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
         this.effectsDying = new ArrayList<>();
         this.balance = new SimpleIntegerProperty(10000);
@@ -129,6 +131,12 @@ public class Environnement {
     public void killEffect(Effect e) {
         effects.remove(e);
     }
+    public void addAnimation(Animation a) {
+        animations.add(a);
+    }
+    public void delAnimation(Animation a) {
+        animations.remove(a);
+    }
 
     public void earn(int gain) {
         balance.setValue(balance.getValue() + gain);
@@ -183,6 +191,9 @@ public class Environnement {
     public ObservableList<Effect> getEffects() {
         return effects;
     }
+    public ObservableList<Animation> getAnimations() {
+        return animations;
+    }
     public Castle getCastle() {
         return castle;
     }
@@ -205,6 +216,8 @@ public class Environnement {
         wave = new Wave(this, waveIndex.get());
         enemies.clear();
         knights.clear();
+        Animation nAnimation = new Animation(true);
+        addAnimation(nAnimation);
     }
 
     public IntegerProperty getWaveIndexProperty() {
