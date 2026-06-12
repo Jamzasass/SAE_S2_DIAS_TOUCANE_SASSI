@@ -20,7 +20,7 @@ public class Settings {
     public static int ballistaHp = 300;
     public static int ballistaDmg = 30;
     public static int ballistaSpeedAttack = 3;
-    public static int ballistaRange = 4;
+    public static int ballistaRange = 6;
     public static int ballistaCost = 350;
 
     // barrack
@@ -35,16 +35,16 @@ public class Settings {
     public static int brambleCost = 50;
 
     // palissade
-    public static int palissadeHp = 200;
+    public static int palissadeHp = 300;
     public static int palissadeCost = 300;
 
     // sorcererTower
     public static int sorcererTowerHp = 300;
-    public static int sorcererTowerDmg = 10;          // dégâts par seconde
+    public static int sorcererTowerDmg = 50;          // dégâts par seconde
     public static int sorcererTowerZoneDuration = 3;
-    public static int sorcererTowerSpeedAttack = 2;
+    public static int sorcererTowerSpeedAttack = 4;
     public static int sorcererTowerCost = 500;
-    public static int sorcererTowerRange = 4;
+    public static int sorcererTowerRange = 8;
 
     // Soldiers Ally (ally -> cost)
     // knight
