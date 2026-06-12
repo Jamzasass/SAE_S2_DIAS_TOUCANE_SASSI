@@ -149,10 +149,10 @@ public class Controller {
                     if (temps % 10 == 0) {
                         obsEnemy.animate();
                         obsKnight.animate();
-                        obsTower.animate();
                     }
                     if (temps %15 == 0) {
                         castleView.switchImage();
+                        obsTower.animate();
                     }
                     temps++;
                 })
