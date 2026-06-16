@@ -361,6 +361,34 @@ public class Settings {
         vikingDeathValue = (int) (vikingDeathValue * halfFactor);
     }
 
+    public void inflation() {
+        vikingDeathValue = (int) (vikingDeathValue * 0.80);
+        shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * 0.80);
+        batteringRamDeathValue = (int) (batteringRamDeathValue * 0.80);
+        archerVikingDeathValue = (int) (archerVikingDeathValue * 0.80);
+
+        archerCost = (int) (archerCost * 1.20);
+        ballistaCost = (int) (ballistaCost * 1.20);
+        barrackCost = (int) (barrackCost * 1.20);
+        brambleCost = (int) (brambleCost * 1.20);
+        palissadeCost = (int) (palissadeCost * 1.20);
+        sorcererTowerCost = (int) (sorcererTowerCost * 1.20);
+    }
+
+    public void disinflation() {
+        vikingDeathValue = (int) (vikingDeathValue / 0.80);
+        shieldwarriorDeathValue = (int) (shieldwarriorDeathValue / 0.80);
+        batteringRamDeathValue = (int) (batteringRamDeathValue / 0.80);
+        archerVikingDeathValue = (int) (archerVikingDeathValue / 0.80);
+
+        archerCost = (int) (archerCost / 1.20);
+        ballistaCost = (int) (ballistaCost / 1.20);
+        barrackCost = (int) (barrackCost / 1.20);
+        brambleCost = (int) (brambleCost / 1.20);
+        palissadeCost = (int) (palissadeCost / 1.20);
+        sorcererTowerCost = (int) (sorcererTowerCost / 1.20);
+    }
+
     public double getUpgradeFactor() {
         return upgradeFactor;
     }

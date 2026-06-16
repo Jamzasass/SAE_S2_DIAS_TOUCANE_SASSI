@@ -37,6 +37,9 @@ public class Wave {
             int random = (int)(Math.random()*4);
             this.macronInflationActivated = random==3;
         }
+        if (macronInflationActivated) {
+            env.getSettings().inflation();
+        }
         if (waveIndex == 15) {
             env.getSettings().multiplierStatsEnemy(1.3);
         } else if (waveIndex == 25) {
@@ -70,6 +73,7 @@ public class Wave {
         }
         else if (nbEnemies==0 && waveCptLap % (delayBetweenSpawns*30*2) == 0) {
             if (env.getEnemies().isEmpty()) {
+                env.getSettings().disinflation();
                 env.nextWave();
             }
         }

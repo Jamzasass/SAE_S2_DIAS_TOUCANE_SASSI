@@ -45,6 +45,10 @@ public class Knight extends Soldier {
             target.takeDamage(this.getDmg());
             resetCooldown();
         }
+        else if (target == null) {
+            setxCible(base.getCoordClosePath()[1]);
+            setyCible(base.getCoordClosePath()[0]);
+        }
     }
 
     public Barrack getBase() {

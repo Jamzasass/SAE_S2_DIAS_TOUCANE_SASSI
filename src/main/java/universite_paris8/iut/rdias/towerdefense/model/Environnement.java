@@ -235,7 +235,6 @@ public class Environnement {
         waveIndex.set(waveIndex.get() + 1);
         wave = new Wave(this, waveIndex.get());
         enemies.clear();
-        knights.clear();
     }
     public void startingWaveAnimation() {
         Animation nAnimation = new Animation(waveIndex.get()==1, wave.isMacronInflationActivated());
