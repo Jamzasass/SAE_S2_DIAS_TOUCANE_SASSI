@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * -sa cible (target) qu'il doit attaquer
  */
 
-public class RamWarrior extends Enemy {
+public class BatteringRam extends Enemy {
 
     private Tower target;
 
-    public RamWarrior(Environnement rEnv, int eId, double eX, double eY) {
+    public BatteringRam(Environnement rEnv, int eId, double eX, double eY) {
         super(rEnv,
                 rEnv.getSettings().getRamwarriorHp(),
                 rEnv.getSettings().getRamwarriorDmg(),

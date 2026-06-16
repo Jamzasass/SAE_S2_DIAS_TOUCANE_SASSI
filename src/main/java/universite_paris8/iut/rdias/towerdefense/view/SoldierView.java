@@ -73,7 +73,7 @@ public class SoldierView {
             this.image = new ImageView(imageBerserker1);
             this.paneViewContainer.setId("v" + soldier.getId());
         }
-        else if (soldier instanceof RamWarrior) {
+        else if (soldier instanceof BatteringRam) {
             this.image = new ImageView(imageBatteringRam1);
             this.paneViewContainer.setId("v" + soldier.getId());
         }
@@ -156,7 +156,7 @@ public class SoldierView {
                     image.setImage(imageBerserker1);
                 }
             }
-            else if (soldier instanceof RamWarrior) {
+            else if (soldier instanceof BatteringRam) {
                 if (image.getImage().equals(imageBatteringRam1)) {
                     image.setImage(imageBatteringRam2);
                 }

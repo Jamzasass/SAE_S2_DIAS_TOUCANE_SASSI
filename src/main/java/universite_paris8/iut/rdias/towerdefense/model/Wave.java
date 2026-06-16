@@ -110,7 +110,7 @@ public class Wave {
         }
         else if (waveIndex <= 10) {
             if (radomSelectEnemy < 10) {
-                e = new RamWarrior(env, env.getId(), col, line);
+                e = new BatteringRam(env, env.getId(), col, line);
             }
             else if (radomSelectEnemy < 15) {
                 e = new ShieldViking(env, env.getId(), col, line);
