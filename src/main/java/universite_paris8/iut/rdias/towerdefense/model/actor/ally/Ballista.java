@@ -7,6 +7,13 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 import java.util.ArrayList;
 
+/*La sous-classe Ballista qui hérite de Tower.
+ * Cette tour peut attaquer jusqu'à deux ennemis
+ * simultanément si deux cibles se trouvent dans sa portée.
+ * Un ballista a comme attribut spécifique:
+ * -un tableau de cibles de taille deux
+ */
+
 public class Ballista extends Tower {
 
     private Enemy[] targets;

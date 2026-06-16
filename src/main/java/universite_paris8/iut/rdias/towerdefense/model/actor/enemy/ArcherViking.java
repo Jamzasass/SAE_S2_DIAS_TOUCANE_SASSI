@@ -9,6 +9,16 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Bramble;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
+/*La sous-classe ArcherViking qui hérite de Enemy.
+ * Cet ennemi attaque à distance avec des flèches.
+ * Il peut cibler les chevaliers (Knight) ainsi que
+ * les tours, à l'exception des Palissade et Bramble.
+ * Il utilise le BFS pour se déplacer vers les chevaliers
+ * et le calcul de distance de pythagore pour les tours.
+ * Un archer viking a comme attribut spécifique:
+ * -sa cible (target) qu'il doit attaquer
+ */
+
 public class ArcherViking extends Enemy {
     private Actor target;
 

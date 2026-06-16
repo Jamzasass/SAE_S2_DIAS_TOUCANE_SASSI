@@ -4,6 +4,14 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 
+/*La sous-classe Tower qui hérite de Actor.
+* Une tower a comme attribut spécifique:
+* -son coût d'achat
+* -sa vitesse d'attaque (en demi-seconde)
+* -son temps de recharge (cooldown)
+* -son niveau (pour les améliorations)
+*/
+
 public abstract class Tower extends Actor{
 
     private final int cost;

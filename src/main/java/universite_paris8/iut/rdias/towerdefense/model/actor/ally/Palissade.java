@@ -4,10 +4,14 @@ import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
+/*La sous-classe Palissade qui hérite de Tower.
+ * Cette tour n'a pas d'attaque, elle se place sur le chemin
+ * pour bloquer les ennemis. Elle ne peut être détruite
+ * que par le bélier viking (RamWarrior). Ses dégâts,
+ * sa portée d'attaque et sa vitesse d'attaque sont de zéro.
+ */
+
 public class Palissade extends Tower {
-
-
-    private static final int hplvl2 = 300;
 
     public Palissade(Environnement pEnv, int palissadeId, double palissadeX, double palissadeY) {
         super(pEnv,
