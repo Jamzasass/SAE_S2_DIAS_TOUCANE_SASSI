@@ -41,17 +41,7 @@ public class Controller {
     @FXML private Label balanceLabel;
     @FXML private Label hpPlayer;
     @FXML private Label waveLabel;
-    private Ground ground;
-    private GroundView groundView;
     @FXML private Pane actorsArea;
-    private Timeline gameLoop;
-    public static int temps;
-    private Environnement env;
-    private ObsEnemy obsEnemy;
-    private ObsKnight obsKnight;
-    private ObsTower obsTower;
-    private ObsEffect obsEffect;
-    private CastleView castleView;
     @FXML private HBox towerActionMenu;
     @FXML private Button btnSell;
     @FXML private Button btnUpgrade;
