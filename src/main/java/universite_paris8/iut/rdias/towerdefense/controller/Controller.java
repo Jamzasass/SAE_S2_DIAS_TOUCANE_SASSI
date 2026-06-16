@@ -90,8 +90,7 @@ public class Controller {
         startGameLoop();
     }
 
-    // Initialization
-
+    // Visual Placement Range
     private void loadTowerSprites() {
         spriteArcher = new Image(GroundView.class.getResourceAsStream(
                 "/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1_1.png"));
