@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;

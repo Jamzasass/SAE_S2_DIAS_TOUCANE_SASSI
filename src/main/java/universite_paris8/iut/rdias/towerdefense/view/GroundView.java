@@ -7,12 +7,11 @@ import javafx.scene.layout.TilePane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
 
 public class GroundView {
-    //temporaire
-    private Environnement env;
+//    private Environnement env;
 
     private Ground ground;
     private TilePane mapGrid;
-    private Pane actorsArea;
+//    private Pane actorsArea;
 
     private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass1.png"));
     private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass2.png"));
@@ -54,11 +53,11 @@ public class GroundView {
 
 
     public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea, Environnement env){
-        this.env = env;
+//        this.env = env;
 
         this.ground = ground;
         this.mapGrid = mapGrid;
-        this.actorsArea = actorsArea;
+//        this.actorsArea = actorsArea;
 
     }
 
