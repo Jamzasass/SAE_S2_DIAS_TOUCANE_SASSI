@@ -123,7 +123,7 @@ public abstract class Soldier extends Actor{
 
     public Actor searchTarget() {
         Enemy closeTarget = null;
-        double minRange = 6.0;
+        double minRange = Double.MIN_VALUE;
         for (Enemy e : getEnvironnement().getEnemies()) {
             if (e.isLiving()) {
                 int range = calcDistanceFromTargerUsingBFS(e);
