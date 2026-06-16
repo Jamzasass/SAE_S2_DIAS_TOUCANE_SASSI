@@ -21,6 +21,13 @@ public class Wave {
             int random = (int)(Math.random()*4);
             this.macronInflationActivated = random==3;
         }
+        if (waveIndex == 15) {
+            env.getSettings().multiplierStatsEnemy(1.3);
+        } else if (waveIndex == 25) {
+            env.getSettings().multiplierStatsEnemy(1.3);
+        } else if (waveIndex == 35) {
+            env.getSettings().multiplierStatsEnemy(1.3);
+        }
     }
 
     public void waveLoop(int cptLap) {
