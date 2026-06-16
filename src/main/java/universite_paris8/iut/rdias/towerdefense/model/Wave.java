@@ -6,7 +6,8 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;
 public class Wave {
     private Environnement env;
     private int waveIndex;
-    private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
+    private static final int[][] spawnPoints = {{4, 8}, {4, 38}, {4, 60}};
+    private static final int[] spawnPointsStartGame = {4, 38};
     private int nbEnemies;
     private int delayBetweenSpawns;
     private boolean macronInflationActivated;
@@ -24,7 +25,18 @@ public class Wave {
 
     public void waveLoop(int cptLap) {
         if (cptLap % (delayBetweenSpawns*30) == 0 && nbEnemies>0) {
-            Enemy e = createNewEnemy();
+            int[] spawn;
+            if (waveIndex <= 1){
+                spawn = spawnPointsStartGame;
+            }
+            else {
+                int random = (int)(Math.random() * spawnPoints.length);
+                spawn = spawnPoints[random];
+            }
+            int line = spawn[0];
+            int col = spawn[1];
+
+            Enemy e = createNewEnemy(col, line);
             env.addEnemy(e);
             env.incrementId();
             nbEnemies--;
@@ -49,19 +61,14 @@ public class Wave {
         return macronInflationActivated;
     }
 
-    public Enemy createNewEnemy() {
+    public Enemy createNewEnemy(int col, int line) {
         Enemy e = null;
-        int random = (int)(Math.random() * spanwPoints.length);
-        int[] spawn = spanwPoints[random];
-        int line = spawn[0];
-        int col = spawn[1];
         int radomSelectEnemy = (int) (Math.random() * 100);
 
         if (waveIndex <= 1) {
-//            e = new Viking(env, env.getId(), col, line);
-            e = new ArcherViking(env, env.getId(), col, line);
+            e = new Viking(env, env.getId(), col, line);
         }
-        else if (waveIndex <= 2) {
+        else if (waveIndex <= 3) {
             if (radomSelectEnemy < 30) {
                 e = new ArcherViking(env, env.getId(), col, line);
             }
@@ -69,7 +76,7 @@ public class Wave {
                 e = new Viking(env, env.getId(), col, line);
             }
         }
-        else if (waveIndex <= 3) {
+        else if (waveIndex <= 5) {
             if (radomSelectEnemy < 30) {
                 e = new ArcherViking(env, env.getId(), col, line);
             }
@@ -80,7 +87,7 @@ public class Wave {
                 e = new Viking(env,env.getId(), col, line);
             }
         }
-        else if (waveIndex <= 4) {
+        else if (waveIndex <= 8) {
             if (radomSelectEnemy < 10) {
                 e = new ShieldViking(env, env.getId(), col, line);
             }
