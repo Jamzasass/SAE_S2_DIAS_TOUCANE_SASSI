@@ -1,13 +1,10 @@
 package universite_paris8.iut.rdias.towerdefense.controller;
 
 import javafx.collections.ListChangeListener;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.Effect;
-import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
 import universite_paris8.iut.rdias.towerdefense.view.EffectView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,17 +16,6 @@ public class ObsEffect implements ListChangeListener<Effect> {
         this.grid = oGrid;
         this.effectSprite = new ArrayList<>();
     }
-
-//    public void animate() {
-//        for (SoldierView s : effectSprite) {
-//            try {
-//                s.switchImage();
-//            } catch (Exception ex) {
-//                System.out.println("  EXCEPTION: " + ex.getMessage());
-//            }
-//
-//        }
-//    }
 
     @Override
     public void onChanged(ListChangeListener.Change<? extends Effect> change) {

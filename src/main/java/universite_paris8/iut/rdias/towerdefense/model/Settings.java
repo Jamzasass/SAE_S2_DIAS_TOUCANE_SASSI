@@ -8,7 +8,7 @@ public class Settings {
     public static double upgradeFactor = 2;
     public static double upgradeCostFactor = 0.5;
 
-    // --------- towers (ally -> cost)
+    // towers (ally -> cost)
     // archer
     public static int archerDmg = 40;
     public static int archerHp = 150;
@@ -25,7 +25,7 @@ public class Settings {
 
     // barrack
     public static int barrackHp = 250;
-    public static int barrackSpeedProduction = 10;
+    public static int barrackSpeedProduction = 8;
     public static int barrackSpeed = 0;
     public static int barrackCost = 200;
 
@@ -40,7 +40,7 @@ public class Settings {
 
     // sorcererTower
     public static int sorcererTowerHp = 300;
-    public static int sorcererTowerDmg = 50;          // dégâts par seconde
+    public static int sorcererTowerDmg = 50;
     public static int sorcererTowerZoneDuration = 3;
     public static int sorcererTowerSpeedAttack = 4;
     public static int sorcererTowerCost = 500;
@@ -76,19 +76,14 @@ public class Settings {
     // ramwarrior
     public static int ramwarriorHp = 250;
     public static int ramwarriorDmg = 100;
-    public static double ramwarriorSpeed = 0.03;
+    public static double ramwarriorSpeed = 0.04;
     public static int ramwarriorDeathValue = 80;
 
     // shieldwarrior
     public static int shieldwarriorHp = 250;
     public static int shieldwarriorDmg = 20;
-    public static double shieldwarriorSpeed = 0.03;
+    public static double shieldwarriorSpeed = 0.04;
     public static int shieldwarriorDeathValue = 70;
-
-//    // Classe utilitaire : pas d'instanciation
-//    private Settings() {
-//        System.out.println("tkt");
-//    }
 
     public int getArcherDmg() {
         return archerDmg;
@@ -260,9 +255,7 @@ public class Settings {
         return ramwarriorHp;
     }
 
-    public int getRamwarriorDmg() {
-        return ramwarriorDmg;
-    }
+    public int getRamwarriorDmg() {return ramwarriorDmg;}
 
     public double getRamwarriorSpeed() {
         return ramwarriorSpeed;
@@ -288,16 +281,16 @@ public class Settings {
         return shieldwarriorDeathValue;
     }
 
-    public static void multiplierStatsEnnemy(double factor) {
+    public static void multiplierStatsEnemy(double factor) {
 
         double halfFactor = 1 + (factor/2);
         factor = 1 + factor;
+
         // archerViking
         archerVikingDmg = (int) (archerVikingDmg * factor);
         archerVikingHp = (int) (archerVikingHp * factor);
         archerVikingSpeed = (int) (archerVikingSpeed * halfFactor);
         archerVikingDeathValue = (int) (archerVikingDeathValue * halfFactor);
-        // !!!speedAttack
 
         // berserker
         berserkerDmg = (int) (berserkerDmg * factor);
@@ -322,7 +315,6 @@ public class Settings {
         vikingDmg = (int) (vikingDmg * factor);
         vikingSpeed = (int) (vikingSpeed * halfFactor);
         vikingDeathValue = (int) (vikingDeathValue * halfFactor);
-
     }
 
     public double getUpgradeFactor() {

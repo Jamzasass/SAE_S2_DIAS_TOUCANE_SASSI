@@ -2,11 +2,8 @@ package universite_paris8.iut.rdias.towerdefense.controller;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
-import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
-import universite_paris8.iut.rdias.towerdefense.view.EffectView;
 import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +39,6 @@ public class ObsEnemy implements ListChangeListener<Enemy> {
                 enemiesSprite.add(s);
             }
             for (Enemy e : retirer) {
-                //grid.getChildren().remove(grid.lookup("#" + "v" + e.getId()));
                 for (SoldierView sV : enemiesSprite) {
                     if (sV.getId() == e.getId()) {
                         sV.blow();

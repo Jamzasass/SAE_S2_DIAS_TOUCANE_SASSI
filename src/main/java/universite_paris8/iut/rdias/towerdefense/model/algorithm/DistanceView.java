@@ -1,6 +1,5 @@
-package universite_paris8.iut.rdias.towerdefense.view;
+package universite_paris8.iut.rdias.towerdefense.model.algorithm;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,19 +10,15 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
-import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 
-/**
+/*
  * Affiche dans une fenetre la carte des distances calculee par le BFS,
  * pour une tuile d'origine donnee (lOrigin, cOrigin).
  *
  * Plus une case est loin de l'origine, plus sa couleur est foncee.
  * Les cases non atteignables (distance -1) sont grisees.
- *
- * Pour brancher ca sur ton projet, il te faut juste :
- *   - exposer la distancesMap depuis BFS (voir getter plus bas)
- *   - un Ground deja construit
  */
+
 public class DistanceView {
 
     private static final int CELL = 16;   // taille d'une case en pixels

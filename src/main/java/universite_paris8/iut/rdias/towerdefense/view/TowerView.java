@@ -1,8 +1,5 @@
 package universite_paris8.iut.rdias.towerdefense.view;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -46,13 +43,22 @@ public class TowerView {
 
     //Sprite lvl2
     //Archer
-    private static Image spriteArcherlvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower_lvl2/sprite_ArcherTower2.1.png"));
+    private static Image spriteArcherlvl2_1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower_lvl2/sprite_ArcherTower2.1.png"));
+    private static Image spriteArcherlvl2_2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower_lvl2/sprite_ArcherTower2.2.png"));
+    private static Image spriteArcherlvl2_3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower_lvl2/sprite_ArcherTower2.3.png"));
     //Barrack
-
-    private static Image spriteBarracklvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower_lvl2/sprite_BarrackTowerNiv2_1.png"));
+    private static Image spriteBarracklvl2_1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower_lvl2/sprite_BarrackTowerNiv2_1.png"));
+    private static Image spriteBarracklvl2_2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower_lvl2/sprite_BarrackTowerNiv2_2.png"));
+    private static Image spriteBarracklvl2_3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower_lvl2/sprite_BarrackTowerNiv2_3.png"));
+    private static Image spriteBarracklvl2_4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower_lvl2/sprite_BarrackTowerNiv2_4.png"));
     //Ballista
-    private static Image spriteBallistalvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista_lvl2/sprite_BallistaTower2.1.png"));
-    private static Image spriteSorcererlvl2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower_lvl2/sprite_towersorcerer2.1.png"));
+    private static Image spriteBallistalvl2_1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista_lvl2/sprite_BallistaTower2.1.png"));
+    private static Image spriteBallistalvl2_2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista_lvl2/sprite_BallistaTower2.2.png"));
+    //Sorcerer
+    private static Image spriteSorcererlvl2_1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower_lvl2/sprite_towersorcerer2.1.png"));
+    private static Image spriteSorcererlvl2_2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower_lvl2/sprite_towersorcerer2.2.png"));
+    private static Image spriteSorcererlvl2_3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower_lvl2/sprite_towersorcerer2.3.png"));
+    private static Image spriteSorcererlvl2_4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower_lvl2/sprite_towersorcerer2.4.png"));
 
 
     public TowerView(Tower tTower) {
@@ -89,17 +95,17 @@ public class TowerView {
         int lvl = tower.getLevel();
         Image newImage = null;
         if (tower instanceof Archer) {
-            newImage = (lvl == 2) ? spriteArcherlvl2 : spriteArcher1;
+            newImage = (lvl == 2) ? spriteArcherlvl2_1 : spriteArcher1;
         } else if (tower instanceof Barrack) {
-            newImage = (lvl == 2) ? spriteBarracklvl2 : spriteBarrack1;
+            newImage = (lvl == 2) ? spriteBarracklvl2_1 : spriteBarrack1;
         } else if (tower instanceof Ballista) {
-            newImage = (lvl == 2) ? spriteBallistalvl2 : spriteBallista1;
+            newImage = (lvl == 2) ? spriteBallistalvl2_1 : spriteBallista1;
         } else if (tower instanceof Bramble) {
             newImage = spriteBramble1;
         } else if (tower instanceof Palissade) {
             newImage = spritePalissade;
         } else if (tower instanceof SorcererTower) {
-            newImage = (lvl == 2) ? spriteSorcererlvl2 : spriteSorcerer1;
+            newImage = (lvl == 2) ? spriteSorcererlvl2_1 : spriteSorcerer1;
         }
         if (newImage != null) image.setImage(newImage);
     }
@@ -153,6 +159,14 @@ public class TowerView {
                 } else if (image.getImage().equals(spriteArcher5)) {
                     image.setImage(spriteArcher1);
                 }
+            } else {
+                if (image.getImage().equals(spriteArcherlvl2_1)) {
+                    image.setImage(spriteArcherlvl2_2);
+                } else if (image.getImage().equals(spriteArcherlvl2_2)) {
+                    image.setImage(spriteArcherlvl2_3);
+                } else if (image.getImage().equals(spriteArcherlvl2_3)) {
+                    image.setImage(spriteArcherlvl2_1);
+                }
             }
         }
         if (this.getTower() instanceof Barrack){
@@ -166,6 +180,16 @@ public class TowerView {
                 } else if (image.getImage().equals(spriteBarrack4)) {
                     image.setImage(spriteBarrack1);
                 }
+            } else {
+                if (image.getImage().equals(spriteBarracklvl2_1)) {
+                    image.setImage(spriteBarracklvl2_2);
+                } else if (image.getImage().equals(spriteBarracklvl2_2)) {
+                    image.setImage(spriteBarracklvl2_3);
+                } else if (image.getImage().equals(spriteBarracklvl2_3)) {
+                    image.setImage(spriteBarracklvl2_4);
+                } else if (image.getImage().equals(spriteBarracklvl2_4)) {
+                    image.setImage(spriteBarracklvl2_1);
+                }
             }
         }
         if (this.getTower() instanceof Ballista) {
@@ -174,6 +198,12 @@ public class TowerView {
                     image.setImage(spriteBallista2);
                 } else if (image.getImage().equals(spriteBallista2)) {
                     image.setImage(spriteBallista1);
+                }
+            } else {
+                if (image.getImage().equals(spriteBallistalvl2_1)) {
+                    image.setImage(spriteBallistalvl2_2);
+                } else if (image.getImage().equals(spriteBallistalvl2_2)) {
+                    image.setImage(spriteBallistalvl2_1);
                 }
             }
         }
@@ -194,6 +224,16 @@ public class TowerView {
                     image.setImage(spriteSorcerer2);
                 } else if (image.getImage().equals(spriteSorcerer2)) {
                     image.setImage(spriteSorcerer1);
+                }
+            } else {
+                if (image.getImage().equals(spriteSorcererlvl2_1)) {
+                    image.setImage(spriteSorcererlvl2_2);
+                } else if (image.getImage().equals(spriteSorcererlvl2_2)) {
+                    image.setImage(spriteSorcererlvl2_3);
+                } else if (image.getImage().equals(spriteSorcererlvl2_3)) {
+                    image.setImage(spriteSorcererlvl2_4);
+                } else if (image.getImage().equals(spriteSorcererlvl2_4)) {
+                    image.setImage(spriteSorcererlvl2_1);
                 }
             }
         }

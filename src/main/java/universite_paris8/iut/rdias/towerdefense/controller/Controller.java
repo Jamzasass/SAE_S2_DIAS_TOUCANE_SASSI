@@ -24,10 +24,20 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.view.DistanceView;
 import javafx.scene.control.ProgressBar;
-
+import universite_paris8.iut.rdias.towerdefense.model.algorithm.DistanceView;
 
 public class Controller {
 
+    //  Constants
+    private static final int TILE_SIZE = 16;
+    private static final int TOWER_ARCHER = 1;
+    private static final int TOWER_BARRACK = 2;
+    private static final int TOWER_BRAMBLE = 3;
+    private static final int TOWER_PALISSADE = 4;
+    private static final int TOWER_SORCERER = 5;
+    private static final int TOWER_BALLISTA = 6;
+
+    // Fxml
     @FXML private TilePane mapGrid;
     @FXML private Label balanceLabel;
     @FXML private Label hpPlayer;
@@ -53,29 +63,39 @@ public class Controller {
     @FXML private Button palissadeTower;
     @FXML private Button sorcererTower;
     @FXML private Button ballistaTower;
-    private Circle rangeCircle;
+    @FXML private ProgressBar hpBar;
 
-    private BFS bfs;
+    // Model
+    private Ground ground;
+    private Environnement env;
+
+    // View
+    private GroundView groundView;
+    private CastleView castleView;
+    private ObsEnemy obsEnemy;
+    private ObsKnight obsKnight;
+    private ObsTower obsTower;
+    private ObsEffect obsEffect;
 
     private static int towerSelected;
 
     private ImageView ghostImage;
-    private static final Image spriteArcher = new javafx.scene.image.Image(Controller.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1_1.png"));
-    private static final Image spriteBarrack = new javafx.scene.image.Image(Controller.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower/sprite_BarrackTower1.png"));
-    private static final Image spriteBallista = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista/sprite_BallistaTower1.png"));
-    private static final Image spriteBramble = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/bramble_tower/sprite_BrambleTower4.png"));
-    private static final Image spritePalissade = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/palissade_tower/sprite_PalissadeTower1.png"));
-    private static final Image spriteSorcerer = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower/sprite_SorcererTower1.png"));
+    private Circle rangeCircle;
+    private int towerSelected = 0;
 
     public void initialize() {
 
         ground = new Ground();
         env = new Environnement(ground);
+    }
+
+    private void setupView() {
         groundView = new GroundView(ground, mapGrid, actorsArea, env);
+
         actorsArea.prefHeightProperty().bind(mapGrid.heightProperty());
         actorsArea.prefWidthProperty().bind(mapGrid.widthProperty());
-        double largeur = ground.width() * 16.0;
-        double hauteur = ground.heigth() * 16.0;
+        double largeur = ground.width() * TILE_SIZE;
+        double hauteur = ground.heigth() * TILE_SIZE;
         actorsArea.setMinSize(largeur, hauteur);
         actorsArea.setMaxSize(largeur, hauteur);
 
@@ -103,30 +123,58 @@ public class Controller {
         ImageView c = new ImageView();
         c.setFitHeight(64);
         c.setFitWidth(64);
-        c.setLayoutX(39*16);
-        c.setLayoutY((40*16)-5);
+        c.setLayoutX(39 * TILE_SIZE);
+        c.setLayoutY((40 * TILE_SIZE) - 5);
         c.imageProperty().bind(castleView.getCastleImage().imageProperty());
         actorsArea.getChildren().add(c);
 
-
-        bfs = new BFS(ground);
+        BFS bfs = new BFS(ground);
         DistanceView n = new DistanceView(ground, bfs.getDistancesMap(), 4, 8);
         n.show();
+    }
 
-        //définition et démarrage d'un gameloop qui fait env.unTour()
-        initAnimation();
-        keySelectionInit();
-        gameLoop.play();
+    private void bindProperties() {
+        balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
+        hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
+        hpBar.progressProperty().bind(
+                env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
+        );
+        waveLabel.textProperty().bind(env.getWaveIndexProperty().asString());
+    }
 
-        //For the drag and drop of towers
-        archerTower.setOnAction(e -> startDrag(spriteArcher, 1));
-        barrackTower.setOnAction(e -> startDrag(spriteBarrack, 2));
-        brambleTower.setOnAction(e -> startDrag(spriteBramble, 3));
-        palissadeTower.setOnAction(e -> startDrag(spritePalissade, 4));
-        sorcererTower.setOnAction((e -> startDrag(spriteSorcerer, 5)));
-        ballistaTower.setOnAction(e -> startDrag(spriteBallista, 6));
+    private void setupEventHandlers() {
+        setupTowerButtons();
+        setupMapClick();
+        setupKeyboard();
+        setupGameOver();
+    }
 
-        // for the game over display
+    private void setupTowerButtons() {
+        archerTower.setOnAction(e -> startDrag(spriteArcher, TOWER_ARCHER));
+        barrackTower.setOnAction(e -> startDrag(spriteBarrack, TOWER_BARRACK));
+        brambleTower.setOnAction(e -> startDrag(spriteBramble, TOWER_BRAMBLE));
+        palissadeTower.setOnAction(e -> startDrag(spritePalissade, TOWER_PALISSADE));
+        sorcererTower.setOnAction(e -> startDrag(spriteSorcerer, TOWER_SORCERER));
+        ballistaTower.setOnAction(e -> startDrag(spriteBallista, TOWER_BALLISTA));
+    }
+
+    private void setupMapClick() {
+        mapGrid.setOnMouseClicked(this::handleMapClick);
+    }
+
+    private void setupKeyboard() {
+        actorsArea.setFocusTraversable(true);
+        actorsArea.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.A) towerSelected = TOWER_ARCHER;
+            else if (e.getCode() == KeyCode.Z) towerSelected = TOWER_BARRACK;
+            else if (e.getCode() == KeyCode.E) towerSelected = TOWER_BRAMBLE;
+            else if (e.getCode() == KeyCode.R) towerSelected = TOWER_PALISSADE;
+            else if (e.getCode() == KeyCode.T) towerSelected = TOWER_SORCERER;
+            else if (e.getCode() == KeyCode.Y) towerSelected = TOWER_BALLISTA;
+        });
+    }
+
+    private void setupGameOver() {
         env.getCastle().getHpPlayerProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal.intValue() <= 0) {
                 gameLoop.stop();
@@ -138,7 +186,9 @@ public class Controller {
 
     }
 
-    public void initAnimation() {
+    // Game Loop
+
+    private void startGameLoop() {
         gameLoop = new Timeline();
         temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
@@ -153,7 +203,7 @@ public class Controller {
                         obsEnemy.animate();
                         obsKnight.animate();
                     }
-                    if (temps %15 == 0) {
+                    if (temps % 15 == 0) {
                         castleView.switchImage();
                         obsTower.animate();
                     }
@@ -161,115 +211,167 @@ public class Controller {
                 })
         );
         gameLoop.getKeyFrames().add(kf);
+        gameLoop.play();
     }
 
-    public void keySelectionInit() {
-        towerSelected = 0;
-        mapGrid.setOnMouseClicked(e -> {
-            javafx.geometry.Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
-            int col = (int)(local.getX() / 16);
-            int line = (int)(local.getY() / 16);
-            if (line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width()) {
-                System.out.println("hors map");
-            }
-            else {
-                mouseClikedTile(e, line, col);
-            }
-        });
-        actorsArea.setFocusTraversable(true);
-        actorsArea.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.A) {
-                towerSelected = 1;
-            }
-            else if (e.getCode() == KeyCode.Z) {
-                towerSelected = 2;
-            }
-            else if (e.getCode() == KeyCode.E){
-                towerSelected = 3;
-            }
-            else if (e.getCode() == KeyCode.R){
-                towerSelected = 4;
-            }
-            else if (e.getCode() == KeyCode.T){
-                towerSelected = 5;
-            }
-            else if (e.getCode() == KeyCode.Y){
-                towerSelected = 6;
-            }
-        });
-    }
+    // mouse handling
 
-    public void mouseClikedTile(MouseEvent e, int line, int col) {
-        if (e.getButton().equals(MouseButton.PRIMARY)) {
-            for (Tower t : env.getTowers()) {
-                if ((int)t.getX() == col && (int)t.getY() == line) {
-                    btnSell.setText("Sell (" + t.getCost() / 2 + " 💰)");
+    private void handleMapClick(MouseEvent e) {
+        Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
+        int col = (int)(local.getX() / TILE_SIZE);
+        int line = (int)(local.getY() / TILE_SIZE);
 
-                    if (t.canBeUpgraded()) {
-                        btnUpgrade.setText("Upgrade (" + t.getUpgradeCost() + " 💰)");
-                        btnUpgrade.setDisable(false);
-                    } else {
-                        btnUpgrade.setText("Max");
-                        btnUpgrade.setDisable(true);
-                    }
+        if (!isValidTile(line, col)) {
+            return;
+        }
 
-                    btnSell.setOnAction(ev -> {
-                        t.sold();
-                        towerActionMenu.setVisible(false);
-                    });
-                    btnUpgrade.setOnAction(ev -> {
-                        if (!env.upgradeTower(t)) {
-                            System.out.println("Upgrade impossible");
-                        }
-                        towerActionMenu.setVisible(false);
-                    });
-                    towerActionMenu.setVisible(true);
-                    return;
-                }
-            }
+        if (!e.getButton().equals(MouseButton.PRIMARY)) {
+            return;
+        }
 
-            if (towerSelected == 1){
-                env.addArcher(col, line);
-            }
-            else if (towerSelected == 2){
-                env.addBarrack(col, line);
-            }
-            else if (towerSelected == 3){
-                env.addBramble(col, line);
-            }
-            else if (towerSelected == 4){
-                env.addPalissade(col, line);
-            }
-            else if (towerSelected == 5 ){
-                env.addSorcerer(col, line);
-            }
-            else if (towerSelected == 6){
-                env.addBallista(col, line);
-            }
+        // Check if clicking on existing tower
+        Tower tower = findTowerAt(col, line);
+        if (tower != null) {
+            showTowerMenu(tower);
+            return;
+        }
+
+        // Place new tower
+        if (towerSelected > 0) {
+            addTower(towerSelected, col, line);
             towerSelected = 0;
             stopDrag();
-
         }
     }
 
-    @FXML
-    private ProgressBar hpBar;
+    private Tower findTowerAt(int col, int line) {
+        for (Tower t : env.getTowers()) {
+            if ((int)t.getX() == col && (int)t.getY() == line) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    private void showTowerMenu(Tower tower) {
+        btnSell.setText("Sell (" + tower.getCost() / 2 + " 💰)");
+
+        if (tower.canBeUpgraded()) {
+            btnUpgrade.setText("Upgrade (" + tower.getUpgradeCost() + " 💰)");
+            btnUpgrade.setDisable(false);
+        } else {
+            btnUpgrade.setText("Max");
+            btnUpgrade.setDisable(true);
+        }
+
+        btnSell.setOnAction(ev -> {
+            tower.sold();
+            towerActionMenu.setVisible(false);
+        });
+        btnUpgrade.setOnAction(ev -> {
+            if (!env.upgradeTower(tower)) {
+                System.out.println("Upgrade impossible");
+            }
+            towerActionMenu.setVisible(false);
+        });
+        towerActionMenu.setVisible(true);
+    }
+
+    private boolean isValidTile(int line, int col) {
+        return !(line < 0 || line >= ground.heigth() || col < 0 || col >= ground.width());
+    }
+
+    // Drag And Drop
+
+    private void startDrag(Image sprite, int type) {
+        towerSelected = type;
+        stopDrag();
+
+        ghostImage = new ImageView(sprite);
+        ghostImage.setFitWidth(32);
+        ghostImage.setFitHeight(32);
+        ghostImage.setOpacity(0.5);
+        ghostImage.setMouseTransparent(true);
+
+        double range = getTowerRange(type);
+
+        rangeCircle = new Circle(range);
+        rangeCircle.setFill(Color.TRANSPARENT);
+        rangeCircle.setStroke(Color.BLACK);
+        rangeCircle.setStrokeWidth(1.5);
+        rangeCircle.setOpacity(0.6);
+        rangeCircle.setMouseTransparent(true);
+
+        actorsArea.getChildren().addAll(rangeCircle, ghostImage);
+        mapGrid.setOnMouseMoved(this::updateDragPosition);
+    }
+
+    private void updateDragPosition(MouseEvent e) {
+        Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
+        int col = (int)(local.getX() / TILE_SIZE);
+        int line = (int)(local.getY() / TILE_SIZE);
+        double cx = col * TILE_SIZE + TILE_SIZE / 2;
+        double cy = line * TILE_SIZE + TILE_SIZE / 2;
+
+        ghostImage.setLayoutX(cx - 16);
+        ghostImage.setLayoutY(cy - 16);
+        rangeCircle.setCenterX(cx);
+        rangeCircle.setCenterY(cy);
+    }
+
+    private void stopDrag() {
+        if (ghostImage != null) {
+            actorsArea.getChildren().remove(ghostImage);
+            ghostImage = null;
+        }
+        if (rangeCircle != null) {
+            actorsArea.getChildren().remove(rangeCircle);
+            rangeCircle = null;
+        }
+        mapGrid.setOnMouseMoved(null);
+    }
+
+    private double getTowerRange(int towerType) {
+        if (towerType == TOWER_ARCHER) {
+            return env.getSettings().getArcherRange() * TILE_SIZE;
+        }
+        else if (towerType == TOWER_SORCERER) {
+            return env.getSettings().getSorcererRange() * TILE_SIZE;
+        }
+        else if (towerType == TOWER_BALLISTA) {
+            return env.getSettings().getBallistaRange() * TILE_SIZE;
+        }
+        return 0;
+    }
+
+    // Tower Placement
+
+    private void addTower(int towerType, int col, int line) {
+        if (towerType == TOWER_ARCHER) {
+            env.addArcher(col, line);
+        }
+        else if (towerType == TOWER_BARRACK) {
+            env.addBarrack(col, line);
+        }
+        else if (towerType == TOWER_BRAMBLE) {
+            env.addBramble(col, line);
+        }
+        else if (towerType == TOWER_PALISSADE) {
+            env.addPalissade(col, line);
+        }
+        else if (towerType == TOWER_SORCERER) {
+            env.addSorcerer(col, line);
+        }
+        else if (towerType == TOWER_BALLISTA) {
+            env.addBallista(col, line);
+        }
+    }
+
+    // Game Over
 
     private void showGameOver() {
         int wave = env.getWaveIndexProperty().get();
-
-        String message;
-        if (wave <= 2) {
-            message = "Tu fais honte au roi. Au bûcher !!!";
-        } else if (wave <= 5) {
-            message = "Pff. T'es mauvais ! ";
-        } else if (wave <= 10) {
-            message = "Mmmmh. Va lire l'art de la Guerre pour t'améliorer.";
-        } else if (wave <= 15) {
-            message = "Bien ! Mais tu dois améliorer ta tactique.";
-        } else {
-            message = "Tu as été promu en tant que tacticien de l'armée du Roi. Chapeau l'artiste.";
-        }
+        String message = getGameOverMessage(wave);
 
         VBox gameOverPane = new VBox(20);
         gameOverPane.setAlignment(javafx.geometry.Pos.CENTER);
@@ -290,64 +392,21 @@ public class Controller {
         actorsArea.getChildren().add(gameOverPane);
     }
 
-    //full brouillon
+    private String getGameOverMessage(int wave) {
+        if (wave <= 2) {
+            return "Tu fais honte au roi. Au bûcher !!!";
+        } else if (wave <= 5) {
+            return "Pff. T'es mauvais ! ";
+        } else if (wave <= 10) {
+            return "Mmmmh. Va lire l'art de la Guerre pour t'améliorer.";
+        } else if (wave <= 15) {
+            return "Bien ! Mais tu dois améliorer ta tactique.";
+        } else {
+            return "Tu as été promu en tant que tacticien de l'armée du Roi. Chapeau l'artiste.";
+        }
+    }
+
     public int getTemps() {
         return temps;
     }
-
-    private void startDrag(Image sprite, int type) {
-        towerSelected = type;
-        stopDrag();
-        ghostImage = new ImageView(sprite);
-        ghostImage.setFitWidth(32);
-        ghostImage.setFitHeight(32);
-        ghostImage.setOpacity(0.5);
-        ghostImage.setMouseTransparent(true);
-
-        double range = 0;
-        if (type == 1){
-            range = env.getSettings().getArcherRange() * 16;
-        }
-        else if(type == 5 ){
-           range = env.getSettings().getSorcererRange() * 16;
-        }
-        else if (type == 6){
-            range = env.getSettings().getBallistaRange() * 16;
-        }
-
-        rangeCircle = new Circle(range);
-        rangeCircle.setFill(Color.TRANSPARENT);
-        rangeCircle.setStroke(Color.BLACK);
-        rangeCircle.setStrokeWidth(1.5);
-        rangeCircle.setOpacity(0.6);
-        rangeCircle.setMouseTransparent(true);
-
-        actorsArea.getChildren().addAll(rangeCircle, ghostImage);
-
-        mapGrid.setOnMouseMoved(e -> {
-            Point2D local = mapGrid.sceneToLocal(e.getSceneX(), e.getSceneY());
-            int col = (int)(local.getX() / 16);
-            int line = (int)(local.getY() / 16);
-            double cx = col * 16 + 8;
-            double cy = line * 16 + 8;
-            ghostImage.setLayoutX(cx - 16);
-            ghostImage.setLayoutY(cy - 16);
-            rangeCircle.setCenterX(cx);
-            rangeCircle.setCenterY(cy);
-        });
-    }
-
-    private void stopDrag() {
-        if (ghostImage != null) {
-            actorsArea.getChildren().remove(ghostImage);
-            ghostImage = null;
-        }
-        if (rangeCircle != null) {
-            actorsArea.getChildren().remove(rangeCircle);
-            rangeCircle = null;
-        }
-        mapGrid.setOnMouseMoved(null);
-    }
-
-
 }

@@ -75,6 +75,9 @@ public abstract class Actor {
     }
     public DoubleProperty getXProperty() {return x;}
     public DoubleProperty getYProperty() {return y;}
+    public int getMaxHp(){
+        return maxHp;
+    }
 
     public boolean isLiving(){return this.hp.getValue() > 0;}
 
@@ -109,10 +112,6 @@ public abstract class Actor {
 
     public void setDmg(int dmg){
         this.dmg = dmg;
-    }
-
-    public int getMaxHp(){
-        return maxHp;
     }
 
     public void setMaxHp(int maxHp){
