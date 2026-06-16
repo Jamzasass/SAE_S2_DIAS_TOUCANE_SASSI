@@ -21,7 +21,9 @@ public class ArcherViking extends Enemy {
                 eX,
                 eY,
                 aEnv.getSettings().getArcherVikingSpeed(),
-                aEnv.getSettings().getArcherVikingDeathValue());
+                aEnv.getSettings().getArcherVikingDeathValue(),
+                aEnv.getSettings().getArcherSpeedAct()
+        );
         target = null;
     }
     @Override

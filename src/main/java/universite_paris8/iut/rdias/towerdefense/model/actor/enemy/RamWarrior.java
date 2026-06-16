@@ -21,7 +21,9 @@ public class RamWarrior extends Enemy {
                 eX,
                 eY,
                 rEnv.getSettings().getRamwarriorSpeed(),
-                rEnv.getSettings().getRamwarriorDeathValue());
+                rEnv.getSettings().getRamwarriorDeathValue(),
+                rEnv.getSettings().getRamwarriorSpeedAct()
+        );
     }
 
     @Override

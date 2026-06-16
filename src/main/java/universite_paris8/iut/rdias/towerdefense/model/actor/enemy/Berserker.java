@@ -18,7 +18,9 @@ public class Berserker extends Enemy {
                 eX,
                 eY,
                 bEnv.getSettings().getBerserkerSpeed(),
-                bEnv.getSettings().getBerserkerDeathValue());
+                bEnv.getSettings().getBerserkerDeathValue(),
+                bEnv.getSettings().getBerserkerSpeedAct()
+        );
         target = null;
     }
 

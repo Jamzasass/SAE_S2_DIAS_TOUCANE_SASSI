@@ -52,6 +52,7 @@ public class Settings {
     public static int knightDmg = 25;
     public static double knightSpeed = 0.08;
     public static int knightCost = 0;
+    public static int knightSpeedAct = 2;
 
     // soliders Enemy (enemy -> deathValue)
     // viking
@@ -59,12 +60,14 @@ public class Settings {
     public static int vikingDmg = 20;
     public static double vikingSpeed = 0.05;
     public static int vikingDeathValue = 15;
+    public static int vikingSpeedAct = 2;
 
     // berserker
     public static int berserkerHp = 125;
     public static int berserkerDmg = 20;
     public static double berserkerSpeed = 0.07;
     public static int berserkerDeathValue = 45;
+    public static int berserkerSpeedAct = 2;
 
     // archerViking
     public static int archerVikingHp = 50;
@@ -72,18 +75,21 @@ public class Settings {
     public static double archerVikingSpeed = 0.06;
     public static int archerVikingDeathValue = 25;
     public static int archerVikingRange = 4;
+    public static int archerSpeedAct = 2;
 
     // ramwarrior
     public static int ramwarriorHp = 250;
     public static int ramwarriorDmg = 100;
     public static double ramwarriorSpeed = 0.04;
     public static int ramwarriorDeathValue = 80;
+    public static int ramwarriorSpeedAct = 2;
 
     // shieldwarrior
     public static int shieldwarriorHp = 250;
     public static int shieldwarriorDmg = 20;
     public static double shieldwarriorSpeed = 0.04;
     public static int shieldwarriorDeathValue = 70;
+    public static int shielSpeedAct = 2;
 
     public int getArcherDmg() {
         return archerDmg;
@@ -198,6 +204,9 @@ public class Settings {
     public int getKnightCost() {
         return knightCost;
     }
+    public int getKnightSpeedAct() {
+        return knightSpeedAct;
+    }
 
     public int getVikingHp() {
         return vikingHp;
@@ -215,6 +224,10 @@ public class Settings {
         return vikingDeathValue;
     }
 
+    public int getVikingSpeedAct() {
+        return vikingSpeedAct;
+    }
+
     public int getBerserkerHp() {
         return berserkerHp;
     }
@@ -229,6 +242,10 @@ public class Settings {
 
     public int getBerserkerDeathValue() {
         return berserkerDeathValue;
+    }
+
+    public int getBerserkerSpeedAct() {
+        return berserkerSpeedAct;
     }
 
     public int getArcherVikingHp() {
@@ -251,6 +268,10 @@ public class Settings {
         return archerVikingRange;
     }
 
+    public int getArcherSpeedAct() {
+        return archerSpeedAct;
+    }
+
     public int getRamwarriorHp() {
         return ramwarriorHp;
     }
@@ -263,6 +284,10 @@ public class Settings {
 
     public int getRamwarriorDeathValue() {
         return ramwarriorDeathValue;
+    }
+
+    public int getRamwarriorSpeedAct() {
+        return ramwarriorSpeedAct;
     }
 
     public int getShieldwarriorHp() {
@@ -279,6 +304,10 @@ public class Settings {
 
     public int getShieldwarriorDeathValue() {
         return shieldwarriorDeathValue;
+    }
+
+    public int getShielSpeedAct() {
+        return shielSpeedAct;
     }
 
     public static void multiplierStatsEnemy(double factor) {

@@ -17,7 +17,9 @@ public class Knight extends Soldier {
                 kY,
                 kEnv.getSettings().getKnightSpeed(),
                 42,
-                40);
+                40,
+                kEnv.getSettings().getKnightSpeedAct()
+        );
         target = null;
     }
     public void act() {

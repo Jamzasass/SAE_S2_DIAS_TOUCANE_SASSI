@@ -17,7 +17,9 @@ public class Viking extends Enemy {
                 vX,
                 vY,
                 env.getSettings().getVikingSpeed(),
-                env.getSettings().getVikingDeathValue());
+                env.getSettings().getVikingDeathValue(),
+                env.getSettings().getVikingSpeedAct()
+        );
         target = null;
     }
 

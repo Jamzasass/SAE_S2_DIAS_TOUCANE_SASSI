@@ -16,7 +16,7 @@ public abstract class Soldier extends Actor{
     private int cooldown;
     private int speedAct;
 
-    public Soldier (Environnement env, int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed, int xCible, int yCible) {
+    public Soldier (Environnement env, int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed, int xCible, int yCible, int sSpeedAct) {
         super(env, sHp, sDmg, sId, sRange, sX, sY);
         this.speed = sSpeed;
         this.directionX = 0;
@@ -28,7 +28,7 @@ public abstract class Soldier extends Actor{
         majDirection();
         this.slowFactor = 1.0;
         this.slowDuration = 0;
-        this.speedAct = 2; //temp
+        this.speedAct = sSpeedAct; //temp
         this.cooldown = speedAct*30;
     }
     public void setChemin() {
@@ -123,7 +123,7 @@ public abstract class Soldier extends Actor{
 
     public Actor searchTarget() {
         Enemy closeTarget = null;
-        double minRange = Double.MIN_VALUE;
+        double minRange = Double.MAX_VALUE;
         for (Enemy e : getEnvironnement().getEnemies()) {
             if (e.isLiving()) {
                 int range = calcDistanceFromTargerUsingBFS(e);
