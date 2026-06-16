@@ -23,7 +23,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import javafx.scene.control.ProgressBar;
-import universite_paris8.iut.rdias.towerdefense.view.DistanceView;
+import universite_paris8.iut.rdias.towerdefense.model.algorithm.DistanceView;
 
 public class Controller {
 
