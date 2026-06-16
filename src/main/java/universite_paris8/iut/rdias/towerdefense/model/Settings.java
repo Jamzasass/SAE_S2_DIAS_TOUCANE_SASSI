@@ -2,6 +2,16 @@ package universite_paris8.iut.rdias.towerdefense.model;
 
 //Cette classe permet de stocker toutes les variables (les stats) de toutes nos tours et des ennemies.
 
+/*La classe Settings permet de centraliser tous les paramètres du jeu
+ * pour faciliter l'équilibrage et les modifications.
+ * Elle nous donne une méthode multiplierStatsEnemy() pour
+ * augmenter la difficulté des vagues au fil du temps et facilement.
+ * Un settings a comme attribut:
+ * -Les facteurs d'amélioration (upgradeFactor et upgradeCostFactor)
+ * -Les statistiques de toutes les tours alliées
+ * -Les statistiques de tous les soldats alliés (knight)
+ * -Les statistiques de tous les ennemis
+ */
 public class Settings {
 
     //UpgradeSetting

@@ -4,6 +4,14 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import universite_paris8.iut.rdias.towerdefense.model.actor.*;
 
+/*La sous-classe Projectile qui hérite de Effect.
+ * Le projectile se déplace en ligne droite vers sa cible
+ * à une vitesse définie. Lorsqu'il atteint sa cible,
+ * il lui inflige des dégâts et disparaît.
+ * Il met également à jour son angle de rotation
+ * pour l'animation visuelle.
+ */
+
 public class Projectile extends Effect{
 
 

@@ -3,6 +3,20 @@ package universite_paris8.iut.rdias.towerdefense.model;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;
 
+/*La classe Wave représente une vague d'ennemis.
+ * Cette classe gère la création et le spawn des ennemis
+ * en fonction de l'index de la vague. Plus la vague est élevée,
+ * plus le nombre d'ennemis augmente, les types d'ennemis
+ * deviennent variés et forts.
+ * Une wave a comme attribut:
+ * -L'environnement du jeu
+ * -L'index de la vague
+ * -Les points de spawn des ennemis
+ * -Le nombre d'ennemis à faire spawner
+ * -Le délai entre chaque spawn
+ * -Un booléen indiquant si l'inflation Macron est activée (mode difficile)
+ */
+
 public class Wave {
     private Environnement env;
     private int waveIndex;
