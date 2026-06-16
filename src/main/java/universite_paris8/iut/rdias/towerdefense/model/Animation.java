@@ -14,4 +14,7 @@ public class Animation {
     public int getId() {
         return id;
     }
+    public boolean isMacronActivated() {
+        return macronActivated;
+    }
 }

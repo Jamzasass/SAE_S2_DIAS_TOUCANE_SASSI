@@ -19,6 +19,8 @@ import javafx.animation.Interpolator;
 
 public class AnimationView {
     private static Image imageMacron = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/animation/sprite_macron.png"));
+    private static Image imageSoldat = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/animation/sprite_knight.png"));
+    private static Image imageGodard = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/animation/sprite_jeanLucGodard.png"));
     private ImageView image;
     private HBox paneViewContainer;
     private Animation animation;
@@ -30,24 +32,27 @@ public class AnimationView {
         this.screenWidth = aScreenWidth;
         this.screenHeight = aScreenHeight;
         this.paneViewContainer = new HBox();
-        this.image = new ImageView(imageMacron);
-
+        Label l = new Label("Nouvelle Vague");
+        if (this.animation.isMacronActivated()) {
+            this.image = new ImageView(imageMacron);
+            l.setText("Nouvelle Vague Inflation");
+        }
+        else {
+            this.image = new ImageView(imageSoldat);
+        }
+        this.image.setFitHeight(128);
+        this.image.setFitWidth(128);
         this.paneViewContainer.setId("a" + animation.getId());
-
         paneViewContainer.setStyle("-fx-text-alignment: center");
 
-        Label l = new Label("Vague Inflation");
         l.getStyleClass().add("labelVague");
 
-        l.setStyle("-fx-background-color: red");
         this.paneViewContainer.getChildren().add(l);
         this.paneViewContainer.getChildren().add(image);
         this.paneViewContainer.toFront();
         l.setPrefHeight(paneViewContainer.getHeight());
         l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         l.setAlignment(Pos.CENTER);
-        paneViewContainer.setLayoutY((screenHeight/2) - (paneViewContainer.getPrefHeight()/2));
-        System.out.println(paneViewContainer.getPrefHeight());
         scroll();
 
     }
@@ -56,33 +61,17 @@ public class AnimationView {
     }
     
     public void scroll() {
-
-        // 2. On positionne le Pane tout à droite, invisible (hors-écran)
         paneViewContainer.setLayoutX(0);
-
-        // 3. Configuration de la transition (Durée : 4 secondes)
         TranslateTransition transition = new TranslateTransition(Duration.seconds(4), paneViewContainer);
-
-        // Au départ (FromX = 0), le décalage est nul, donc le Pane est à 'screenWidth'
         transition.setFromX(screenWidth-(screenWidth+paneViewContainer.getPrefWidth()));
-
-        // À la fin, on veut qu'il sorte par la gauche. 
-        // Distance = Largeur écran + Largeur du Pane lui-même (pour qu'il sorte à 100%)
         double finalDestination = (screenWidth - paneViewContainer.getPrefWidth());
         transition.setToX(finalDestination);
-
-        // 4. Un peu de style : vitesse fluide (accélère au début, ralentit à la fin)
-        transition.setInterpolator(Interpolator.EASE_BOTH);
-
-        // 5. Nettoyage : Une fois l'animation finie, on peut cacher ou détruire le Pane
+        //transition.setInterpolator(Interpolator.EASE_BOTH);
         transition.setOnFinished(event -> {
             if (paneViewContainer.getParent() != null) {
-                // On le retire du jeu pour libérer de la mémoire
                 ((Pane) paneViewContainer.getParent()).getChildren().remove(paneViewContainer);
             }
         });
-
-        // C'est parti !
         transition.play();
     }
 }

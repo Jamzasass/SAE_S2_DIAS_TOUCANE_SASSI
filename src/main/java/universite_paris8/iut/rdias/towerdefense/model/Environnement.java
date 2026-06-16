@@ -216,7 +216,7 @@ public class Environnement {
         wave = new Wave(this, waveIndex.get());
         enemies.clear();
         knights.clear();
-        Animation nAnimation = new Animation(true);
+        Animation nAnimation = new Animation(wave.isMacronInflationActivated());
         addAnimation(nAnimation);
     }
 
