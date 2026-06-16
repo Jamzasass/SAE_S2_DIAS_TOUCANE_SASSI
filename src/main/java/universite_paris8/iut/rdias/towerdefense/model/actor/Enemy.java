@@ -3,6 +3,7 @@ package universite_paris8.iut.rdias.towerdefense.model.actor;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 
 /*La sous-classe Enemy qui hérite de Soldier.
+ * Un enemy attaque par default le chateau.
  * Un enemy a comme attribut spécifique:
  * -sa valeur en or rapportée à sa mort
  */
