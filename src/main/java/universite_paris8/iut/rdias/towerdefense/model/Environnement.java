@@ -129,9 +129,10 @@ public class Environnement {
     }
 
     public void addPalissade(int col, int line){
-        Tower palissade = new Palissade(this, id, (double) col, (double) line);
+        Palissade palissade = new Palissade(this, id, (double) col, (double) line);
         if (this.addTower(palissade)){
             balance.setValue(balance.getValue() - palissade.getCost());
+            palissade.place();
         }
     }
 

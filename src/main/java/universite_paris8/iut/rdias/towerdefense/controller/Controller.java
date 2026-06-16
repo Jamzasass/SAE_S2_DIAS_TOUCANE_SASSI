@@ -95,11 +95,8 @@ public class Controller {
         ground = new Ground();
         env = new Environnement(ground);
         setupView();
-        setupEventHandlers();
-        setupKeyboard();
-        setupMapClick();
-        setupTowerButtons();
         setupGameOver();
+        setupEventHandlers();
         startGameLoop();
     }
 
