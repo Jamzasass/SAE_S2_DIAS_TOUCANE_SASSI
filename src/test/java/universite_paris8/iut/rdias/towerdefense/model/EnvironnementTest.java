@@ -1,13 +1,8 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.rdias.towerdefense.model.Effect;
-import universite_paris8.iut.rdias.towerdefense.model.Environnement;
-import universite_paris8.iut.rdias.towerdefense.model.Ground;
-import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
