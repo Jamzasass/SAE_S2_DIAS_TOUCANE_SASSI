@@ -51,7 +51,7 @@ public class ObsEffect implements ListChangeListener<Effect> {
         }
     }
 
-    public ArrayList<EffectView> getEnemiesSprite() {
+    public ArrayList<EffectView> getEffectSprite() {
         return effectSprite;
     }
 }

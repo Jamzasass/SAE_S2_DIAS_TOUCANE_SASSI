@@ -359,43 +359,32 @@ public class Controller {
     }
 
     private double getTowerRange(int towerType) {
-        if (towerType == TOWER_ARCHER) {
-            return env.getSettings().getArcherRange() * TILE_SIZE;
-        }
-        else if (towerType == TOWER_SORCERER) {
-            return env.getSettings().getSorcererRange() * TILE_SIZE;
-        }
-        else if (towerType == TOWER_BALLISTA) {
-            return env.getSettings().getBallistaRange() * TILE_SIZE;
+        switch (towerType) {
+            case TOWER_ARCHER -> {
+                return env.getSettings().getArcherRange() * TILE_SIZE;
+            }
+            case TOWER_SORCERER -> {
+                return env.getSettings().getSorcererRange() * TILE_SIZE;
+            }
+            case TOWER_BALLISTA -> {
+                return env.getSettings().getBallistaRange() * TILE_SIZE;
+            }
         }
         return 0;
     }
 
     // Tower Placement
-
     private void addTower(int towerType, int col, int line) {
-        if (towerType == TOWER_ARCHER) {
-            env.addArcher(col, line);
-        }
-        else if (towerType == TOWER_BARRACK) {
-            env.addBarrack(col, line);
-        }
-        else if (towerType == TOWER_BRAMBLE) {
-            env.addBramble(col, line);
-        }
-        else if (towerType == TOWER_PALISSADE) {
-            env.addPalissade(col, line);
-        }
-        else if (towerType == TOWER_SORCERER) {
-            env.addSorcerer(col, line);
-        }
-        else if (towerType == TOWER_BALLISTA) {
-            env.addBallista(col, line);
+        switch (towerType) {
+            case TOWER_ARCHER -> env.addArcher(col, line);
+            case TOWER_SORCERER -> env.addSorcerer(col, line);
+            case TOWER_BALLISTA -> env.addBallista(col, line);
+            case TOWER_BARRACK -> env.addBarrack(col, line);
+            case TOWER_PALISSADE -> env.addPalissade(col, line);
         }
     }
 
     // Game Over
-
     private void showGameOver() {
         int wave = env.getWaveIndexProperty().get();
         String message = getGameOverMessage(wave);

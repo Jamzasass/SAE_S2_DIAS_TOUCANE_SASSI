@@ -32,12 +32,12 @@ public class ObsAnimation implements ListChangeListener<Animation> {
                 animationSprite.add(aV);
             }
             for (Animation e : retirer) {
-                grid.getChildren().remove(grid.lookup("#" + "e" + e.getId()));
+                grid.getChildren().remove(grid.lookup("#" + "a" + e.getId()));
             }
         }
     }
 
-    public ArrayList<AnimationView> getEnemiesSprite() {
+    public ArrayList<AnimationView> getAnimationSprite() {
         return animationSprite;
     }
 }
