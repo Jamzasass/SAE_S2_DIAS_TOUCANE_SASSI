@@ -7,9 +7,8 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 public class Archer extends Tower {
-
     public Archer(Environnement aEnv,int archerId, double aX, double aY) {
-        super(aEnv,
+        super(  aEnv,
                 aEnv.getSettings().getArcherHp(),
                 aEnv.getSettings().getArcherDmg(),
                 archerId,
@@ -17,7 +16,8 @@ public class Archer extends Tower {
                 aX,
                 aY,
                 aEnv.getSettings().getArcherSpeedAttack(),
-                aEnv.getSettings().getArcherCost());
+                aEnv.getSettings().getArcherCost()
+        );
     }
 
     @Override
@@ -26,8 +26,8 @@ public class Archer extends Tower {
         if (canAct()){
             Enemy target = (Enemy) searchTarget();
             if (target != null) {
-                Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
-                getEnvironnement().addEffect(p);
+                Projectile proj = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
+                getEnvironnement().addEffect(proj);
                 resetCooldown();
             }
         }

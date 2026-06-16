@@ -19,7 +19,8 @@ public class ShieldViking extends Enemy {
                 eY,
                 sEnv.getSettings().getShieldwarriorSpeed(),
                 sEnv.getSettings().getShieldwarriorDeathValue(),
-                sEnv.getSettings().getShielSpeedAct());
+                sEnv.getSettings().getShielSpeedAct()
+        );
         target = null;
     }
 
@@ -45,6 +46,5 @@ public class ShieldViking extends Enemy {
             getEnvironnement().getCastle().takeDamage(this.getDmg());
             this.die();
         }
-
     }
 }

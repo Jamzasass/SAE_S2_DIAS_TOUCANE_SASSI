@@ -26,8 +26,8 @@ public class Berserker extends Enemy {
 
     @Override
     public void act(){
-        this.target = (Knight) searchTarget();
         tick();
+        this.target = (Knight) searchTarget();
         if (target != null) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());

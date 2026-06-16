@@ -9,11 +9,10 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 import java.util.ArrayList;
 
 public class RamWarrior extends Enemy {
-
     private Tower target;
 
     public RamWarrior(Environnement rEnv, int eId, double eX, double eY) {
-        super(rEnv,
+        super(  rEnv,
                 rEnv.getSettings().getRamwarriorHp(),
                 rEnv.getSettings().getRamwarriorDmg(),
                 eId,
@@ -46,7 +45,6 @@ public class RamWarrior extends Enemy {
                 this.move();
                 if (distClosest < this.getRange() && canAct()) {
                     target.takeDamage(this.getDmg());
-                    System.out.println("a l'attaque" + distClosest);
                     resetCooldown();
                 }
             }

@@ -13,7 +13,7 @@ public class ArcherViking extends Enemy {
     private Actor target;
 
     public ArcherViking(Environnement aEnv, int eId, double eX, double eY) {
-        super(aEnv,
+        super(  aEnv,
                 aEnv.getSettings().getArcherVikingHp(),
                 aEnv.getSettings().getArcherVikingDmg(),
                 eId,
@@ -47,15 +47,13 @@ public class ArcherViking extends Enemy {
                 double dist = calcDistanceFromTargerUsingPyth(target);
                 setxCible(dest[1]);
                 setyCible(dest[0]);
+                this.move();
                 if (dist < Math.pow((this.getRange()), 2)){
                     if (canAct()) {
                         Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
                         getEnvironnement().addEffect(p);
                         resetCooldown();
                     }
-                }
-                else {
-                    this.move();
                 }
             }
         } else {

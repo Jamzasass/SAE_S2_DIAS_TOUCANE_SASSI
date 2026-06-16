@@ -8,8 +8,9 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 
 public class Viking extends Enemy {
     private Knight target;
+
     public Viking(Environnement env,int vId,double vX, double vY) {
-        super(env,
+        super(  env,
                 env.getSettings().getVikingHp(),
                 env.getSettings().getVikingDmg(),
                 vId,

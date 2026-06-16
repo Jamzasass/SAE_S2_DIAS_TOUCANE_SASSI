@@ -8,7 +8,7 @@ public class Knight extends Soldier {
     private Enemy target;
 
     public Knight(Environnement kEnv, int kId, double kX, double kY) {
-        super(kEnv,
+        super(  kEnv,
                 kEnv.getSettings().getKnightHp(),
                 kEnv.getSettings().getKnightDmg(),
                 kId,
@@ -22,6 +22,7 @@ public class Knight extends Soldier {
         );
         target = null;
     }
+
     public void act() {
         tick();
         this.target = (Enemy) searchTarget();

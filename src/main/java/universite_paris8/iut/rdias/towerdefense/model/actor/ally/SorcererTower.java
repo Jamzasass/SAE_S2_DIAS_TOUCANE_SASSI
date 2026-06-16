@@ -10,7 +10,7 @@ public class SorcererTower extends Tower {
     private double radiusBlow;
 
     public SorcererTower(Environnement sEnv, int sorcererId, double sorcererX, double sorcererY) {
-        super(sEnv,
+        super(  sEnv,
                 sEnv.getSettings().getSorcererTowerHp(),
                 sEnv.getSettings().getSorcererTowerDmg(),
                 sorcererId,
@@ -18,7 +18,8 @@ public class SorcererTower extends Tower {
                 sorcererX,
                 sorcererY,
                 sEnv.getSettings().getSorcererTowerSpeedAttack(),
-                sEnv.getSettings().getSorcererTowerCost());
+                sEnv.getSettings().getSorcererTowerCost()
+        );
         radiusBlow = sEnv.getSettings().getSorcererRadiusBlow();
     }
 

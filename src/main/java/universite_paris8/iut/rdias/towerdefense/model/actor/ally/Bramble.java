@@ -11,7 +11,7 @@ public class Bramble extends Tower {
     private int slowDuration; //ralentis pendant 10sec
 
     public Bramble(Environnement bEnv, int brambleId, double brambleX, double brambleY) {
-        super(bEnv,
+        super(  bEnv,
                 1,
                 0,
                 brambleId,
