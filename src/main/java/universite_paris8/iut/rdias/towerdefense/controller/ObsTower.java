@@ -7,6 +7,13 @@ import universite_paris8.iut.rdias.towerdefense.view.TowerView;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Observer pour la gestion des tours à l'écran.
+ *
+ * Écoute les changements dans la liste des tours et synchronise l'affichage.
+ * Ajoute/supprime les tours visuelles et gère leur animation.
+ */
+
 public class ObsTower implements ListChangeListener<Tower> {
     private ArrayList<TowerView> towerSprite;
     private Pane grid;

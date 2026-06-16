@@ -4,6 +4,14 @@ import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 
+/*La sous-classe Knight qui hérite de Soldier.
+ * Le chevalier est spawné par la Barrack et se déplace
+ * vers les ennemis pour les attaquer au corps à corps
+ * (portée d'attaque de 1). Sa cible par défaut est le château pour le defendre.
+ * Un chevalier a comme attribut spécifique:
+ * -sa cible (target) qu'il doit attaquer
+ */
+
 public class Knight extends Soldier {
     private Enemy target;
 

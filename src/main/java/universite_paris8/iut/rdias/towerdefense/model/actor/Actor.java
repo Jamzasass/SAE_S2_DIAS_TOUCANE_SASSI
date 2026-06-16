@@ -8,6 +8,19 @@ import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
+/*La super classe abstraite Actor définit le comportement commun
+ * à toutes les entités du jeu (ennemis, tours, etc.).
+ *
+ * Un actor a comme attribut:
+ * -L'environnement où il est attribué
+ * -Point de vie (et point de vie max
+ * pour la barre de vie)
+ * -Point d'attaque
+ * -Un identifiant
+ * -La portéé d'attaque
+ * -sa position dans la map
+*/
+
 public abstract class Actor {
     private Environnement env;
     private IntegerProperty hp;

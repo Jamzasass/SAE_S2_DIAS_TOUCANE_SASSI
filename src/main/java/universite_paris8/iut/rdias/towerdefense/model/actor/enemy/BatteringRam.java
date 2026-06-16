@@ -8,10 +8,20 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 import java.util.ArrayList;
 
-public class RamWarrior extends Enemy {
+/*La sous-classe BatteringRam qui hérite de Enemy.
+ * Cet ennemi attaque au corps à corps et cible
+ * uniquement les Palissade. Il est le seul ennemi
+ * capable de détruire les palissades. Sa portée
+ * d'attaque est de 0.5. Il utilise le BFS pour
+ * trouver le chemin le plus proche vers sa cible.
+ * Un ramwarrior a comme attribut spécifique:
+ * -sa cible (target) qu'il doit attaquer
+ */
+
+public class BatteringRam extends Enemy {
     private Tower target;
 
-    public RamWarrior(Environnement rEnv, int eId, double eX, double eY) {
+    public BatteringRam(Environnement rEnv, int eId, double eX, double eY) {
         super(  rEnv,
                 rEnv.getSettings().getRamwarriorHp(),
                 rEnv.getSettings().getRamwarriorDmg(),

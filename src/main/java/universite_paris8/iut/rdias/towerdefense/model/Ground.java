@@ -4,13 +4,28 @@ import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 
 import java.util.ArrayList;
 
-/*
-    La classe Terrain est reponsable du terrain, c'est à dire quelle tuile est où.
+/*La classe Ground représente le terrain de jeu.
+ * Le terrain permet de vérifier le type d'une tuile,
+ * de modifier une tuile (pour les palissades),
+ * et de trouver les tuiles de chemin les plus proches
+ * d'une position donnée (utilisé par les tours et ennemis).
+ * Un ground a comme attribut:
+ * -La matrice du BFS pour les calculs de chemin
+ * -La map du terrain (matrice 2D)
+ *
+ * La map est composée de différents types de tuiles:
+ * -0: herbe
+ * -1: chemin (où les ennemis se déplacent)
+ * -2: emplacement du château
+ * -3: eau
+ * -4: palissade (barrière placée par le joueur)
  */
 public class Ground {
 
     private BFS mapBFS;
-    private int[][] map = { // 0-herbe 1-chemin 2-emplacement chateau 3-eau
+
+
+    private int[][] map = {
             {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
             {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
             {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},

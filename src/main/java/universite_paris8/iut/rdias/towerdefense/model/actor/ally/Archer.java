@@ -6,6 +6,11 @@ import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
+/*La sous-classe de la tour archer qui hérite de Tower
+ * est un allié que nous posons et qui attaque de loin
+ * avec des fléches.*/
+
+
 public class Archer extends Tower {
     public Archer(Environnement aEnv,int archerId, double aX, double aY) {
         super(  aEnv,

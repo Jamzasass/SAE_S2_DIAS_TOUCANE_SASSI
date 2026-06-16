@@ -4,6 +4,23 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 
+/*La classe abstraite Effect représente tous les effets
+ * visuels et projectiles dans le jeu (flèches, boules de feu, etc.).
+ * Les effets se déplacent vers leur cible et disparaissent
+ * lorsqu'ils l'atteignent.
+ * Un effect a comme attribut:
+ * -L'environnement où il est attribué
+ * -Sa position X et Y dans la map
+ * -Son identifiant unique
+ * -Ses dégâts infligés à la cible
+ * -Un booléen indiquant s'il est terminé
+ * -Sa cible (Actor)
+ * -Sa vitesse de déplacement
+ * -Sa direction sur l'axe X
+ * -Sa direction sur l'axe Y
+ * -Son angle de rotation (pour l'animation)
+ */
+
 public abstract class Effect {
     private static int nId = 0;
     private Environnement environnement;

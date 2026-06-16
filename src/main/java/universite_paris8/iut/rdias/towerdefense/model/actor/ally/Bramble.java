@@ -5,6 +5,14 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
 
+/*La sous-classe Bramble qui hérite de Tower.
+ * Cette tour ne possède pas d'attaque, elle se place
+ * directement sur le chemin et ralentit les ennemis
+ * qui passent sur sa case. Ses dégâts sont de zéro.
+ * Une bramble a comme attribut spécifique:
+ * -son facteur de ralentissement
+ * -la durée de son ralentissement
+ */
 public class Bramble extends Tower {
 
     private double slowFactor;

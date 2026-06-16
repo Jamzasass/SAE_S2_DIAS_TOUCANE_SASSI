@@ -6,12 +6,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
 
-public class GroundView {
-//    private Environnement env;
+/*
+ * Gère l'affichage et le rendu de la carte du terrain.
+ *
+ * Dessine les différentes tuiles (herbe, eau, chemins, château).
+ * Sélectionne automatiquement les sprites appropriés selon les tuiles voisines pour créer un rendu fluide et cohérent de la carte.
+ */
 
+public class GroundView {
     private Ground ground;
     private TilePane mapGrid;
-//    private Pane actorsArea;
 
     private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass1.png"));
     private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass2.png"));
@@ -53,12 +57,8 @@ public class GroundView {
 
 
     public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea, Environnement env){
-//        this.env = env;
-
         this.ground = ground;
         this.mapGrid = mapGrid;
-//        this.actorsArea = actorsArea;
-
     }
 
     public void drawMap() {

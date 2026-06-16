@@ -3,6 +3,14 @@ package universite_paris8.iut.rdias.towerdefense.model.algorithm;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import java.util.*;
 
+/*
+ * Algorithme BFS pour le calcul des distances sur la grille.
+ *
+ * Calcule une 4D distance map contenant les distances entre tous les points accessibles.
+ * distancesMap[fromLine][fromCol][toLine][toCol] = distance du point de départ au point d'arrivée.
+ * Utilisé pour le pathfinding et la navigation des ennemis.
+ */
+
 public class BFS {
     private Ground ground;
     private int[][][][] distancesMap;

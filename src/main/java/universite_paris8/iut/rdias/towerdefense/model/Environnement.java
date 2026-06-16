@@ -10,8 +10,27 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.*;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
+
 import java.util.ArrayList;
+
+/*La classe Environnement représente le monde du jeu.
+ * L'environnement gère toutes les entités du jeu,
+ * leur ajout, leur suppression et leur cycle d'action.
+ * La méthode loop() appelle act() sur toutes les entités
+ * et nettoie les entités mortes à la fin de chaque tick.
+ * Un environnement a comme attribut:
+ * -Le terrain (Ground) sur lequel se déroule le jeu
+ * -Le château (Castle) à protéger
+ * -Les listes observables des ennemis, chevaliers, tours et effets
+ * -Les listes des acteurs et effets mourants à supprimer
+ * -Le compteur de spawn et le délai entre les spawns
+ * -Les coordonnées de spawn des ennemis
+ * -L'ecu total du joueur (argent)
+ * -Les paramètres du jeu (Settings)
+ * -L'index de la vague actuelle
+ * -La vague actuelle (Wave)
+ *
+ */
 
 public class Environnement {
 
@@ -226,8 +245,8 @@ public class Environnement {
         return waveIndex;
     }
 
-    public void soldTower(Tower t) {
-        t.sold();
+    public void sellTower(Tower t) {
+        t.sell();
     }
 
     public boolean upgradeTower(Tower t) {

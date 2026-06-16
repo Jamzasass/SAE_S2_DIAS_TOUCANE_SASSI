@@ -3,6 +3,19 @@ package universite_paris8.iut.rdias.towerdefense.model.actor;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 
+/*La sous-classe Soldier qui extend Actor.
+ * Un soldier a comme attribut spécifique:
+ * -sa vitesse de déplacement
+ * -sa direction sur l'axe X
+ * -sa direction sur l'axe Y
+ * -les coordonnées de sa case cible
+ * -sa prochaine case sur le chemin
+ * -son facteur de ralentissement (à quelle point il est ralentit)
+ * -la durée de son ralentissement
+ * -son temps de recharge (cooldown)
+ * -sa vitesse d'attaque (speedAct)
+ */
+
 public abstract class Soldier extends Actor{
 
     private double speed;
