@@ -3,9 +3,7 @@ package universite_paris8.iut.rdias.towerdefense.controller;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 import universite_paris8.iut.rdias.towerdefense.view.TowerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
