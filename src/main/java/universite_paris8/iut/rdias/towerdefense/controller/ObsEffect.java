@@ -8,6 +8,13 @@ import universite_paris8.iut.rdias.towerdefense.view.EffectView;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Observer pour la gestion des effets (projectiles et sorts de zone).
+ *
+ * Écoute les changements dans la liste des effets et synchronise l'affichage.
+ * Ajoute/supprime les effets visuels et gère l'animation de destruction des sorts de zone.
+ */
+
 public class ObsEffect implements ListChangeListener<Effect> {
     private ArrayList<EffectView> effectSprite;
     private Pane grid;

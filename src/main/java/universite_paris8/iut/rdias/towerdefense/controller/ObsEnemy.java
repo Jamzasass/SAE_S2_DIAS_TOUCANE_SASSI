@@ -7,6 +7,13 @@ import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Observer pour la gestion des ennemis à l'écran.
+ *
+ * Écoute les changements dans la liste des ennemis et synchronise l'affichage.
+ * Ajoute/supprime les ennemis visuels et gère l'animation de mort avec fondu progressif.
+ */
+
 public class ObsEnemy implements ListChangeListener<Enemy> {
     private ArrayList<SoldierView> enemiesSprite;
     private Pane grid;

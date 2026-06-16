@@ -7,6 +7,13 @@ import java.util.List;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.view.SoldierView;
 
+/*
+ * Observer pour la gestion des chevaliers alliés à l'écran.
+ *
+ * Écoute les changements dans la liste des chevaliers et synchronise l'affichage.
+ * Ajoute/supprime les chevaliers visuels et gère leur animation.
+ */
+
 public class ObsKnight implements ListChangeListener<Knight> {
     private ArrayList<SoldierView> knightSprite;
     private Pane grid;

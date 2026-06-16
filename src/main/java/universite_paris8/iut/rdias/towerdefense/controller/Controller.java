@@ -25,6 +25,17 @@ import javafx.util.Duration;
 import javafx.scene.control.ProgressBar;
 import universite_paris8.iut.rdias.towerdefense.model.algorithm.DistanceView;
 
+/*
+ * Contrôleur principal du jeu.
+ *
+ * Gère l'initialisation du jeu, la boucle de jeu, et tous les événements utilisateur:
+ * - clics souris,
+ * - drag & drop des tours,
+ * - placement,
+ * - amélioration et vente de tours.
+ * Synchronise le modèle et la vue.
+ */
+
 public class Controller {
 
     //  Constants
