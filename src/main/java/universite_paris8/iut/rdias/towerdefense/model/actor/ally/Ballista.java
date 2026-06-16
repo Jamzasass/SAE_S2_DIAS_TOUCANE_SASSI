@@ -41,7 +41,7 @@ public class Ballista extends Tower {
         }
     }
 
-    private Enemy[] searchTargets() {
+    public Enemy[] searchTargets() {
         Enemy firstTarget = null;
         Enemy secondTarget = null;
         double firstDist = Double.MAX_VALUE;

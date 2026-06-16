@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor;
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 
 public abstract class Soldier extends Actor{
 
@@ -118,6 +119,21 @@ public abstract class Soldier extends Actor{
         if (bestNeighbor[0] != 0 && bestNeighbor[1] != 0)
             nextCase = bestNeighbor;
         majDirection();
+    }
+
+    public Actor searchTarget() {
+        Enemy closeTarget = null;
+        double minRange = 6.0;
+        for (Enemy e : getEnvironnement().getEnemies()) {
+            if (e.isLiving()) {
+                int range = calcDistanceFromTargerUsingBFS(e);
+                if (range<= minRange) {
+                    minRange = range;
+                    closeTarget = e;
+                }
+            }
+        }
+        return closeTarget;
     }
 
     public double getSpeed(){

@@ -24,28 +24,13 @@ public class Archer extends Tower {
     public void act() {
         tick();
         if (canAct()){
-            Enemy target = searchTarget();
+            Enemy target = (Enemy) searchTarget();
             if (target != null) {
                 Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
                 getEnvironnement().addEffect(p);
                 resetCooldown();
             }
         }
-    }
-
-    private Enemy searchTarget() {
-        Enemy closeTarget = null;
-        double minRange = Double.MAX_VALUE;
-        for (Enemy e : getEnvironnement().getEnemies()) {
-            if (e!= null && e.isLiving()) {
-                double range = Math.hypot(e.getX() - getX(), e.getY() - getY()); // calcul distance via pythagore
-                if (range <= getRange() && range < minRange) {
-                    minRange = range;
-                    closeTarget = e;
-                }
-            }
-        }
-        return closeTarget;
     }
 
     @Override

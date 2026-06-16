@@ -30,7 +30,15 @@ public abstract class Actor {
     }
 
     public abstract void act();
-
+    public abstract Actor searchTarget();
+    public int calcDistanceFromTargerUsingBFS(Actor a) {
+        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][(int)a.getY()][(int)a.getX()];
+    }
+    public double calcDistanceFromTargerUsingPyth(Actor a) {
+        double dx = getX() - a.getX();
+        double dy = getY() - a.getY();
+        return dx * dx + dy * dy;
+    }
     //Getters
     public int getHp() {
         return hp.getValue();
@@ -48,11 +56,11 @@ public abstract class Actor {
         return range;
     }
 
-    protected void setX(double valeur) {
+    public void setX(double valeur) {
         this.x.set(valeur);
     }
 
-    protected void setY(double valeur) {
+    public void setY(double valeur) {
         this.y.set(valeur);
     }
 
@@ -93,11 +101,13 @@ public abstract class Actor {
         }
     }
 
-    protected void setHp(int hp){
+
+
+    public void setHp(int hp){
         this.hp.setValue(hp);
     }
 
-    protected void setDmg(int dmg){
+    public void setDmg(int dmg){
         this.dmg = dmg;
     }
 
@@ -105,7 +115,9 @@ public abstract class Actor {
         return maxHp;
     }
 
-    protected void setMaxHp(int maxHp){
+    public void setMaxHp(int maxHp){
         this.maxHp = maxHp;
     }
+
+
 }

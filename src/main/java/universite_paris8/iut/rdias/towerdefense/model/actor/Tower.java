@@ -20,6 +20,20 @@ public abstract class Tower extends Actor{
         this.level = new SimpleIntegerProperty(1);
     }
 
+    public Actor searchTarget() {
+        Enemy closest = null;
+        double minDist = Math.pow(getRange(), 2);
+        for (Enemy e : getEnvironnement().getEnemies()) {
+            if (!e.isLiving()) continue;
+            double dist = calcDistanceFromTargerUsingPyth(e);
+            if (dist < minDist) {
+                minDist = dist;
+                closest = e;
+            }
+        }
+        return closest;
+    }
+
     public int getCost() {
         return cost;
     }

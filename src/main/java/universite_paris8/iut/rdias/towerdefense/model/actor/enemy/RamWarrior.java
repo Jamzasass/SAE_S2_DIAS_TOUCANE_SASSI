@@ -27,7 +27,7 @@ public class RamWarrior extends Enemy {
     @Override
     public void act(){
         tick();
-        searchtarget();
+        this.target = (Tower) searchTarget();
         if (target != null) {
             if (target instanceof Palissade){
                 ArrayList<int[]> dist = getEnvironnement().getGround().getAllClosestPaths((int)target.getY(), (int)target.getX());
@@ -59,24 +59,18 @@ public class RamWarrior extends Enemy {
         }
     }
 
-    public void searchtarget() {
+    public Actor searchTarget() {
         Tower closeTarget = null;
         double minRange = Double.MAX_VALUE;
         for (Tower t : getEnvironnement().getTowers()) {
-            if (t.isLiving() && (t instanceof Palissade)) {
-                double range = calculDistanceFromEnemyByPyth(t); // calcul distance via pythagore
+            if ((t instanceof Palissade) && t.isLiving()) {
+                double range = calcDistanceFromTargerUsingPyth(t); // calcul distance via pythagore
                 if (range <= minRange) { //(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = t;
                 }
             }
         }
-        this.target = closeTarget;
-    }
-
-    public double calculDistanceFromEnemyByPyth(Actor a) {
-        double dx = getX() - a.getX();
-        double dy = getY() - a.getY();
-        return dx * dx + dy * dy;
+        return closeTarget;
     }
 }

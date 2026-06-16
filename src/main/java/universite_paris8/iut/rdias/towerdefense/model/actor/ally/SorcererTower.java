@@ -25,37 +25,13 @@ public class SorcererTower extends Tower {
     public void act(){
         tick();
         if (canAct()){
-            Enemy target = searchTarget();
+            Enemy target = (Enemy) searchTarget();
             if (target != null){
                 ZoneSpell zp = new ZoneSpell(getEnvironnement(), getX(), getY(), getDmg(), target, radiusBlow);
                 getEnvironnement().addEffect(zp);
                 resetCooldown();
             }
         }
-    }
-
-    private void damageInZoneAround(Enemy target) {
-        for (Enemy e : getEnvironnement().getEnemies()) {
-            if (!e.isLiving()) continue;
-            double dist = Math.hypot(e.getX() - target.getX(), e.getY() - target.getY());
-            if (dist <= radiusBlow) {
-                e.takeDamage(getDmg());
-            }
-        }
-    }
-
-    private Enemy searchTarget() {
-        Enemy closest = null;
-        double minDist = Double.MAX_VALUE;
-        for (Enemy e : getEnvironnement().getEnemies()) {
-            if (!e.isLiving()) continue;
-            double dist = Math.hypot(e.getX() - getX(), e.getY() - getY());
-            if (dist <= getRange() && dist < minDist) {
-                minDist = dist;
-                closest = e;
-            }
-        }
-        return closest;
     }
 
     @Override
