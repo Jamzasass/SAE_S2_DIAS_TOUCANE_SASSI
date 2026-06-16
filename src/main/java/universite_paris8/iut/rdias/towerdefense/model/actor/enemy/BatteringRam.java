@@ -8,7 +8,7 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 import java.util.ArrayList;
 
-/*La sous-classe RamWarrior qui hérite de Enemy.
+/*La sous-classe BatteringRam qui hérite de Enemy.
  * Cet ennemi attaque au corps à corps et cible
  * uniquement les Palissade. Il est le seul ennemi
  * capable de détruire les palissades. Sa portée
