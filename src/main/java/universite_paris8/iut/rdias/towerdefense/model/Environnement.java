@@ -10,7 +10,7 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.*;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
+
 import java.util.ArrayList;
 
 /*La classe Environnement représente le monde du jeu.
@@ -230,8 +230,8 @@ public class Environnement {
         return waveIndex;
     }
 
-    public void soldTower(Tower t) {
-        t.sold();
+    public void sellTower(Tower t) {
+        t.sell();
     }
 
     public boolean upgradeTower(Tower t) {

@@ -282,7 +282,7 @@ public class Controller {
         }
 
         btnSell.setOnAction(ev -> {
-            tower.sold();
+            tower.sell();
             towerActionMenu.setVisible(false);
         });
         btnUpgrade.setOnAction(ev -> {
