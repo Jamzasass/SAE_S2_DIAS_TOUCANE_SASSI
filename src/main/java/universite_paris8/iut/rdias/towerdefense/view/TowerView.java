@@ -8,6 +8,14 @@ import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.*;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
+/*
+ * Gère l'affichage et l'animation des tours.
+ *
+ * Affiche les différents types de tours (Archer, Barrack, Ballista, etc.) avec leurs animations respectives.
+ * Gère les deux niveaux de tour avec sprites distincts et affiche une barre de vie.
+ * Met à jour l'apparence automatiquement lors des améliorations.
+ */
+
 public class TowerView {
     private Tower tower;
     private Pane paneViewContainer;

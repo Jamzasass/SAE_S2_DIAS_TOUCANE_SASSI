@@ -1,15 +1,21 @@
 package universite_paris8.iut.rdias.towerdefense.view;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Transform;
 import javafx.util.Duration;
 import universite_paris8.iut.rdias.towerdefense.model.Effect;
 import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
+
+/*
+ * Gère l'affichage et l'animation des effets (projectiles et sorts de zone).
+ *
+ * Affiche les projectiles (flèches) et les sorts de zone (boules de feu).
+ * Anime la destruction des sorts de zone avec un effet de fondu.
+ * Synchronise la position et la rotation avec le modèle.
+ */
 
 public class EffectView {
 

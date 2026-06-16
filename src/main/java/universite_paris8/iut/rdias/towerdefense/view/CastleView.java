@@ -4,6 +4,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import universite_paris8.iut.rdias.towerdefense.model.Castle;
 
+/*
+ * CastleView - Gère l'affichage et l'animation du château
+ *
+ * Cette classe est permet de :
+ * - Afficher le château sur l'écran de jeu
+ * - Animer le château en basculant entre 4 sprites (tile_castle1 à tile_castle4)
+ * - Fournir accès à l'ImageView du château pour les bindings JavaFX.
+ */
+
 public class CastleView {
     private ImageView image;
     private static Image castleSprite1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle1.png"));

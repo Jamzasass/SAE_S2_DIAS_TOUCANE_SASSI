@@ -15,6 +15,13 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;
 
+/*
+ * Gère l'affichage et l'animation des soldats (ennemis et alliés).
+ *
+ * Affiche différents types de soldats (Viking, Knight, Archer, Berserker, etc.) avec leurs animations respectives. Gère aussi la barre de vie,
+ * l'effet de dégâts (flash rouge) et l'animation de mort avec fondu progressif.
+ */
+
 public class SoldierView {
 
     private Soldier soldier;
