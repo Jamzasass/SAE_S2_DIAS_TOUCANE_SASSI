@@ -20,16 +20,14 @@ public abstract class Tower extends Actor{
         this.level = new SimpleIntegerProperty(1);
     }
 
+    //Getter
     public int getCost() {
         return cost;
     }
-
     public double getSpeedAct() {
         return speedAct;
     }
-
     public int getLevel(){ return level.get();}
-
     public int getCooldown() {
         return cooldown;
     }

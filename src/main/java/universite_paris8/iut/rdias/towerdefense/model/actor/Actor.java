@@ -46,15 +46,6 @@ public abstract class Actor {
     public double getRange() {
         return range;
     }
-
-    protected void setX(double valeur) {
-        this.x.set(valeur);
-    }
-
-    protected void setY(double valeur) {
-        this.y.set(valeur);
-    }
-
     public double getX() {
         return x.doubleValue();
     }
@@ -66,6 +57,26 @@ public abstract class Actor {
     }
     public DoubleProperty getXProperty() {return x;}
     public DoubleProperty getYProperty() {return y;}
+    public int getMaxHp(){
+        return maxHp;
+    }
+
+    //Setter
+    public void setX(double valeur) {
+        this.x.set(valeur);
+    }
+    public void setY(double valeur) {
+        this.y.set(valeur);
+    }
+    public void setHp(int hp){
+        this.hp.setValue(hp);
+    }
+    public void setDmg(int dmg){
+        this.dmg = dmg;
+    }
+    public void setMaxHp(int maxHp){
+        this.maxHp = maxHp;
+    }
 
     public boolean isLiving(){return this.hp.getValue() > 0;}
 
@@ -87,21 +98,5 @@ public abstract class Actor {
         if (hp.getValue() <= 0) {
             this.die();
         }
-    }
-
-    protected void setHp(int hp){
-        this.hp.setValue(hp);
-    }
-
-    protected void setDmg(int dmg){
-        this.dmg = dmg;
-    }
-
-    public int getMaxHp(){
-        return maxHp;
-    }
-
-    protected void setMaxHp(int maxHp){
-        this.maxHp = maxHp;
     }
 }
