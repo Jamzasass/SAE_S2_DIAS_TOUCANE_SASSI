@@ -18,10 +18,10 @@ import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
  */
 
 public class EffectView {
-
-    private static Image spriteArrow = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_arrow.png"));
-    private static Image spriteFireBall = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_fireball.png"));
-    private static Image spriteFireBallBlowing = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_blow.png"));
+    private static String pathBegin = "/universite_paris8/iut/rdias/towerdefense/sprite/projectile";
+    private static Image spriteArrow = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_arrow.png"));
+    private static Image spriteFireBall = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_fireball.png"));
+    private static Image spriteFireBallBlowing = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_blow.png"));
     private ImageView image;
     private Pane paneViewContainer;
     private Effect effect;

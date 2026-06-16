@@ -87,12 +87,12 @@ public class Settings {
     public static int archerVikingRange = 4;
     public static int archerSpeedAct = 2;
 
-    // ramwarrior
-    public static int ramwarriorHp = 250;
-    public static int ramwarriorDmg = 100;
-    public static double ramwarriorSpeed = 0.04;
-    public static int ramwarriorDeathValue = 80;
-    public static int ramwarriorSpeedAct = 2;
+    // batteringRam
+    public static int batteringRamHp = 250;
+    public static int batteringRamDmg = 100;
+    public static double batteringRamSpeed = 0.04;
+    public static int batteringRamDeathValue = 80;
+    public static int batteringRamSpeedAct = 2;
 
     // shieldwarrior
     public static int shieldwarriorHp = 250;
@@ -282,22 +282,22 @@ public class Settings {
         return archerSpeedAct;
     }
 
-    public int getRamwarriorHp() {
-        return ramwarriorHp;
+    public int getBatteringRamHp() {
+        return batteringRamHp;
     }
 
-    public int getRamwarriorDmg() {return ramwarriorDmg;}
+    public int getBatteringRamDmg() {return batteringRamDmg;}
 
-    public double getRamwarriorSpeed() {
-        return ramwarriorSpeed;
+    public double getBatteringRamSpeed() {
+        return batteringRamSpeed;
     }
 
-    public int getRamwarriorDeathValue() {
-        return ramwarriorDeathValue;
+    public int getBatteringRamDeathValue() {
+        return batteringRamDeathValue;
     }
 
-    public int getRamwarriorSpeedAct() {
-        return ramwarriorSpeedAct;
+    public int getBatteringRamSpeedAct() {
+        return batteringRamSpeedAct;
     }
 
     public int getShieldwarriorHp() {
@@ -344,10 +344,10 @@ public class Settings {
         shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * halfFactor);
 
         // ramWarrior
-        ramwarriorHp = (int) (ramwarriorHp * factor);
-        ramwarriorDmg = (int) (ramwarriorDmg * factor);
-        ramwarriorSpeed = (int) (ramwarriorSpeed * halfFactor);
-        ramwarriorDeathValue = (int) (ramwarriorDeathValue * halfFactor);
+        batteringRamHp = (int) (batteringRamHp * factor);
+        batteringRamDmg = (int) (batteringRamDmg * factor);
+        batteringRamSpeed = (int) (batteringRamSpeed * halfFactor);
+        batteringRamDeathValue = (int) (batteringRamDeathValue * halfFactor);
 
         // viking
         vikingHp = (int) (vikingHp * factor);

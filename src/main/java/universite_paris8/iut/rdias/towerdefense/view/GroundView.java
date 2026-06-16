@@ -17,43 +17,45 @@ public class GroundView {
     private Ground ground;
     private TilePane mapGrid;
 
-    private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass1.png"));
-    private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass2.png"));
-    private static Image spriteGrass3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass3.png"));
-    private static Image spriteGrass4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_grass/tile_grass4.png"));
+    private static String pathBegin = "/universite_paris8/iut/rdias/towerdefense/sprite/ground";
 
-    private static Image spriteWater1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water/tile_water1.png"));
-    private static Image spriteWater2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water/tile_water2.png"));
-    private static Image spriteWater3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water/tile_water3.png"));
-    private static Image spriteWater4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_water/tile_water4.png"));
+    private static Image spriteGrass1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_grass/tile_grass1.png"));
+    private static Image spriteGrass2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_grass/tile_grass2.png"));
+    private static Image spriteGrass3 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_grass/tile_grass3.png"));
+    private static Image spriteGrass4 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_grass/tile_grass4.png"));
+
+    private static Image spriteWater1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_water/tile_water1.png"));
+    private static Image spriteWater2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_water/tile_water2.png"));
+    private static Image spriteWater3 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_water/tile_water3.png"));
+    private static Image spriteWater4 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_water/tile_water4.png"));
     //Straight paths
-    private static Image spritePath1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_path1.png"));
-    private static Image spriteStraightPathVR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathVR.png"));
-    private static Image spriteStraightPathVL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathVL.png"));
-    private static Image spriteStraightPathHT = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathHT.png"));
-    private static Image spriteStraightPathHB = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_StraightPathHB.png"));
+    private static Image spritePath1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_path1.png"));
+    private static Image spriteStraightPathVR = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_StraightPathVR.png"));
+    private static Image spriteStraightPathVL = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_StraightPathVL.png"));
+    private static Image spriteStraightPathHT = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_StraightPathHT.png"));
+    private static Image spriteStraightPathHB = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_StraightPathHB.png"));
     // Corner paths
-    private static Image spriteBottomCornerR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_BottomCornerR.png"));
-    private static Image spriteBottomCornerL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_BottomCornerL.png"));
-    private static Image spriteBottomTopR = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_TopCornerR.png"));
-    private static Image spriteBottomTopL = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_TopCornerL.png"));
-    private static Image spriteBridge = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_path/tile_Bridge.png"));
+    private static Image spriteBottomCornerR = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_BottomCornerR.png"));
+    private static Image spriteBottomCornerL = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_BottomCornerL.png"));
+    private static Image spriteBottomTopR = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_TopCornerR.png"));
+    private static Image spriteBottomTopL = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_TopCornerL.png"));
+    private static Image spriteBridge = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_path/tile_Bridge.png"));
 
     //Border castle
-    private static Image spriteCastleBottomCornerR = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_anglebottomright.png"));
-    private static Image spriteCastleBottomCornerL = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_anglebottomleft.png"));
-    private static Image spriteCastleTopCornerR = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_angletopright.png"));
-    private static Image spriteCastleTopCornerL = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_angletopleft.png"));
-    private static Image spriteCastleLeft = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_left.png"));
-    private static Image spriteCastleRight = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_right.png"));
-    private static Image spriteCastleTop= new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_top.png"));
-    private static Image spriteCastleBottom = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_bottom.png"));
-    private static Image spriteCastleCenter = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_center.png"));
+    private static Image spriteCastleBottomCornerR = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_anglebottomright.png"));
+    private static Image spriteCastleBottomCornerL = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_anglebottomleft.png"));
+    private static Image spriteCastleTopCornerR = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_angletopright.png"));
+    private static Image spriteCastleTopCornerL = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_angletopleft.png"));
+    private static Image spriteCastleLeft = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_left.png"));
+    private static Image spriteCastleRight = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_right.png"));
+    private static Image spriteCastleTop= new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_top.png"));
+    private static Image spriteCastleBottom = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_bottom.png"));
+    private static Image spriteCastleCenter = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_center.png"));
 
     //Stairs castle
-    private static Image spriteStairCastleLeftTop= new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_stairlefttop.png"));
-    private static Image spriteStairCastleRightTop= new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_stairrighttop.png"));
-    private static Image spriteStairCastleTopLeft = new Image (GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_groundcastle/tile_stairtopleft.png"));
+    private static Image spriteStairCastleLeftTop= new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_stairlefttop.png"));
+    private static Image spriteStairCastleRightTop= new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_stairrighttop.png"));
+    private static Image spriteStairCastleTopLeft = new Image (GroundView.class.getResourceAsStream(pathBegin + "/tile_groundcastle/tile_stairtopleft.png"));
 
 
     public GroundView(Ground ground, TilePane mapGrid, Pane actorsArea, Environnement env){

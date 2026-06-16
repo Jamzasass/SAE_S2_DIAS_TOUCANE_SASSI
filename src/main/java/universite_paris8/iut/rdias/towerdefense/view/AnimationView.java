@@ -18,9 +18,10 @@ import javafx.animation.Interpolator;
 
 
 public class AnimationView {
-    private static Image imageMacron = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/animation/sprite_macron.png"));
-    private static Image imageSoldat = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/animation/sprite_knight.png"));
-    private static Image imageGodard = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/animation/sprite_jeanLucGodard.png"));
+    private static String pathBegin = "/universite_paris8/iut/rdias/towerdefense/sprite/animation";
+    private static Image imageMacron = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_macron.png"));
+    private static Image imageSoldat = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_knight.png"));
+    private static Image imageGodard = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_jeanLucGodard.png"));
     private ImageView image;
     private HBox paneViewContainer;
     private Animation animation;

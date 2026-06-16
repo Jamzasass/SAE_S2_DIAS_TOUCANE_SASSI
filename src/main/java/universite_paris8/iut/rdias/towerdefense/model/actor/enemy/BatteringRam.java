@@ -23,15 +23,15 @@ public class BatteringRam extends Enemy {
 
     public BatteringRam(Environnement rEnv, int eId, double eX, double eY) {
         super(  rEnv,
-                rEnv.getSettings().getRamwarriorHp(),
-                rEnv.getSettings().getRamwarriorDmg(),
+                rEnv.getSettings().getBatteringRamHp(),
+                rEnv.getSettings().getBatteringRamDmg(),
                 eId,
                 0.5,
                 eX,
                 eY,
-                rEnv.getSettings().getRamwarriorSpeed(),
-                rEnv.getSettings().getRamwarriorDeathValue(),
-                rEnv.getSettings().getRamwarriorSpeedAct()
+                rEnv.getSettings().getBatteringRamSpeed(),
+                rEnv.getSettings().getBatteringRamDeathValue(),
+                rEnv.getSettings().getBatteringRamSpeedAct()
         );
     }
 

@@ -30,30 +30,32 @@ public class SoldierView {
     private ImageView image;
     private Rectangle pvBar;
 
-    private static Image imageViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_viking/tile_vikingSoldier1.png"));
-    private static Image imageViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_viking/tile_vikingSoldier2.png"));
+    private static String pathBegin = "/universite_paris8/iut/rdias/towerdefense/sprite";
 
-    private static Image imageknight1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/knight/tile_knight1.png"));
-    private static Image imageKnight2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/knight/tile_knight2.png"));
+    private static Image imageViking1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/vikings_viking/tile_vikingSoldier1.png"));
+    private static Image imageViking2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/vikings_viking/tile_vikingSoldier2.png"));
 
-    private static Image imageArcherViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_archerer/tile_vikingarcherer1.png"));
-    private static Image imageArcherViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_archerer/tile_vikingarcherer2.png"));
+    private static Image imageknight1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/knight/tile_knight1.png"));
+    private static Image imageKnight2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/knight/tile_knight2.png"));
 
-    private static Image imageBerserker1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_berserker/tile_vikingberserker1.png"));
-    private static Image imageBerserker2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_berserker/tile_vikingberserker2.png"));
+    private static Image imageArcherViking1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/vikings_archerer/tile_vikingarcherer1.png"));
+    private static Image imageArcherViking2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/vikings_archerer/tile_vikingarcherer2.png"));
 
-    private static Image imageShiedlViking1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_bouclier/tile_bouclierSoldier1.png"));
-    private static Image imageShiedlViking2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/vikings_bouclier/tile_bouclierSoldier2.png"));
+    private static Image imageBerserker1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/vikings_berserker/tile_vikingberserker1.png"));
+    private static Image imageBerserker2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/vikings_berserker/tile_vikingberserker2.png"));
 
-    private static Image imageBatteringRam1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/battering_ram/sprite_BatteringRam1.png"));
-    private static Image imageBatteringRam2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/battering_ram/sprite_BatteringRam2.png"));
+    private static Image imageShiedlViking1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/vikings_bouclier/tile_bouclierSoldier1.png"));
+    private static Image imageShiedlViking2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/vikings_bouclier/tile_bouclierSoldier2.png"));
 
-    private static Image imageSlash = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_slash.png"));
+    private static Image imageBatteringRam1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/battering_ram/sprite_BatteringRam1.png"));
+    private static Image imageBatteringRam2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/battering_ram/sprite_BatteringRam2.png"));
 
-    private static Image imageBurial1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tombstone/sprite_tombstone1.png"));
-    private static Image imageBurial2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tombstone/sprite_tombstone2.png"));
-    private static Image imageBurial3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tombstone/sprite_tombstone3.png"));
-    private static Image imageBurial4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/tombstone/sprite_tombstone4.png"));
+    private static Image imageSlash = new Image(GroundView.class.getResourceAsStream(pathBegin + "/projectile/sprite_slash.png"));
+
+    private static Image imageBurial1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tombstone/sprite_tombstone1.png"));
+    private static Image imageBurial2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tombstone/sprite_tombstone2.png"));
+    private static Image imageBurial3 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tombstone/sprite_tombstone3.png"));
+    private static Image imageBurial4 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tombstone/sprite_tombstone4.png"));
 
     public SoldierView(Soldier sSoldier) {
         this.soldier = sSoldier;
