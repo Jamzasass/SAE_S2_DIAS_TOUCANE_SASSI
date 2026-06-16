@@ -45,7 +45,7 @@ public class Environnement {
         this.actorsDying = new ArrayList<>();
         this.effectsDying = new ArrayList<>();
         this.balance = new SimpleIntegerProperty(10000);
-        this.waveIndex = new SimpleIntegerProperty(0);
+        this.waveIndex = new SimpleIntegerProperty(1);
         this.settings = new Settings();
         this.wave = new Wave(this, waveIndex.get());
     }
@@ -147,7 +147,7 @@ public class Environnement {
 
     public void loop() {  // méthode unTour()
         cptSpawn++;
-        wave.waveLoop(cptSpawn);
+        wave.waveLoop();
         for (Knight k : knights) {
             k.act();
         }
@@ -216,7 +216,9 @@ public class Environnement {
         wave = new Wave(this, waveIndex.get());
         enemies.clear();
         knights.clear();
-        Animation nAnimation = new Animation(wave.isMacronInflationActivated());
+    }
+    public void startingWaveAnimation() {
+        Animation nAnimation = new Animation(waveIndex.get()==1, wave.isMacronInflationActivated());
         addAnimation(nAnimation);
     }
 

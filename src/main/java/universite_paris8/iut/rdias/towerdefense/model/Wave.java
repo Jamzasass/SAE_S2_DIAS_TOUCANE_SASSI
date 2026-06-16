@@ -11,12 +11,14 @@ public class Wave {
     private int nbEnemies;
     private int delayBetweenSpawns;
     private boolean macronInflationActivated;
+    private int waveCptLap;
 
     public Wave(Environnement env, int waveIndex) {
         this.env = env;
         this.waveIndex = waveIndex;
-        this.nbEnemies = 1;//(int)(10 + 20 * Math.log(waveIndex + 1));
+        this.nbEnemies = (int)(10 + 20 * Math.log(waveIndex + 1));
         this.delayBetweenSpawns = 3;
+        this.waveCptLap = 0;
         if (waveIndex > 4) {
             int random = (int)(Math.random()*4);
             this.macronInflationActivated = random==3;
@@ -30,8 +32,12 @@ public class Wave {
         }
     }
 
-    public void waveLoop(int cptLap) {
-        if (cptLap % (delayBetweenSpawns*30) == 0 && nbEnemies>0) {
+    public void waveLoop() {
+        if (waveCptLap == 0) {
+            env.startingWaveAnimation(); //Animation de début de jeu
+        }
+        else if (waveCptLap > delayBetweenSpawns*30*4 &&
+                waveCptLap % (delayBetweenSpawns*30) == 0 && nbEnemies>0) {
             int[] spawn;
             if (waveIndex <= 1){
                 spawn = spawnPointsStartGame;
@@ -48,11 +54,12 @@ public class Wave {
             env.incrementId();
             nbEnemies--;
         }
-        else if (nbEnemies==0) {
-            if (env.getEnemies().isEmpty() && (cptLap*10) % (delayBetweenSpawns*30) == 0) {
+        else if (nbEnemies==0 && waveCptLap % (delayBetweenSpawns*30*2) == 0) {
+            if (env.getEnemies().isEmpty()) {
                 env.nextWave();
             }
         }
+        this.waveCptLap++;
 
     }
 
@@ -72,7 +79,7 @@ public class Wave {
         Enemy e = null;
         int radomSelectEnemy = (int) (Math.random() * 100);
 
-        if (waveIndex <= 1) {
+        if (waveIndex == 1) {
             e = new Viking(env, env.getId(), col, line);
         }
         else if (waveIndex <= 3) {

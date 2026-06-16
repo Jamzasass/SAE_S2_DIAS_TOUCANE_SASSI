@@ -40,6 +40,9 @@ public class AnimationView {
         else {
             this.image = new ImageView(imageSoldat);
         }
+        if (this.animation.isGameBegining()) {
+            l.setText("Le jeu commence");
+        }
         this.image.setFitHeight(128);
         this.image.setFitWidth(128);
         this.paneViewContainer.setId("a" + animation.getId());

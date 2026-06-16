@@ -22,7 +22,6 @@ import universite_paris8.iut.rdias.towerdefense.view.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-import universite_paris8.iut.rdias.towerdefense.view.DistanceView;
 import javafx.scene.control.ProgressBar;
 import universite_paris8.iut.rdias.towerdefense.model.algorithm.DistanceView;
 
@@ -42,18 +41,10 @@ public class Controller {
     @FXML private Label balanceLabel;
     @FXML private Label hpPlayer;
     @FXML private Label waveLabel;
-    private Ground ground;
-    private GroundView groundView;
     @FXML private Pane actorsArea;
     private Timeline gameLoop;
     public static int temps;
-    private Environnement env;
-    private ObsEnemy obsEnemy;
-    private ObsKnight obsKnight;
-    private ObsTower obsTower;
-    private ObsEffect obsEffect;
-    private ObsAnimation obsAnimation;
-    private CastleView castleView;
+
     @FXML private HBox towerActionMenu;
     @FXML private Button btnSell;
     @FXML private Button btnUpgrade;
@@ -76,17 +67,29 @@ public class Controller {
     private ObsKnight obsKnight;
     private ObsTower obsTower;
     private ObsEffect obsEffect;
-
-    private static int towerSelected;
-
+    private ObsAnimation obsAnimation;
     private ImageView ghostImage;
     private Circle rangeCircle;
     private int towerSelected = 0;
 
-    public void initialize() {
+    //Tower sprites
+    private Image spriteArcher;
+    private Image spriteBarrack;
+    private Image spriteBallista;
+    private Image spriteBramble;
+    private Image spritePalissade;
+    private Image spriteSorcerer;
 
+    public void initialize() {
         ground = new Ground();
         env = new Environnement(ground);
+        setupView();
+        setupEventHandlers();
+        setupKeyboard();
+        setupMapClick();
+        setupTowerButtons();
+        setupGameOver();
+        startGameLoop();
     }
 
     private void setupView() {
@@ -149,7 +152,23 @@ public class Controller {
         setupGameOver();
     }
 
+    private void loadTowerSprites() {
+        spriteArcher = new Image(GroundView.class.getResourceAsStream(
+                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1_1.png"));
+        spriteBarrack = new Image(GroundView.class.getResourceAsStream(
+                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower/sprite_BarrackTower1.png"));
+        spriteBallista = new Image(GroundView.class.getResourceAsStream(
+                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista/sprite_BallistaTower1.png"));
+        spriteBramble = new Image(GroundView.class.getResourceAsStream(
+                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/bramble_tower/sprite_BrambleTower4.png"));
+        spritePalissade = new Image(GroundView.class.getResourceAsStream(
+                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/palissade_tower/sprite_PalissadeTower1.png"));
+        spriteSorcerer = new Image(GroundView.class.getResourceAsStream(
+                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower/sprite_SorcererTower1.png"));
+    }
+
     private void setupTowerButtons() {
+        loadTowerSprites();
         archerTower.setOnAction(e -> startDrag(spriteArcher, TOWER_ARCHER));
         barrackTower.setOnAction(e -> startDrag(spriteBarrack, TOWER_BARRACK));
         brambleTower.setOnAction(e -> startDrag(spriteBramble, TOWER_BRAMBLE));
