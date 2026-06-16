@@ -7,7 +7,7 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.Settings;
 
 public class SorcererTower extends Tower {
-    private double radiusBlow = 8.0;
+    private double radiusBlow;
 
     public SorcererTower(Environnement sEnv, int sorcererId, double sorcererX, double sorcererY) {
         super(sEnv,
@@ -19,6 +19,7 @@ public class SorcererTower extends Tower {
                 sorcererY,
                 sEnv.getSettings().getSorcererTowerSpeedAttack(),
                 sEnv.getSettings().getSorcererTowerCost());
+        radiusBlow = sEnv.getSettings().getSorcererRadiusBlow();
     }
 
     @Override

@@ -41,7 +41,7 @@ public class Settings {
     // sorcererTower
     public static int sorcererTowerHp = 300;
     public static int sorcererTowerDmg = 50;
-    public static int sorcererTowerZoneDuration = 3;
+    public static double sorcererRadiusBlow = 5;
     public static int sorcererTowerSpeedAttack = 4;
     public static int sorcererTowerCost = 500;
     public static int sorcererTowerRange = 8;
@@ -175,8 +175,8 @@ public class Settings {
         return sorcererTowerDmg;
     }
 
-    public int getSorcererTowerZoneDuration() {
-        return sorcererTowerZoneDuration;
+    public double getSorcererRadiusBlow() {
+        return sorcererRadiusBlow;
     }
 
     public int getSorcererTowerSpeedAttack() {

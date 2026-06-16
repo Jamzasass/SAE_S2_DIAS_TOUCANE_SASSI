@@ -17,7 +17,7 @@ public class Wave {
         this.env = env;
         this.waveIndex = waveIndex;
         this.nbEnemies = (int)(10 + 20 * Math.log(waveIndex + 1));
-        this.delayBetweenSpawns = 3;
+        this.delayBetweenSpawns = 4;
         this.waveCptLap = 0;
         if (waveIndex > 4) {
             int random = (int)(Math.random()*4);
