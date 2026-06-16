@@ -15,6 +15,8 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 
 public class Barrack extends Tower {
     private int[] coordClosePath;
+    private int nbKnight;
+    private int nbKnightMax;
 
     public Barrack (Environnement bEnv, int barrackId, double barrackX, double barrackY) {
         super(  bEnv,
@@ -27,15 +29,18 @@ public class Barrack extends Tower {
                 bEnv.getSettings().getBarrackSpeedProduction(),
                 bEnv.getSettings().getBarrackCost()
         );
+        nbKnightMax = getEnvironnement().getSettings().getBarrackNbKnightMax();
         coordClosePath = getEnvironnement().getGround().getClosestPath((int) getY(), (int) getX());
+        nbKnight = 0;
     }
 
     @Override
     public void act() {
         tick();
-        if (canAct() && hasEnemies(getEnvironnement())) {
-            Knight k = new Knight(getEnvironnement(), getEnvironnement().getId(), coordClosePath[1], coordClosePath[0]);
+        if (canAct() && hasEnemies(getEnvironnement()) && nbKnight < nbKnightMax) {
+            Knight k = new Knight(getEnvironnement(), getEnvironnement().getId(), coordClosePath[1], coordClosePath[0], this);
             getEnvironnement().addKnight(k);
+            this.incrementNbKnight();
             resetCooldown();
         }
     }
@@ -47,5 +52,16 @@ public class Barrack extends Tower {
             }
         }
         return false;
+    }
+
+    public int[] getCoordClosePath() {
+        return coordClosePath;
+    }
+
+    public void incrementNbKnight() {
+        nbKnight++;
+    }
+    public void decrementNbKnight() {
+        nbKnight--;
     }
 }

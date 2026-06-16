@@ -14,8 +14,9 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 
 public class Knight extends Soldier {
     private Enemy target;
+    private Barrack base;
 
-    public Knight(Environnement kEnv, int kId, double kX, double kY) {
+    public Knight(Environnement kEnv, int kId, double kX, double kY, Barrack kBase) {
         super(  kEnv,
                 kEnv.getSettings().getKnightHp(),
                 kEnv.getSettings().getKnightDmg(),
@@ -24,10 +25,11 @@ public class Knight extends Soldier {
                 kX,
                 kY,
                 kEnv.getSettings().getKnightSpeed(),
-                42,
-                40,
+                kBase.getCoordClosePath()[1],
+                kBase.getCoordClosePath()[0],
                 kEnv.getSettings().getKnightSpeedAct()
         );
+        this.base = kBase;
         target = null;
     }
 
@@ -43,5 +45,9 @@ public class Knight extends Soldier {
             target.takeDamage(this.getDmg());
             resetCooldown();
         }
+    }
+
+    public Barrack getBase() {
+        return base;
     }
 }

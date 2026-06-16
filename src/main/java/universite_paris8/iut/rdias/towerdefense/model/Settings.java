@@ -38,6 +38,7 @@ public class Settings {
     public static int barrackSpeedProduction = 8;
     public static int barrackSpeed = 0;
     public static int barrackCost = 200;
+    public static int barrackNbKnightMax = 3;
 
     // bramble
     public static double brambleSlowFactor = 0.5;
@@ -155,6 +156,10 @@ public class Settings {
 
     public int getBarrackCost() {
         return barrackCost;
+    }
+
+    public int getBarrackNbKnightMax(){
+        return barrackNbKnightMax;
     }
 
     public double getBrambleSlowFactor() {

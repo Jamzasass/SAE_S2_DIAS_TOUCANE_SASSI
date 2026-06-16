@@ -6,6 +6,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 /*La super classe abstraite Actor définit le comportement commun
@@ -99,6 +100,9 @@ public abstract class Actor {
         try {
             if (this instanceof Enemy) {
                 env.earn(((Enemy) this).getDeathValue());
+            }
+            else if (this instanceof Knight) {
+                ((Knight) this).getBase().decrementNbKnight();
             }
             else if (this instanceof Palissade) {
                 ((Palissade) this).deleted();
