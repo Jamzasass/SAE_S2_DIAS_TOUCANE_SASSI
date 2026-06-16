@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.*;
@@ -186,16 +187,22 @@ public class SoldierView {
     }
 
     public void blow() {
-        this.image.setImage(imageBurial1);
-        FadeTransition fade = new FadeTransition(Duration.seconds(1), image);
-        fade.setFromValue(1.0);
-        fade.setToValue(0.0);
-        fade.setOnFinished(event -> {
-            if (paneViewContainer.getParent() != null) {
-                ((javafx.scene.layout.Pane) paneViewContainer.getParent()).getChildren().remove(paneViewContainer);
-            }
-        });
-        fade.play();
+        if (this.soldier instanceof Enemy && !((Enemy) this.soldier).isOnCatle()) {
+            this.image.setImage(imageBurial1);
+            FadeTransition fade = new FadeTransition(Duration.seconds(1), image);
+            fade.setFromValue(1.0);
+            fade.setToValue(0.0);
+            fade.setOnFinished(event -> {
+                if (paneViewContainer.getParent() != null) {
+                    ((javafx.scene.layout.Pane) paneViewContainer.getParent()).getChildren().remove(paneViewContainer);
+                }
+            });
+            fade.play();
+        }
+        else {
+            ((javafx.scene.layout.Pane) paneViewContainer.getParent()).getChildren().remove(paneViewContainer);
+        }
+
     }
 
     public Soldier getSoldier() {

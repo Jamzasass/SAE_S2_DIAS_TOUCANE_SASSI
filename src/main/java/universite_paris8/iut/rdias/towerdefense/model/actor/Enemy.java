@@ -30,4 +30,8 @@ public abstract class Enemy extends Soldier {
         }
         return closeTarget;
     }
+
+    public boolean isOnCatle() {
+        return getEnvironnement().getGround().isCastle((int)this.getY(), (int)this.getX());
+    }
 }
