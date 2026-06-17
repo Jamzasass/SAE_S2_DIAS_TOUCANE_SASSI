@@ -1,5 +1,8 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 /* La classe Settings permet de centraliser tous les paramètres du jeu pour faciliter le changement de données et l'équilibrage.
  * Elle nous donne une méthode multiplierStatsEnemy() pour augmenter les stats des ennemis et augmenter la difficulté sur la durée du jeu.
  * Settings a comme attributs:
@@ -18,37 +21,38 @@ public class Settings {
     public static int archerHp = 150;
     public static int archerSpeedAttack = 2;
     public static int archerRange = 4;
-    public static int archerCost = 100;
+    public static IntegerProperty archerCost = new SimpleIntegerProperty(100);
 
     // ballista
     public static int ballistaHp = 300;
     public static int ballistaDmg = 30;
     public static int ballistaSpeedAttack = 3;
     public static int ballistaRange = 6;
-    public static int ballistaCost = 350;
+    public static IntegerProperty ballistaCost = new SimpleIntegerProperty(350);
 
     // barrack
     public static int barrackHp = 250;
     public static int barrackSpeedProduction = 8;
     public static int barrackSpeed = 0;
-    public static int barrackCost = 200;
+    public static IntegerProperty barrackCost = new SimpleIntegerProperty(200);
     public static int barrackNbKnightMax = 3;
 
     // bramble
     public static double brambleSlowFactor = 0.5;
     public static int brambleSlowDuration = 30;
-    public static int brambleCost = 50;
+    public static IntegerProperty brambleCost = new SimpleIntegerProperty(50);
 
     // palissade
     public static int palissadeHp = 300;
-    public static int palissadeCost = 300;
+    public static IntegerProperty palissadeCost = new SimpleIntegerProperty(300);
+
 
     // sorcererTower
     public static int sorcererTowerHp = 300;
     public static int sorcererTowerDmg = 50;
     public static double sorcererRadiusBlow = 5;
     public static int sorcererTowerSpeedAttack = 4;
-    public static int sorcererTowerCost = 500;
+    public static IntegerProperty sorcererTowerCost = new SimpleIntegerProperty(500);
     public static int sorcererTowerRange = 8;
 
     // Soldiers Ally (ally -> cost)
@@ -109,6 +113,9 @@ public class Settings {
     }
 
     public int getArcherCost() {
+        return archerCost.getValue();
+    }
+    public IntegerProperty getArcherCostProperty() {
         return archerCost;
     }
 
@@ -133,6 +140,9 @@ public class Settings {
     }
 
     public int getBallistaCost() {
+        return ballistaCost.getValue();
+    }
+    public IntegerProperty getBallistaCostProperty() {
         return ballistaCost;
     }
 
@@ -149,6 +159,9 @@ public class Settings {
     }
 
     public int getBarrackCost() {
+        return barrackCost.getValue();
+    }
+    public IntegerProperty getBarrackCostProperty() {
         return barrackCost;
     }
 
@@ -165,6 +178,9 @@ public class Settings {
     }
 
     public int getBrambleCost() {
+        return brambleCost.getValue();
+    }
+    public IntegerProperty getBrambleCostProperty() {
         return brambleCost;
     }
 
@@ -173,6 +189,9 @@ public class Settings {
     }
 
     public int getPalissadeCost() {
+        return palissadeCost.getValue();
+    }
+    public IntegerProperty getPalissadeCostProperty() {
         return palissadeCost;
     }
 
@@ -195,6 +214,9 @@ public class Settings {
     public int getSorcererRange() {return sorcererTowerRange;}  
 
     public int getSorcererTowerCost() {
+        return sorcererTowerCost.getValue();
+    }
+    public IntegerProperty getSorcererTowerCostProperty() {
         return sorcererTowerCost;
     }
 
@@ -356,31 +378,37 @@ public class Settings {
     }
 
     public void inflation() {
+        // Death values (-20%)
         vikingDeathValue = (int) (vikingDeathValue * 0.80);
         shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * 0.80);
         batteringRamDeathValue = (int) (batteringRamDeathValue * 0.80);
         archerVikingDeathValue = (int) (archerVikingDeathValue * 0.80);
+        berserkerDeathValue = (int) (berserkerDeathValue * 0.80);
 
-        archerCost = (int) (archerCost * 1.20);
-        ballistaCost = (int) (ballistaCost * 1.20);
-        barrackCost = (int) (barrackCost * 1.20);
-        brambleCost = (int) (brambleCost * 1.20);
-        palissadeCost = (int) (palissadeCost * 1.20);
-        sorcererTowerCost = (int) (sorcererTowerCost * 1.20);
+        // Costs (+20%)
+        archerCost.setValue((int) (archerCost.getValue() * 1.20));
+        ballistaCost.setValue((int) (ballistaCost.getValue() * 1.20));
+        barrackCost.setValue((int) (barrackCost.getValue() * 1.20));
+        brambleCost.setValue((int) (brambleCost.getValue() * 1.20));
+        palissadeCost.setValue((int) (palissadeCost.getValue() * 1.20));
+        sorcererTowerCost.setValue((int) (sorcererTowerCost.getValue() * 1.20));
     }
 
     public void disinflation() {
+        // Death values (reverse -20%)
         vikingDeathValue = (int) (vikingDeathValue / 0.80);
         shieldwarriorDeathValue = (int) (shieldwarriorDeathValue / 0.80);
         batteringRamDeathValue = (int) (batteringRamDeathValue / 0.80);
         archerVikingDeathValue = (int) (archerVikingDeathValue / 0.80);
+        berserkerDeathValue = (int) (berserkerDeathValue / 0.80);
 
-        archerCost = (int) (archerCost / 1.20);
-        ballistaCost = (int) (ballistaCost / 1.20);
-        barrackCost = (int) (barrackCost / 1.20);
-        brambleCost = (int) (brambleCost / 1.20);
-        palissadeCost = (int) (palissadeCost / 1.20);
-        sorcererTowerCost = (int) (sorcererTowerCost / 1.20);
+        // Costs (reverse +20%)
+        archerCost.setValue((int) (archerCost.getValue() / 1.20));
+        ballistaCost.setValue((int) (ballistaCost.getValue() / 1.20));
+        barrackCost.setValue((int) (barrackCost.getValue() / 1.20));
+        brambleCost.setValue((int) (brambleCost.getValue() / 1.20));
+        palissadeCost.setValue((int) (palissadeCost.getValue() / 1.20));
+        sorcererTowerCost.setValue((int) (sorcererTowerCost.getValue() / 1.20));
     }
 
     public double getUpgradeFactor() {

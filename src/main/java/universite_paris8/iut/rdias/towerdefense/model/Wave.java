@@ -75,7 +75,9 @@ public class Wave {
         }
         else if (nbEnemies==0 && waveCptLap % (delayBetweenSpawns*30*2) == 0) {
             if (env.getEnemies().isEmpty()) {
-                env.getSettings().disinflation();
+                if (isMacronInflationActivated()) {
+                    env.getSettings().disinflation();
+                }
                 env.nextWave();
             }
         }

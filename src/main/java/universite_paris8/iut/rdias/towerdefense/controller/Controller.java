@@ -66,6 +66,12 @@ public class Controller {
     @FXML private Button sorcererTower;
     @FXML private Button ballistaTower;
     @FXML private ProgressBar hpBar;
+    @FXML private Label costLabelArcher;
+    @FXML private Label costLabelBarrack;
+    @FXML private Label costLabelBramble;
+    @FXML private Label costLabelPalissade;
+    @FXML private Label costLabelSorcerer;
+    @FXML private Label costLabelBallista;
 
     // Model
     private Ground ground;
@@ -100,6 +106,7 @@ public class Controller {
         setupGameOver();
         setupEventHandlers();
         startGameLoop();
+        bindProperties();
     }
 
     private void setupView() {
@@ -124,14 +131,6 @@ public class Controller {
         env.getAnimations().addListener(obsAnimation);
         groundView.drawMap();
 
-        balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
-        hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
-        hpBar.progressProperty().bind(
-                env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
-        );
-
-        waveLabel.textProperty().bind(env.getWaveIndexProperty().asString());
-
         castleView = new CastleView(env.getCastle());
         ImageView c = new ImageView();
         c.setFitHeight(64);
@@ -153,6 +152,13 @@ public class Controller {
                 env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
         );
         waveLabel.textProperty().bind(env.getWaveIndexProperty().asString());
+
+        costLabelArcher.textProperty().bind(env.getSettings().getArcherCostProperty().asString().concat(" écus"));
+        costLabelBarrack.textProperty().bind(env.getSettings().getBarrackCostProperty().asString().concat(" écus"));
+        costLabelBramble.textProperty().bind(env.getSettings().getBrambleCostProperty().asString().concat(" écus"));
+        costLabelPalissade.textProperty().bind(env.getSettings().getPalissadeCostProperty().asString().concat(" écus"));
+        costLabelSorcerer.textProperty().bind(env.getSettings().getSorcererTowerCostProperty().asString().concat(" écus"));
+        costLabelBallista.textProperty().bind(env.getSettings().getBallistaCostProperty().asString().concat(" écus"));
     }
 
     private void setupEventHandlers() {
@@ -163,7 +169,6 @@ public class Controller {
     }
 
     private void setupTowerButtons() {
-        //loadTowerSprites();
         archerTower.setOnAction(e -> startDrag(spriteArcher, TOWER_ARCHER));
         barrackTower.setOnAction(e -> startDrag(spriteBarrack, TOWER_BARRACK));
         brambleTower.setOnAction(e -> startDrag(spriteBramble, TOWER_BRAMBLE));
@@ -195,9 +200,6 @@ public class Controller {
                 showGameOver();
             }
         });
-
-
-
     }
 
     // Game Loop
