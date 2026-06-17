@@ -99,7 +99,9 @@ public abstract class Actor {
         this.hp.setValue(0);
         try {
             if (this instanceof Enemy) {
-                env.earn(((Enemy) this).getDeathValue());
+                if (!((Enemy) this).isOnCatle()) {
+                    env.earn(((Enemy) this).getDeathValue());
+                }
             }
             else if (this instanceof Knight) {
                 ((Knight) this).getBase().decrementNbKnight();
