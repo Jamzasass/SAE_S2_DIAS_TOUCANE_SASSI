@@ -26,6 +26,7 @@ class EnvironnementTest {
         this.env = new Environnement(this.ground);
     }
 
+    // Tests d'ajout et de suppression d'ennemis
     @Test
     void testAddAndRemoveEnemy() {
         Enemy enemy = new Viking(env, 1, 5.0, 5.0);
@@ -38,6 +39,7 @@ class EnvironnementTest {
         assertEquals(0, enemies.size());
     }
 
+    // Tests d'ajout et de suppression de chevaliers
     @Test
     void testAddAndRemoveKnight() {
         Knight knight = new Knight(env, 1, 5.0, 5.0);
@@ -50,6 +52,7 @@ class EnvironnementTest {
         assertEquals(0, knights.size());
     }
 
+    // Tests d'ajout et de suppression d'effets (projectiles)
     @Test
     void testAddAndRemoveEffect() {
         Actor target = new Viking(env, 1, 5.0, 5.0);
@@ -65,25 +68,28 @@ class EnvironnementTest {
         assertEquals(0, effects.size());
     }
 
+    // Test de gain d'argent
     @Test
     void testEarnMoney() {
         int initialBalance = env.getBalanceProperty().get();
         env.earn(500);
-        assertEquals(initialBalance + 500, env.getBalanceProperty().get());
+        assertEquals(initialBalance + 500, env.getBalanceProperty().get(),"Le solde doit augmenter");
     }
 
+    // Test de dégâts sur le château
     @Test
     void testTakeDamageCastle() {
         int initialHp = env.getCastle().getHp();
         env.takeDmgCastle(10);
-        assertEquals(initialHp - 10, env.getCastle().getHp());
+        assertEquals(initialHp - 10, env.getCastle().getHp(),"Chateau prend des dmgs");
         // Vérifier que les pv du chateau ne peuvent être endetter
         env.takeDmgCastle(10000);
-        assertEquals(0, env.getCastle().getHp());
+        assertEquals(0, env.getCastle().getHp(),"Limite en dessous de 0");
     }
 
+    // Test de l'ajout correct des acteurs mort dans la liste dedié
     @Test
-    void testAddDyingActorPlusLoop() {
+    void testAddDyingActor() {
         Enemy viking = new Viking(env, 1, 2.0, 3.0);
         env.addEnemy(viking);
         assertEquals(1, env.getEnemies().size());
@@ -99,6 +105,7 @@ class EnvironnementTest {
         assertTrue(env.getEnemies().isEmpty());
     }
 
+    // Test de passage à la vague suivante
     @Test
     void testNextWave() {
         env.addEnemy(new Viking(env, 1, 0, 0));
@@ -107,16 +114,17 @@ class EnvironnementTest {
         int waveIndexInitial = env.getWaveIndexProperty().get();
         env.nextWave();
 
-        assertEquals(waveIndexInitial + 1, env.getWaveIndexProperty().get());
-        assertTrue(env.getEnemies().isEmpty());
-        assertTrue(env.getKnights().isEmpty());
+        assertEquals(waveIndexInitial + 1, env.getWaveIndexProperty().get(),"L'index de la vague doit augmenter de 1");
+        assertTrue(env.getEnemies().isEmpty(),"Tous les ennemies doivent etre eliminé de la vague precedente");
+        assertTrue(env.getKnights().isEmpty(),"Tous les chevaliers doivent etre eliminé de la vague precedente");
     }
 
+    // Test pour vérifier l'incrémentation correct des IDs
     @Test
     void testGetIdPlusIncrementation() {
         int id1 = env.getId();
         int id2 = env.getId();
-        assertNotEquals(id1, id2);
-        assertTrue(id2 > id1);
+        assertNotEquals(id1, id2,"Deux IDs consécutifs doivent être diff");
+        assertTrue(id2 > id1,"Le 2eme ID doit etre superieur");
     }
 }
