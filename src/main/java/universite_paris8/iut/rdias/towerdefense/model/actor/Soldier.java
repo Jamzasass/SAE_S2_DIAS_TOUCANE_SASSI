@@ -95,7 +95,6 @@ public abstract class Soldier extends Actor{
     }
 
     public void wayChangement() {
-        int nbE = 0;
         int[][][][] mapBfs = getEnvironnement().getGround().getMapBFS().getDistancesMap();
         int[][] dirs = {{-1,0},{0,1},{1,0},{0,-1}};
         int shortestDist = -1;
@@ -113,7 +112,6 @@ public abstract class Soldier extends Actor{
             int dCible = mapBfs[yCible][xCible][nL][nC];
             if (shortestDist == -1 || (dCible >= 0 && dCible <= shortestDist)) {
                 if (dCible == shortestDist) {
-                    nbE++;
                     int r = (int) (Math.random()*2);
                     if (r == 0) {
                         shortestDist = dCible;
@@ -149,7 +147,7 @@ public abstract class Soldier extends Actor{
         return closeTarget;
     }
 
-    public double getSpeed(){
+    public double getSpeed() {
         return speed;
     }
 

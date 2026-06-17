@@ -44,9 +44,9 @@ public class Environnement {
     private ObservableList<Animation> animations;
     private ArrayList<Actor> actorsDying;
     private ArrayList<Effect> effectsDying;
-    private static int cptSpawn = 0;
-    private int delaySpawn = 60;
-    private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
+//    private static int cptSpawn = 0;
+//    private int delaySpawn = 60;
+//    private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
     private IntegerProperty balance;
     private Settings settings;
     private IntegerProperty waveIndex;
@@ -73,21 +73,11 @@ public class Environnement {
     public void delEnemy(Enemy e){this.enemies.remove(e);}
     public void addKnight(Knight k){this.knights.add(k);}
     public void delKnight(Knight k){this.knights.remove(k);}
-//    public void addTower(Tower t){this.towers.add(t);}
-    public boolean addTower(Tower t) {
-        int line = (int) t.getY();
-        int col = (int) t.getX();
-        if (balance.get() < t.getCost()) {
-            return false;
-        }
-        if (!t.canBePlaced(line, col)) {
-            return false;
-        }
-        if (countSameType(t) >= t.maxAllowed()) {
-            return false;
+    public void addTower(Tower t) {
+        if (t instanceof Palissade) {
+            ((Palissade) t).place();
         }
         this.towers.add(t);
-        return true;
     }
 
     private long countSameType(Tower t) { //Permet de compter le nombre de tours pour gérer le maximum de Bramble et Palissade
@@ -101,47 +91,24 @@ public class Environnement {
     public void takeDmgCastle(int dmg) {
         castle.takeDamage(dmg);
     }
-    public void addArcher(int col, int line) {
-        Tower archer = new Archer(this, id, (double) col, (double) line);
-        if (this.addTower(archer)) {
-            balance.setValue(balance.getValue() - archer.getCost());
+    public void createTower(int towerType, int col, int line) {
+        Tower tower = null;
+        switch (towerType) {
+            case 1 -> tower = new Archer(this, id, col, line);
+            case 2 -> tower = new Barrack(this, id, col, line);
+            case 3 -> tower = new Bramble(this, id, col, line);
+            case 4 -> tower = new Palissade(this, id, col, line);
+            case 5 -> tower = new SorcererTower(this, id, col, line);
+            case 6 -> tower = new Ballista(this, id, col, line);
         }
-    }
-    public void addBarrack(int col, int line) {
-        Tower barrack = new Barrack(this, id, (double) col, (double) line);
-        if (this.addTower(barrack)){
-            balance.setValue(balance.getValue() - barrack.getCost());
-        }
-    }
-
-    public void addBallista(int col, int line){
-        Tower ballista = new Ballista(this, id, (double) col, (double) line);
-        if (this.addTower(ballista)){
-            balance.setValue(balance.getValue() - ballista.getCost());
-        }
-    }
-
-    public void addBramble(int col, int line){
-        Tower bramble = new Bramble(this, id, (double) col, (double) line);
-        if (this.addTower(bramble)){
-            balance.setValue(balance.getValue() - bramble.getCost());
+        if (tower != null
+                && balance.get() >= tower.getCost()
+                && tower.canBePlaced(line, col)
+                && countSameType(tower) <= tower.maxAllowed()) {
+            addTower(tower);
         }
     }
 
-    public void addPalissade(int col, int line){
-        Palissade palissade = new Palissade(this, id, (double) col, (double) line);
-        if (this.addTower(palissade)){
-            balance.setValue(balance.getValue() - palissade.getCost());
-            palissade.place();
-        }
-    }
-
-    public void addSorcerer(int col, int line){
-        Tower sorcerer = new SorcererTower(this, getId(),col, line);
-        if (this.addTower(sorcerer)){
-            balance.setValue(balance.getValue() - sorcerer.getCost());
-        }
-    }
     public void addEffect(Effect e) {
         effects.add(e);
     }
@@ -165,8 +132,7 @@ public class Environnement {
         return balance;
     }
 
-    public void loop() {  // méthode unTour()
-        cptSpawn++;
+    public void loop() {
         wave.waveLoop();
         for (Knight k : knights) {
             k.act();

@@ -375,13 +375,7 @@ public class Controller {
 
     // Tower Placement
     private void addTower(int towerType, int col, int line) {
-        switch (towerType) {
-            case TOWER_ARCHER -> env.addArcher(col, line);
-            case TOWER_SORCERER -> env.addSorcerer(col, line);
-            case TOWER_BALLISTA -> env.addBallista(col, line);
-            case TOWER_BARRACK -> env.addBarrack(col, line);
-            case TOWER_PALISSADE -> env.addPalissade(col, line);
-        }
+        env.createTower(towerType, col, line);
     }
 
     // Game Over
