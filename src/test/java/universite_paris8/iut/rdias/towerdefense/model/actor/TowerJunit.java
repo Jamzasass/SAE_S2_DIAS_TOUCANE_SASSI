@@ -66,7 +66,7 @@ public class TowerJunit {
         int upgradeCost = tower.getUpgradeCost();
         double expectedCost = baseCost * env.getSettings().getUpgradeCostFactor();
         assertEquals((int) expectedCost, upgradeCost,
-                "Le coût d'upgrade doit être: baseCost * factor");
+                "Le coût d'upgrade doit être: coutdeBase x le facteur");
     }
 
     // Tests Action & Cooldown

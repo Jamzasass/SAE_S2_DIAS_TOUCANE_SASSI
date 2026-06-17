@@ -4,6 +4,12 @@ import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 
+/*
+ * Ennemis vikings au combat rapproché (Viking / ShieldViking / Berserker).
+ * Cherche la cible (Knight) la plus proche via le BFS, se déplace vers elle, et attaque si elle est à portée.
+ * En l'absence de cible, les Vikings se dirige vers le château pour l'attaquer.
+ */
+
 public abstract class MeleeVikings extends Enemy {
     private Knight target;
 
