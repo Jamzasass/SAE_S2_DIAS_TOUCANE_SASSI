@@ -42,11 +42,7 @@ public class Wave {
             env.getSettings().inflation();
         }
         // Augmentation de la difficulter des waves
-        if (waveIndex == 10) {
-            env.getSettings().multiplierStatsEnemy(1.3);
-        } else if (waveIndex == 15) {
-            env.getSettings().multiplierStatsEnemy(1.3);
-        } else if (waveIndex == 25) {
+        if (waveIndex >= 10 && waveIndex%5 == 0) {
             env.getSettings().multiplierStatsEnemy(1.3);
         }
     }

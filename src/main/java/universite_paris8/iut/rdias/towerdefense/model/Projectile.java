@@ -14,7 +14,7 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Enviro
 public class Projectile extends Effect{
 
     public Projectile(Environnement pEnv, double pX, double pY, int pDmg, Actor pTarget) {
-        super(pEnv, pX, pY, pDmg, pTarget, 0.35);
+        super(pEnv, pX, pY, pDmg, pTarget, 0.20);
     }
 
     @Override

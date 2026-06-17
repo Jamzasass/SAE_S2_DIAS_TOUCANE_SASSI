@@ -61,7 +61,7 @@ public class Environnement {
         this.animations = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
         this.effectsDying = new ArrayList<>();
-        this.balance = new SimpleIntegerProperty(10000);
+        this.balance = new SimpleIntegerProperty(250);
         this.waveIndex = new SimpleIntegerProperty(1);
         this.settings = new Settings();
         this.wave = new Wave(this, waveIndex.get());
@@ -103,6 +103,7 @@ public class Environnement {
                 && balance.get() >= tower.getCost()
                 && tower.canBePlaced(line, col)
                 && countSameType(tower) <= tower.maxAllowed()) {
+            balance.setValue(balance.getValue() - tower.getCost());
             addTower(tower);
         }
     }
