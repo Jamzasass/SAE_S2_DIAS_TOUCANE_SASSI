@@ -47,6 +47,7 @@ public class Palissade extends Tower {
     }
 
     public void deleted() {
+        System.out.println("deleted");
         getEnvironnement().getGround().setTile((int)this.getY(), (int)this.getX(), 1);
         getEnvironnement().getGround().refreshBFS();
     }

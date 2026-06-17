@@ -68,6 +68,8 @@ public class Wave {
 
             Enemy e = createNewEnemy(col, line);
             env.addEnemy(e);
+            Enemy eg = new Viking(env, env.getId(), col, line);
+            env.addEnemy(eg);
             env.incrementId();
             nbEnemies--;
         }
@@ -98,7 +100,8 @@ public class Wave {
         int radomSelectEnemy = (int) (Math.random() * 100);
 
         if (waveIndex == 1) {
-            e = new Viking(env, env.getId(), col, line);
+            e = new BatteringRam(env, env.getId(), col, line);
+            //e = new Viking(env, env.getId(), col, line);
         }
         else if (waveIndex <= 3) {
             if (radomSelectEnemy < 30) {
