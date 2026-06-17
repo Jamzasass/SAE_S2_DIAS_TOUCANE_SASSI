@@ -178,7 +178,7 @@ public class TowerJunit {
         env.getTowers().add(tower);
 
         int towerCountBefore = env.getTowers().size();
-        tower.sold();
+        tower.sell();
         int towerCountAfter = env.getTowers().size();
         assertEquals(towerCountBefore - 1, towerCountAfter, "La tour doit être supprimée de l'environnement");
     }
