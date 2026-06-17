@@ -84,12 +84,14 @@ public class Controller {
     private int towerSelected = 0;
 
     //Tower sprites
-    private Image spriteArcher;
-    private Image spriteBarrack;
-    private Image spriteBallista;
-    private Image spriteBramble;
-    private Image spritePalissade;
-    private Image spriteSorcerer;
+    private static String pathBegin = "/universite_paris8/iut/rdias/towerdefense/sprite/tower";
+    private static Image spriteArcher = new Image(GroundView.class.getResourceAsStream(pathBegin + "/archer_tower/sprite_ArcherTowerNiv1_1.png"));
+    private static Image spriteBarrack = new Image(GroundView.class.getResourceAsStream(pathBegin + "/barrack_tower/sprite_BarrackTower1.png"));
+    private static Image spriteBallista = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tower_ballista/sprite_BallistaTower1.png"));
+    private static Image spriteBramble = new Image(GroundView.class.getResourceAsStream(pathBegin + "/bramble_tower/sprite_BrambleTower4.png"));
+    private static Image spritePalissade = new Image(GroundView.class.getResourceAsStream(pathBegin + "/palissade_tower/sprite_PalissadeTower1.png"));
+    private static Image spriteSorcerer = new Image(GroundView.class.getResourceAsStream(pathBegin + "/wizard_tower/sprite_SorcererTower1.png"));
+
 
     public void initialize() {
         ground = new Ground();
@@ -160,23 +162,8 @@ public class Controller {
         setupGameOver();
     }
 
-    private void loadTowerSprites() {
-        spriteArcher = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1_1.png"));
-        spriteBarrack = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower/sprite_BarrackTower1.png"));
-        spriteBallista = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista/sprite_BallistaTower1.png"));
-        spriteBramble = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/bramble_tower/sprite_BrambleTower4.png"));
-        spritePalissade = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/palissade_tower/sprite_PalissadeTower1.png"));
-        spriteSorcerer = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower/sprite_SorcererTower1.png"));
-    }
-
     private void setupTowerButtons() {
-        loadTowerSprites();
+        //loadTowerSprites();
         archerTower.setOnAction(e -> startDrag(spriteArcher, TOWER_ARCHER));
         barrackTower.setOnAction(e -> startDrag(spriteBarrack, TOWER_BARRACK));
         brambleTower.setOnAction(e -> startDrag(spriteBramble, TOWER_BRAMBLE));
