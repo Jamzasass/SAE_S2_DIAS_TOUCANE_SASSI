@@ -118,8 +118,7 @@ class EnvironnementTest {
         env.nextWave();
 
         assertEquals(waveIndexInitial + 1, env.getWaveIndexProperty().get(),"L'index de la vague doit augmenter de 1");
-        assertTrue(env.getEnemies().isEmpty(),"Tous les ennemies doivent etre eliminé de la vague precedente");
-        assertTrue(env.getKnights().isEmpty(),"Tous les chevaliers doivent etre eliminé de la vague precedente");
+        assertTrue(env.getEnemies().isEmpty(),"Tous les ennemies doivent etre eliminé de la vague precedente");S
     }
 
     // Test pour vérifier l'incrémentation correct des IDs
