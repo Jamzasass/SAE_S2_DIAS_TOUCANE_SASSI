@@ -100,56 +100,56 @@ public class Wave {
         int radomSelectEnemy = (int) (Math.random() * 100);
 
         if (waveIndex <= 1) {
-            e = new Viking(env, env.getId(), col, line);
+            e = new Viking(env, env.getNextId(), col, line);
         }
         else if (waveIndex <= 3) {
             if (radomSelectEnemy < 30) {
-                e = new ArcherViking(env, env.getId(), col, line);
+                e = new ArcherViking(env, env.getNextId(), col, line);
             }
             else {
-                e = new Viking(env, env.getId(), col, line);
+                e = new Viking(env, env.getNextId(), col, line);
             }
         }
         else if (waveIndex <= 5) {
             if (radomSelectEnemy < 30) {
-                e = new ArcherViking(env, env.getId(), col, line);
+                e = new ArcherViking(env, env.getNextId(), col, line);
             }
             else if (radomSelectEnemy < 50) {
-                e = new Berserker(env, env.getId(), col, line);
+                e = new Berserker(env, env.getNextId(), col, line);
             }
             else {
-                e = new Viking(env,env.getId(), col, line);
+                e = new Viking(env,env.getNextId(), col, line);
             }
         }
         else if (waveIndex <= 8) {
             if (radomSelectEnemy < 10) {
-                e = new ShieldViking(env, env.getId(), col, line);
+                e = new ShieldViking(env, env.getNextId(), col, line);
             }
             else if (radomSelectEnemy < 20) {
-                e = new ArcherViking(env, env.getId(), col, line);
+                e = new ArcherViking(env, env.getNextId(), col, line);
             }
             else if (radomSelectEnemy < 30) {
-                e = new Berserker(env, env.getId(), col, line);
+                e = new Berserker(env, env.getNextId(), col, line);
             }
             else {
-                e = new Viking(env, env.getId(), col, line);
+                e = new Viking(env, env.getNextId(), col, line);
             }
         }
         else if (waveIndex <= 10) {
             if (radomSelectEnemy < 10) {
-                e = new BatteringRam(env, env.getId(), col, line);
+                e = new BatteringRam(env, env.getNextId(), col, line);
             }
             else if (radomSelectEnemy < 15) {
-                e = new ShieldViking(env, env.getId(), col, line);
+                e = new ShieldViking(env, env.getNextId(), col, line);
             }
             else if (radomSelectEnemy < 20) {
-                e = new ArcherViking(env, env.getId(), col, line);
+                e = new ArcherViking(env, env.getNextId(), col, line);
             }
             else if (radomSelectEnemy < 25) {
-                e = new Berserker(env, env.getId(), col, line);
+                e = new Berserker(env, env.getNextId(), col, line);
             }
             else {
-                e = new Viking(env, env.getId(), col, line);
+                e = new Viking(env, env.getNextId(), col, line);
             }
         }
         return e;

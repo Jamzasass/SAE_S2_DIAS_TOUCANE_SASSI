@@ -123,9 +123,9 @@ class EnvironnementTest {
 
     // Test pour vérifier l'incrémentation correct des IDs
     @Test
-    void testGetIdPlusIncrementation() {
-        int id1 = env.getId();
-        int id2 = env.getId();
+    void testGetNextIdPlusIncrementation() {
+        int id1 = env.getNextId();
+        int id2 = env.getNextId();
         assertNotEquals(id1, id2,"Deux IDs consécutifs doivent être diff");
         assertTrue(id2 > id1,"Le 2eme ID doit etre superieur");
     }

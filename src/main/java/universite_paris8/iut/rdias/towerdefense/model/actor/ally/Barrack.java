@@ -38,7 +38,7 @@ public class Barrack extends Tower {
     public void act() {
         tick();
         if (canAct() && hasEnemies(getEnvironnement()) && nbKnight < nbKnightMax) {
-            Knight k = new Knight(getEnvironnement(), getEnvironnement().getId(), coordClosePath[1], coordClosePath[0], this);
+            Knight k = new Knight(getEnvironnement(), getEnvironnement().getNextId(), coordClosePath[1], coordClosePath[0], this);
             getEnvironnement().addKnight(k);
             this.incrementNbKnight();
             resetCooldown();

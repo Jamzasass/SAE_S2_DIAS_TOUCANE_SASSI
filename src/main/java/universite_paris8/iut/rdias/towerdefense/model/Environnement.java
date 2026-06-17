@@ -91,12 +91,12 @@ public class Environnement {
     public void createTower(int towerType, int col, int line) {
         Tower tower = null;
         switch (towerType) {
-            case 1 -> tower = new Archer(this, id, col, line);
-            case 2 -> tower = new Barrack(this, id, col, line);
-            case 3 -> tower = new Bramble(this, id, col, line);
-            case 4 -> tower = new Palissade(this, id, col, line);
-            case 5 -> tower = new SorcererTower(this, id, col, line);
-            case 6 -> tower = new Ballista(this, id, col, line);
+            case 1 -> tower = new Archer(this, getNextId(), col, line);
+            case 2 -> tower = new Barrack(this, getNextId(), col, line);
+            case 3 -> tower = new Bramble(this, getNextId(), col, line);
+            case 4 -> tower = new Palissade(this, getNextId(), col, line);
+            case 5 -> tower = new SorcererTower(this, getNextId(), col, line);
+            case 6 -> tower = new Ballista(this, getNextId(), col, line);
         }
         if (tower != null
                 && balance.get() >= tower.getCost()
@@ -184,7 +184,7 @@ public class Environnement {
     public Ground getGround() {
         return ground;
     }
-    public int getId() {
+    public int getNextId() {
         incrementId();
         return id;
     }
