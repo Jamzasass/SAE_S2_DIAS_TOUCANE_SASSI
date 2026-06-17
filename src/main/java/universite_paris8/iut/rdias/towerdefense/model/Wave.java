@@ -31,15 +31,19 @@ public class Wave {
         this.waveIndex = waveIndex;
         this.nbEnemies = (int)(10 + 20 * Math.log(waveIndex + 1));
         this.delayBetweenSpawns = 3;
-        if (waveIndex > 4) {
+
+        // Ajout du système d'inflation
+        if (waveIndex > 5) {
             int random = (int)(Math.random()*4);
-            this.macronInflationActivated = random==3;
+            this.macronInflationActivated = random == 3;
         }
-        if (waveIndex == 15) {
+
+        // Augmentation de la difficulter des waves
+        if (waveIndex == 10) {
+            env.getSettings().multiplierStatsEnemy(1.3);
+        } else if (waveIndex == 15) {
             env.getSettings().multiplierStatsEnemy(1.3);
         } else if (waveIndex == 25) {
-            env.getSettings().multiplierStatsEnemy(1.3);
-        } else if (waveIndex == 35) {
             env.getSettings().multiplierStatsEnemy(1.3);
         }
     }
@@ -78,31 +82,12 @@ public class Wave {
         return delayBetweenSpawns;
     }
 
-    public boolean isMacronInflationActivated() {
-        return macronInflationActivated;
-    }
-
     public Enemy createNewEnemy(int col, int line) {
         Enemy e = null;
         int radomSelectEnemy = (int) (Math.random() * 100);
 
         if (waveIndex <= 1) {
-//            e = new Viking(env, env.getId(), col, line);
-            if (radomSelectEnemy < 10) {
-                e = new BatteringRam(env, env.getId(), col, line);
-            }
-            else if (radomSelectEnemy < 15) {
-                e = new ShieldViking(env, env.getId(), col, line);
-            }
-            else if (radomSelectEnemy < 20) {
-                e = new ArcherViking(env, env.getId(), col, line);
-            }
-            else if (radomSelectEnemy < 25) {
-                e = new Berserker(env, env.getId(), col, line);
-            }
-            else {
-                e = new Viking(env, env.getId(), col, line);
-            }
+            e = new ArcherViking(env, env.getId(), col, line);
         }
         else if (waveIndex <= 3) {
             if (radomSelectEnemy < 30) {

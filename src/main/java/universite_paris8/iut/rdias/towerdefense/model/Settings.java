@@ -10,7 +10,7 @@ public class Settings {
 
     //UpgradeSetting
     public static double upgradeFactor = 2;
-    public static double upgradeCostFactor = 0.5;
+    public static double upgradeCostFactor = 1.5;
 
     // towers (ally -> cost)
     // archer

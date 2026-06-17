@@ -136,7 +136,6 @@ public abstract class Soldier extends Actor{
     public double getSpeed(){
         return speed;
     }
-
     public int getxCible() {
         return xCible;
     }
@@ -164,7 +163,6 @@ public abstract class Soldier extends Actor{
     public double getDirectionY() {
         return directionY;
     }
-
     public double getDirectionX() {
         return directionX;
     }

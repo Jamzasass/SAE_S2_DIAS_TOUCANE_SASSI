@@ -110,36 +110,4 @@ public class ArcherViking extends Enemy {
     public int calculDistanceFromEnemyByBFS(Actor a) {
         return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)getY()][(int)getX()][(int)a.getY()][(int)a.getX()];
     }
-
-
-    public int[] closestPath(Tower t) {
-        int[] closePath = new int[2];
-        for (int i=1; i<6; i++) {
-            if (t.getX()+i<getEnvironnement().getGround().width() &&
-                    getEnvironnement().getGround().isPath((int)t.getY(), (int)t.getX()+i)) {
-                closePath[0] = (int)t.getY();
-                closePath[1] = (int)t.getX()+i;
-                return closePath;
-            }
-            else if (t.getX()-i >= 0 &&
-                    getEnvironnement().getGround().isPath((int)t.getY(), (int)t.getX()-i)) {
-                closePath[0] = (int)t.getY();
-                closePath[1] = (int)t.getX()-i;
-                return closePath;
-            }
-            else if (t.getY()+i < getEnvironnement().getGround().heigth() &&
-                    getEnvironnement().getGround().isPath((int)t.getY()+i, (int)t.getX())) {
-                closePath[0] = (int)t.getY()+i;
-                closePath[1] = (int)t.getX();
-                return closePath;
-            }
-            else if (t.getY()-i >= 0 &&
-                    getEnvironnement().getGround().isPath((int)t.getY()-i, (int)t.getX())) {
-                closePath[0] = (int)t.getY()-i;
-                closePath[1] = (int)t.getX();
-                return closePath;
-            }
-        }
-        return closePath;
-    }
 }

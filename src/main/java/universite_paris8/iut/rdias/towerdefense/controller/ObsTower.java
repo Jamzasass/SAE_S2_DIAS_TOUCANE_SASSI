@@ -40,10 +40,6 @@ public class ObsTower implements ListChangeListener<Tower> {
         }
     }
 
-    public ArrayList<TowerView> getTowerSprite() {
-        return towerSprite;
-    }
-
     public void animate() {
         for (TowerView t : towerSprite) {
             try {
@@ -53,5 +49,9 @@ public class ObsTower implements ListChangeListener<Tower> {
             }
 
         }
+    }
+
+    public ArrayList<TowerView> getTowerSprite() {
+        return towerSprite;
     }
 }

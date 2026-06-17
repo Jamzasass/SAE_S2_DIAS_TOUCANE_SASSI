@@ -52,20 +52,28 @@ public abstract class Effect {
     public abstract void act();
 
     public boolean isFinished() { return finished; }
+
     public DoubleProperty getXProperty() { return x; }
+
     public DoubleProperty getYProperty() { return y; }
+
     public double getX() { return x.getValue(); }
+
     public double getY() { return y.getValue(); }
+
     public void finished() {
         finished = true;
         environnement.delEffect(this);
     }
+
     public int getDmg() {
         return dmg;
     }
+
     public void setX(double nX) {
         x.setValue(nX);
     }
+
     public void setY(double nY) {
         y.setValue(nY);
     }
@@ -100,14 +108,6 @@ public abstract class Effect {
 
     public DoubleProperty directionYProperty() {
         return directionY;
-    }
-
-    public DoubleProperty xProperty() {
-        return x;
-    }
-
-    public DoubleProperty yProperty() {
-        return y;
     }
 
     public double getAngle() {

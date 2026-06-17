@@ -42,16 +42,6 @@ public class SorcererTower extends Tower {
         }
     }
 
-    private void damageInZoneAround(Enemy target) {
-        for (Enemy e : getEnvironnement().getEnemies()) {
-            if (!e.isLiving()) continue;
-            double dist = Math.hypot(e.getX() - target.getX(), e.getY() - target.getY());
-            if (dist <= radiusBlow) {
-                e.takeDamage(getDmg());
-            }
-        }
-    }
-
     private Enemy searchTarget() {
         Enemy closest = null;
         double minDist = Double.MAX_VALUE;
