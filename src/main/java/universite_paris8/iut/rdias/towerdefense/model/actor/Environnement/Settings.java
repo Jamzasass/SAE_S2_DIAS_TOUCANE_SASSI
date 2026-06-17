@@ -3,389 +3,216 @@ package universite_paris8.iut.rdias.towerdefense.model.actor.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-/* La classe Settings permet de centraliser tous les paramètres du jeu pour faciliter le changement de données et l'équilibrage.
- * Elle nous donne une méthode multiplierStatsEnemy() pour augmenter les stats des ennemis et augmenter la difficulté sur la durée du jeu.
- * Settings a comme attributs:
- * -Les facteurs d'amélioration.
- * -Les statistiques de toutes les tours alliées avec celle du chevalier (Knight) et des ennemis.
- */
 public class Settings {
 
-    //UpgradeSetting
-    public static double upgradeFactor = 2;
+    public static double upgradeFactor = 2.0;
     public static double upgradeCostFactor = 1.5;
 
-    // towers (ally -> cost)
-    // archer
-    public static int archerDmg = 40;
+    // ARCHER TOWER
+    public static int archerDmg = 45;
     public static int archerHp = 150;
     public static int archerSpeedAttack = 2;
     public static int archerRange = 4;
-    public static IntegerProperty archerCost = new SimpleIntegerProperty(100);
+    public static IntegerProperty archerCost = new SimpleIntegerProperty(125);
 
-    // ballista
-    public static int ballistaHp = 300;
-    public static int ballistaDmg = 30;
-    public static int ballistaSpeedAttack = 3;
-    public static int ballistaRange = 6;
-    public static IntegerProperty ballistaCost = new SimpleIntegerProperty(350);
+    // BALLISTA TOWER
+    public static int ballistaHp = 325;
+    public static int ballistaDmg = 70;
+    public static int ballistaSpeedAttack = 2;
+    public static int ballistaRange = 8;
+    public static IntegerProperty ballistaCost = new SimpleIntegerProperty(550);
 
-    // barrack
-    public static int barrackHp = 250;
-    public static int barrackSpeedProduction = 8;
+    // BARRACK TOWER
+    public static int barrackHp = 300;
+    public static int barrackSpeedProduction = 6;
     public static int barrackSpeed = 0;
-    public static IntegerProperty barrackCost = new SimpleIntegerProperty(200);
+    public static IntegerProperty barrackCost = new SimpleIntegerProperty(275);
     public static int barrackNbKnightMax = 3;
 
-    // bramble
-    public static double brambleSlowFactor = 0.5;
-    public static int brambleSlowDuration = 30;
-    public static IntegerProperty brambleCost = new SimpleIntegerProperty(50);
+    // BRAMBLE TOWER
+    public static double brambleSlowFactor = 0.6;
+    public static int brambleSlowDuration = 40;
+    public static IntegerProperty brambleCost = new SimpleIntegerProperty(75);
 
-    // palissade
-    public static int palissadeHp = 300;
+    // PALISSADE TOWER
+    public static int palissadeHp = 350;
     public static IntegerProperty palissadeCost = new SimpleIntegerProperty(300);
 
-
-    // sorcererTower
+    // SORCERER TOWER
     public static int sorcererTowerHp = 300;
-    public static int sorcererTowerDmg = 50;
+    public static int sorcererTowerDmg = 60;
     public static double sorcererRadiusBlow = 5;
-    public static int sorcererTowerSpeedAttack = 4;
-    public static IntegerProperty sorcererTowerCost = new SimpleIntegerProperty(500);
-    public static int sorcererTowerRange = 8;
+    public static int sorcererTowerSpeedAttack = 3;
+    public static IntegerProperty sorcererTowerCost = new SimpleIntegerProperty(750);
+    public static int sorcererTowerRange = 6;
 
-    // Soldiers Ally (ally -> cost)
-    // knight
-    public static int knightHp = 150;
-    public static int knightDmg = 25;
-    public static double knightSpeed = 0.08;
+    // KNIGHT
+    public static int knightHp = 60;
+    public static int knightDmg = 35;
+    public static double knightSpeed = 0.10;
     public static int knightCost = 0;
     public static int knightSpeedAct = 2;
 
-    // soliders Enemy (enemy -> deathValue)
-    // viking
+    // VIKING
     public static int vikingHp = 60;
-    public static int vikingDmg = 20;
-    public static double vikingSpeed = 0.05;
-    public static int vikingDeathValue = 15;
+    public static int vikingDmg = 25;
+    public static double vikingSpeed = 0.06;
+    public static int vikingDeathValue = 20;
     public static int vikingSpeedAct = 2;
 
-    // berserker
-    public static int berserkerHp = 125;
-    public static int berserkerDmg = 20;
-    public static double berserkerSpeed = 0.07;
-    public static int berserkerDeathValue = 45;
+    // BERSERKER
+    public static int berserkerHp = 130;
+    public static int berserkerDmg = 35;
+    public static double berserkerSpeed = 0.08;
+    public static int berserkerDeathValue = 55;
     public static int berserkerSpeedAct = 2;
 
-    // archerViking
-    public static int archerVikingHp = 50;
-    public static int archerVikingDmg = 20;
-    public static double archerVikingSpeed = 0.06;
-    public static int archerVikingDeathValue = 25;
+    // ARCHER VIKING
+    public static int archerVikingHp = 55;
+    public static int archerVikingDmg = 25;
+    public static double archerVikingSpeed = 0.07;
+    public static int archerVikingDeathValue = 35;
     public static int archerVikingRange = 4;
     public static int archerSpeedAct = 2;
 
-    // batteringRam
-    public static int batteringRamHp = 250;
-    public static int batteringRamDmg = 100;
-    public static double batteringRamSpeed = 0.04;
-    public static int batteringRamDeathValue = 80;
+    // BATTERING RAM
+    public static int batteringRamHp = 300;
+    public static int batteringRamDmg = 65;
+    public static double batteringRamSpeed = 0.05;
+    public static int batteringRamDeathValue = 100;
     public static int batteringRamSpeedAct = 2;
 
-    // shieldwarrior
-    public static int shieldwarriorHp = 250;
-    public static int shieldwarriorDmg = 20;
-    public static double shieldwarriorSpeed = 0.04;
-    public static int shieldwarriorDeathValue = 70;
+    // SHIELD VIKING
+    public static int shieldwarriorHp = 280;
+    public static int shieldwarriorDmg = 30;
+    public static double shieldwarriorSpeed = 0.05;
+    public static int shieldwarriorDeathValue = 85;
     public static int shieldwarriorSpeedAct = 2;
 
-    public int getArcherDmg() {
-        return archerDmg;
-    }
+    // ARCHER TOWER GETTERS
+    public int getArcherDmg() { return archerDmg; }
+    public int getArcherHp() { return archerHp; }
+    public int getArcherSpeedAttack() { return archerSpeedAttack; }
+    public int getArcherCost() { return archerCost.getValue(); }
+    public IntegerProperty getArcherCostProperty() { return archerCost; }
+    public int getArcherRange() { return archerRange; }
 
-    public int getArcherHp() {
-        return archerHp;
-    }
+    // BALLISTA TOWER GETTERS
+    public int getBallistaHp() { return ballistaHp; }
+    public int getBallistaSpeedAttack() { return ballistaSpeedAttack; }
+    public int getBallistaDmg() { return ballistaDmg; }
+    public int getBallistaRange() { return ballistaRange; }
+    public int getBallistaCost() { return ballistaCost.getValue(); }
+    public IntegerProperty getBallistaCostProperty() { return ballistaCost; }
 
-    public int getArcherSpeedAttack() {
-        return archerSpeedAttack;
-    }
+    // BARRACK TOWER GETTERS
+    public int getBarrackHp() { return barrackHp; }
+    public int getBarrackSpeedProduction() { return barrackSpeedProduction; }
+    public int getBarrackSpeed() { return barrackSpeed; }
+    public int getBarrackCost() { return barrackCost.getValue(); }
+    public IntegerProperty getBarrackCostProperty() { return barrackCost; }
+    public int getBarrackNbKnightMax() { return barrackNbKnightMax; }
 
-    public int getArcherCost() {
-        return archerCost.getValue();
-    }
-    public IntegerProperty getArcherCostProperty() {
-        return archerCost;
-    }
+    // BRAMBLE TOWER GETTERS
+    public double getBrambleSlowFactor() { return brambleSlowFactor; }
+    public int getBrambleSlowDuration() { return brambleSlowDuration; }
+    public int getBrambleCost() { return brambleCost.getValue(); }
+    public IntegerProperty getBrambleCostProperty() { return brambleCost; }
 
-    public int getArcherRange() {
-        return archerRange;
-    }
+    // PALISSADE TOWER GETTERS
+    public int getPalissadeHp() { return palissadeHp; }
+    public int getPalissadeCost() { return palissadeCost.getValue(); }
+    public IntegerProperty getPalissadeCostProperty() { return palissadeCost; }
 
-    public int getBallistaHp() {
-        return ballistaHp;
-    }
+    // SORCERER TOWER GETTERS
+    public int getSorcererTowerHp() { return sorcererTowerHp; }
+    public int getSorcererTowerDmg() { return sorcererTowerDmg; }
+    public double getSorcererRadiusBlow() { return sorcererRadiusBlow; }
+    public int getSorcererTowerSpeedAttack() { return sorcererTowerSpeedAttack; }
+    public int getSorcererRange() { return sorcererTowerRange; }
+    public int getSorcererTowerCost() { return sorcererTowerCost.getValue(); }
+    public IntegerProperty getSorcererTowerCostProperty() { return sorcererTowerCost; }
 
-    public int getBallistaSpeedAttack() {
-        return ballistaSpeedAttack;
-    }
+    // KNIGHT GETTERS
+    public int getKnightHp() { return knightHp; }
+    public int getKnightDmg() { return knightDmg; }
+    public double getKnightSpeed() { return knightSpeed; }
+    public int getKnightCost() { return knightCost; }
+    public int getKnightSpeedAct() { return knightSpeedAct; }
 
-    public int getBallistaDmg() {
-        return ballistaDmg;
-    }
+    // VIKING GETTERS
+    public int getVikingHp() { return vikingHp; }
+    public int getVikingDmg() { return vikingDmg; }
+    public double getVikingSpeed() { return vikingSpeed; }
+    public int getVikingDeathValue() { return vikingDeathValue; }
+    public int getVikingSpeedAct() { return vikingSpeedAct; }
 
-    public int getBallistaRange() {
-        return ballistaRange;
-    }
+    // BERSERKER GETTERS
+    public int getBerserkerHp() { return berserkerHp; }
+    public int getBerserkerDmg() { return berserkerDmg; }
+    public double getBerserkerSpeed() { return berserkerSpeed; }
+    public int getBerserkerDeathValue() { return berserkerDeathValue; }
+    public int getBerserkerSpeedAct() { return berserkerSpeedAct; }
 
-    public int getBallistaCost() {
-        return ballistaCost.getValue();
-    }
-    public IntegerProperty getBallistaCostProperty() {
-        return ballistaCost;
-    }
+    // ARCHER VIKING GETTERS
+    public int getArcherVikingHp() { return archerVikingHp; }
+    public int getArcherVikingDmg() { return archerVikingDmg; }
+    public double getArcherVikingSpeed() { return archerVikingSpeed; }
+    public int getArcherVikingDeathValue() { return archerVikingDeathValue; }
+    public int getArcherVikingRange() { return archerVikingRange; }
+    public int getArcherSpeedAct() { return archerSpeedAct; }
 
-    public int getBarrackHp() {
-        return barrackHp;
-    }
+    // BATTERING RAM GETTERS
+    public int getBatteringRamHp() { return batteringRamHp; }
+    public int getBatteringRamDmg() { return batteringRamDmg; }
+    public double getBatteringRamSpeed() { return batteringRamSpeed; }
+    public int getBatteringRamDeathValue() { return batteringRamDeathValue; }
+    public int getBatteringRamSpeedAct() { return batteringRamSpeedAct; }
 
-    public int getBarrackSpeedProduction() {
-        return barrackSpeedProduction;
-    }
+    // SHIELD WARRIOR GETTERS
+    public int getShieldwarriorHp() { return shieldwarriorHp; }
+    public int getShieldwarriorDmg() { return shieldwarriorDmg; }
+    public double getShieldwarriorSpeed() { return shieldwarriorSpeed; }
+    public int getShieldwarriorDeathValue() { return shieldwarriorDeathValue; }
+    public int getShieldwarriorSpeedAct() { return shieldwarriorSpeedAct; }
 
-    public int getBarrackSpeed() {
-        return barrackSpeed;
-    }
+    public static void multiplierStatsEnemy(double percentIncrease) {
+        double fullMultiplier = 1.0 + percentIncrease;
+        double halfMultiplier = 1.0 + (percentIncrease / 2);
 
-    public int getBarrackCost() {
-        return barrackCost.getValue();
-    }
-    public IntegerProperty getBarrackCostProperty() {
-        return barrackCost;
-    }
+        vikingHp = (int) (vikingHp * fullMultiplier);
+        vikingDmg = (int) (vikingDmg * fullMultiplier);
+        vikingSpeed = vikingSpeed * halfMultiplier;
+        vikingDeathValue = (int) (vikingDeathValue * halfMultiplier);
 
-    public int getBarrackNbKnightMax(){
-        return barrackNbKnightMax;
-    }
+        berserkerHp = (int) (berserkerHp * fullMultiplier);
+        berserkerDmg = (int) (berserkerDmg * fullMultiplier);
+        berserkerSpeed = berserkerSpeed * halfMultiplier;
+        berserkerDeathValue = (int) (berserkerDeathValue * halfMultiplier);
 
-    public double getBrambleSlowFactor() {
-        return brambleSlowFactor;
-    }
+        shieldwarriorHp = (int) (shieldwarriorHp * fullMultiplier);
+        shieldwarriorDmg = (int) (shieldwarriorDmg * fullMultiplier);
+        shieldwarriorSpeed = shieldwarriorSpeed * halfMultiplier;
+        shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * halfMultiplier);
 
-    public int getBrambleSlowDuration() {
-        return brambleSlowDuration;
-    }
+        batteringRamHp = (int) (batteringRamHp * fullMultiplier);
+        batteringRamDmg = (int) (batteringRamDmg * fullMultiplier);
+        batteringRamSpeed = batteringRamSpeed * halfMultiplier;
+        batteringRamDeathValue = (int) (batteringRamDeathValue * halfMultiplier);
 
-    public int getBrambleCost() {
-        return brambleCost.getValue();
-    }
-    public IntegerProperty getBrambleCostProperty() {
-        return brambleCost;
-    }
-
-    public int getPalissadeHp() {
-        return palissadeHp;
-    }
-
-    public int getPalissadeCost() {
-        return palissadeCost.getValue();
-    }
-    public IntegerProperty getPalissadeCostProperty() {
-        return palissadeCost;
-    }
-
-    public int getSorcererTowerHp() {
-        return sorcererTowerHp;
-    }
-
-    public int getSorcererTowerDmg() {
-        return sorcererTowerDmg;
-    }
-
-    public double getSorcererRadiusBlow() {
-        return sorcererRadiusBlow;
-    }
-
-    public int getSorcererTowerSpeedAttack() {
-        return sorcererTowerSpeedAttack;
-    }
-
-    public int getSorcererRange() {return sorcererTowerRange;}  
-
-    public int getSorcererTowerCost() {
-        return sorcererTowerCost.getValue();
-    }
-    public IntegerProperty getSorcererTowerCostProperty() {
-        return sorcererTowerCost;
-    }
-
-    public int getKnightHp() {
-        return knightHp;
-    }
-
-    public int getKnightDmg() {
-        return knightDmg;
-    }
-
-    public double getKnightSpeed() {
-        return knightSpeed;
-    }
-
-    public int getKnightCost() {
-        return knightCost;
-    }
-    public int getKnightSpeedAct() {
-        return knightSpeedAct;
-    }
-
-    public int getVikingHp() {
-        return vikingHp;
-    }
-
-    public int getVikingDmg() {
-        return vikingDmg;
-    }
-
-    public double getVikingSpeed() {
-        return vikingSpeed;
-    }
-
-    public int getVikingDeathValue() {
-        return vikingDeathValue;
-    }
-
-    public int getVikingSpeedAct() {
-        return vikingSpeedAct;
-    }
-
-    public int getBerserkerHp() {
-        return berserkerHp;
-    }
-
-    public int getBerserkerDmg() {
-        return berserkerDmg;
-    }
-
-    public double getBerserkerSpeed() {
-        return berserkerSpeed;
-    }
-
-    public int getBerserkerDeathValue() {
-        return berserkerDeathValue;
-    }
-
-    public int getBerserkerSpeedAct() {
-        return berserkerSpeedAct;
-    }
-
-    public int getArcherVikingHp() {
-        return archerVikingHp;
-    }
-
-    public int getArcherVikingDmg() {
-        return archerVikingDmg;
-    }
-
-    public double getArcherVikingSpeed() {
-        return archerVikingSpeed;
-    }
-
-    public int getArcherVikingDeathValue() {
-        return archerVikingDeathValue;
-    }
-
-    public int getArcherVikingRange() {
-        return archerVikingRange;
-    }
-
-    public int getArcherSpeedAct() {
-        return archerSpeedAct;
-    }
-
-    public int getBatteringRamHp() {
-        return batteringRamHp;
-    }
-
-    public int getBatteringRamDmg() {return batteringRamDmg;}
-
-    public double getBatteringRamSpeed() {
-        return batteringRamSpeed;
-    }
-
-    public int getBatteringRamDeathValue() {
-        return batteringRamDeathValue;
-    }
-
-    public int getBatteringRamSpeedAct() {
-        return batteringRamSpeedAct;
-    }
-
-    public int getShieldwarriorHp() {
-        return shieldwarriorHp;
-    }
-
-    public int getShieldwarriorDmg() {
-        return shieldwarriorDmg;
-    }
-
-    public double getShieldwarriorSpeed() {
-        return shieldwarriorSpeed;
-    }
-
-    public int getShieldwarriorDeathValue() {
-        return shieldwarriorDeathValue;
-    }
-
-    public int getShieldwarriorSpeedAct() {
-        return shieldwarriorSpeedAct;
-    }
-
-    public static void multiplierStatsEnemy(double factor) {
-
-        double halfFactor = 1 + (factor/2);
-        factor = 1 + factor;
-
-        // archerViking
-        archerVikingDmg = (int) (archerVikingDmg * factor);
-        archerVikingHp = (int) (archerVikingHp * factor);
-        archerVikingSpeed = (int) (archerVikingSpeed * halfFactor);
-        archerVikingDeathValue = (int) (archerVikingDeathValue * halfFactor);
-
-        // berserker
-        berserkerDmg = (int) (berserkerDmg * factor);
-        berserkerHp = (int) (berserkerHp * factor);
-        berserkerSpeed = (int) (berserkerSpeed * halfFactor);
-        berserkerDeathValue = (int) (berserkerDeathValue * halfFactor);
-
-        // shieldWarrior
-        shieldwarriorHp = (int) (shieldwarriorHp * factor);
-        shieldwarriorDmg = (int) (shieldwarriorDmg * factor);
-        shieldwarriorSpeed = (int) (shieldwarriorSpeed * halfFactor);
-        shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * halfFactor);
-
-        // ramWarrior
-        batteringRamHp = (int) (batteringRamHp * factor);
-        batteringRamDmg = (int) (batteringRamDmg * factor);
-        batteringRamSpeed = (int) (batteringRamSpeed * halfFactor);
-        batteringRamDeathValue = (int) (batteringRamDeathValue * halfFactor);
-
-        // viking
-        vikingHp = (int) (vikingHp * factor);
-        vikingDmg = (int) (vikingDmg * factor);
-        vikingSpeed = (int) (vikingSpeed * halfFactor);
-        vikingDeathValue = (int) (vikingDeathValue * halfFactor);
+        archerVikingHp = (int) (archerVikingHp * fullMultiplier);
+        archerVikingDmg = (int) (archerVikingDmg * fullMultiplier);
+        archerVikingSpeed = archerVikingSpeed * halfMultiplier;
+        archerVikingDeathValue = (int) (archerVikingDeathValue * halfMultiplier);
     }
 
     public void inflation() {
-        // Death values (-20%)
         vikingDeathValue = (int) (vikingDeathValue * 0.80);
         shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * 0.80);
         batteringRamDeathValue = (int) (batteringRamDeathValue * 0.80);
         archerVikingDeathValue = (int) (archerVikingDeathValue * 0.80);
         berserkerDeathValue = (int) (berserkerDeathValue * 0.80);
 
-        // Costs (+20%)
         archerCost.setValue((int) (archerCost.getValue() * 1.20));
         ballistaCost.setValue((int) (ballistaCost.getValue() * 1.20));
         barrackCost.setValue((int) (barrackCost.getValue() * 1.20));
@@ -395,14 +222,12 @@ public class Settings {
     }
 
     public void disinflation() {
-        // Death values (reverse -20%)
         vikingDeathValue = (int) (vikingDeathValue / 0.80);
         shieldwarriorDeathValue = (int) (shieldwarriorDeathValue / 0.80);
         batteringRamDeathValue = (int) (batteringRamDeathValue / 0.80);
         archerVikingDeathValue = (int) (archerVikingDeathValue / 0.80);
         berserkerDeathValue = (int) (berserkerDeathValue / 0.80);
 
-        // Costs (reverse +20%)
         archerCost.setValue((int) (archerCost.getValue() / 1.20));
         ballistaCost.setValue((int) (ballistaCost.getValue() / 1.20));
         barrackCost.setValue((int) (barrackCost.getValue() / 1.20));
@@ -411,12 +236,6 @@ public class Settings {
         sorcererTowerCost.setValue((int) (sorcererTowerCost.getValue() / 1.20));
     }
 
-    public double getUpgradeFactor() {
-        return upgradeFactor;
-    }
-
-    public double getUpgradeCostFactor() {
-        return upgradeCostFactor;
-    }
+    public double getUpgradeFactor() { return upgradeFactor; }
+    public double getUpgradeCostFactor() { return upgradeCostFactor; }
 }
-
