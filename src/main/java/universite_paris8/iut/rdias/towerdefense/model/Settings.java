@@ -309,8 +309,8 @@ public class Settings {
         berserkerDeathValue = (int) (berserkerDeathValue * halfFactor);
 
         // shieldWarrior
-        shieldwarriorHp = (int) (barrackHp * factor);
-        shieldwarriorDmg = (int) (barrackSpeedProduction * factor);
+        shieldwarriorHp = (int) (shieldwarriorHp * factor);
+        shieldwarriorDmg = (int) (shieldwarriorDmg * factor);
         shieldwarriorSpeed = (int) (shieldwarriorSpeed * halfFactor);
         shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * halfFactor);
 

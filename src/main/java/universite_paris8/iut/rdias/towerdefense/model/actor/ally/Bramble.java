@@ -51,11 +51,12 @@ public class Bramble extends Tower {
 
     @Override
     public boolean isLiving(){
-        return true;
+        return true;    // indestructible
     }
 
     @Override
     public void takeDamage(int amount) {
+        // Bramble ignore les dégâts
     }
 
     @Override
