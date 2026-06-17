@@ -1,13 +1,16 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 
 /* Viking Simple
  */
 
 public class Viking extends MeleeVikings {
     public Viking(Environnement env,int vId,double vX, double vY) {
-        super(env,
+        super(  env,
                 env.getSettings().getVikingHp(),
                 env.getSettings().getVikingDmg(),
                 vId,
@@ -15,6 +18,8 @@ public class Viking extends MeleeVikings {
                 vX,
                 vY,
                 env.getSettings().getVikingSpeed(),
-                env.getSettings().getVikingDeathValue());
+                env.getSettings().getVikingDeathValue(),
+                env.getSettings().getVikingSpeedAct()
+        );
     }
 }

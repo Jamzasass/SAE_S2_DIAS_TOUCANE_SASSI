@@ -12,7 +12,6 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
  */
 
 public class Palissade extends Tower {
-
     public Palissade(Environnement pEnv, int palissadeId, double palissadeX, double palissadeY) {
         super(pEnv,
                 pEnv.getSettings().getPalissadeHp(),
@@ -22,7 +21,8 @@ public class Palissade extends Tower {
                 palissadeX,
                 palissadeY,
                 1,
-                pEnv.getSettings().getPalissadeCost());
+                pEnv.getSettings().getPalissadeCost()
+        );
     }
 
     @Override
@@ -36,11 +36,20 @@ public class Palissade extends Tower {
         Ground ground = getEnvironnement().getGround();
 
         if (line >= 0 && line < ground.heigth() && col >= 0 && col < ground.width() && ground.isPath(line, col)) {
-            ground.setTile((int)this.getY(), (int)this.getX(), 4);
-            ground.refreshBFS();
             result = true;
         }
         return result;
+    }
+
+    public void place() {
+        getEnvironnement().getGround().setTile((int)this.getY(), (int)this.getX(), 4);
+        getEnvironnement().getGround().refreshBFS();
+    }
+
+    public void deleted() {
+        System.out.println("deleted");
+        getEnvironnement().getGround().setTile((int)this.getY(), (int)this.getX(), 1);
+        getEnvironnement().getGround().refreshBFS();
     }
 
     @Override

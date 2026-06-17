@@ -15,10 +15,10 @@ import universite_paris8.iut.rdias.towerdefense.model.Settings;
  */
 
 public class SorcererTower extends Tower {
-    private double radiusBlow = 8.0;
+    private double radiusBlow;
 
     public SorcererTower(Environnement sEnv, int sorcererId, double sorcererX, double sorcererY) {
-        super(sEnv,
+        super(  sEnv,
                 sEnv.getSettings().getSorcererTowerHp(),
                 sEnv.getSettings().getSorcererTowerDmg(),
                 sorcererId,
@@ -26,34 +26,22 @@ public class SorcererTower extends Tower {
                 sorcererX,
                 sorcererY,
                 sEnv.getSettings().getSorcererTowerSpeedAttack(),
-                sEnv.getSettings().getSorcererTowerCost());
+                sEnv.getSettings().getSorcererTowerCost()
+        );
+        radiusBlow = sEnv.getSettings().getSorcererRadiusBlow();
     }
 
     @Override
     public void act(){
         tick();
         if (canAct()){
-            Enemy target = searchTarget();
+            Enemy target = (Enemy) searchTarget();
             if (target != null){
                 ZoneSpell zp = new ZoneSpell(getEnvironnement(), getX(), getY(), getDmg(), target, radiusBlow);
                 getEnvironnement().addEffect(zp);
                 resetCooldown();
             }
         }
-    }
-
-    private Enemy searchTarget() {
-        Enemy closest = null;
-        double minDist = Double.MAX_VALUE;
-        for (Enemy e : getEnvironnement().getEnemies()) {
-            if (!e.isLiving()) continue;
-            double dist = Math.hypot(e.getX() - getX(), e.getY() - getY());
-            if (dist <= getRange() && dist < minDist) {
-                minDist = dist;
-                closest = e;
-            }
-        }
-        return closest;
     }
 
     @Override

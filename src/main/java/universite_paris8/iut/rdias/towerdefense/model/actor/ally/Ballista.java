@@ -15,11 +15,10 @@ import java.util.ArrayList;
  */
 
 public class Ballista extends Tower {
-
     private Enemy[] targets;
 
     public Ballista(Environnement bEnv, int ballistaId, double ballistaX, double ballistaY) {
-        super(bEnv,
+        super(  bEnv,
                 bEnv.getSettings().getBallistaHp(),
                 bEnv.getSettings().getBallistaDmg(),
                 ballistaId,
@@ -27,7 +26,8 @@ public class Ballista extends Tower {
                 ballistaX,
                 ballistaY,
                 bEnv.getSettings().getBallistaSpeedAttack(),
-                bEnv.getSettings().getBallistaCost());
+                bEnv.getSettings().getBallistaCost()
+        );
         targets = new Enemy[2];
     }
 
@@ -48,7 +48,7 @@ public class Ballista extends Tower {
         }
     }
 
-    private Enemy[] searchTargets() {
+    public Enemy[] searchTargets() {
         Enemy firstTarget = null;
         Enemy secondTarget = null;
         double firstDist = Double.MAX_VALUE;

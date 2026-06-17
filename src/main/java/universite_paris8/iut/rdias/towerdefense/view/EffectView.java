@@ -18,10 +18,10 @@ import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
  */
 
 public class EffectView {
-
-    private static Image spriteArrow = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_arrow.png"));
-    private static Image spriteFireBall = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_fireball.png"));
-    private static Image spriteFireBallBlowing = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/projectile/sprite_blow.png"));
+    private static String pathBegin = "/universite_paris8/iut/rdias/towerdefense/sprite/projectile";
+    private static Image spriteArrow = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_arrow.png"));
+    private static Image spriteFireBall = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_fireball.png"));
+    private static Image spriteFireBallBlowing = new Image(GroundView.class.getResourceAsStream(pathBegin + "/sprite_blow.png"));
     private ImageView image;
     private Pane paneViewContainer;
     private Effect effect;
@@ -52,14 +52,14 @@ public class EffectView {
         if (effect instanceof ZoneSpell) {
             this.image.setImage(spriteFireBallBlowing);
             this.image.toBack();
-            this.image.setFitHeight((((ZoneSpell)effect).getZoneRadius()*16));
-            this.image.setFitWidth(((ZoneSpell)effect).getZoneRadius()*16);
+            this.image.setFitHeight((((ZoneSpell)effect).getZoneRadius()*2*16));
+            this.image.setFitWidth(((ZoneSpell)effect).getZoneRadius()*2*16);
             double x = this.image.getLayoutX();
             double y = this.image.getLayoutY();
             this.image.layoutXProperty().unbind();
             this.image.layoutYProperty().unbind();
-            this.image.setLayoutX(x - ((((ZoneSpell)effect).getZoneRadius()*16)/2));
-            this.image.setLayoutY(y - ((((ZoneSpell)effect).getZoneRadius()*16)/2));
+            this.image.setLayoutX(x - ((((ZoneSpell)effect).getZoneRadius()*16*2)/2));
+            this.image.setLayoutY(y - ((((ZoneSpell)effect).getZoneRadius()*16*2)/2));
 
             FadeTransition fade = new FadeTransition(Duration.seconds(0.5), image);
             fade.setFromValue(1.0);

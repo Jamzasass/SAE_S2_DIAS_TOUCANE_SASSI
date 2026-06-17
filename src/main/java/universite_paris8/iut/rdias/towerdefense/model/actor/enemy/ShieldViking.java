@@ -9,7 +9,7 @@ import universite_paris8.iut.rdias.towerdefense.model.Environnement;
 public class ShieldViking extends MeleeVikings {
 
     public ShieldViking(Environnement sEnv, int eId, double eX, double eY) {
-        super(sEnv,
+        super(  sEnv,
                 sEnv.getSettings().getShieldwarriorHp(),
                 sEnv.getSettings().getShieldwarriorDmg(),
                 eId,
@@ -17,6 +17,8 @@ public class ShieldViking extends MeleeVikings {
                 eX,
                 eY,
                 sEnv.getSettings().getShieldwarriorSpeed(),
-                sEnv.getSettings().getShieldwarriorDeathValue());
+                sEnv.getSettings().getShieldwarriorDeathValue(),
+                sEnv.getSettings().getShieldwarriorSpeedAct()
+        );
     }
 }

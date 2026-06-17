@@ -15,10 +15,11 @@ import universite_paris8.iut.rdias.towerdefense.model.Castle;
 
 public class CastleView {
     private ImageView image;
-    private static Image castleSprite1 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle1.png"));
-    private static Image castleSprite2 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle2.png"));
-    private static Image castleSprite3 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle3.png"));
-    private static Image castleSprite4 = new Image(GroundView.class.getResourceAsStream("/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle/tile_castle4.png"));
+    private static String pathBegin = "/universite_paris8/iut/rdias/towerdefense/sprite/ground/tile_castle";
+    private static Image castleSprite1 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_castle1.png"));
+    private static Image castleSprite2 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_castle2.png"));
+    private static Image castleSprite3 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_castle3.png"));
+    private static Image castleSprite4 = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tile_castle4.png"));
 
     public CastleView(Castle c) {
         this.image = new ImageView(castleSprite1);

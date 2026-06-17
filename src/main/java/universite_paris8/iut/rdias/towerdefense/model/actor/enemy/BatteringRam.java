@@ -19,25 +19,26 @@ import java.util.ArrayList;
  */
 
 public class BatteringRam extends Enemy {
-
     private Tower target;
 
     public BatteringRam(Environnement rEnv, int eId, double eX, double eY) {
-        super(rEnv,
-                rEnv.getSettings().getRamwarriorHp(),
-                rEnv.getSettings().getRamwarriorDmg(),
+        super(  rEnv,
+                rEnv.getSettings().getBatteringRamHp(),
+                rEnv.getSettings().getBatteringRamDmg(),
                 eId,
                 0.5,
                 eX,
                 eY,
-                rEnv.getSettings().getRamwarriorSpeed(),
-                rEnv.getSettings().getRamwarriorDeathValue());
+                rEnv.getSettings().getBatteringRamSpeed(),
+                rEnv.getSettings().getBatteringRamDeathValue(),
+                rEnv.getSettings().getBatteringRamSpeedAct()
+        );
     }
 
     @Override
     public void act(){
         tick();
-        searchtarget();
+        this.target = (Tower) searchTarget();
         if (target != null) {
             if (target instanceof Palissade){
                 ArrayList<int[]> dist = getEnvironnement().getGround().getAllClosestPaths((int)target.getY(), (int)target.getX());
@@ -54,7 +55,6 @@ public class BatteringRam extends Enemy {
                 this.move();
                 if (distClosest < this.getRange() && canAct()) {
                     target.takeDamage(this.getDmg());
-                    System.out.println("a l'attaque" + distClosest);
                     resetCooldown();
                 }
             }
@@ -69,24 +69,18 @@ public class BatteringRam extends Enemy {
         }
     }
 
-    public void searchtarget() {
+    public Actor searchTarget() {
         Tower closeTarget = null;
         double minRange = Double.MAX_VALUE;
         for (Tower t : getEnvironnement().getTowers()) {
-            if (t.isLiving() && (t instanceof Palissade)) {
-                double range = calculDistanceFromEnemyByPyth(t); // calcul distance via pythagore
+            if ((t instanceof Palissade) && t.isLiving()) {
+                double range = calcDistanceFromTargerUsingPyth(t); // calcul distance via pythagore
                 if (range <= minRange) { //(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = t;
                 }
             }
         }
-        this.target = closeTarget;
-    }
-
-    public double calculDistanceFromEnemyByPyth(Actor a) {
-        double dx = getX() - a.getX();
-        double dy = getY() - a.getY();
-        return dx * dx + dy * dy;
+        return closeTarget;
     }
 }

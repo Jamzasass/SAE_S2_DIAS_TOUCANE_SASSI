@@ -53,6 +53,9 @@ public class Controller {
     @FXML private Label hpPlayer;
     @FXML private Label waveLabel;
     @FXML private Pane actorsArea;
+    private Timeline gameLoop;
+    public static int temps;
+
     @FXML private HBox towerActionMenu;
     @FXML private Button btnSell;
     @FXML private Button btnUpgrade;
@@ -75,51 +78,28 @@ public class Controller {
     private ObsKnight obsKnight;
     private ObsTower obsTower;
     private ObsEffect obsEffect;
-
-    private Timeline gameLoop;
-    public static int temps;
-
-    // Tower sprites
-    private Image spriteArcher;
-    private Image spriteBarrack;
-    private Image spriteBallista;
-    private Image spriteBramble;
-    private Image spritePalissade;
-    private Image spriteSorcerer;
-
-    // Drag and drop state
+    private ObsAnimation obsAnimation;
     private ImageView ghostImage;
     private Circle rangeCircle;
     private int towerSelected = 0;
 
+    //Tower sprites
+    private static String pathBegin = "/universite_paris8/iut/rdias/towerdefense/sprite/tower";
+    private static Image spriteArcher = new Image(GroundView.class.getResourceAsStream(pathBegin + "/archer_tower/sprite_ArcherTowerNiv1_1.png"));
+    private static Image spriteBarrack = new Image(GroundView.class.getResourceAsStream(pathBegin + "/barrack_tower/sprite_BarrackTower1.png"));
+    private static Image spriteBallista = new Image(GroundView.class.getResourceAsStream(pathBegin + "/tower_ballista/sprite_BallistaTower1.png"));
+    private static Image spriteBramble = new Image(GroundView.class.getResourceAsStream(pathBegin + "/bramble_tower/sprite_BrambleTower4.png"));
+    private static Image spritePalissade = new Image(GroundView.class.getResourceAsStream(pathBegin + "/palissade_tower/sprite_PalissadeTower1.png"));
+    private static Image spriteSorcerer = new Image(GroundView.class.getResourceAsStream(pathBegin + "/wizard_tower/sprite_SorcererTower1.png"));
+
+
     public void initialize() {
-        loadTowerSprites();
-        setupModel();
-        setupView();
-        bindProperties();
-        setupEventHandlers();
-        startGameLoop();
-    }
-
-    // Visual Placement Range
-    private void loadTowerSprites() {
-        spriteArcher = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/archer_tower/sprite_ArcherTowerNiv1_1.png"));
-        spriteBarrack = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/barrack_tower/sprite_BarrackTower1.png"));
-        spriteBallista = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/tower_ballista/sprite_BallistaTower1.png"));
-        spriteBramble = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/bramble_tower/sprite_BrambleTower4.png"));
-        spritePalissade = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/palissade_tower/sprite_PalissadeTower1.png"));
-        spriteSorcerer = new Image(GroundView.class.getResourceAsStream(
-                "/universite_paris8/iut/rdias/towerdefense/sprite/tower/wizard_tower/sprite_SorcererTower1.png"));
-    }
-
-    private void setupModel() {
         ground = new Ground();
         env = new Environnement(ground);
+        setupView();
+        setupGameOver();
+        setupEventHandlers();
+        startGameLoop();
     }
 
     private void setupView() {
@@ -140,7 +120,17 @@ public class Controller {
         env.getTowers().addListener(obsTower);
         obsEffect = new ObsEffect(actorsArea);
         env.getEffects().addListener(obsEffect);
+        obsAnimation = new ObsAnimation(actorsArea);
+        env.getAnimations().addListener(obsAnimation);
         groundView.drawMap();
+
+        balanceLabel.textProperty().bind(env.getBalanceProperty().asString());
+        hpPlayer.textProperty().bind(env.getCastle().getHpPlayerProperty().asString());
+        hpBar.progressProperty().bind(
+                env.getCastle().getHpPlayerProperty().divide((double) env.getCastle().getMaxHp())
+        );
+
+        waveLabel.textProperty().bind(env.getWaveIndexProperty().asString());
 
         castleView = new CastleView(env.getCastle());
         ImageView c = new ImageView();
@@ -173,6 +163,7 @@ public class Controller {
     }
 
     private void setupTowerButtons() {
+        //loadTowerSprites();
         archerTower.setOnAction(e -> startDrag(spriteArcher, TOWER_ARCHER));
         barrackTower.setOnAction(e -> startDrag(spriteBarrack, TOWER_BARRACK));
         brambleTower.setOnAction(e -> startDrag(spriteBramble, TOWER_BRAMBLE));
@@ -204,6 +195,9 @@ public class Controller {
                 showGameOver();
             }
         });
+
+
+
     }
 
     // Game Loop
@@ -213,7 +207,10 @@ public class Controller {
         temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
         KeyFrame kf = new KeyFrame(
+                // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.017),
+                // on définit ce qui se passe à chaque frame
+                // c'est un eventHandler d'ou le lambda
                 (ev -> {
                     env.loop();
                     if (temps % 10 == 0) {
@@ -349,43 +346,26 @@ public class Controller {
     }
 
     private double getTowerRange(int towerType) {
-        if (towerType == TOWER_ARCHER) {
-            return env.getSettings().getArcherRange() * TILE_SIZE;
-        }
-        else if (towerType == TOWER_SORCERER) {
-            return env.getSettings().getSorcererRange() * TILE_SIZE;
-        }
-        else if (towerType == TOWER_BALLISTA) {
-            return env.getSettings().getBallistaRange() * TILE_SIZE;
+        switch (towerType) {
+            case TOWER_ARCHER -> {
+                return env.getSettings().getArcherRange() * TILE_SIZE;
+            }
+            case TOWER_SORCERER -> {
+                return env.getSettings().getSorcererRange() * TILE_SIZE;
+            }
+            case TOWER_BALLISTA -> {
+                return env.getSettings().getBallistaRange() * TILE_SIZE;
+            }
         }
         return 0;
     }
 
     // Tower Placement
-
     private void addTower(int towerType, int col, int line) {
-        if (towerType == TOWER_ARCHER) {
-            env.addArcher(col, line);
-        }
-        else if (towerType == TOWER_BARRACK) {
-            env.addBarrack(col, line);
-        }
-        else if (towerType == TOWER_BRAMBLE) {
-            env.addBramble(col, line);
-        }
-        else if (towerType == TOWER_PALISSADE) {
-            env.addPalissade(col, line);
-        }
-        else if (towerType == TOWER_SORCERER) {
-            env.addSorcerer(col, line);
-        }
-        else if (towerType == TOWER_BALLISTA) {
-            env.addBallista(col, line);
-        }
+        env.createTower(towerType, col, line);
     }
 
     // Game Over
-
     private void showGameOver() {
         int wave = env.getWaveIndexProperty().get();
         String message = getGameOverMessage(wave);

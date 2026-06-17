@@ -14,8 +14,8 @@ public abstract class MeleeVikings extends Enemy {
     private Knight target;
 
     public MeleeVikings(Environnement env, int hp, int dmg, int id, double range,
-                        double x, double y, double speed, int deathValue) {
-        super(env, hp, dmg, id, range, x, y, speed, deathValue);
+                        double x, double y, double speed, int deathValue, int speedAct) {
+        super(env, hp, dmg, id, range, x, y, speed, deathValue, speedAct);
         this.target = null;
     }
 

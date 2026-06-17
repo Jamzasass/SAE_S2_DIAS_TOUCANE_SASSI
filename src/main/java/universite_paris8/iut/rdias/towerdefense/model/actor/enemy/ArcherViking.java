@@ -23,7 +23,7 @@ public class ArcherViking extends Enemy {
     private Actor target;
 
     public ArcherViking(Environnement aEnv, int eId, double eX, double eY) {
-        super(aEnv,
+        super(  aEnv,
                 aEnv.getSettings().getArcherVikingHp(),
                 aEnv.getSettings().getArcherVikingDmg(),
                 eId,
@@ -31,21 +31,22 @@ public class ArcherViking extends Enemy {
                 eX,
                 eY,
                 aEnv.getSettings().getArcherVikingSpeed(),
-                aEnv.getSettings().getArcherVikingDeathValue());
+                aEnv.getSettings().getArcherVikingDeathValue(),
+                aEnv.getSettings().getArcherSpeedAct()
+        );
         target = null;
     }
     @Override
     public void act(){
-        searchtarget();
         tick();
+        this.target = searchTarget();
         if (target != null) {
             if (target instanceof Knight) {
-                int dist = calculDistanceFromEnemyByBFS(target);
+                int dist = calcDistanceFromTargerUsingBFS(target);
                 setxCible((int) target.getX());
                 setyCible((int) target.getY());
                 this.move();
                 if (dist < this.getRange() && canAct()){
-                    System.out.println("d " + dist + " - " + this.getRange());
                     Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
                     getEnvironnement().addEffect(p);
                     resetCooldown();
@@ -53,18 +54,16 @@ public class ArcherViking extends Enemy {
             }
             else if (target instanceof Tower){
                 int[] dest = getEnvironnement().getGround().getClosestPath((int)target.getY(), (int)target.getX());
-                double dist = calculDistanceFromEnemyByPyth(target);
+                double dist = calcDistanceFromTargerUsingPyth(target);
                 setxCible(dest[1]);
                 setyCible(dest[0]);
+                this.move();
                 if (dist < Math.pow((this.getRange()), 2)){
                     if (canAct()) {
                         Projectile p = new Projectile(getEnvironnement(), getX(), getY(), this.getDmg(), target);
                         getEnvironnement().addEffect(p);
                         resetCooldown();
                     }
-                }
-                else {
-                    this.move();
                 }
             }
         } else {
@@ -78,12 +77,12 @@ public class ArcherViking extends Enemy {
         }
     }
 
-    public void searchtarget() {
+    public Actor searchTarget() {
         Actor closeTarget = null;
         double minRange = Double.MAX_VALUE;
         for (Tower t : getEnvironnement().getTowers()) {
             if (!(t instanceof Bramble) && !(t instanceof Palissade) && t.isLiving()) {
-                double range = calculDistanceFromEnemyByPyth(t); // calcul distance via pythagore
+                double range = calcDistanceFromTargerUsingPyth(t); // calcul distance via pythagore
                 if (range <= minRange) {//(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = t;
@@ -92,22 +91,13 @@ public class ArcherViking extends Enemy {
         }
         for (Knight k : getEnvironnement().getKnights()) {
             if (k.isLiving()) {
-                int range = calculDistanceFromEnemyByBFS(k); // calcul distance via pythagore
+                int range = calcDistanceFromTargerUsingBFS(k); // calcul distance via pythagore
                 if (range<= minRange) {//(range <= getRange() && range < minRange) {
                     minRange = range;
                     closeTarget = k;
                 }
             }
         }
-        this.target = closeTarget;
-    }
-
-    public double calculDistanceFromEnemyByPyth(Actor a) {
-        double dx = getX() - a.getX();
-        double dy = getY() - a.getY();
-        return dx * dx + dy * dy;
-    }
-    public int calculDistanceFromEnemyByBFS(Actor a) {
-        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)getY()][(int)getX()][(int)a.getY()][(int)a.getX()];
+        return closeTarget;
     }
 }

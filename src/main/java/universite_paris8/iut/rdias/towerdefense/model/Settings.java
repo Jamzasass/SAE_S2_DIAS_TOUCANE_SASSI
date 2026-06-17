@@ -32,6 +32,7 @@ public class Settings {
     public static int barrackSpeedProduction = 8;
     public static int barrackSpeed = 0;
     public static int barrackCost = 200;
+    public static int barrackNbKnightMax = 3;
 
     // bramble
     public static double brambleSlowFactor = 0.5;
@@ -45,7 +46,7 @@ public class Settings {
     // sorcererTower
     public static int sorcererTowerHp = 300;
     public static int sorcererTowerDmg = 50;
-    public static int sorcererTowerZoneDuration = 3;
+    public static double sorcererRadiusBlow = 5;
     public static int sorcererTowerSpeedAttack = 4;
     public static int sorcererTowerCost = 500;
     public static int sorcererTowerRange = 8;
@@ -56,6 +57,7 @@ public class Settings {
     public static int knightDmg = 25;
     public static double knightSpeed = 0.08;
     public static int knightCost = 0;
+    public static int knightSpeedAct = 2;
 
     // soliders Enemy (enemy -> deathValue)
     // viking
@@ -63,12 +65,14 @@ public class Settings {
     public static int vikingDmg = 20;
     public static double vikingSpeed = 0.05;
     public static int vikingDeathValue = 15;
+    public static int vikingSpeedAct = 2;
 
     // berserker
     public static int berserkerHp = 125;
     public static int berserkerDmg = 20;
     public static double berserkerSpeed = 0.07;
     public static int berserkerDeathValue = 45;
+    public static int berserkerSpeedAct = 2;
 
     // archerViking
     public static int archerVikingHp = 50;
@@ -76,18 +80,21 @@ public class Settings {
     public static double archerVikingSpeed = 0.06;
     public static int archerVikingDeathValue = 25;
     public static int archerVikingRange = 4;
+    public static int archerSpeedAct = 2;
 
-    // ramwarrior
-    public static int ramwarriorHp = 250;
-    public static int ramwarriorDmg = 100;
-    public static double ramwarriorSpeed = 0.04;
-    public static int ramwarriorDeathValue = 80;
+    // batteringRam
+    public static int batteringRamHp = 250;
+    public static int batteringRamDmg = 100;
+    public static double batteringRamSpeed = 0.04;
+    public static int batteringRamDeathValue = 80;
+    public static int batteringRamSpeedAct = 2;
 
     // shieldwarrior
     public static int shieldwarriorHp = 250;
     public static int shieldwarriorDmg = 20;
     public static double shieldwarriorSpeed = 0.04;
     public static int shieldwarriorDeathValue = 70;
+    public static int shieldwarriorSpeedAct = 2;
 
     public int getArcherDmg() {
         return archerDmg;
@@ -145,6 +152,10 @@ public class Settings {
         return barrackCost;
     }
 
+    public int getBarrackNbKnightMax(){
+        return barrackNbKnightMax;
+    }
+
     public double getBrambleSlowFactor() {
         return brambleSlowFactor;
     }
@@ -173,8 +184,8 @@ public class Settings {
         return sorcererTowerDmg;
     }
 
-    public int getSorcererTowerZoneDuration() {
-        return sorcererTowerZoneDuration;
+    public double getSorcererRadiusBlow() {
+        return sorcererRadiusBlow;
     }
 
     public int getSorcererTowerSpeedAttack() {
@@ -202,6 +213,9 @@ public class Settings {
     public int getKnightCost() {
         return knightCost;
     }
+    public int getKnightSpeedAct() {
+        return knightSpeedAct;
+    }
 
     public int getVikingHp() {
         return vikingHp;
@@ -219,6 +233,10 @@ public class Settings {
         return vikingDeathValue;
     }
 
+    public int getVikingSpeedAct() {
+        return vikingSpeedAct;
+    }
+
     public int getBerserkerHp() {
         return berserkerHp;
     }
@@ -233,6 +251,10 @@ public class Settings {
 
     public int getBerserkerDeathValue() {
         return berserkerDeathValue;
+    }
+
+    public int getBerserkerSpeedAct() {
+        return berserkerSpeedAct;
     }
 
     public int getArcherVikingHp() {
@@ -255,18 +277,26 @@ public class Settings {
         return archerVikingRange;
     }
 
-    public int getRamwarriorHp() {
-        return ramwarriorHp;
+    public int getArcherSpeedAct() {
+        return archerSpeedAct;
     }
 
-    public int getRamwarriorDmg() {return ramwarriorDmg;}
-
-    public double getRamwarriorSpeed() {
-        return ramwarriorSpeed;
+    public int getBatteringRamHp() {
+        return batteringRamHp;
     }
 
-    public int getRamwarriorDeathValue() {
-        return ramwarriorDeathValue;
+    public int getBatteringRamDmg() {return batteringRamDmg;}
+
+    public double getBatteringRamSpeed() {
+        return batteringRamSpeed;
+    }
+
+    public int getBatteringRamDeathValue() {
+        return batteringRamDeathValue;
+    }
+
+    public int getBatteringRamSpeedAct() {
+        return batteringRamSpeedAct;
     }
 
     public int getShieldwarriorHp() {
@@ -283,6 +313,10 @@ public class Settings {
 
     public int getShieldwarriorDeathValue() {
         return shieldwarriorDeathValue;
+    }
+
+    public int getShieldwarriorSpeedAct() {
+        return shieldwarriorSpeedAct;
     }
 
     public static void multiplierStatsEnemy(double factor) {
@@ -309,16 +343,44 @@ public class Settings {
         shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * halfFactor);
 
         // ramWarrior
-        ramwarriorHp = (int) (ramwarriorHp * factor);
-        ramwarriorDmg = (int) (ramwarriorDmg * factor);
-        ramwarriorSpeed = (int) (ramwarriorSpeed * halfFactor);
-        ramwarriorDeathValue = (int) (ramwarriorDeathValue * halfFactor);
+        batteringRamHp = (int) (batteringRamHp * factor);
+        batteringRamDmg = (int) (batteringRamDmg * factor);
+        batteringRamSpeed = (int) (batteringRamSpeed * halfFactor);
+        batteringRamDeathValue = (int) (batteringRamDeathValue * halfFactor);
 
         // viking
         vikingHp = (int) (vikingHp * factor);
         vikingDmg = (int) (vikingDmg * factor);
         vikingSpeed = (int) (vikingSpeed * halfFactor);
         vikingDeathValue = (int) (vikingDeathValue * halfFactor);
+    }
+
+    public void inflation() {
+        vikingDeathValue = (int) (vikingDeathValue * 0.80);
+        shieldwarriorDeathValue = (int) (shieldwarriorDeathValue * 0.80);
+        batteringRamDeathValue = (int) (batteringRamDeathValue * 0.80);
+        archerVikingDeathValue = (int) (archerVikingDeathValue * 0.80);
+
+        archerCost = (int) (archerCost * 1.20);
+        ballistaCost = (int) (ballistaCost * 1.20);
+        barrackCost = (int) (barrackCost * 1.20);
+        brambleCost = (int) (brambleCost * 1.20);
+        palissadeCost = (int) (palissadeCost * 1.20);
+        sorcererTowerCost = (int) (sorcererTowerCost * 1.20);
+    }
+
+    public void disinflation() {
+        vikingDeathValue = (int) (vikingDeathValue / 0.80);
+        shieldwarriorDeathValue = (int) (shieldwarriorDeathValue / 0.80);
+        batteringRamDeathValue = (int) (batteringRamDeathValue / 0.80);
+        archerVikingDeathValue = (int) (archerVikingDeathValue / 0.80);
+
+        archerCost = (int) (archerCost / 1.20);
+        ballistaCost = (int) (ballistaCost / 1.20);
+        barrackCost = (int) (barrackCost / 1.20);
+        brambleCost = (int) (brambleCost / 1.20);
+        palissadeCost = (int) (palissadeCost / 1.20);
+        sorcererTowerCost = (int) (sorcererTowerCost / 1.20);
     }
 
     public double getUpgradeFactor() {

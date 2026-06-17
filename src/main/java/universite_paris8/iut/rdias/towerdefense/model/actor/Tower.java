@@ -3,6 +3,7 @@ package universite_paris8.iut.rdias.towerdefense.model.actor;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 /*La sous-classe Tower qui hérite de Actor.
 * Une tower a comme attribut spécifique:
@@ -26,6 +27,20 @@ public abstract class Tower extends Actor{
         this.speedAct = speedAct;
         this.cooldown = speedAct*30;
         this.level = new SimpleIntegerProperty(1);
+    }
+
+    public Actor searchTarget() {
+        Enemy closest = null;
+        double minDist = Math.pow(getRange(), 2);
+        for (Enemy e : getEnvironnement().getEnemies()) {
+            if (!e.isLiving()) continue;
+            double dist = calcDistanceFromTargerUsingPyth(e);
+            if (dist < minDist) {
+                minDist = dist;
+                closest = e;
+            }
+        }
+        return closest;
     }
 
     //Getter
@@ -79,6 +94,9 @@ public abstract class Tower extends Actor{
 
     public void sell(){
         int refund = this.cost / 2;
+        if (this instanceof Palissade) {
+            ((Palissade) this).deleted();
+        }
         getEnvironnement().earn(refund);
         getEnvironnement().delTower(this);
     }

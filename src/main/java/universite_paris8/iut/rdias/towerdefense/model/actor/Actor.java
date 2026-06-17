@@ -6,6 +6,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 /*La super classe abstraite Actor définit le comportement commun
  * à toutes les entités du jeu (ennemis, tours, etc.).
@@ -42,7 +44,15 @@ public abstract class Actor {
     }
 
     public abstract void act();
-
+    public abstract Actor searchTarget();
+    public int calcDistanceFromTargerUsingBFS(Actor a) {
+        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][(int)a.getY()][(int)a.getX()];
+    }
+    public double calcDistanceFromTargerUsingPyth(Actor a) {
+        double dx = getX() - a.getX();
+        double dy = getY() - a.getY();
+        return dx * dx + dy * dy;
+    }
     //Getters
     public int getHp() {
         return hp.getValue();
@@ -59,6 +69,15 @@ public abstract class Actor {
     public double getRange() {
         return range;
     }
+
+    public void setX(double valeur) {
+        this.x.set(valeur);
+    }
+
+    public void setY(double valeur) {
+        this.y.set(valeur);
+    }
+
     public double getX() {
         return x.doubleValue();
     }
@@ -74,23 +93,6 @@ public abstract class Actor {
         return maxHp;
     }
 
-    //Setter
-    public void setX(double valeur) {
-        this.x.set(valeur);
-    }
-    public void setY(double valeur) {
-        this.y.set(valeur);
-    }
-    public void setHp(int hp){
-        this.hp.setValue(hp);
-    }
-    public void setDmg(int dmg){
-        this.dmg = dmg;
-    }
-    public void setMaxHp(int maxHp){
-        this.maxHp = maxHp;
-    }
-
     public boolean isLiving(){return this.hp.getValue() > 0;}
 
     public void die(){
@@ -98,6 +100,12 @@ public abstract class Actor {
         try {
             if (this instanceof Enemy) {
                 env.earn(((Enemy) this).getDeathValue());
+            }
+            else if (this instanceof Knight) {
+                ((Knight) this).getBase().decrementNbKnight();
+            }
+            else if (this instanceof Palissade) {
+                ((Palissade) this).deleted();
             }
             this.env.addDyingActor(this);
         } catch (Exception ex) {
@@ -112,4 +120,20 @@ public abstract class Actor {
             this.die();
         }
     }
+
+
+
+    public void setHp(int hp){
+        this.hp.setValue(hp);
+    }
+
+    public void setDmg(int dmg){
+        this.dmg = dmg;
+    }
+
+    public void setMaxHp(int maxHp){
+        this.maxHp = maxHp;
+    }
+
+
 }

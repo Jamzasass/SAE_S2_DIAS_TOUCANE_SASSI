@@ -1,6 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor;
 
 import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 
 /*La sous-classe Soldier qui extend Actor.
  * Un soldier a comme attribut spécifique:
@@ -28,7 +29,7 @@ public abstract class Soldier extends Actor{
     private int cooldown;
     private int speedAct;
 
-    public Soldier (Environnement env, int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed, int xCible, int yCible) {
+    public Soldier (Environnement env, int sHp, int sDmg, int sId, double sRange, double sX, double sY, double sSpeed, int xCible, int yCible, int sSpeedAct) {
         super(env, sHp, sDmg, sId, sRange, sX, sY);
         this.speed = sSpeed;
         this.directionX = 0;
@@ -40,7 +41,7 @@ public abstract class Soldier extends Actor{
         majDirection();
         this.slowFactor = 1.0;
         this.slowDuration = 0;
-        this.speedAct = 2; //temp
+        this.speedAct = sSpeedAct; //temp
         this.cooldown = speedAct*30;
     }
     public void setChemin() {
@@ -94,7 +95,6 @@ public abstract class Soldier extends Actor{
     }
 
     public void wayChangement() {
-        int nbE = 0;
         int[][][][] mapBfs = getEnvironnement().getGround().getMapBFS().getDistancesMap();
         int[][] dirs = {{-1,0},{0,1},{1,0},{0,-1}};
         int shortestDist = -1;
@@ -112,7 +112,6 @@ public abstract class Soldier extends Actor{
             int dCible = mapBfs[yCible][xCible][nL][nC];
             if (shortestDist == -1 || (dCible >= 0 && dCible <= shortestDist)) {
                 if (dCible == shortestDist) {
-                    nbE++;
                     int r = (int) (Math.random()*2);
                     if (r == 0) {
                         shortestDist = dCible;
@@ -133,7 +132,22 @@ public abstract class Soldier extends Actor{
         majDirection();
     }
 
-    public double getSpeed(){
+    public Actor searchTarget() {
+        Enemy closeTarget = null;
+        double minRange = Double.MAX_VALUE;
+        for (Enemy e : getEnvironnement().getEnemies()) {
+            if (e.isLiving()) {
+                int range = calcDistanceFromTargerUsingBFS(e);
+                if (range<= minRange) {
+                    minRange = range;
+                    closeTarget = e;
+                }
+            }
+        }
+        return closeTarget;
+    }
+
+    public double getSpeed() {
         return speed;
     }
     public int getxCible() {

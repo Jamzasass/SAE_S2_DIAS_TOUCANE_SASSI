@@ -14,9 +14,10 @@ import universite_paris8.iut.rdias.towerdefense.model.actor.Soldier;
 
 public class Knight extends Soldier {
     private Enemy target;
+    private Barrack base;
 
-    public Knight(Environnement kEnv, int kId, double kX, double kY) {
-        super(kEnv,
+    public Knight(Environnement kEnv, int kId, double kX, double kY, Barrack kBase) {
+        super(  kEnv,
                 kEnv.getSettings().getKnightHp(),
                 kEnv.getSettings().getKnightDmg(),
                 kId,
@@ -24,40 +25,33 @@ public class Knight extends Soldier {
                 kX,
                 kY,
                 kEnv.getSettings().getKnightSpeed(),
-                42,
-                40);
+                kBase.getCoordClosePath()[1],
+                kBase.getCoordClosePath()[0],
+                kEnv.getSettings().getKnightSpeedAct()
+        );
+        this.base = kBase;
         target = null;
     }
+
     public void act() {
         tick();
-        searchtarget();
+        this.target = (Enemy) searchTarget();
         if (target != null && target.isLiving()) {
             setxCible((int) target.getX());
             setyCible((int) target.getY());
         }
         this.move();
-        if (target != null && calculDistanceFromEnemy(target) < this.getRange() && canAct()) {
+        if (target != null && calcDistanceFromTargerUsingBFS(target) < this.getRange() && canAct()) {
             target.takeDamage(this.getDmg());
             resetCooldown();
         }
-    }
-
-    public void searchtarget() {
-        Enemy closeTarget = null;
-        double minRange = Double.MAX_VALUE;
-        for (Enemy e : getEnvironnement().getEnemies()) {
-            if (e.isLiving()) {
-                int range = calculDistanceFromEnemy(e); // calcul distance via pythagore
-                if (range<= minRange) {//(range <= getRange() && range < minRange) {
-                    minRange = range;
-                    closeTarget = e;
-                }
-            }
+        else if (target == null) {
+            setxCible(base.getCoordClosePath()[1]);
+            setyCible(base.getCoordClosePath()[0]);
         }
-        this.target = closeTarget;
     }
 
-    public int calculDistanceFromEnemy(Enemy e) {
-        return getEnvironnement().getGround().getMapBFS().getDistancesMap()[(int)this.getY()][(int)this.getX()][(int)e.getY()][(int)e.getX()];
+    public Barrack getBase() {
+        return base;
     }
 }
