@@ -248,5 +248,25 @@
     -fx-text-fill: white;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.9), 2, 0, 1, 1);
 }
+
+
+/*affichage fin de jeu*/
+.gameOver{
+    -fx-font-size: 40px;
+    -fx-text-fill: red;
+    -fx-font-family: 'Black Clover Font';
+}
+
+.gameOverWave{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-family: 'Black Clover Font';
+}
+
+.gameOverMessage{
+    -fx-font-size: 25px;
+    -fx-text-fill: #f0c040;
+    -fx-font-family: 'Black Clover Font';
+}
 /*
  */

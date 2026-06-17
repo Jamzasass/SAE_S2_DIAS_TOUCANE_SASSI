@@ -380,13 +380,13 @@ public class Controller {
         gameOverPane.prefHeightProperty().bind(actorsArea.heightProperty());
 
         Label gameOverLabel = new Label("GAME OVER");
-        gameOverLabel.setStyle("-fx-font-size: 40px; -fx-text-fill: red; -fx-font-family: 'Black Clover Font';");
+        gameOverLabel.getStyleClass().add("gameOver");
 
         Label waveReached = new Label("Vague atteinte : " + wave);
-        waveReached.setStyle("-fx-font-size: 20px; -fx-text-fill: white; -fx-font-family: 'Black Clover Font';");
+        waveReached.getStyleClass().add("gameOverWave");
 
         Label messageLabel = new Label(message);
-        messageLabel.setStyle("-fx-font-size: 25px; -fx-text-fill: #f0c040; -fx-font-family: 'Black Clover Font';");
+        messageLabel.getStyleClass().add("gameOverMessage");
 
         gameOverPane.getChildren().addAll(gameOverLabel, waveReached, messageLabel);
         actorsArea.getChildren().add(gameOverPane);
