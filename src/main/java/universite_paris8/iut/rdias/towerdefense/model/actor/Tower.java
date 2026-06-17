@@ -2,7 +2,7 @@ package universite_paris8.iut.rdias.towerdefense.model.actor;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Palissade;
 
 /*La sous-classe Tower qui hérite de Actor.

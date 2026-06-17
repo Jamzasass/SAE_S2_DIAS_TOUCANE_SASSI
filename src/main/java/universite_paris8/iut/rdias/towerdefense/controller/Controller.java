@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.rdias.towerdefense.model.*;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
 import universite_paris8.iut.rdias.towerdefense.model.algorithm.BFS;
 import universite_paris8.iut.rdias.towerdefense.view.*;

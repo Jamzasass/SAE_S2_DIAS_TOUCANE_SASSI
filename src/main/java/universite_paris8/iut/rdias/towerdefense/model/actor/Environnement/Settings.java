@@ -1,4 +1,4 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.actor.Environnement;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

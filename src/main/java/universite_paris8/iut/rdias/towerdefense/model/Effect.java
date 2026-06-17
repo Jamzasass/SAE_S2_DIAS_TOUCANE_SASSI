@@ -3,6 +3,7 @@ package universite_paris8.iut.rdias.towerdefense.model;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 
 /*La classe abstraite Effect représente tous les effets
  * visuels et projectiles dans le jeu (flèches, boules de feu, etc.).

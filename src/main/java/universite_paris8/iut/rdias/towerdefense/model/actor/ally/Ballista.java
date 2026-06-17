@@ -1,11 +1,9 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 
-import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-
-import java.util.ArrayList;
 
 /*La sous-classe Ballista qui hérite de Tower.
  * Cette tour peut attaquer jusqu'à deux ennemis

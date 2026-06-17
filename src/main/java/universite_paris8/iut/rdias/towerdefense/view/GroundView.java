@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.rdias.towerdefense.model.*;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 
 /*
  * Gère l'affichage et le rendu de la carte du terrain.

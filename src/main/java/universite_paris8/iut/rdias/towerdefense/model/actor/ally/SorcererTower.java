@@ -1,10 +1,9 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.ally;
 
-import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.ZoneSpell;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Tower;
-import universite_paris8.iut.rdias.towerdefense.model.Settings;
 
 /*La sous-classe SorcererTower qui hérite de Tower.
  * Cette tour attaque à distance avec des boules de feu

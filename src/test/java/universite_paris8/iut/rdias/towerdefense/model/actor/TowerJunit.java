@@ -1,7 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor;
 
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.Ground;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Archer;
 import static org.junit.jupiter.api.Assertions.*;

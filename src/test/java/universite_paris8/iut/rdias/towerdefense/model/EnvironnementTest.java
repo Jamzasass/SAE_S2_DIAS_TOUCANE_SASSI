@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Barrack;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;

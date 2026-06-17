@@ -1,6 +1,6 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 
-import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 import universite_paris8.iut.rdias.towerdefense.model.Projectile;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;

@@ -1,8 +1,7 @@
 package universite_paris8.iut.rdias.towerdefense.model;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import universite_paris8.iut.rdias.towerdefense.model.actor.*;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 
 /*La sous-classe Projectile qui hérite de Effect.
  * Le projectile se déplace en ligne droite vers sa cible

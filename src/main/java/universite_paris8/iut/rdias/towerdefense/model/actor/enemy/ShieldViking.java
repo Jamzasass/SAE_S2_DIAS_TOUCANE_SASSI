@@ -1,6 +1,6 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor.enemy;
 
-import universite_paris8.iut.rdias.towerdefense.model.Environnement;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 
 /* Viking au bouclier
  * Viking avec beaucoup plus de points de vie mais très lent

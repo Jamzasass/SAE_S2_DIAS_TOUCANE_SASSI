@@ -1,7 +1,6 @@
 package universite_paris8.iut.rdias.towerdefense.model.actor;
 
-import universite_paris8.iut.rdias.towerdefense.model.Environnement;
-import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 
 /*La sous-classe Soldier qui extend Actor.
  * Un soldier a comme attribut spécifique:

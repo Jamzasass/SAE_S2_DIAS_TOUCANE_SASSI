@@ -2,6 +2,7 @@ package universite_paris8.iut.rdias.towerdefense.model;
 
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.Environnement.Environnement;
 
 /*La sous-classe ZoneSpell qui hérite de Effect.
  * Le sort se déplace vers sa cible et, à l'impact,

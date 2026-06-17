@@ -1,4 +1,4 @@
-package universite_paris8.iut.rdias.towerdefense.model;
+package universite_paris8.iut.rdias.towerdefense.model.actor.Environnement;
 
 
 import javafx.beans.property.IntegerProperty;
@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import universite_paris8.iut.rdias.towerdefense.model.*;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.*;
