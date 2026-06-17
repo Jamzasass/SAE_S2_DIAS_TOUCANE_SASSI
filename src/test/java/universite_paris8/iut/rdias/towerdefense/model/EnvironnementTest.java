@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Actor;
 import universite_paris8.iut.rdias.towerdefense.model.actor.Enemy;
+import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Barrack;
 import universite_paris8.iut.rdias.towerdefense.model.actor.ally.Knight;
 import universite_paris8.iut.rdias.towerdefense.model.actor.enemy.Viking;
 
@@ -42,7 +43,8 @@ class EnvironnementTest {
     // Tests d'ajout et de suppression de chevaliers
     @Test
     void testAddAndRemoveKnight() {
-        Knight knight = new Knight(env, 1, 5.0, 5.0);
+        Barrack barrack = new Barrack(env, 2, 1,1);
+        Knight knight = new Knight(env, 1, 5.0, 5.0, barrack);
         env.addKnight(knight);
         ObservableList<Knight> knights = env.getKnights();
         assertEquals(1, knights.size());
@@ -109,7 +111,8 @@ class EnvironnementTest {
     @Test
     void testNextWave() {
         env.addEnemy(new Viking(env, 1, 0, 0));
-        env.addKnight(new Knight(env, 2, 0, 0));
+        Barrack barrack = new Barrack(env, 2, 1,1);
+        env.addKnight(new Knight(env, 2, 0, 0, barrack));
 
         int waveIndexInitial = env.getWaveIndexProperty().get();
         env.nextWave();

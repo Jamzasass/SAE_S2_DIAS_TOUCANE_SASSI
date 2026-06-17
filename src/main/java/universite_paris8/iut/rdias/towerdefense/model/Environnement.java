@@ -44,9 +44,6 @@ public class Environnement {
     private ObservableList<Animation> animations;
     private ArrayList<Actor> actorsDying;
     private ArrayList<Effect> effectsDying;
-//    private static int cptSpawn = 0;
-//    private int delaySpawn = 60;
-//    private static final int[][] spanwPoints = {{4, 8}, {4, 38}, {4, 60}};
     private IntegerProperty balance;
     private Settings settings;
     private IntegerProperty waveIndex;
