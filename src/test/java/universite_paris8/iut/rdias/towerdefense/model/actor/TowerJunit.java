@@ -174,13 +174,18 @@ public class TowerJunit {
     void testSoldRemovesTowerFromEnvironment() {
         ground = new Ground();
         env = new Environnement(ground);
-        tower = new Archer(env, 24, 1.0, 1.0);
-        env.getTowers().add(tower);
+        env.earn(500);
 
-        int towerCountBefore = env.getTowers().size();
+        for (int line = 5; line < 15 && env.getTowers().isEmpty(); line++) {
+            for (int col = 5; col < 15 && env.getTowers().isEmpty(); col++) {
+                env.createTower(1, col, line);
+            }
+        }
+
+        assertTrue(env.getTowers().size() > 0, "Une tour doit être créée");
+        Tower tower = env.getTowers().get(0);
         tower.sell();
-        int towerCountAfter = env.getTowers().size();
-        assertEquals(towerCountBefore - 1, towerCountAfter, "La tour doit être supprimée de l'environnement");
+        assertEquals(0, env.getTowers().size(), "La tour doit être supprimée");
     }
 
     // Test pour savoir si le cooldown se reset après avoir effectuer
