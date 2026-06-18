@@ -149,9 +149,9 @@ public class TowerJunit {
         assertTrue(canPlaceOnGrass, "la tour peut être placer");
     }
 
-    // Test pour vérifier que la tour doit être placer a côter du chemin
+    // Test pour vérifier que la tour peut être placer a côter du chemin
     @Test
-    void testTowerMustBeAdjacentToPath() {
+    void testTowerCanBeAdjacentToPath() {
         ground = new Ground();
         env = new Environnement(ground);
         tower = new Archer(env, 24 , 1.0, 1.0);
