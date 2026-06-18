@@ -249,6 +249,7 @@ public class Controller {
         // Check if clicking on existing tower
         Tower tower = findTowerAt(col, line);
         if (tower != null) {
+            stopDrag();
             showTowerMenu(tower);
             return;
         }
