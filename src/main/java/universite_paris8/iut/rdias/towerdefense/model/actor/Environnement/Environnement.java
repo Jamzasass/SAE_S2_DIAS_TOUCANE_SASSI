@@ -61,7 +61,7 @@ public class Environnement {
         this.animations = FXCollections.observableArrayList();
         this.actorsDying = new ArrayList<>();
         this.effectsDying = new ArrayList<>();
-        this.balance = new SimpleIntegerProperty(1000);
+        this.balance = new SimpleIntegerProperty(350);
         this.waveIndex = new SimpleIntegerProperty(1);
         this.settings = new Settings();
         this.wave = new Wave(this, waveIndex.get());
