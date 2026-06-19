@@ -34,9 +34,9 @@ public class Wave {
         this.delayBetweenSpawns = 3;
         this.waveCptLap = 0;
         // Ajout du système d'inflation
-        if (waveIndex > 4) {
+        if (waveIndex > 0) {
             int random = (int)(Math.random()*4);
-            this.macronInflationActivated = random==3;
+            this.macronInflationActivated = random>=0;
         }
         if (macronInflationActivated) {
             env.getSettings().inflation();
